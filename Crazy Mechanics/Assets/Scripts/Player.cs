@@ -111,7 +111,7 @@ public class Player : MonoBehaviour, ICarObjectParent
         {
             if (raycastHit.transform.TryGetComponent(out BaseCounter baseCounter))
             {
-                Debug.Log(raycastHit.transform.name);
+                //Debug.Log(raycastHit.transform.name);
                 // Has clear Counter
                 if (baseCounter != selectedCounter)
                 {
