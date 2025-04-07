@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class InvisibleHolder : BaseCounter
 {
+    [SerializeField] private CarObject tool;
+    void Start()
+    {
+        if(tool != null){
+            CreateTool();
+        }
+    }
     public override void Interact(Player player)
     {
             // There is a car obj here already.
@@ -23,5 +30,9 @@ public class InvisibleHolder : BaseCounter
 
         collider.enabled = true;
 
+    }
+
+    public void CreateTool(){
+        SetCarObject(tool);
     }
 }
