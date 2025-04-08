@@ -10,7 +10,7 @@ public class ElevatorCounter : BaseCounter
     [SerializeField] private ObjectsSO objectsSO;
     public override void Interact(Player player)
     {
-        elevatorController.changeFlorElevator();
+        elevatorController.ChangeFlorElevator();
         Debug.Log("Piso actual: " + elevatorController.floorNumberElevator);
 
     }

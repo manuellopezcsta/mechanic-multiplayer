@@ -21,7 +21,11 @@ public class CurrentStationManager : MonoBehaviour
 
     // Motor tool = pluma
     public bool IsMotorToolDocked() {
-        return docking.isMotorToolDocked();
+        if(docking == null) {
+            return false;
+        } else {
+            return docking.isMotorToolDocked();
+        }
     }
 
     public int getStationNumber() {
@@ -29,6 +33,9 @@ public class CurrentStationManager : MonoBehaviour
     }
 
     public MotorTool GetCurrentMotorTool() {
+        if(docking == null) {
+            return null;
+        }
         if(docking.GetCurrentMotorTool() != null) {
             return docking.GetCurrentMotorTool();
         } else {

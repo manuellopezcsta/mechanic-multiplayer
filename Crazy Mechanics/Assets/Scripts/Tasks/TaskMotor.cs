@@ -12,14 +12,17 @@ public class TaskMotor : BaseCounter
     public override void Interact(Player player)
     {
         CurrentStationManager stationManager = carController.GetCurrentStationManager();
+        Debug.Log("Se interacciono con el taskMotor. " + (stationManager!= null).ToString());
         bool conditionsMet = stationManager.GetCurrentElevatorFloor() == 0 && stationManager.IsMotorToolDocked();
         MotorTool motorTool = stationManager.GetCurrentMotorTool();
+
 
         if (!taskComplete)
         {
             // Logica para dejar objetos
-            if (!HasCarObject())
+            if (!HasCarObject() && motorTool != null)
             {
+                Debug.Log("Entro hasta aca , armar objeto motorTool que contenga algo como motrorFixed");
                 // There is no obj here and the pluma has a fixedMotor.
                 if (motorTool.HasCarObject() && motorTool.GetCarObject().GetObjectSO() == fixedMotor)
                 {
@@ -32,8 +35,11 @@ public class TaskMotor : BaseCounter
             }
             else // Logica para colocar algo adentro.
             {
+                Debug.Log("conditionsMet" + conditionsMet.ToString() + " " + (stationManager.GetCurrentElevatorFloor() == 0).ToString() + " " +
+                (stationManager.IsMotorToolDocked()).ToString());
                 if (conditionsMet)
                 {
+                    Debug.Log("Entro hasta aca , fijarse que saque el objeto.. agregar car Object a este task cuando se inicia.");
                     // El piso es el correcto y esta la pluma dockeada.
                     
                     // Fijarse que el motor este seteado.

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,14 +12,84 @@ public class GameManager : MonoBehaviour
         Instance = this;
     }
 
+    // Tasks para los autos.
+    [SerializeField] GameObject oilTaskPrefab;
+    [SerializeField] GameObject motorTaskPrefab;
+    [SerializeField] GameObject wheelTaskPrefab;
+
+
+    // Lista de autos que puede spawnear
+    [SerializeField] private GameObject[] carPrefabs;
+
+    // Posiciones donde se instancian los autos
+    [SerializeField] GameObject[] positionInstanciateCars;
     [SerializeField] CurrentStationManager[] stations;
 
-    public CurrentStationManager GetStationNumber(int stationNumber) {
-        return stations[stationNumber];
+
+    public enum CarTasks {
+        OIL_CHANGE,
+        MOTOR_FIX,
+        WHEEL_FIX_FR,
+        WHEEL_FIX_FL,
+        WHEEL_FIX_BR,
+        WHEEL_FIX_BL,
     }
 
-    // CREO AUTO CON PROBLEMAS
+    public void GenerateCar(int numberOfTaks) {
+        // Elijo un auto random de los que tengo
+        int index = UnityEngine.Random.Range(0, carPrefabs.Length);
+        GameObject car = Instantiate(carPrefabs[index]);
+        int elevatorNumber = UnityEngine.Random.Range(0, positionInstanciateCars.Length);
+        // Le asigno la posicion de spawneo y su stationManager.
+        car.transform.position = positionInstanciateCars[elevatorNumber].transform.position;
+        CarController controller = car.GetComponent<CarController>();
+        controller.SetCurrentStationManager(stations[elevatorNumber]);
+        //Generamos las tasks que queremos.
+        List<CarTasks> tasksToDo = ChooseRandomTasks(numberOfTaks);
+        foreach (CarTasks task in tasksToDo) {
+            controller.GenerateTask(task);
+        }
+        // Dejamos que se mueva
+        controller.canMove = true;
+    }
 
-    // Lo asigno a una de las stations al car controller.
 
+    // Retornamos los prefabs para que los tengan los car controller
+    public GameObject GetOilTaskPrefab() {
+        return Instantiate(oilTaskPrefab);
+    }
+
+    public GameObject GetMotorTaskPrefab() {
+        return Instantiate(motorTaskPrefab);
+    }
+
+    public GameObject GetWheelTaskPrefab() {
+        // FIX TEMPORAL
+        //return Instantiate(wheelTaskPrefab);
+        return Instantiate(motorTaskPrefab);
+    }
+
+    public List<CarTasks> ChooseRandomTasks(int ammount)
+    {
+        if (ammount < 1 || ammount > Enum.GetValues(typeof(CarTasks)).Length)
+        {
+            throw new ArgumentException("La cantidad debe estar entre 1 y 6.");
+        }
+
+        // Obtener todos los elementos del enum y convertirlos a una lista.
+        List<CarTasks> output = new List<CarTasks>((CarTasks[])Enum.GetValues(typeof(CarTasks)));
+
+        // Mezclar la lista.
+        System.Random random = new System.Random();
+        for (int i = output.Count - 1; i > 0; i--)
+        {
+            int j = random.Next(i + 1);
+            CarTasks temp = output[i];
+            output[i] = output[j];
+            output[j] = temp;
+        }
+
+        // Retornar la cantidad deseada de elementos.
+        return output.GetRange(0, ammount);
+    }
 }

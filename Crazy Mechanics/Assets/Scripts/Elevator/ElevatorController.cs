@@ -9,7 +9,7 @@ public class ElevatorController : MonoBehaviour
     public int floorNumberElevator = 0;
     [SerializeField] private bool isMoving;
 
-    public void changeFlorElevator()
+    public void ChangeFlorElevator()
     {
         if (!isMoving)
         {
