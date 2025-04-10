@@ -8,10 +8,13 @@ public class ElevatorController : MonoBehaviour
     [SerializeField] private float speed;
     public int floorNumberElevator = 0;
     [SerializeField] private bool isMoving;
+    [SerializeField] Transform elevatorArms;
 
     public void ChangeFlorElevator()
     {
-        if (!isMoving)
+        CurrentStationManager csm = GetComponent<CurrentStationManager>();
+
+        if (!isMoving && !csm.IsElevatorLocked() && GameManager.Instance.IsPowerEnabled())
         {
             switch (floorNumberElevator)
             {
@@ -33,8 +36,8 @@ public class ElevatorController : MonoBehaviour
     {
         if (isMoving)
         {
-            transform.position = Vector3.MoveTowards(transform.position, floors[floorNumberElevator].position, speed * Time.deltaTime);
-            if (transform.position == floors[floorNumberElevator].position)
+            elevatorArms.position = Vector3.MoveTowards(elevatorArms.position, floors[floorNumberElevator].position, speed * Time.deltaTime);
+            if (elevatorArms.position == floors[floorNumberElevator].position)
             {
                 isMoving = false;
                 //Debug.Log("No se mueve mas");

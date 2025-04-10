@@ -3,11 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GeneratorTool : BaseCounter
+public class BalacingTool : BaseCounter
 {
-    [SerializeField] private ObjectsSO battery;
+    [SerializeField] private ObjectsSO wheel;
 
-    [SerializeField] private ObjectsSO chargeBattery;
+    [SerializeField] private ObjectsSO balancedWheel;
     [SerializeField] private bool taskComplete;
     [SerializeField] private float timeRequest;
 
@@ -15,12 +15,11 @@ public class GeneratorTool : BaseCounter
 
     public override void Interact(Player player)
     {
-
+        Debug.Log("Se entro aca");
         // Logica para dejar objetos
         if (!HasCarObject()) {
             // There is no obj here and check if they are the same object
-            // SI lo pones y justo se corta la luz carga igual..
-            if (player.HasCarObject() && player.GetCarObject().GetObjectSO() == battery && GameManager.Instance.IsPowerEnabled()) {
+            if (player.HasCarObject() && player.GetCarObject().GetObjectSO() == wheel && GameManager.Instance.IsPowerEnabled()) {
                 // El player tiene algo en la mano
                 player.GetCarObject().SetCarObjectParent(this);
                 StartCoroutine(TimeToRequest(timeRequest));
@@ -42,7 +41,7 @@ public class GeneratorTool : BaseCounter
         taskComplete = true;
         Destroy(GetCarObject().gameObject);
         ClearCarObject();
-        Transform outputSOPreFab = Instantiate(chargeBattery.prefab, GetCarObjectFollowTransform());
+        Transform outputSOPreFab = Instantiate(balancedWheel.prefab, GetCarObjectFollowTransform());
         outputSOPreFab.GetComponent<CarObject>().SetCarObjectParent(this);
     }
 }

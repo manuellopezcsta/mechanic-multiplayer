@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class Trash : BaseCounter
+public class TrashCounter : BaseCounter
 {
     [SerializeField] private List<ObjectsSO> tools;
     public override void Interact(Player player)
@@ -18,9 +18,6 @@ public class Trash : BaseCounter
                 player.GetCarObject().SetCarObjectParent(this);
                 Destroy(GetCarObject().gameObject);
                 ClearCarObject();
-            } else {
-                // Player no tiene nada en la mano
-
             }
         }
     }

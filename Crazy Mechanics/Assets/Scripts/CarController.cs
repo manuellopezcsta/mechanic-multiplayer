@@ -9,7 +9,7 @@ public class CarController : MonoBehaviour
     const string STOP_TAG = "Stop";
     private CurrentStationManager currentStationManager;
 
-    public bool taskComplete = true;
+    public bool carFixed = true;
     public bool canMove;
     [SerializeField] private float speed = 5f;
     [SerializeField] private float targetZ = 10f;
@@ -30,10 +30,10 @@ public class CarController : MonoBehaviour
     // Las tasks que se crearon
     private List<GameObject> createdTasksContainers = new List<GameObject>();
 
-
+    private int completedTasksCounter = 0;
     void Update()
     {
-        if (canMove && taskComplete)
+        if (canMove && carFixed)
         {
             // El auto va hacia adelante.
             Vector3 currentPosition = transform.position;
@@ -44,7 +44,6 @@ public class CarController : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        
     }
 
     public void TurnOnTasksColliders()
@@ -55,6 +54,7 @@ public class CarController : MonoBehaviour
         }
     }
 
+    /*
     private void OnTriggerExit(Collider other)
     {
         // Esto esta para que no choque con la pared cuando se instancia el auto, se prenden los collider de las tasks, despues.
@@ -63,7 +63,7 @@ public class CarController : MonoBehaviour
             TurnOnTasksColliders();
         }
 
-    }
+    }*/
 
     public void SetCurrentStationManager(CurrentStationManager target)
     {
@@ -105,6 +105,7 @@ public class CarController : MonoBehaviour
                 generatedTask = GameManager.Instance.GetWheelTaskPrefab();
                 generatedTask.transform.position = wheelFRPosition.position;
                 generatedTask.transform.SetParent(wheelFRPosition);
+                generatedTask.GetComponent<TaskWheel>().carController = this;
                 carTasks.Add(GameManager.CarTasks.WHEEL_FIX_FR);
                 createdTasksContainers.Add(generatedTask);
                 return;
@@ -112,6 +113,7 @@ public class CarController : MonoBehaviour
                 generatedTask = GameManager.Instance.GetWheelTaskPrefab();
                 generatedTask.transform.position = wheelFLPosition.position;
                 generatedTask.transform.SetParent(wheelFLPosition);
+                generatedTask.GetComponent<TaskWheel>().carController = this;
                 carTasks.Add(GameManager.CarTasks.WHEEL_FIX_FL);
                 createdTasksContainers.Add(generatedTask);
                 return;
@@ -119,6 +121,7 @@ public class CarController : MonoBehaviour
                 generatedTask = GameManager.Instance.GetWheelTaskPrefab();
                 generatedTask.transform.position = wheelBRPosition.position;
                 generatedTask.transform.SetParent(wheelBRPosition);
+                generatedTask.GetComponent<TaskWheel>().carController = this;
                 carTasks.Add(GameManager.CarTasks.WHEEL_FIX_BR);
                 createdTasksContainers.Add(generatedTask);
                 return;
@@ -126,6 +129,7 @@ public class CarController : MonoBehaviour
                 generatedTask = GameManager.Instance.GetWheelTaskPrefab();
                 generatedTask.transform.position = wheelBLPosition.position;
                 generatedTask.transform.SetParent(wheelBLPosition);
+                generatedTask.GetComponent<TaskWheel>().carController = this;
                 carTasks.Add(GameManager.CarTasks.WHEEL_FIX_BL);
                 createdTasksContainers.Add(generatedTask);
                 return;
@@ -133,9 +137,24 @@ public class CarController : MonoBehaviour
                 generatedTask = GameManager.Instance.GetBatteryTaskPrefab();
                 generatedTask.transform.position = batteryTaskPosition.position;
                 generatedTask.transform.SetParent(batteryTaskPosition);
+                generatedTask.GetComponent<SwapBatteryTask>().carController = this;
                 carTasks.Add(GameManager.CarTasks.BATTERY_CHARGE);
                 createdTasksContainers.Add(generatedTask);
                 return;
         }
+       
+    }
+    private void CheckIfFinishedFixing(){
+        if(createdTasksContainers.Count == completedTasksCounter){
+            carFixed = true;
+            Debug.Log("Auto esta listo para entregar");
+        }
+    }
+    public void CompleteTask(){
+    //aumenta las tareas completadas en 1, se llama cada vez que una tarea se completa, y esta vinculada al auto. 
+        completedTasksCounter ++;
+        Debug.Log("Se aumento las tareas completadas " + completedTasksCounter  );
+        // Nos fijamos si el auto esta listo.
+        CheckIfFinishedFixing();
     }
 }

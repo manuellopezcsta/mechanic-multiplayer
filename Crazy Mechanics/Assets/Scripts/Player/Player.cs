@@ -6,6 +6,7 @@ using UnityEngine.Diagnostics;
 
 public class Player : MonoBehaviour, ICarObjectParent
 {
+    const string MOTOR_TOOL_NAME = "Pluma";
 
     public static Player Instance { get; private set; }
     public event EventHandler<OnSelectedCounterChangedEventArgs> OnSelectedCounterChanged;
@@ -242,7 +243,7 @@ public class Player : MonoBehaviour, ICarObjectParent
         Rigidbody rb = hit.collider.attachedRigidbody;
         float forceMagnitude = 1f;
 
-        if (rb != null  && hit.gameObject.name == "Pluma") {
+        if (rb != null  && hit.gameObject.name == MOTOR_TOOL_NAME) {
             Vector3 forceDirection = hit.gameObject.transform.position - transform.position;
             forceDirection.y = 0;
             forceDirection.Normalize();

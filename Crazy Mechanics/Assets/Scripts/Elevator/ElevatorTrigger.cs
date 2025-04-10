@@ -5,21 +5,25 @@ using UnityEngine;
 using UnityEngine.UIElements;
 
 public class ElevatorTrigger : MonoBehaviour
-{
+{   
+    const string CAR_TAG = "Car";
     [SerializeField] private GameObject targetElevator;
+    [SerializeField] private CurrentStationManager currentStationManager;
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Car"))
+        if (other.CompareTag(CAR_TAG))
         {
             //Asegurar que el elevador este en 0 para que el auto pueda subir /no se empale.
-            //other.GetComponent<BoxCollider>().enabled = false;
             other.GetComponent<CarController>().canMove = false;
-            other.GetComponent<CarController>().taskComplete = false;
+            other.GetComponent<CarController>().carFixed = false;
             Vector3 globalPosition = other.transform.position;
             other.transform.SetParent(targetElevator.transform);
             other.transform.position = globalPosition;
             Destroy(other.GetComponent<Rigidbody>());
+            // Prendemos los colliders de las tasks
             other.GetComponent<CarController>().TurnOnTasksColliders();
+            // Guardamos el auto en el Station Controller
+            currentStationManager.currentCar = other.GetComponent<CarController>();
             //ChangeValueCollider();
             Debug.Log("Entro en el trigger");
         }
@@ -27,7 +31,8 @@ public class ElevatorTrigger : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-       if(other.CompareTag("Car") && other.GetComponent<CarController>().taskComplete){
+       if(other.CompareTag(CAR_TAG) && other.GetComponent<CarController>().carFixed){
+        currentStationManager.FreeStation();
         other.transform.SetParent(null);
         Debug.Log("Salio del trigger");
         //ChangeValueCollider();

@@ -4,55 +4,78 @@ using UnityEngine;
 
 public class CurrentStationManager : MonoBehaviour
 {
-    private CarController currentCar; // Guarda el autoActual. LIMPIARLO AL TERMINAR para indicar que esta libre.
+    public CarController currentCar; // Guarda el autoActual. LIMPIARLO AL TERMINAR para indicar que esta libre.
     [SerializeField] ElevatorController elevatorController;
     [SerializeField] MotorToolDocking docking;
-    private int elevatorNumber = 1; 
+    private int elevatorNumber = 1;
+    private bool isElevatorLocked = false; // Si el elevador esta lockeado porque esta en uso
 
-    // ACCESO AL AUTO. needed.
+    public bool IsElevatorLocked() {
+        return isElevatorLocked;
+    }
 
-    // CS > AUTO > TASK.
-    // CS < AUTO < TASK
+    public void LockAndUnlockElevator() {
+        isElevatorLocked = !isElevatorLocked;
+    }
 
-
-    public int GetCurrentElevatorFloor() {
+    public int GetCurrentElevatorFloor()
+    {
         return elevatorController.floorNumberElevator;
     }
 
     // Motor tool = pluma
-    public bool IsMotorToolDocked() {
-        if(docking == null) {
+    public bool IsMotorToolDocked()
+    {
+        if (docking == null)
+        {
             return false;
-        } else {
+        }
+        else
+        {
             return docking.isMotorToolDocked();
         }
     }
 
-    public int getStationNumber() {
+    public int getStationNumber()
+    {
         return elevatorNumber;
     }
 
-    public MotorTool GetCurrentMotorTool() {
-        if(docking == null) {
+    public MotorTool GetCurrentMotorTool()
+    {
+        if (docking == null)
+        {
             return null;
         }
-        if(docking.GetCurrentMotorTool() != null) {
+        if (docking.GetCurrentMotorTool() != null)
+        {
             return docking.GetCurrentMotorTool();
-        } else {
-            Debug.LogError("MOTOR TOOL ES NULL!");
+        }
+        else
+        {
+            //Debug.LogError("MOTOR TOOL ES NULL!");
             return null;
         }
     }
 
-    public bool isFree() {
+    public bool isFree()
+    {
         return currentCar == null;
     }
 
-    public void FreeStation() {
+    public void FreeStation()
+    {
         currentCar = null;
     }
 
 
-
+    public void TryToDeliverCar()
+    {
+        if (currentCar != null && currentCar.carFixed)
+        {
+            currentCar.canMove = true;
+            Debug.Log("Se entrego el auto");
+        }
+    }
     // GAME MANAGER, CREA AUIO EN UNO DE LOS elevadores.. y le asigna un manager?.
 }

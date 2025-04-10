@@ -5,10 +5,11 @@ using UnityEngine;
 
 public class SwapBatteryTask : BaseCounter
 {
+    public CarController carController;
     [SerializeField] private CarObject battery;
 
     [SerializeField] private ObjectsSO chagedBattery;
-    [SerializeField] private bool taskComplete;
+    [SerializeField] public bool taskComplete;
 
 
     
@@ -17,14 +18,20 @@ public class SwapBatteryTask : BaseCounter
     }
     public override void Interact(Player player)
     {
-        Debug.Log("Interactua con bateria");
+        CurrentStationManager stationManager = carController.GetCurrentStationManager();
+
+        //Debug.Log("Interactua con bateria");
         // Logica para dejar objetos
         if (!HasCarObject()) {
             // There is no obj here and check if they are the same object
             if (player.HasCarObject() && player.GetCarObject().GetObjectSO() == chagedBattery) {
                 // El player tiene algo en la mano
                 player.GetCarObject().SetCarObjectParent(this);
+                // Lo borramos.
+                Destroy(GetCarObject().gameObject);
+                // Marcamos la task como completa.
                 taskComplete = true;
+                carController.CompleteTask();
             } 
         } else {
             // There is a car obj here already.

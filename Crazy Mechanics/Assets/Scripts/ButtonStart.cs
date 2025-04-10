@@ -7,6 +7,11 @@ public class ButtonStart : BaseCounter
 {
     public override void Interact(Player player)
     {
-        GameManager.Instance.GenerateCar(6);
+        //Random de task que tendra el auto
+
+        int randomTasks = Random.Range(1,GameManager.Instance.GetTaskCount() );
+        Debug.Log("Cantidad de task en auto " + randomTasks );
+        //GameManager.Instance.GenerateCar(randomTasks);
+        GameManager.Instance.GenerateCar(7); // Para debugear mas facil.
     }
 }

@@ -10,7 +10,8 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        TimerEventManager.OnTimerStart();//Inicia timer
+        LevelTimer levelTimer = GetComponent<LevelTimer>();
+        levelTimer.StartTimer();
     }
 
     // Tasks para los autos.
@@ -26,6 +27,9 @@ public class GameManager : MonoBehaviour
     // Posiciones donde se instancian los autos
     [SerializeField] GameObject[] positionInstanciateCars;
     [SerializeField] CurrentStationManager[] stations;
+
+    // Para cortar la luz
+    [SerializeField] LightBoxController lightBoxController;
 
 
     public enum CarTasks {
@@ -75,6 +79,10 @@ public class GameManager : MonoBehaviour
         return Instantiate(wheelTaskPrefab);
     }
 
+    public int GetTaskCount(){
+        return Enum.GetValues(typeof(CarTasks)).Length;
+    }
+
     public List<CarTasks> ChooseRandomTasks(int ammount)
     {
         if (ammount < 1 || ammount > Enum.GetValues(typeof(CarTasks)).Length)
@@ -97,5 +105,9 @@ public class GameManager : MonoBehaviour
 
         // Retornar la cantidad deseada de elementos.
         return output.GetRange(0, ammount);
+    }
+
+    public bool IsPowerEnabled() {
+        return !lightBoxController.IsPowerDown();
     }
 }

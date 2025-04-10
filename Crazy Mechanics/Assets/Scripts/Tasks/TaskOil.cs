@@ -10,7 +10,7 @@ public class TaskOil : BaseCounter
     [SerializeField] private ObjectsSO box;
     [SerializeField] private ObjectsSO oil;
     [SerializeField] private ObjectsSO boxFull;
-    [SerializeField] private bool taskComplete;
+    [SerializeField] public bool taskComplete;
     [SerializeField] private float timeRequest;
 
     [SerializeField] private bool itHasDirtyOil = true;
@@ -31,10 +31,8 @@ public class TaskOil : BaseCounter
                 {
                     // El player tiene algo en la mano
                     player.GetCarObject().SetCarObjectParent(this);
-                    StartCoroutine(TimeToRequest(timeRequest));
-                    
-                    
-
+                    // Empezamos a drenar el aceite sucio
+                    StartCoroutine(TimeToRequest(timeRequest, stationManager));
                 }
                 //Verifica si el player tiene un objeto, si es un aceite y el auto no tiene aceite sucio. Si se cumple completa la tarea
                 else if (isOnGroundFloor && player.HasCarObject() && player.GetCarObject().GetObjectSO() == oil && !itHasDirtyOil)
@@ -42,21 +40,20 @@ public class TaskOil : BaseCounter
                     player.GetCarObject().SetCarObjectParent(this);
 
                     taskComplete = true;
+                    carController.CompleteTask();
+                    // Destruimos el obj del aceite para que no se vea.
                     Destroy(GetCarObject().gameObject);
                 }
-                else
-                {
-                    // Player no tiene nada en la mano
-
-                }
             }
-            else
+            else // Logica para sacar el aceite Sucio del auto.
             {
                 if (!player.HasCarObject() && !itHasDirtyOil)
                 {
                     // Player is not carrying anything. He only takes it when he finishes the task.
 
                     GetCarObject().SetCarObjectParent(player);
+                    // Deslockeamos el elevador.
+                    stationManager.LockAndUnlockElevator();
 
                 }
 
@@ -64,8 +61,10 @@ public class TaskOil : BaseCounter
         }
     }
 
-    IEnumerator TimeToRequest(float timeRequest)
+    IEnumerator TimeToRequest(float timeRequest, CurrentStationManager csm)
     {
+        //Lockeamos el elevador por seguridad
+        csm.LockAndUnlockElevator();
         yield return new WaitForSeconds(timeRequest);
         itHasDirtyOil = false;
         //Limpia el carObject de la mesa y lo destruye.
