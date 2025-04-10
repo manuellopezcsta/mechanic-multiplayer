@@ -112,7 +112,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 1.042, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 8380462023928631524}
   m_Father: {fileID: 1059033368022082466}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4797811566547193203
@@ -319,3 +320,105 @@ MonoBehaviour:
   counterTopPoint: {fileID: 8153293316315476024}
   carController: {fileID: 0}
   fixedMotor: {fileID: 11400000, guid: 8afd1f62657ec1f459ad1d6e2490be18, type: 2}
+  motor: {fileID: 8997834309152412731}
+--- !u!1001 &1029731464435289496
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 8153293316315476024}
+    m_Modifications:
+    - target: {fileID: 5874077423908523903, guid: 083835ac3ad3e8048a59792901992e8f,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.09
+      objectReference: {fileID: 0}
+    - target: {fileID: 5874077423908523903, guid: 083835ac3ad3e8048a59792901992e8f,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.97
+      objectReference: {fileID: 0}
+    - target: {fileID: 5874077423908523903, guid: 083835ac3ad3e8048a59792901992e8f,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 5874077423908523903, guid: 083835ac3ad3e8048a59792901992e8f,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7004811
+      objectReference: {fileID: 0}
+    - target: {fileID: 5874077423908523903, guid: 083835ac3ad3e8048a59792901992e8f,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.00000027307678
+      objectReference: {fileID: 0}
+    - target: {fileID: 5874077423908523903, guid: 083835ac3ad3e8048a59792901992e8f,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.71367097
+      objectReference: {fileID: 0}
+    - target: {fileID: 5874077423908523903, guid: 083835ac3ad3e8048a59792901992e8f,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.00000018103277
+      objectReference: {fileID: 0}
+    - target: {fileID: 5874077423908523903, guid: 083835ac3ad3e8048a59792901992e8f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5874077423908523903, guid: 083835ac3ad3e8048a59792901992e8f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -361.068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5874077423908523903, guid: 083835ac3ad3e8048a59792901992e8f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6558246817204977426, guid: 083835ac3ad3e8048a59792901992e8f,
+        type: 3}
+      propertyPath: m_Name
+      value: Motor
+      objectReference: {fileID: 0}
+    - target: {fileID: 8793056723035200892, guid: 083835ac3ad3e8048a59792901992e8f,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 8793056723035200892, guid: 083835ac3ad3e8048a59792901992e8f,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.64
+      objectReference: {fileID: 0}
+    - target: {fileID: 8793056723035200892, guid: 083835ac3ad3e8048a59792901992e8f,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.08
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 083835ac3ad3e8048a59792901992e8f, type: 3}
+--- !u!4 &8380462023928631524 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8793056723035200892, guid: 083835ac3ad3e8048a59792901992e8f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1029731464435289496}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8997834309152412731 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8256485623728134563, guid: 083835ac3ad3e8048a59792901992e8f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1029731464435289496}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba8b665f93cef174981943010f71ade7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

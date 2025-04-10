@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -14,10 +15,11 @@ public class ElevatorTrigger : MonoBehaviour
             //other.GetComponent<BoxCollider>().enabled = false;
             other.GetComponent<CarController>().canMove = false;
             other.GetComponent<CarController>().taskComplete = false;
-            other.GetComponent<Rigidbody>().isKinematic = true;
             Vector3 globalPosition = other.transform.position;
             other.transform.SetParent(targetElevator.transform);
             other.transform.position = globalPosition;
+            Destroy(other.GetComponent<Rigidbody>());
+            other.GetComponent<CarController>().TurnOnTasksColliders();
             //ChangeValueCollider();
             Debug.Log("Entro en el trigger");
         }
@@ -29,6 +31,7 @@ public class ElevatorTrigger : MonoBehaviour
         other.transform.SetParent(null);
         Debug.Log("Salio del trigger");
         //ChangeValueCollider();
+        other.AddComponent<Rigidbody>();
    
        } 
     }

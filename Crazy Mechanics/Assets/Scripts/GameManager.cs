@@ -10,12 +10,14 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        TimerEventManager.OnTimerStart();//Inicia timer
     }
 
     // Tasks para los autos.
     [SerializeField] GameObject oilTaskPrefab;
     [SerializeField] GameObject motorTaskPrefab;
     [SerializeField] GameObject wheelTaskPrefab;
+    [SerializeField] GameObject batteryTaskPrefab;
 
 
     // Lista de autos que puede spawnear
@@ -33,6 +35,7 @@ public class GameManager : MonoBehaviour
         WHEEL_FIX_FL,
         WHEEL_FIX_BR,
         WHEEL_FIX_BL,
+        BATTERY_CHARGE,
     }
 
     public void GenerateCar(int numberOfTaks) {
@@ -62,11 +65,14 @@ public class GameManager : MonoBehaviour
     public GameObject GetMotorTaskPrefab() {
         return Instantiate(motorTaskPrefab);
     }
+    public GameObject GetBatteryTaskPrefab() {
+        return Instantiate(batteryTaskPrefab);
+    }
 
     public GameObject GetWheelTaskPrefab() {
         // FIX TEMPORAL
         //return Instantiate(wheelTaskPrefab);
-        return Instantiate(motorTaskPrefab);
+        return Instantiate(wheelTaskPrefab);
     }
 
     public List<CarTasks> ChooseRandomTasks(int ammount)

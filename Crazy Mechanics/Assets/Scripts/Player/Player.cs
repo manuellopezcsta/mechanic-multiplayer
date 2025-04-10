@@ -148,7 +148,7 @@ public class Player : MonoBehaviour, ICarObjectParent
         //if (Physics.Raycast(transform.position, lastInteractDir, out RaycastHit raycastHit, interactDistance, countersLayerMask))
         if (Physics.CapsuleCast(capsuleStart, capsuleEnd, capsuleRadius, lastInteractDir, out RaycastHit raycastHit, interactDistance, countersLayerMask))
         {
-            Debug.Log(raycastHit.transform.name);
+            //Debug.Log(raycastHit.transform.name);
             if (raycastHit.transform.TryGetComponent(out BaseCounter baseCounter))
             {
                 //Debug.Log(raycastHit.transform.name);

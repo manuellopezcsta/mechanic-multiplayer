@@ -5,10 +5,14 @@ using UnityEngine;
 public class TaskMotor : BaseCounter
 {
     public CarController carController;
-    private bool taskComplete = false;
+    [SerializeField] private bool taskComplete = false;
 
     [SerializeField] ObjectsSO fixedMotor;
-
+    [SerializeField] private CarObject motor;
+    void Start()
+    {
+        SetCarObject(motor);
+    }
     public override void Interact(Player player)
     {
         CurrentStationManager stationManager = carController.GetCurrentStationManager();
@@ -24,20 +28,21 @@ public class TaskMotor : BaseCounter
             {
                 Debug.Log("Entro hasta aca , armar objeto motorTool que contenga algo como motrorFixed");
                 // There is no obj here and the pluma has a fixedMotor.
-                if (motorTool.HasCarObject() && motorTool.GetCarObject().GetObjectSO() == fixedMotor)
+                if (motorTool.HasCarObject() && motorTool.GetCarObject().GetObjectSO() == fixedMotor && !player.HasCarObject())
                 {
                     //Ponemos el motor arreglado y marcamos la tarea como completa
                     motorTool.GetCarObject().SetCarObjectParent(this);
                     taskComplete = true;
+                    motorTool.FinishFixing();
                     // Lo borramos x las dudas ??
                     Destroy(GetCarObject().gameObject);
                 }
             }
-            else // Logica para colocar algo adentro.
+            else // Logica para sacar algo
             {
                 Debug.Log("conditionsMet" + conditionsMet.ToString() + " " + (stationManager.GetCurrentElevatorFloor() == 0).ToString() + " " +
                 (stationManager.IsMotorToolDocked()).ToString());
-                if (conditionsMet)
+                if (conditionsMet && !player.HasCarObject())
                 {
                     Debug.Log("Entro hasta aca , fijarse que saque el objeto.. agregar car Object a este task cuando se inicia.");
                     // El piso es el correcto y esta la pluma dockeada.
@@ -46,6 +51,8 @@ public class TaskMotor : BaseCounter
 
                     // Seteo el objeto al motor tool.
                     GetCarObject().SetCarObjectParent(motorTool);
+                    motorTool.ShowMotor();
+                    
                 }
             }
         }

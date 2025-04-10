@@ -19,11 +19,13 @@ public class CarController : MonoBehaviour
     // Posiciones para spawnear las tasks
     [SerializeField] private Transform oilTaskPosition;
     [SerializeField] private Transform motorTaskPosition;
-    [SerializeField] private Transform wheelFRPosition;
+    [SerializeField] private Transform batteryTaskPosition;
 
+    [SerializeField] private Transform wheelFRPosition;
     [SerializeField] private Transform wheelFLPosition;
     [SerializeField] private Transform wheelBRPosition;
     [SerializeField] private Transform wheelBLPosition;
+    
 
     // Las tasks que se crearon
     private List<GameObject> createdTasksContainers = new List<GameObject>();
@@ -42,6 +44,7 @@ public class CarController : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        
     }
 
     public void TurnOnTasksColliders()
@@ -59,6 +62,7 @@ public class CarController : MonoBehaviour
             //Debug.Log("Prendiendo colliders");
             TurnOnTasksColliders();
         }
+
     }
 
     public void SetCurrentStationManager(CurrentStationManager target)
@@ -85,6 +89,7 @@ public class CarController : MonoBehaviour
                 generatedTask = GameManager.Instance.GetOilTaskPrefab();
                 generatedTask.transform.position = oilTaskPosition.position;
                 generatedTask.transform.SetParent(oilTaskPosition);
+                generatedTask.GetComponent<TaskOil>().carController = this;
                 carTasks.Add(GameManager.CarTasks.OIL_CHANGE);
                 createdTasksContainers.Add(generatedTask);
                 return;
@@ -101,28 +106,35 @@ public class CarController : MonoBehaviour
                 generatedTask.transform.position = wheelFRPosition.position;
                 generatedTask.transform.SetParent(wheelFRPosition);
                 carTasks.Add(GameManager.CarTasks.WHEEL_FIX_FR);
-                //createdTasksContainers.Add(generatedTask);
+                createdTasksContainers.Add(generatedTask);
                 return;
             case GameManager.CarTasks.WHEEL_FIX_FL:
                 generatedTask = GameManager.Instance.GetWheelTaskPrefab();
                 generatedTask.transform.position = wheelFLPosition.position;
                 generatedTask.transform.SetParent(wheelFLPosition);
                 carTasks.Add(GameManager.CarTasks.WHEEL_FIX_FL);
-                //createdTasksContainers.Add(generatedTask);
+                createdTasksContainers.Add(generatedTask);
                 return;
             case GameManager.CarTasks.WHEEL_FIX_BR:
                 generatedTask = GameManager.Instance.GetWheelTaskPrefab();
                 generatedTask.transform.position = wheelBRPosition.position;
                 generatedTask.transform.SetParent(wheelBRPosition);
                 carTasks.Add(GameManager.CarTasks.WHEEL_FIX_BR);
-                //createdTasksContainers.Add(generatedTask);
+                createdTasksContainers.Add(generatedTask);
                 return;
             case GameManager.CarTasks.WHEEL_FIX_BL:
                 generatedTask = GameManager.Instance.GetWheelTaskPrefab();
                 generatedTask.transform.position = wheelBLPosition.position;
                 generatedTask.transform.SetParent(wheelBLPosition);
                 carTasks.Add(GameManager.CarTasks.WHEEL_FIX_BL);
-                //createdTasksContainers.Add(generatedTask);
+                createdTasksContainers.Add(generatedTask);
+                return;
+            case GameManager.CarTasks.BATTERY_CHARGE:
+                generatedTask = GameManager.Instance.GetBatteryTaskPrefab();
+                generatedTask.transform.position = batteryTaskPosition.position;
+                generatedTask.transform.SetParent(batteryTaskPosition);
+                carTasks.Add(GameManager.CarTasks.BATTERY_CHARGE);
+                createdTasksContainers.Add(generatedTask);
                 return;
         }
     }

@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class TaskOil : BaseCounter
 {
+    public CarController carController;
     [SerializeField] private ObjectsSO box;
     [SerializeField] private ObjectsSO oil;
     [SerializeField] private ObjectsSO boxFull;
@@ -17,13 +18,16 @@ public class TaskOil : BaseCounter
 
     public override void Interact(Player player)
     {
+        CurrentStationManager stationManager = carController.GetCurrentStationManager();
+        bool isOnFloorOne = stationManager.GetCurrentElevatorFloor() == 1;
+        bool isOnGroundFloor = stationManager.GetCurrentElevatorFloor() == 0;
         if (!taskComplete)
         {
             // Logica para dejar objetos
             if (!HasCarObject())
             {
                 // There is no obj here and check if they are the same object
-                if (player.HasCarObject() && player.GetCarObject().GetObjectSO() == box && itHasDirtyOil)
+                if (isOnFloorOne && player.HasCarObject() && player.GetCarObject().GetObjectSO() == box && itHasDirtyOil)
                 {
                     // El player tiene algo en la mano
                     player.GetCarObject().SetCarObjectParent(this);
@@ -33,7 +37,7 @@ public class TaskOil : BaseCounter
 
                 }
                 //Verifica si el player tiene un objeto, si es un aceite y el auto no tiene aceite sucio. Si se cumple completa la tarea
-                else if (player.HasCarObject() && player.GetCarObject().GetObjectSO() == oil && !itHasDirtyOil)
+                else if (isOnGroundFloor && player.HasCarObject() && player.GetCarObject().GetObjectSO() == oil && !itHasDirtyOil)
                 {
                     player.GetCarObject().SetCarObjectParent(this);
 

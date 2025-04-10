@@ -1,0 +1,37 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class SwapBatteryTask : BaseCounter
+{
+    [SerializeField] private CarObject battery;
+
+    [SerializeField] private ObjectsSO chagedBattery;
+    [SerializeField] private bool taskComplete;
+
+
+    
+    private void Start() {
+        SetCarObject(battery);
+    }
+    public override void Interact(Player player)
+    {
+        Debug.Log("Interactua con bateria");
+        // Logica para dejar objetos
+        if (!HasCarObject()) {
+            // There is no obj here and check if they are the same object
+            if (player.HasCarObject() && player.GetCarObject().GetObjectSO() == chagedBattery) {
+                // El player tiene algo en la mano
+                player.GetCarObject().SetCarObjectParent(this);
+                taskComplete = true;
+            } 
+        } else {
+            // There is a car obj here already.
+            if(!player.HasCarObject() && !taskComplete) {
+                GetCarObject().SetCarObjectParent(player);
+            } 
+        }
+    }
+
+}
