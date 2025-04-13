@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class SwapBatteryTask : BaseCounter
 {
     public CarController carController;
@@ -11,10 +11,12 @@ public class SwapBatteryTask : BaseCounter
     [SerializeField] private ObjectsSO chagedBattery;
     [SerializeField] public bool taskComplete;
 
+    [SerializeField] private TaskIndicatorUI indicatorUI;
 
-    
+
     private void Start() {
         SetCarObject(battery);
+        GetCarObject().SetCarObjectParent(this);
     }
     public override void Interact(Player player)
     {
@@ -31,6 +33,7 @@ public class SwapBatteryTask : BaseCounter
                 Destroy(GetCarObject().gameObject);
                 // Marcamos la task como completa.
                 taskComplete = true;
+                indicatorUI.SetAsComplete();
                 carController.CompleteTask();
             } 
         } else {
@@ -40,5 +43,4 @@ public class SwapBatteryTask : BaseCounter
             } 
         }
     }
-
 }

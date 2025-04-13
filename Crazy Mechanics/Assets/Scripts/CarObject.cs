@@ -13,6 +13,7 @@ public class CarObject : MonoBehaviour
     }
 
     public void SetCarObjectParent(ICarObjectParent targetParent) {
+        //Debug.Log(this.carObjectParent);
         if(this.carObjectParent != null) {
             this.carObjectParent.ClearCarObject();
         }
@@ -20,7 +21,7 @@ public class CarObject : MonoBehaviour
         this.carObjectParent = targetParent;
 
         if (targetParent.HasCarObject()) {
-            Debug.LogError("TargetParent Ya tiene un objeto.");
+            //Debug.LogError("TargetParent Ya tiene un objeto.");
         }
 
         targetParent.SetCarObject(this);
@@ -32,5 +33,22 @@ public class CarObject : MonoBehaviour
 
     public ICarObjectParent GetCarObjectParent() {
         return carObjectParent;
+    }
+
+    public void DestroySelf() {
+
+        carObjectParent.ClearCarObject();
+        Destroy(gameObject);
+    }
+
+    // Nueva implementar y ver si anda
+    public static CarObject SpawnKitchenObject(ObjectsSO objectsSO, ICarObjectParent carObjectParent) {
+        Transform carObjectTransform = Instantiate(objectsSO.prefab);
+
+        CarObject carObject = carObjectTransform.GetComponent<CarObject>();
+        
+        carObject.SetCarObjectParent(carObjectParent);
+
+        return carObject;
     }
 }

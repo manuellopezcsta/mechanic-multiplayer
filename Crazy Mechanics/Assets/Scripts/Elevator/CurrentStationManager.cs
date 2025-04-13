@@ -9,6 +9,8 @@ public class CurrentStationManager : MonoBehaviour
     [SerializeField] MotorToolDocking docking;
     private int elevatorNumber = 1;
     private bool isElevatorLocked = false; // Si el elevador esta lockeado porque esta en uso
+    [SerializeField] ButtonStart buttonStart;
+
 
     public bool IsElevatorLocked() {
         return isElevatorLocked;
@@ -66,6 +68,8 @@ public class CurrentStationManager : MonoBehaviour
     public void FreeStation()
     {
         currentCar = null;
+        buttonStart.canSpawnCar = true;
+        Debug.Log("Se libera la estacion" + buttonStart.canSpawnCar);
     }
 
 

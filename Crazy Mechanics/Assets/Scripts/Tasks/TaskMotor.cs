@@ -1,17 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TaskMotor : BaseCounter
 {
     public CarController carController;
     [SerializeField] public bool taskComplete = false;
-
     [SerializeField] ObjectsSO fixedMotor;
     [SerializeField] private CarObject motor;
+    [SerializeField] private GameObject motorVisual;
+    [SerializeField] private TaskIndicatorUI indicatorUI;
+
     void Start()
     {
         SetCarObject(motor);
+        GetCarObject().SetCarObjectParent(this);
     }
     public override void Interact(Player player)
     {
@@ -19,7 +23,6 @@ public class TaskMotor : BaseCounter
         //Debug.Log("Se interacciono con el taskMotor. " + (stationManager!= null).ToString());
         bool conditionsMet = stationManager.GetCurrentElevatorFloor() == 0 && stationManager.IsMotorToolDocked();
         MotorTool motorTool = stationManager.GetCurrentMotorTool();
-
 
         if (!taskComplete)
         {
@@ -32,6 +35,7 @@ public class TaskMotor : BaseCounter
                     //Ponemos el motor arreglado y marcamos la tarea como completa
                     motorTool.GetCarObject().SetCarObjectParent(this);
                     taskComplete = true;
+                    indicatorUI.SetAsComplete();
                     carController.CompleteTask();
                     // Escondemos el motor en la pluma y la reseteamos
                     motorTool.FinishFixing();
@@ -45,6 +49,7 @@ public class TaskMotor : BaseCounter
                 //(stationManager.IsMotorToolDocked()).ToString());
                 if (conditionsMet && !player.HasCarObject())
                 {
+                    motorVisual.SetActive(true);
                     // El piso es el correcto y esta la pluma dockeada.
                     // Seteo el objeto al motor tool.
                     GetCarObject().SetCarObjectParent(motorTool);

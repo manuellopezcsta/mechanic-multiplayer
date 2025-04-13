@@ -5,8 +5,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance { get; private set;}
-
+    public static GameManager Instance { get; private set; }
     private void Awake()
     {
         Instance = this;
@@ -32,7 +31,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] LightBoxController lightBoxController;
 
 
-    public enum CarTasks {
+    public enum CarTasks
+    {
         OIL_CHANGE,
         MOTOR_FIX,
         WHEEL_FIX_FR,
@@ -42,7 +42,8 @@ public class GameManager : MonoBehaviour
         BATTERY_CHARGE,
     }
 
-    public void GenerateCar(int numberOfTaks) {
+    public void GenerateCar(int numberOfTaks)
+    {
         // Elijo un auto random de los que tengo
         int index = UnityEngine.Random.Range(0, carPrefabs.Length);
         GameObject car = Instantiate(carPrefabs[index]);
@@ -53,7 +54,8 @@ public class GameManager : MonoBehaviour
         controller.SetCurrentStationManager(stations[elevatorNumber]);
         //Generamos las tasks que queremos.
         List<CarTasks> tasksToDo = ChooseRandomTasks(numberOfTaks);
-        foreach (CarTasks task in tasksToDo) {
+        foreach (CarTasks task in tasksToDo)
+        {
             controller.GenerateTask(task);
         }
         // Dejamos que se mueva
@@ -62,24 +64,29 @@ public class GameManager : MonoBehaviour
 
 
     // Retornamos los prefabs para que los tengan los car controller
-    public GameObject GetOilTaskPrefab() {
+    public GameObject GetOilTaskPrefab()
+    {
         return Instantiate(oilTaskPrefab);
     }
 
-    public GameObject GetMotorTaskPrefab() {
+    public GameObject GetMotorTaskPrefab()
+    {
         return Instantiate(motorTaskPrefab);
     }
-    public GameObject GetBatteryTaskPrefab() {
+    public GameObject GetBatteryTaskPrefab()
+    {
         return Instantiate(batteryTaskPrefab);
     }
 
-    public GameObject GetWheelTaskPrefab() {
+    public GameObject GetWheelTaskPrefab()
+    {
         // FIX TEMPORAL
         //return Instantiate(wheelTaskPrefab);
         return Instantiate(wheelTaskPrefab);
     }
 
-    public int GetTaskCount(){
+    public int GetTaskCount()
+    {
         return Enum.GetValues(typeof(CarTasks)).Length;
     }
 
@@ -107,7 +114,8 @@ public class GameManager : MonoBehaviour
         return output.GetRange(0, ammount);
     }
 
-    public bool IsPowerEnabled() {
+    public bool IsPowerEnabled()
+    {
         return !lightBoxController.IsPowerDown();
     }
 }

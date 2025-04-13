@@ -150,6 +150,7 @@ Transform:
   - {fileID: 640643720285331887}
   - {fileID: 3338473328757981123}
   - {fileID: 8218458905365630152}
+  - {fileID: 8100257711038242836}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -269.999, z: 0}
 --- !u!65 &751121328875168053
@@ -190,6 +191,7 @@ MonoBehaviour:
   battery: {fileID: 6866494963895873532}
   chagedBattery: {fileID: 11400000, guid: 095f77505490e3745aa6b0ec044d444b, type: 2}
   taskComplete: 0
+  indicatorUI: {fileID: 9206716798229395381}
 --- !u!1 &7222898997212401377
 GameObject:
   m_ObjectHideFlags: 0
@@ -322,6 +324,104 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1001 &6612398674552921808
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 3186181609885773281}
+    m_Modifications:
+    - target: {fileID: 2596080721813055845, guid: 913685a84d45ced43870c51e13f5c1ef,
+        type: 3}
+      propertyPath: completedTaskIcon
+      value: 
+      objectReference: {fileID: 21300000, guid: 6c562ac6d3e47ff4794df31886c6d864,
+        type: 3}
+    - target: {fileID: 3146345946513686212, guid: 913685a84d45ced43870c51e13f5c1ef,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3146345946513686212, guid: 913685a84d45ced43870c51e13f5c1ef,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3146345946513686212, guid: 913685a84d45ced43870c51e13f5c1ef,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3146345946513686212, guid: 913685a84d45ced43870c51e13f5c1ef,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 3146345946513686212, guid: 913685a84d45ced43870c51e13f5c1ef,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3146345946513686212, guid: 913685a84d45ced43870c51e13f5c1ef,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 3146345946513686212, guid: 913685a84d45ced43870c51e13f5c1ef,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3146345946513686212, guid: 913685a84d45ced43870c51e13f5c1ef,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3146345946513686212, guid: 913685a84d45ced43870c51e13f5c1ef,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 3146345946513686212, guid: 913685a84d45ced43870c51e13f5c1ef,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5467856008940853364, guid: 913685a84d45ced43870c51e13f5c1ef,
+        type: 3}
+      propertyPath: m_Name
+      value: TaskIndicatorUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 8033086095652850080, guid: 913685a84d45ced43870c51e13f5c1ef,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a4a92356451e55e46b65855f6cf90926,
+        type: 3}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 913685a84d45ced43870c51e13f5c1ef, type: 3}
+--- !u!4 &8100257711038242836 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3146345946513686212, guid: 913685a84d45ced43870c51e13f5c1ef,
+    type: 3}
+  m_PrefabInstance: {fileID: 6612398674552921808}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &9206716798229395381 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2596080721813055845, guid: 913685a84d45ced43870c51e13f5c1ef,
+    type: 3}
+  m_PrefabInstance: {fileID: 6612398674552921808}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a405626d4ef39b41beba9125107fb69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7497926581396200579
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -25,7 +25,7 @@ public class ElevatorTrigger : MonoBehaviour
             // Guardamos el auto en el Station Controller
             currentStationManager.currentCar = other.GetComponent<CarController>();
             //ChangeValueCollider();
-            Debug.Log("Entro en el trigger");
+            //Debug.Log("Entro en el trigger");
         }
     }
 
@@ -34,10 +34,8 @@ public class ElevatorTrigger : MonoBehaviour
        if(other.CompareTag(CAR_TAG) && other.GetComponent<CarController>().carFixed){
         currentStationManager.FreeStation();
         other.transform.SetParent(null);
-        Debug.Log("Salio del trigger");
+        //Debug.Log("Salio del trigger");
         //ChangeValueCollider();
-        other.AddComponent<Rigidbody>();
-   
        } 
     }
 

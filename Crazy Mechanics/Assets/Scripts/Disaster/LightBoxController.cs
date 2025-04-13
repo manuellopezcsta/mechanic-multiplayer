@@ -1,15 +1,27 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LightBoxController : BaseCounter
+public class LightBoxController : BaseCounter, IHasProgress
 {
     [SerializeField] ObjectsSO fixingTool;
     [SerializeField] bool isPowerDown = false;
 
+    // Para la barra de progreso
+    private int fixingProgress;
+    [SerializeField] private int fixingProgressMax;
+
+    public event EventHandler<IHasProgress.OnProgressChangedEventArgs> OnProgressChanged;
+
 
     public void CutDownPower() {
         isPowerDown = true;
+        fixingProgress = 0;
+
+        OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs{
+            progressNormalized = (float) fixingProgress / fixingProgressMax
+        });
         // Alguna animacion x aca ? ..
     }
 
@@ -21,15 +33,16 @@ public class LightBoxController : BaseCounter
     {
         // Si el player esta holdeando la fixing tool
         if(player.HasCarObject() && player.GetCarObject().GetObjectSO() == fixingTool && isPowerDown) {
-            Debug.Log("Se empezo a arreglar la luz");
-            StartCoroutine(TimeToRequest(5));
-        }
-    }
+            fixingProgress ++;
 
-    IEnumerator TimeToRequest(float timeRequest)
-    {
-        yield return new WaitForSeconds(timeRequest);
-        isPowerDown = false;
-        Debug.Log("Luz Arreglada");
+            OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs{
+            progressNormalized = (float) fixingProgress / fixingProgressMax
+        });
+
+            if(fixingProgress >= fixingProgressMax) {
+                isPowerDown = false;
+                Debug.Log("Luz Arreglada");
+            }
+        }
     }
 }

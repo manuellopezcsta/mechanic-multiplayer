@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TaskOil : BaseCounter
 {
@@ -12,8 +13,9 @@ public class TaskOil : BaseCounter
     [SerializeField] private ObjectsSO boxFull;
     [SerializeField] public bool taskComplete;
     [SerializeField] private float timeRequest;
-
     [SerializeField] private bool itHasDirtyOil = true;
+    [SerializeField] TaskIndicatorUI indicatorUI;
+
 
 
     public override void Interact(Player player)
@@ -40,6 +42,7 @@ public class TaskOil : BaseCounter
                     player.GetCarObject().SetCarObjectParent(this);
 
                     taskComplete = true;
+                    indicatorUI.SetAsComplete();
                     carController.CompleteTask();
                     // Destruimos el obj del aceite para que no se vea.
                     Destroy(GetCarObject().gameObject);
@@ -50,7 +53,6 @@ public class TaskOil : BaseCounter
                 if (!player.HasCarObject() && !itHasDirtyOil)
                 {
                     // Player is not carrying anything. He only takes it when he finishes the task.
-
                     GetCarObject().SetCarObjectParent(player);
                     // Deslockeamos el elevador.
                     stationManager.LockAndUnlockElevator();
