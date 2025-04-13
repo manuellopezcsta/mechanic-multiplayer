@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 
 public class ElevatorTrigger : MonoBehaviour
-{   
+{
     const string CAR_TAG = "Car";
     [SerializeField] private GameObject targetElevator;
     [SerializeField] private CurrentStationManager currentStationManager;
@@ -31,18 +31,23 @@ public class ElevatorTrigger : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-       if(other.CompareTag(CAR_TAG) && other.GetComponent<CarController>().carFixed){
-        currentStationManager.FreeStation();
-        other.transform.SetParent(null);
-        //Debug.Log("Salio del trigger");
-        //ChangeValueCollider();
-       } 
+        if (other.CompareTag(CAR_TAG) && other.GetComponent<CarController>().carFixed)
+        {
+            currentStationManager.FreeStation();
+            other.transform.SetParent(null);
+            //Debug.Log("Salio del trigger BANANA");
+            //ChangeValueCollider();
+        }
     }
 
-    public void ChangeValueCollider(){
-        if(gameObject.GetComponent<Collider>().enabled){
+    public void ChangeValueCollider()
+    {
+        if (gameObject.GetComponent<Collider>().enabled)
+        {
             gameObject.GetComponent<Collider>().enabled = false;
-        }else{
+        }
+        else
+        {
             gameObject.GetComponent<Collider>().enabled = true;
         }
     }

@@ -69,7 +69,7 @@ public class CurrentStationManager : MonoBehaviour
     {
         currentCar = null;
         buttonStart.canSpawnCar = true;
-        Debug.Log("Se libera la estacion" + buttonStart.canSpawnCar);
+        //Debug.Log("Se libera la estacion");
     }
 
 
