@@ -118,4 +118,14 @@ public class GameManager : MonoBehaviour
     {
         return !lightBoxController.IsPowerDown();
     }
+
+    public bool CanSpawnCar() {
+        // Checkeamos todas las stations a ver si hay una libre para spawnear.
+        foreach(CurrentStationManager station in stations) {
+            if(station.isFree()) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

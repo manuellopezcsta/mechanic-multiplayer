@@ -1,14 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
-public class MotorTool : BaseCounter
+public class MotorTool : BaseCounter, IHasProgress
 {
     [SerializeField] private bool motorFixed = false;
     [SerializeField] private ObjectsSO motorFixedSO;
     [SerializeField] private ObjectsSO fixingTool;
+    [SerializeField] private ObjectsSO sparkPlug;
+    [SerializeField] GameObject[] motorPiecesVisual;
 
-    [SerializeField] GameObject[] motorPieces;
+    // Cosas para la visual de cuando le pegas.
+    bool needsWhacking = false;
+    private int fixingProgress;
+    [SerializeField] private int fixingProgressMax;
+    public event EventHandler<IHasProgress.OnProgressChangedEventArgs> OnProgressChanged;
 
     void Start()
     {
@@ -20,13 +27,12 @@ public class MotorTool : BaseCounter
         if (!motorFixed)
         {
             TryFixMotor(player);
-
         }
     }
 
     public void ShowMotor()
     {
-        foreach (GameObject piece in motorPieces)
+        foreach (GameObject piece in motorPiecesVisual)
         {
             piece.SetActive(true);
         }
@@ -34,7 +40,7 @@ public class MotorTool : BaseCounter
 
     void HideMotor()
     {
-        foreach (GameObject piece in motorPieces)
+        foreach (GameObject piece in motorPiecesVisual)
         {
             piece.SetActive(false);
         }
@@ -49,16 +55,32 @@ public class MotorTool : BaseCounter
 
     private void TryFixMotor(Player player)
     {
-
-        if (player.HasCarObject() && player.GetCarObject().GetObjectSO() == fixingTool)
+        if (player.HasCarObject() && player.GetCarObject().GetObjectSO() == sparkPlug)
         {
+            // Le ponemos la bugia y la borramos visualmente.
+            player.GetCarObject().DestroySelf();
+            needsWhacking = true;
+            fixingProgress = 0;
+        }
+
+        if(player.HasCarObject() && player.GetCarObject().GetObjectSO() == fixingTool  && needsWhacking) {
+            fixingProgress ++;
+            OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs{
+            progressNormalized = (float) fixingProgress / fixingProgressMax
+        });
+
+        if(fixingProgress == fixingProgressMax ) {
+            // Se termino el arreglo.
+            GetCarObject().DestroySelf();
+            // Spawneamos el nuevo
             Transform motorFixedPreFab = Instantiate(motorFixedSO.prefab);
-            Destroy(GetCarObject().gameObject);
-            ClearCarObject();
             motorFixedPreFab.transform.position = GetCarObjectFollowTransform().position;
             motorFixedPreFab.GetComponent<CarObject>().SetCarObjectParent(this);
             Debug.Log("Arreglo el motor");
+            // Seteamos las variables.
             motorFixed = true;
+            needsWhacking = false;
+        }
         }
     }
 }

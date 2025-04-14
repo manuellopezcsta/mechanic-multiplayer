@@ -62,13 +62,12 @@ public class CurrentStationManager : MonoBehaviour
 
     public bool isFree()
     {
-        return currentCar == null;
+        return currentCar == null  && elevatorController.floorNumberElevator == 0;
     }
 
     public void FreeStation()
     {
         currentCar = null;
-        buttonStart.canSpawnCar = true;
         //Debug.Log("Se libera la estacion");
     }
 

@@ -14,7 +14,7 @@ public class ElevatorController : MonoBehaviour
     {
         CurrentStationManager csm = GetComponent<CurrentStationManager>();
 
-        if (!isMoving && !csm.IsElevatorLocked() && GameManager.Instance.IsPowerEnabled())
+        if (!isMoving && !csm.IsElevatorLocked() && GameManager.Instance.IsPowerEnabled() && !csm.isFree())
         {
             switch (floorNumberElevator)
             {
