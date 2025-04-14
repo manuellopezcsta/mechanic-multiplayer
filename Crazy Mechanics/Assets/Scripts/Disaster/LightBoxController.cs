@@ -41,6 +41,7 @@ public class LightBoxController : BaseCounter, IHasProgress
 
             if(fixingProgress >= fixingProgressMax) {
                 isPowerDown = false;
+                player.GetCarObject().DestroySelf();
                 Debug.Log("Luz Arreglada");
             }
         }
