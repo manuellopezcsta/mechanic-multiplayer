@@ -35,6 +35,8 @@ public class TaskMotor : BaseCounter
                 {
                     //Ponemos el motor arreglado y marcamos la tarea como completa
                     motorTool.GetCarObject().SetCarObjectParent(this);
+                    // Hacemos sonido
+                    SoundManager.Instance.PlayObjectDroppedSound(transform);
                     taskComplete = true;
                     carController.AddScoreTask(score);
                     indicatorUI.SetAsComplete();
@@ -56,6 +58,8 @@ public class TaskMotor : BaseCounter
                     // Seteo el objeto al motor tool.
                     GetCarObject().SetCarObjectParent(motorTool);
                     motorTool.ShowMotor();
+                    // Hacemos sonido
+                    SoundManager.Instance.PlayObjectDroppedSound(transform);
                 }
             }
         }

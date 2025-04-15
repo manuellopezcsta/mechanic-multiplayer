@@ -8,14 +8,14 @@ public class LevelTimer : MonoBehaviour
 {
     private float gamePlayingTimer;
     private bool running;
-    [SerializeField] private float gamePlayingTimerMax = 500f; // tiempo del nivel
     [SerializeField] private TextMeshProUGUI timerText;
+    [SerializeField] private ScorePanelUI scorePanelUI;
 
 
-    public void StartTimer()
+    public void StartTimer(float gamePlayingTimerMax)
     {
-        running = true;
         gamePlayingTimer = gamePlayingTimerMax;
+        running = true;
     }
 
     void Update()
@@ -24,8 +24,9 @@ public class LevelTimer : MonoBehaviour
         //print(" " + gamePlayingTimer);
         if (gamePlayingTimer < 0f && running)
         {
-            // Codigo cuando se pierde
-            Debug.Log("Se perdio");
+            // Codigo cuando se termina el tiempo
+            Debug.Log("Se termino el nivel");
+            scorePanelUI.Show();
             running = false;
         }
 

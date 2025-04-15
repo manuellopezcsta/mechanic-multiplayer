@@ -14,6 +14,8 @@ public class ClearCounter : BaseCounter
             if (player.HasCarObject()) {
                 // El player tiene algo en la mano
                 player.GetCarObject().SetCarObjectParent(this);
+                // Hacemos sonido
+                SoundManager.Instance.PlayObjectDroppedSound(transform);
             } else {
                 // Player no tiene nada en la mano
 

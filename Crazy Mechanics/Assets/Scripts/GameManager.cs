@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     {
         Instance = this;
         LevelTimer levelTimer = GetComponent<LevelTimer>();
-        levelTimer.StartTimer();
+        levelTimer.StartTimer(levelProperties.levelTime);
     }
 
     // Tasks para los autos.
@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject motorTaskPrefab;
     [SerializeField] GameObject wheelTaskPrefab;
     [SerializeField] GameObject batteryTaskPrefab;
+    [SerializeField] LevelProperties levelProperties;
 
 
     // Lista de autos que puede spawnear
@@ -130,5 +131,7 @@ public class GameManager : MonoBehaviour
         return false;
     }
 
-
+    public LevelProperties GetLevelProperties() {
+        return levelProperties;
+    }
 }

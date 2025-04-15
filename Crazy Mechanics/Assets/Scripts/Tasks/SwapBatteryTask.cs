@@ -32,6 +32,8 @@ public class SwapBatteryTask : BaseCounter
                 player.GetCarObject().SetCarObjectParent(this);
                 // Lo borramos.
                 Destroy(GetCarObject().gameObject);
+                // Hacemos sonido
+                SoundManager.Instance.PlayObjectDroppedSound(transform);
                 // Marcamos la task como completa.
                 taskComplete = true;
                 carController.AddScoreTask(score);

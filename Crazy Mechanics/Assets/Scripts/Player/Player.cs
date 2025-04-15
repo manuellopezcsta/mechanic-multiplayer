@@ -10,12 +10,14 @@ public class Player : MonoBehaviour, ICarObjectParent
 
     public static Player Instance { get; private set; }
     public event EventHandler<OnSelectedCounterChangedEventArgs> OnSelectedCounterChanged;
+
+    public static event EventHandler OnPickedSomething;
+    public static event EventHandler OnDroppedSomething;
     public class OnSelectedCounterChangedEventArgs : EventArgs
     {
         public BaseCounter selectedCounter;
     }
 
-    [SerializeField] float moveSpeed = 7f;
     [SerializeField] private GameInput gameInput;
     [SerializeField] private LayerMask countersLayerMask;
     [SerializeField] private Transform carObjectHoldPoint;
@@ -81,6 +83,8 @@ public class Player : MonoBehaviour, ICarObjectParent
         Debug.Log("Se Tiro");
         Vector3 forceDirection = ((transform.forward * fowardMagnitude) + Vector3.up * upMagnitude) * throwMagnitude;
         holderCounter.GetComponent<Rigidbody>().AddForce(forceDirection, ForceMode.Impulse);
+        // Reproducimos el sonidito
+        OnDroppedSomething?.Invoke(this, EventArgs.Empty);
     }
 
     private void GameInput_OnInteractAction(object sender, EventArgs e)
@@ -93,12 +97,11 @@ public class Player : MonoBehaviour, ICarObjectParent
 
     private void Update()
     {
-        HandleMovements();
-        //HandleMovement();
+        HandleMovement();
         HandleInteractions();
     }
 
-    private void HandleMovements(){
+    private void HandleMovement(){
         // Capturamos al vector desde GameImput y se lo aplicamos al char controller.
         float speed = 7f;
         Vector2 inputVector = gameInput.GetMovementVectorNormalized();
@@ -185,59 +188,8 @@ public class Player : MonoBehaviour, ICarObjectParent
         Debug.DrawRay(capsuleEnd + offset, Vector3.up * capsuleRadius, Color.red);
         }
     }
-    private void HandleMovement()
-    {
-        Vector2 inputVector = gameInput.GetMovementVectorNormalized();
 
-        Vector3 moveDir = new Vector3(inputVector.x, 0f, inputVector.y);
-
-        float moveDistance = moveSpeed * Time.deltaTime;
-        float playerRadius = .7f;
-        float playerHeight = 2f;
-        bool canMove = !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHeight, playerRadius, moveDir, moveDistance);
-
-        if (!canMove)
-        {
-            // Cannot move in this dir
-            // Attempt only X movement
-            Vector3 moveDirX = new Vector3(moveDir.x, 0f, 0f).normalized;
-            canMove = (moveDir.x < -.5f || moveDir.x > +.5f) && !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHeight, playerRadius, moveDirX, moveDistance);
-
-            if (canMove)
-            {
-                // Can move only on the X
-                moveDir = moveDirX;
-            }
-            else
-            {
-                // Cannot move only on the X
-
-                // Attempt only Z movement
-                Vector3 moveDirZ = new Vector3(0, 0, moveDir.z).normalized;
-                canMove = (moveDir.z < -.5f || moveDir.z > +.5f) && !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHeight, playerRadius, moveDirZ, moveDistance);
-
-                if (canMove)
-                {
-                    // Can move only on the Z
-                    moveDir = moveDirZ;
-                }
-                else
-                {
-                    // Cannot move in any Direction
-                }
-            }
-        }
-        if (canMove)
-        {
-            transform.position += moveDir * moveDistance;
-        }
-
-        isWalking = moveDir != Vector3.zero;
-
-        float rotateSpeed = 10f;
-        transform.forward = Vector3.Slerp(transform.forward, moveDir, Time.deltaTime * rotateSpeed);
-    }
-
+    // Para empujar la pluma
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
         Rigidbody rb = hit.collider.attachedRigidbody;
@@ -269,6 +221,10 @@ public class Player : MonoBehaviour, ICarObjectParent
     public void SetCarObject(CarObject target)
     {
         this.carObject = target;
+
+        if(this.carObject != null) {
+            OnPickedSomething?.Invoke(this, EventArgs.Empty);
+        }
     }
 
     public CarObject GetCarObject()

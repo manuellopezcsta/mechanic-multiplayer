@@ -7,6 +7,8 @@ using UnityEngine;
 public class TrashCounter : BaseCounter
 {
     [SerializeField] private List<ObjectsSO> tools;
+
+    public static event EventHandler OnAnyObjectTrashed;
     public override void Interact(Player player)
     {
 
@@ -18,6 +20,7 @@ public class TrashCounter : BaseCounter
                 player.GetCarObject().SetCarObjectParent(this);
                 Destroy(GetCarObject().gameObject);
                 ClearCarObject();
+                OnAnyObjectTrashed?.Invoke(this, EventArgs.Empty);
             }
         }
     }

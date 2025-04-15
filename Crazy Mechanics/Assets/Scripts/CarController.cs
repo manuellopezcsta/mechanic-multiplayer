@@ -27,7 +27,7 @@ public class CarController : MonoBehaviour
     [SerializeField] private Transform wheelBLPosition;
     
     // Puntaje por auto
-    [SerializeField] public int scoreByCar = 0;
+    [SerializeField] public int carScoreValue = 0;
 
     // Las tasks que se crearon
     private List<GameObject> createdTasksContainers = new List<GameObject>();
@@ -161,7 +161,7 @@ public class CarController : MonoBehaviour
     }
 
     public void AddScoreTask(int score){
-        scoreByCar += score;
+        carScoreValue += score;
     }
 
 }

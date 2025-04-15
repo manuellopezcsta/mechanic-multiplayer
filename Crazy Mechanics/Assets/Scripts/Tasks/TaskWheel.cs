@@ -48,6 +48,8 @@ public class TaskWheel : BaseCounter
             if (player.HasCarObject() && player.GetCarObject().GetObjectSO() == balancedWheel) {
                 // El player tiene algo en la mano
                 player.GetCarObject().SetCarObjectParent(this);
+                // Hacemos sonido
+                SoundManager.Instance.PlayObjectDroppedSound(transform);
                 taskComplete = true;
                 carController.AddScoreTask(score);
                 indicatorUI.SetAsComplete();

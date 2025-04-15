@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class CurrentStationManager : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class CurrentStationManager : MonoBehaviour
     private int elevatorNumber = 1;
     private bool isElevatorLocked = false; // Si el elevador esta lockeado porque esta en uso
     [SerializeField] ButtonStart buttonStart;
+
+    public static event EventHandler OnCarDelivery;
 
 
     public bool IsElevatorLocked() {
@@ -77,9 +80,10 @@ public class CurrentStationManager : MonoBehaviour
         if (currentCar != null && currentCar.carFixed)
         {
            //Agregar score total al scoremanager
-            ScoreManager.Instance.SubmitScoreTotal(currentCar.scoreByCar);
+            ScoreManager.Instance.AddPoints(currentCar.carScoreValue);
             currentCar.canMove = true;
             Debug.Log("Se entrego el auto");
+            OnCarDelivery?.Invoke(this, EventArgs.Empty);
         }
     }
     // GAME MANAGER, CREA AUIO EN UNO DE LOS elevadores.. y le asigna un manager?.

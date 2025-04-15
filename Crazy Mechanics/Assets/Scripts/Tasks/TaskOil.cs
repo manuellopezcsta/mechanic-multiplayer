@@ -35,12 +35,16 @@ public class TaskOil : BaseCounter
                     // El player tiene algo en la mano
                     player.GetCarObject().SetCarObjectParent(this);
                     // Empezamos a drenar el aceite sucio
+                    // Hacemos sonido
+                    SoundManager.Instance.PlayObjectDroppedSound(transform);
                     StartCoroutine(TimeToRequest(timeRequest, stationManager));
                 }
                 //Verifica si el player tiene un objeto, si es un aceite y el auto no tiene aceite sucio. Si se cumple completa la tarea
                 else if (isOnGroundFloor && player.HasCarObject() && player.GetCarObject().GetObjectSO() == oil && !itHasDirtyOil)
                 {
                     player.GetCarObject().SetCarObjectParent(this);
+                    // Hacemos sonido
+                    SoundManager.Instance.PlayObjectDroppedSound(transform);
 
                     taskComplete = true;
                     carController.AddScoreTask(score);
