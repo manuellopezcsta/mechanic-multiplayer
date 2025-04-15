@@ -15,6 +15,7 @@ public class TaskOil : BaseCounter
     [SerializeField] private float timeRequest;
     [SerializeField] private bool itHasDirtyOil = true;
     [SerializeField] TaskIndicatorUI indicatorUI;
+    [SerializeField] private int score;
 
 
 
@@ -42,6 +43,7 @@ public class TaskOil : BaseCounter
                     player.GetCarObject().SetCarObjectParent(this);
 
                     taskComplete = true;
+                    carController.AddScoreTask(score);
                     indicatorUI.SetAsComplete();
                     carController.CompleteTask();
                     // Destruimos el obj del aceite para que no se vea.

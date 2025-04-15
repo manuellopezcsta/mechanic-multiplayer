@@ -10,6 +10,7 @@ public class TaskWheel : BaseCounter
     [SerializeField] private CarObject wheel;
     [SerializeField] public bool taskComplete;
     [SerializeField] TaskIndicatorUI indicatorUI;
+    [SerializeField] private int score;
 
 
 
@@ -48,6 +49,7 @@ public class TaskWheel : BaseCounter
                 // El player tiene algo en la mano
                 player.GetCarObject().SetCarObjectParent(this);
                 taskComplete = true;
+                carController.AddScoreTask(score);
                 indicatorUI.SetAsComplete();
                 carController.CompleteTask();
             }

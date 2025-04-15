@@ -76,6 +76,8 @@ public class CurrentStationManager : MonoBehaviour
     {
         if (currentCar != null && currentCar.carFixed)
         {
+           //Agregar score total al scoremanager
+            ScoreManager.Instance.SubmitScoreTotal(currentCar.scoreByCar);
             currentCar.canMove = true;
             Debug.Log("Se entrego el auto");
         }

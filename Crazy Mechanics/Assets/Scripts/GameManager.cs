@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] LightBoxController lightBoxController;
 
 
+
     public enum CarTasks
     {
         OIL_CHANGE,
@@ -128,4 +129,6 @@ public class GameManager : MonoBehaviour
         }
         return false;
     }
+
+
 }

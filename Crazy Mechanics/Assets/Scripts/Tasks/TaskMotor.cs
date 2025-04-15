@@ -11,6 +11,7 @@ public class TaskMotor : BaseCounter
     [SerializeField] private CarObject motor;
     [SerializeField] private GameObject motorVisual;
     [SerializeField] private TaskIndicatorUI indicatorUI;
+    [SerializeField] private int score;
 
     void Start()
     {
@@ -35,6 +36,7 @@ public class TaskMotor : BaseCounter
                     //Ponemos el motor arreglado y marcamos la tarea como completa
                     motorTool.GetCarObject().SetCarObjectParent(this);
                     taskComplete = true;
+                    carController.AddScoreTask(score);
                     indicatorUI.SetAsComplete();
                     carController.CompleteTask();
                     // Escondemos el motor en la pluma y la reseteamos

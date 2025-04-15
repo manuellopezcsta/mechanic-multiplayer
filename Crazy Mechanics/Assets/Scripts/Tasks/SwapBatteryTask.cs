@@ -12,6 +12,7 @@ public class SwapBatteryTask : BaseCounter
     [SerializeField] public bool taskComplete;
 
     [SerializeField] private TaskIndicatorUI indicatorUI;
+    [SerializeField] private int score;
 
 
     private void Start() {
@@ -33,6 +34,7 @@ public class SwapBatteryTask : BaseCounter
                 Destroy(GetCarObject().gameObject);
                 // Marcamos la task como completa.
                 taskComplete = true;
+                carController.AddScoreTask(score);
                 indicatorUI.SetAsComplete();
                 carController.CompleteTask();
             } 

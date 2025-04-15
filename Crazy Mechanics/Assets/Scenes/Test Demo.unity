@@ -7216,6 +7216,7 @@ GameObject:
   - component: {fileID: 2058334193}
   - component: {fileID: 2058334192}
   - component: {fileID: 2058334194}
+  - component: {fileID: 2058334195}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -7279,6 +7280,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gamePlayingTimerMax: 500
   timerText: {fileID: 301519049}
+--- !u!114 &2058334195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2058334191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b46e124281b356b45a4414b8204e79c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  totalScore: 0
 --- !u!1 &2068078345
 GameObject:
   m_ObjectHideFlags: 0
