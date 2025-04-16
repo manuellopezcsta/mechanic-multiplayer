@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class WorldObject : BaseCounter
+public class WorldObject : OverworldInteractable
 {
     [SerializeField] public string WorldToGo = "Test Demo"; //Por default se asigna "Test Demo"
-    public override void Interact(Player player)
+    public override void Interact(PlayerWorldSelect player)
     {
         SceneManager.LoadScene (WorldToGo);
     }

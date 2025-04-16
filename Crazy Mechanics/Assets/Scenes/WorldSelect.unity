@@ -852,6 +852,89 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!1001 &1904174316
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5635939873208096609, guid: f14fcc92247d0154fb36baab8e8f06a1,
+        type: 3}
+      propertyPath: m_Name
+      value: Wheel
+      objectReference: {fileID: 0}
+    - target: {fileID: 5874120310273923700, guid: f14fcc92247d0154fb36baab8e8f06a1,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5874120310273923700, guid: f14fcc92247d0154fb36baab8e8f06a1,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5874120310273923700, guid: f14fcc92247d0154fb36baab8e8f06a1,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5874120310273923700, guid: f14fcc92247d0154fb36baab8e8f06a1,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -6.58
+      objectReference: {fileID: 0}
+    - target: {fileID: 5874120310273923700, guid: f14fcc92247d0154fb36baab8e8f06a1,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.39
+      objectReference: {fileID: 0}
+    - target: {fileID: 5874120310273923700, guid: f14fcc92247d0154fb36baab8e8f06a1,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 13.64
+      objectReference: {fileID: 0}
+    - target: {fileID: 5874120310273923700, guid: f14fcc92247d0154fb36baab8e8f06a1,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5874120310273923700, guid: f14fcc92247d0154fb36baab8e8f06a1,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5874120310273923700, guid: f14fcc92247d0154fb36baab8e8f06a1,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5874120310273923700, guid: f14fcc92247d0154fb36baab8e8f06a1,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5874120310273923700, guid: f14fcc92247d0154fb36baab8e8f06a1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5874120310273923700, guid: f14fcc92247d0154fb36baab8e8f06a1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5874120310273923700, guid: f14fcc92247d0154fb36baab8e8f06a1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f14fcc92247d0154fb36baab8e8f06a1, type: 3}
 --- !u!1 &2031088324
 GameObject:
   m_ObjectHideFlags: 0
@@ -928,7 +1011,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1293f0ee78a521429effbaeec4c2547, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  counterTopPoint: {fileID: 1126300263}
+  objectTransform: {fileID: 0}
   WorldToGo: Test Demo
 --- !u!65 &2143892771
 BoxCollider:
@@ -1271,3 +1354,4 @@ SceneRoots:
   - {fileID: 2031088326}
   - {fileID: 2143892774}
   - {fileID: 346042931}
+  - {fileID: 1904174316}

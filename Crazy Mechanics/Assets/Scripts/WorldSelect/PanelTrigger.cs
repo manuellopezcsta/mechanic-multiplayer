@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class WorldSelectManager : MonoBehaviour
@@ -9,6 +10,7 @@ public class WorldSelectManager : MonoBehaviour
     private void OnTriggerEnter(Collider other) {
         if (other.CompareTag("Player")){
             //StagePanel.SetActive(true);
+            Debug.Log("fading in/n");
             FadeIn=true;
         }
     }
@@ -17,6 +19,7 @@ public class WorldSelectManager : MonoBehaviour
     {
         if (other.CompareTag("Player")){
             //StagePanel.SetActive(false);
+            Debug.Log("fading out/n");
             FadeOut=true;
         }
     }
@@ -31,7 +34,7 @@ public class WorldSelectManager : MonoBehaviour
                 FadeIn=false;
             }
         }
-        if(FadeOut){
+        if(FadeOut && !FadeIn){ //Added "!FadeIn" to correct bug where one leave the area before the canvas completes the fade in animation causing both fade in and fed out to trigger simultaneusly
             if(Canvas.alpha>0){
                 Canvas.alpha-=Time.deltaTime;
             }  
