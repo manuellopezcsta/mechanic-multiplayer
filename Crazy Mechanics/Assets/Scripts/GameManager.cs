@@ -31,6 +31,8 @@ public class GameManager : MonoBehaviour
     // Para cortar la luz
     [SerializeField] LightBoxController lightBoxController;
 
+    // Para el evento de select de los counter
+    public static List<Player> playerList = new List<Player>();
 
 
     public enum CarTasks
@@ -136,5 +138,11 @@ public class GameManager : MonoBehaviour
     public LevelProperties GetLevelProperties() {
         return levelProperties;
     }
+
+    public static void RegisterPlayer(Player player)
+    {
+        playerList.Add(player);
+    }
+
 
 }

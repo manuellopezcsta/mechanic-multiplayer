@@ -8,17 +8,27 @@ public class SelectedVisualInvisible : MonoBehaviour
     [SerializeField] private List<GameObject> visualGameObjectArray;
     [SerializeField] private GameObject counterTopPoint;
     [SerializeField] private Material materialSelecto;
-    private void Start()
-    {
-        foreach (Player player in FindObjectsOfType<Player>())
-        {
-            player.OnSelectedCounterChanged += Player_OnSelecterCounterChanged;
-        }
-    }
+    private float detectionRadius = 2.3f; // NO TOCAR ESTE REWORK COSTO UN **** !
 
-    private void Player_OnSelecterCounterChanged(object sender, Player.OnSelectedCounterChangedEventArgs e)
+    private void Update()
     {
-        if (e.selectedCounter == baseCounter)
+        bool isAnyPlayerClose = false;
+        // Iterar sobre todos los jugadores en la escena
+        foreach (Player player in GameManager.playerList)
+        {
+            //Debug.Log(Vector3.Distance(player.transform.position, transform.position) + " 50" + transform.parent.name);
+            // Verificar si el jugador está dentro del radio de detección
+            if (Vector3.Distance(player.transform.position, transform.position) <= detectionRadius)
+            {
+                // Activar el visual si este BaseCounter es el seleccionado
+                if (player.selectedCounter == baseCounter)
+                {
+                    isAnyPlayerClose = true; // Al menos 1 player esta cerca, activamos la visual.
+                    break;
+                }
+            }
+        }
+        if (isAnyPlayerClose)
         {
             Show();
         }

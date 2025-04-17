@@ -36,31 +36,16 @@ public class Player : MonoBehaviour, ICarObjectParent
     private CharacterController characterController;
     private Vector2 inputVector = Vector2.zero;
 
+    private void Awake()
+    {
+        GameManager.RegisterPlayer(this);
+    }
+    
     private void Start()
     {
         characterController = GetComponent<CharacterController>();
-
-        //gameInput.OnInteractAction += GameInput_OnInteractAction;
-        //gameInput.OnInteractAlternativeAction += GameInput_OnInteractAlternativeAction;
     }
 
-    /*private void GameInput_OnInteractAlternativeAction(object sender, EventArgs e)
-    {
-        // Funcion que se ejecuta con el boton alternativo en player.
-        if (HasCarObject())
-        {
-            // Tiramos el objeto.
-            HandleThrowing();
-        }
-    }*/
-
-    /*private void GameInput_OnInteractAction(object sender, EventArgs e)
-        {
-            if (selectedCounter != null)
-            {
-                selectedCounter.Interact(this);
-            }
-        }*/
     public void SetInputVector(Vector2 direction)
     {
         inputVector = direction;
@@ -119,7 +104,6 @@ public class Player : MonoBehaviour, ICarObjectParent
     }
 
     
-
     public bool IsWalking()
     {
         return isWalking;

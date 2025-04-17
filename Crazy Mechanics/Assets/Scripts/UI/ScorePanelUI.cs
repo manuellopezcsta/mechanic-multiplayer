@@ -18,6 +18,7 @@ public class ScorePanelUI : MonoBehaviour
             SceneManager.LoadScene(LEVEL_SELECT_SCENE);
             Time.timeScale = 1f;
         });
+        backButton.Select();
     }
 
     public void ShowStars() {
