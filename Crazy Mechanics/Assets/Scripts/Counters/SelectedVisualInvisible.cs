@@ -10,7 +10,7 @@ public class SelectedVisualInvisible : MonoBehaviour
     [SerializeField] private Material materialSelecto;
     private void Start()
     {
-        Player.Instance.OnSelectedCounterChanged += Player_OnSelecterCounterChanged;   
+        Player.OnSelectedCounterChanged += Player_OnSelecterCounterChanged;   
     }
 
     private void Player_OnSelecterCounterChanged(object sender, Player.OnSelectedCounterChangedEventArgs e)
@@ -77,5 +77,10 @@ public class SelectedVisualInvisible : MonoBehaviour
                 meshRenderer.material = materialSelecto;
             }
         }
+    }
+
+    void OnDestroy()
+    {
+        Player.OnSelectedCounterChanged -= Player_OnSelecterCounterChanged;   
     }
 }

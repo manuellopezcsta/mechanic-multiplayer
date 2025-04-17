@@ -8,8 +8,7 @@ public class Player : MonoBehaviour, ICarObjectParent
 {
     const string MOTOR_TOOL_NAME = "Pluma";
 
-    public static Player Instance { get; private set; }
-    public event EventHandler<OnSelectedCounterChangedEventArgs> OnSelectedCounterChanged;
+    public static event EventHandler<OnSelectedCounterChangedEventArgs> OnSelectedCounterChanged;
 
     public static event EventHandler OnPickedSomething;
     public static event EventHandler OnDroppedSomething;
@@ -36,15 +35,6 @@ public class Player : MonoBehaviour, ICarObjectParent
 
     // Char controller y collider para 2do metodo de movimiento.
     private CharacterController characterController;
-
-    private void Awake()
-    {
-        if (Instance != null)
-        {
-            Debug.LogError("There is more than 1 player instance!");
-        }
-        Instance = this;
-    }
 
     private void Start()
     {
