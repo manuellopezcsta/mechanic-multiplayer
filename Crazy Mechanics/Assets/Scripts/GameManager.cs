@@ -134,4 +134,5 @@ public class GameManager : MonoBehaviour
     public LevelProperties GetLevelProperties() {
         return levelProperties;
     }
+
 }

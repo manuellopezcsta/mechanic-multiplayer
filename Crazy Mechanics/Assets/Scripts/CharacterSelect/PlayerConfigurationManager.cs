@@ -14,10 +14,19 @@ public class PlayerConfigurationManager : MonoBehaviour
 
     public static PlayerConfigurationManager Instance { get; private set; }
 
-    private void Awake() {
-        if (Instance != null) {
+    public List<PlayerConfiguration> GetPlayerConfigs()
+    {
+        return playerConfigs;
+    }
+
+    private void Awake()
+    {
+        if (Instance != null)
+        {
             Debug.LogError("Singleton Already Exists");
-        } else {
+        }
+        else
+        {
             Instance = this;
             DontDestroyOnLoad(Instance);
             // Iniciamos la lista para guardar las configs.
@@ -32,23 +41,38 @@ public class PlayerConfigurationManager : MonoBehaviour
     }
 
     // Setea el player para arrancar la partida.
-    public void ReadyPlayer(int index) {
+    public void ReadyPlayer(int index)
+    {
         playerConfigs[index].IsReady = true;
         // Chekeo si los players estan ready.
-        if(playerConfigs.Count == playerConfigs.Count(p => p.IsReady == true)) {
+        if (playerConfigs.Count == playerConfigs.Count(p => p.IsReady == true))
+        {
             // Cargamos la escena que corresponde
             SceneManager.LoadScene(SCENE_NAME);
         }
     }
 
-    public void HandlePlayerJoined(PlayerInput pi) {
+    public void HandlePlayerJoined(PlayerInput pi)
+    {
         Debug.Log("Player Joined " + pi.playerIndex);
         // Si no a;adimos ya al player
-        if(!playerConfigs.Any(p => p.PlayerIndex == pi.playerIndex)) {
+        if (!playerConfigs.Any(p => p.PlayerIndex == pi.playerIndex))
+        {
             // Guardamos el obj input en el manager, para que persista cuando cambiamos la escena.
             pi.transform.SetParent(transform);
             // Agregamos un nuevo config con el indice de este pi.
             playerConfigs.Add(new PlayerConfiguration(pi));
+        }
+    }
+
+    public void ClearPlayersPreFab()
+    {
+        foreach (Transform child in transform)
+        {
+            if (child.TryGetComponent<Player>(out Player player))
+            {
+                Destroy(child.gameObject);
+            }
         }
     }
 }
@@ -60,10 +84,11 @@ public class PlayerConfiguration
     public int PlayerIndex { get; set; }
     public bool IsReady { get; set; }
     // Cambiarlo x modelo si esto funciona
-    public Material PlayerMaterial {get; set; }
+    public Material PlayerMaterial { get; set; }
 
     // Constructor de la clase
-    public PlayerConfiguration(PlayerInput pi) {
+    public PlayerConfiguration(PlayerInput pi)
+    {
         PlayerIndex = pi.playerIndex;
         PInput = pi;
     }

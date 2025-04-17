@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 8025474308772073122}
   - component: {fileID: 3985202170584145055}
   - component: {fileID: 6697645198155447147}
+  - component: {fileID: 6004907242535667517}
+  - component: {fileID: 5552961185494665384}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -49,8 +51,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2592b78f931283d479df6b465d812066, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 7
-  gameInput: {fileID: 0}
   countersLayerMask:
     serializedVersion: 2
     m_Bits: 64
@@ -60,6 +60,7 @@ MonoBehaviour:
   throwMagnitude: 2
   fowardMagnitude: 3
   upMagnitude: 2
+  selectedCounter: {fileID: 0}
 --- !u!143 &8025474308772073122
 CharacterController:
   m_ObjectHideFlags: 0
@@ -119,6 +120,65 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e95350e3c559f384cb111d34197b176a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6004907242535667517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6150809395095164412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d08a293286dd056479cbf7b01a064512, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5552961185494665384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6150809395095164412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 34f72b4c9c8c6be40bd58c4c6ce20a40,
+    type: 3}
+  m_NotificationBehavior: 3
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4b108e1b-8ecd-4621-b930-288cd3b9606c
+    m_ActionName: Player/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow,/DualShock4GamepadHID/leftStick]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 45a5fbeb-bd61-4282-8c8d-a8307378adf6
+    m_ActionName: Player/Interact[/Keyboard/e,/DualShock4GamepadHID/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8b86e019-8fbc-4739-9e77-5d17b27c0ff0
+    m_ActionName: Player/InteractAlternative[/Keyboard/f,/DualShock4GamepadHID/buttonEast]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8e1118a5-4ceb-4356-9986-cbf4c2298436
+    m_ActionName: Player/Navigate[/DualShock4GamepadHID/leftStick,/Keyboard/leftArrow,/Keyboard/rightArrow,/Keyboard/a,/Keyboard/d]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &8995391784063624467
 GameObject:
   m_ObjectHideFlags: 0

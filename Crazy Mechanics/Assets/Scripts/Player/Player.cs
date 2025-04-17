@@ -17,7 +17,7 @@ public class Player : MonoBehaviour, ICarObjectParent
         public BaseCounter selectedCounter;
     }
 
-    [SerializeField] private GameInput gameInput;
+    //[SerializeField] private GameInput gameInput;
     [SerializeField] private LayerMask countersLayerMask;
     [SerializeField] private Transform carObjectHoldPoint;
     [SerializeField] private Transform invisibleHolder;
@@ -30,21 +30,22 @@ public class Player : MonoBehaviour, ICarObjectParent
 
     private bool isWalking = false;
     private Vector3 lastInteractDir;
-    private BaseCounter selectedCounter;
+    public BaseCounter selectedCounter;
     private CarObject carObject;
 
     // Char controller y collider para 2do metodo de movimiento.
     private CharacterController characterController;
+    private Vector2 inputVector = Vector2.zero;
 
     private void Start()
     {
         characterController = GetComponent<CharacterController>();
 
-        gameInput.OnInteractAction += GameInput_OnInteractAction;
-        gameInput.OnInteractAlternativeAction += GameInput_OnInteractAlternativeAction;
+        //gameInput.OnInteractAction += GameInput_OnInteractAction;
+        //gameInput.OnInteractAlternativeAction += GameInput_OnInteractAlternativeAction;
     }
 
-    private void GameInput_OnInteractAlternativeAction(object sender, EventArgs e)
+    /*private void GameInput_OnInteractAlternativeAction(object sender, EventArgs e)
     {
         // Funcion que se ejecuta con el boton alternativo en player.
         if (HasCarObject())
@@ -52,9 +53,20 @@ public class Player : MonoBehaviour, ICarObjectParent
             // Tiramos el objeto.
             HandleThrowing();
         }
-    }
+    }*/
 
-    private void HandleThrowing()
+    /*private void GameInput_OnInteractAction(object sender, EventArgs e)
+        {
+            if (selectedCounter != null)
+            {
+                selectedCounter.Interact(this);
+            }
+        }*/
+    public void SetInputVector(Vector2 direction)
+    {
+        inputVector = direction;
+    }
+    public void HandleThrowing()
     {
         // Me desligo del objeto
         // Creamos un nuevo padre para el obj
@@ -77,24 +89,17 @@ public class Player : MonoBehaviour, ICarObjectParent
         OnDroppedSomething?.Invoke(this, EventArgs.Empty);
     }
 
-    private void GameInput_OnInteractAction(object sender, EventArgs e)
-    {
-        if (selectedCounter != null)
-        {
-            selectedCounter.Interact(this);
-        }
-    }
-
     private void Update()
     {
         HandleMovement();
         HandleInteractions();
     }
 
-    private void HandleMovement(){
+    private void HandleMovement()
+    {
         // Capturamos al vector desde GameImput y se lo aplicamos al char controller.
         float speed = 7f;
-        Vector2 inputVector = gameInput.GetMovementVectorNormalized();
+        //Vector2 inputVector = gameInput.GetMovementVectorNormalized();
         Vector3 moveDir = new Vector3(inputVector.x, 0f, inputVector.y);
 
         //SimpleMove no ignora la gravedad.
@@ -102,8 +107,8 @@ public class Player : MonoBehaviour, ICarObjectParent
         // Para arreglar un bug donde flota el player?
         characterController.Move(Vector3.down * Time.deltaTime * speed);
         //transform.position = new Vector3(transform.position.x, 0f, transform.position.z);
-        
-        
+
+
 
         // Rotamos al personaje.
         float rotateSpeed = 10f;
@@ -114,6 +119,8 @@ public class Player : MonoBehaviour, ICarObjectParent
 
     }
 
+    
+
     public bool IsWalking()
     {
         return isWalking;
@@ -121,7 +128,7 @@ public class Player : MonoBehaviour, ICarObjectParent
 
     private void HandleInteractions()
     {
-        Vector2 inputVector = gameInput.GetMovementVectorNormalized();
+        //Vector2 inputVector = gameInput.GetMovementVectorNormalized();
         Vector3 moveDir = new Vector3(inputVector.x, 0f, inputVector.y);
 
         if (moveDir != Vector3.zero)
@@ -138,7 +145,7 @@ public class Player : MonoBehaviour, ICarObjectParent
 
         // If we hit something
         DebugInteractionCapsule(true, capsuleStart, capsuleEnd, interactDistance, capsuleRadius);
-        
+
         //if (Physics.Raycast(transform.position, lastInteractDir, out RaycastHit raycastHit, interactDistance, countersLayerMask))
         if (Physics.CapsuleCast(capsuleStart, capsuleEnd, capsuleRadius, lastInteractDir, out RaycastHit raycastHit, interactDistance, countersLayerMask))
         {
@@ -163,19 +170,21 @@ public class Player : MonoBehaviour, ICarObjectParent
         }
     }
 
-    private void DebugInteractionCapsule(bool active, Vector3  capsuleStart, Vector3 capsuleEnd, float interactDistance, float capsuleRadius) {
+    private void DebugInteractionCapsule(bool active, Vector3 capsuleStart, Vector3 capsuleEnd, float interactDistance, float capsuleRadius)
+    {
         Vector3 offset = lastInteractDir.normalized * interactDistance;
 
-        if(active) {
+        if (active)
+        {
             // Dibujar la c�psula en la escena
-        Debug.DrawLine(capsuleStart, capsuleEnd, Color.red);
-        Debug.DrawLine(capsuleStart + offset, capsuleEnd + offset, Color.red);
-        Debug.DrawLine(capsuleStart, capsuleStart + offset, Color.red);
-        Debug.DrawLine(capsuleEnd, capsuleEnd + offset, Color.red);
-        Debug.DrawRay(capsuleStart, Vector3.up * capsuleRadius, Color.red);
-        Debug.DrawRay(capsuleEnd, Vector3.up * capsuleRadius, Color.red);
-        Debug.DrawRay(capsuleStart + offset, Vector3.up * capsuleRadius, Color.red);
-        Debug.DrawRay(capsuleEnd + offset, Vector3.up * capsuleRadius, Color.red);
+            Debug.DrawLine(capsuleStart, capsuleEnd, Color.red);
+            Debug.DrawLine(capsuleStart + offset, capsuleEnd + offset, Color.red);
+            Debug.DrawLine(capsuleStart, capsuleStart + offset, Color.red);
+            Debug.DrawLine(capsuleEnd, capsuleEnd + offset, Color.red);
+            Debug.DrawRay(capsuleStart, Vector3.up * capsuleRadius, Color.red);
+            Debug.DrawRay(capsuleEnd, Vector3.up * capsuleRadius, Color.red);
+            Debug.DrawRay(capsuleStart + offset, Vector3.up * capsuleRadius, Color.red);
+            Debug.DrawRay(capsuleEnd + offset, Vector3.up * capsuleRadius, Color.red);
         }
     }
 
@@ -185,7 +194,8 @@ public class Player : MonoBehaviour, ICarObjectParent
         Rigidbody rb = hit.collider.attachedRigidbody;
         float forceMagnitude = 1f;
 
-        if (rb != null  && hit.gameObject.name == MOTOR_TOOL_NAME) {
+        if (rb != null && hit.gameObject.name == MOTOR_TOOL_NAME)
+        {
             Vector3 forceDirection = hit.gameObject.transform.position - transform.position;
             forceDirection.y = 0;
             forceDirection.Normalize();
@@ -212,7 +222,8 @@ public class Player : MonoBehaviour, ICarObjectParent
     {
         this.carObject = target;
 
-        if(this.carObject != null) {
+        if (this.carObject != null)
+        {
             OnPickedSomething?.Invoke(this, EventArgs.Empty);
         }
     }

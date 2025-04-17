@@ -28,6 +28,7 @@ public class LevelTimer : MonoBehaviour
             Debug.Log("Se termino el nivel");
             scorePanelUI.Show();
             running = false;
+            PlayerConfigurationManager.Instance.ClearPlayersPreFab();
         }
 
         // Updateamos la visual.
