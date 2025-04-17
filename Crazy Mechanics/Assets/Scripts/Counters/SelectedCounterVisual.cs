@@ -9,7 +9,11 @@ public class SelectedCounterVisual : MonoBehaviour
     [SerializeField] private GameObject[] visualGameObjectArray;
     private void Start()
     {
-        Player.OnSelectedCounterChanged += Player_OnSelecterCounterChanged;   
+        foreach (Player player in FindObjectsOfType<Player>())
+        {
+            Debug.Log("Boop +" + transform.parent.name);
+            player.OnSelectedCounterChanged += Player_OnSelecterCounterChanged;
+        }
     }
 
     private void Player_OnSelecterCounterChanged(object sender, Player.OnSelectedCounterChangedEventArgs e)
@@ -31,11 +35,5 @@ public class SelectedCounterVisual : MonoBehaviour
         foreach (GameObject visualGameObject in visualGameObjectArray) {
             visualGameObject.SetActive(false);
         }
-    }
-
-    
-    void OnDestroy()
-    {
-        Player.OnSelectedCounterChanged -= Player_OnSelecterCounterChanged;   
     }
 }

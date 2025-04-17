@@ -74,6 +74,10 @@ public class CurrentStationManager : MonoBehaviour
         //Debug.Log("Se libera la estacion");
     }
 
+    public void SetCarToStation(CarController car) {
+        currentCar = car;
+    }
+
 
     public void TryToDeliverCar()
     {

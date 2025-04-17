@@ -54,6 +54,8 @@ public class GameManager : MonoBehaviour
         car.transform.position = positionInstanciateCars[elevatorNumber].transform.position;
         CarController controller = car.GetComponent<CarController>();
         controller.SetCurrentStationManager(stations[elevatorNumber]);
+        // Le asignamos el station para bloquear spawns.
+        stations[elevatorNumber].SetCarToStation(controller);
         //Generamos las tasks que queremos.
         List<CarTasks> tasksToDo = ChooseRandomTasks(numberOfTaks);
         foreach (CarTasks task in tasksToDo)

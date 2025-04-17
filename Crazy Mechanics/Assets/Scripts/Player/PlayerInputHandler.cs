@@ -3,59 +3,33 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.InputSystem.InputAction;
 using System;
+using UnityEngine.InputSystem;
 
 public class PlayerInputHandler : MonoBehaviour
 {
-    public event EventHandler OnInteractAction;
-    public event EventHandler OnInteractAlternativeAction;
-
+    // Script que configura la toma de inputs del player, al joystick correspondiente.
     private PlayerConfiguration playerConfig;
+    private PlayerInput playerInput;
     private Player player;
-    private PlayerInputActions controls;
+
     private void Awake()
     {
-        controls = new PlayerInputActions();
-        controls.Enable();
-
         player = GetComponent<Player>();
-
-        //controls.Player.Interact.performed += Interact_performed;
-        //controls.Player.InteractAlternative.performed += InteractAlternative_performed;
     }
-    private void Start()
-    {
-        OnInteractAction += GameInput_OnInteractAction;
-        OnInteractAlternativeAction += GameInput_OnInteractAlternativeAction;
 
-    }
-    public void InitializePlayer(PlayerConfiguration pc)
+        public void InitializePlayer(PlayerConfiguration pc)
     {
         playerConfig = pc;
-        playerConfig.PInput.onActionTriggered += Input_onAccionTriggered;
-    }
-    private void Input_onAccionTriggered(CallbackContext obj)
-    {
-        //Debug.Log($"Acción ejecutada: {obj.action.name}");
+        playerInput = playerConfig.PInput;
 
-        if (obj.action.name == controls.Player.Move.name)
-        {
-            OnMove(obj);
-        }
-        if (obj.action.name == controls.Player.Interact.name && obj.performed)
-        {
-            Interact_performed(obj);
-            controls.Player.Interact.Disable(); // Deshabilitamos la acción temporalmente
-    
-        }
-        if (obj.action.name == controls.Player.InteractAlternative.name && obj.performed)
-        {
-            InteractAlternative_performed(obj);
-            controls.Player.InteractAlternative.Disable(); // Deshabilitamos la acción temporalmente
-        }
+        // Configurar los eventos del PlayerInput
+        playerInput.actions["Interact"].performed += Interact_performed;
+        playerInput.actions["InteractAlternative"].performed += InteractAlternative_performed;
+        playerInput.actions["Move"].performed += Move_performed;
+        playerInput.actions["Move"].canceled += Move_canceled; // Para cancelar el movimiento.
     }
 
-
-    public void OnMove(CallbackContext context)
+    private void Move_performed(CallbackContext context)
     {
         if (player != null)
         {
@@ -63,9 +37,18 @@ public class PlayerInputHandler : MonoBehaviour
         }
     }
 
-    private void GameInput_OnInteractAlternativeAction(object sender, EventArgs e)
+    private void Move_canceled(InputAction.CallbackContext context)
     {
+        if (player != null)
+        {
+            // Cuando se cancela el movimiento, establecer el vector a (0, 0)
+            player.SetInputVector(Vector2.zero);
+        }
+    }
 
+
+    private void InteractAlternative_performed(CallbackContext context)
+    {
         // Funcion que se ejecuta con el boton alternativo en player.
         if (player.HasCarObject())
         {
@@ -73,24 +56,12 @@ public class PlayerInputHandler : MonoBehaviour
             player.HandleThrowing();
         }
     }
-    private void GameInput_OnInteractAction(object sender, EventArgs e)
-    {
 
+    private void Interact_performed(CallbackContext context)
+    {
         if (player.selectedCounter != null)
         {
             player.selectedCounter.Interact(player);
         }
-    }
-
-    public void InteractAlternative_performed(CallbackContext obj)
-    {
-        Debug.Log("Interact Alternative ejecutado");
-        OnInteractAlternativeAction?.Invoke(this, EventArgs.Empty);
-    }
-
-    public void Interact_performed(CallbackContext obj)
-    {
-        Debug.Log("Interact ejecutado");
-        OnInteractAction?.Invoke(this, EventArgs.Empty);
     }
 }

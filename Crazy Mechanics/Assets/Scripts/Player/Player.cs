@@ -2,13 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Diagnostics;
 
 public class Player : MonoBehaviour, ICarObjectParent
 {
     const string MOTOR_TOOL_NAME = "Pluma";
 
-    public static event EventHandler<OnSelectedCounterChangedEventArgs> OnSelectedCounterChanged;
+    public event EventHandler<OnSelectedCounterChangedEventArgs> OnSelectedCounterChanged;
 
     public static event EventHandler OnPickedSomething;
     public static event EventHandler OnDroppedSomething;

@@ -10,8 +10,6 @@ public class PlayerConfigurationManager : MonoBehaviour
     const string SCENE_NAME = "Test Demo";
     private List<PlayerConfiguration> playerConfigs;
 
-    [SerializeField] private int MaxPlayers = 4;
-
     public static PlayerConfigurationManager Instance { get; private set; }
 
     public List<PlayerConfiguration> GetPlayerConfigs()
@@ -54,14 +52,15 @@ public class PlayerConfigurationManager : MonoBehaviour
 
     public void HandlePlayerJoined(PlayerInput pi)
     {
-        Debug.Log("Player Joined " + pi.playerIndex);
         // Si no a;adimos ya al player
         if (!playerConfigs.Any(p => p.PlayerIndex == pi.playerIndex))
         {
+            Debug.Log("Player " + pi.playerIndex + " Joined ");
             // Guardamos el obj input en el manager, para que persista cuando cambiamos la escena.
             pi.transform.SetParent(transform);
             // Agregamos un nuevo config con el indice de este pi.
             playerConfigs.Add(new PlayerConfiguration(pi));
+            //Debug.Log(playerConfigs.Count);
         }
     }
 

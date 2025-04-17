@@ -10,39 +10,52 @@ public class SelectedVisualInvisible : MonoBehaviour
     [SerializeField] private Material materialSelecto;
     private void Start()
     {
-        Player.OnSelectedCounterChanged += Player_OnSelecterCounterChanged;   
+        foreach (Player player in FindObjectsOfType<Player>())
+        {
+            player.OnSelectedCounterChanged += Player_OnSelecterCounterChanged;
+        }
     }
 
     private void Player_OnSelecterCounterChanged(object sender, Player.OnSelectedCounterChangedEventArgs e)
     {
-        if(e.selectedCounter == baseCounter) {
+        if (e.selectedCounter == baseCounter)
+        {
             Show();
-        } else {
+        }
+        else
+        {
             Hide();
         }
     }
 
-    private void Show() {
-        foreach (GameObject visualGameObject in visualGameObjectArray) {
-            if(visualGameObject == null) {
+    private void Show()
+    {
+        foreach (GameObject visualGameObject in visualGameObjectArray)
+        {
+            if (visualGameObject == null)
+            {
                 continue;
             }
             visualGameObject.SetActive(true);
         }
     }
 
-    private void Hide() {
-        foreach (GameObject visualGameObject in visualGameObjectArray) {
-            if(visualGameObject == null) {
+    private void Hide()
+    {
+        foreach (GameObject visualGameObject in visualGameObjectArray)
+        {
+            if (visualGameObject == null)
+            {
                 continue;
             }
             visualGameObject.SetActive(false);
         }
     }
 
-    public void SetUpSelected() {
+    public void SetUpSelected()
+    {
         // Preparamos una visual de selected, creando una copia y ajustando sus materiales.
-        
+
         // Busca el primer hijo de "CounterTopPoint"
         if (counterTopPoint.transform.childCount > 0)
         {
@@ -69,18 +82,16 @@ public class SelectedVisualInvisible : MonoBehaviour
         }
     }
 
-    private void FixMaterial(Transform target) {
-        
+    private void FixMaterial(Transform target)
+    {
+
         Transform holderVisual = target.GetChild(0);
-        foreach (Transform child in holderVisual) {
-            if (child.TryGetComponent(out MeshRenderer meshRenderer)) {
+        foreach (Transform child in holderVisual)
+        {
+            if (child.TryGetComponent(out MeshRenderer meshRenderer))
+            {
                 meshRenderer.material = materialSelecto;
             }
         }
-    }
-
-    void OnDestroy()
-    {
-        Player.OnSelectedCounterChanged -= Player_OnSelecterCounterChanged;   
     }
 }
