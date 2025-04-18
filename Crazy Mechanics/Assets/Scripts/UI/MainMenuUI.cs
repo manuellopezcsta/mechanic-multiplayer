@@ -11,25 +11,59 @@ public class MainMenuUI : MonoBehaviour {
     [SerializeField] private Button quitButton;
     [SerializeField] private Button creditsButton;
     [SerializeField] private GameObject creditScreen;
-    const string GAME_SCENE_NAME = "Test Demo";
+    [SerializeField] private Button optionsButton;
+    [SerializeField] private Button goBackCreditsButton;
+    [SerializeField] private Button goBackOptionsButton;
+    [SerializeField] private GameObject optionsScreen;
+    const string GAME_SCENE_NAME = "CharacterSelect";
+
+    // Creamos las funciones para los botones
+    private void StartGame() {
+        SceneManager.LoadScene(GAME_SCENE_NAME);
+    }
+
+    private void QuitGame() {
+        Application.Quit();
+    }
+
+    private void OpenCredits() {
+        creditScreen.SetActive(true);
+    }
+
+    private void ExitCredits() {
+        creditScreen.SetActive(false);
+    }
+
+    private void OpenOptions(){
+        optionsScreen.SetActive(true);
+    }
+
+    private void ExitOptions(){
+        optionsScreen.SetActive(false);
+    }
 
 
     private void Awake() {
-        playButton.onClick.AddListener(() => {
-            SceneManager.LoadScene(GAME_SCENE_NAME);
-        });
-        quitButton.onClick.AddListener(() => {
-            Application.Quit();
-        });
-        creditsButton.onClick.AddListener(() => {
-            creditScreen.SetActive(true);
-        });
+        //Agregamos los eventos que queremos que pasen al hacer click en el boton
+        
+        playButton.onClick.AddListener(StartGame);
+
+        quitButton.onClick.AddListener(QuitGame);
+
+        creditsButton.onClick.AddListener(OpenCredits);
+
+        optionsButton.onClick.AddListener(OpenOptions);
+
+        goBackCreditsButton.onClick.AddListener(ExitCredits);
+
+        goBackOptionsButton.onClick.AddListener(ExitOptions);
 
         Time.timeScale = 1f;
     }
 
     void Start()
     {
+       // Nos aseguramos de no mostrar la pantalla de creditos antes de hacer click en el boton
         creditScreen.SetActive(false);   
     }
 
