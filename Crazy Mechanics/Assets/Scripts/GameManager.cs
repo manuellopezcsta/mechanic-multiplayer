@@ -148,4 +148,10 @@ public class GameManager : MonoBehaviour
         playerList.Clear();
     }
 
+    public void NukePlayerControllers(){
+        foreach(Player player in playerList) {
+            player.gameObject.GetComponent<PlayerInputHandler>().UnsuscribeController();
+        }
+    }
+
 }

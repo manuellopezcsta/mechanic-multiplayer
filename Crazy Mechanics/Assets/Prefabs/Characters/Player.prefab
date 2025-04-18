@@ -60,6 +60,12 @@ MonoBehaviour:
   fowardMagnitude: 3
   upMagnitude: 2
   selectedCounter: {fileID: 0}
+  speed: 7
+  speedDash: 10
+  timeDash: 0.2
+  isDashing: 0
+  canDash: 1
+  cooldownDash: 1
 --- !u!143 &8025474308772073122
 CharacterController:
   m_ObjectHideFlags: 0

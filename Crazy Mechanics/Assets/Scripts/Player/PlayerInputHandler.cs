@@ -36,16 +36,17 @@ public class PlayerInputHandler : MonoBehaviour
         playerInput.actions["Move"].performed += Move_performed;
         playerInput.actions["Move"].canceled += Move_canceled; // Para cancelar el movimiento.
         playerInput.actions["Pause"].performed += Pause_perfomed;
+        playerInput.actions["Dash"].performed += Dash_performed;
     }
-    
-    
+
+
     public void UnsuscribeController()
     {
         // Ver si siguen estando los problemas de doble trigger,
         // cuando se termina la partida, y volves al world select y empieza otro.
         // Fijarse de usarlo en casos de ir al menu principal !!
 
-        
+
         // CODIGO PARA DESUSCRIBIRSE AL DESTRUIRSE UN PLAYER.
         if (playerInput != null)
         {
@@ -54,10 +55,14 @@ public class PlayerInputHandler : MonoBehaviour
             playerInput.actions["Move"].performed -= Move_performed;
             playerInput.actions["Move"].canceled -= Move_canceled;
             playerInput.actions["Pause"].performed -= Pause_perfomed;
+            playerInput.actions["Dash"].performed -= Dash_performed;
         }
     }
 
-
+    private void Dash_performed(CallbackContext context)
+    {
+        player.Dashing();
+    }
     private void Pause_perfomed(CallbackContext context)
     {
         PauseMenuScriptUI pauseMenuScript = GameObject.Find("Canvas").GetComponent<PauseMenuScriptUI>();

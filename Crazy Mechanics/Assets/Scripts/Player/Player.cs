@@ -35,6 +35,17 @@ public class Player : MonoBehaviour, ICarObjectParent
     // Char controller y collider para 2do metodo de movimiento.
     private CharacterController characterController;
     private Vector2 inputVector = Vector2.zero;
+    [SerializeField] private float speed = 7f;
+    private Vector3 moveDir;
+
+     //Dash
+    [Header("Dash")]
+    [SerializeField] private float speedDash = 10f;
+    [SerializeField] private float timeDash = 0.25f;
+    [SerializeField] private bool isDashing = false;
+    [SerializeField] private bool canDash = true;
+    [SerializeField] private float cooldownDash = 3f;
+
 
     private void Awake()
     {
@@ -82,9 +93,8 @@ public class Player : MonoBehaviour, ICarObjectParent
     private void HandleMovement()
     {
         // Capturamos al vector desde GameImput y se lo aplicamos al char controller.
-        float speed = 7f;
         //Vector2 inputVector = gameInput.GetMovementVectorNormalized();
-        Vector3 moveDir = new Vector3(inputVector.x, 0f, inputVector.y);
+        moveDir = new Vector3(inputVector.x, 0f, inputVector.y);
 
         //SimpleMove no ignora la gravedad.
         characterController.Move(moveDir * Time.deltaTime * speed);
@@ -112,7 +122,6 @@ public class Player : MonoBehaviour, ICarObjectParent
     private void HandleInteractions()
     {
         //Vector2 inputVector = gameInput.GetMovementVectorNormalized();
-        Vector3 moveDir = new Vector3(inputVector.x, 0f, inputVector.y);
 
         if (moveDir != Vector3.zero)
         {
@@ -225,4 +234,29 @@ public class Player : MonoBehaviour, ICarObjectParent
     {
         return carObject != null;
     }
+        private IEnumerator PerformDash(Vector3 moveDir, float dashSpeed, float dashTime)
+    {
+        isDashing = true;
+        float dashTimer = 0f;
+
+        while (dashTimer < dashTime)
+        {
+            characterController.Move(moveDir * Time.deltaTime * dashSpeed);
+            dashTimer += Time.deltaTime;
+            yield return null;
+        }
+        isDashing = false;
+        StartCoroutine(CooldownDash(cooldownDash));
+    }
+    private IEnumerator CooldownDash(float cooldownDash){
+        yield return new WaitForSeconds(cooldownDash);
+        canDash = true;
+    }
+    public void Dashing(){
+        if(canDash){
+        canDash = false;
+        StartCoroutine(PerformDash(moveDir, speedDash, timeDash));
+        }
+    }
+
 }
