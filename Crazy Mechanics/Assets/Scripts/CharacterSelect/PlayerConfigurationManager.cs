@@ -76,6 +76,10 @@ public class PlayerConfigurationManager : MonoBehaviour
     }
 
     public void SelfDestruct() {
+        // CODIGO PARA DESUSCRIBIRSE AL DESTRUIRSE UN PLAYER.
+        foreach( Player player in GameManager.playerList){
+            player.gameObject.GetComponent<PlayerInputHandler>().UnsuscribeController();
+        }
         Destroy(gameObject);
     }
 }

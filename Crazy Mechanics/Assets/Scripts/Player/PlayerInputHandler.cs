@@ -16,10 +16,17 @@ public class PlayerInputHandler : MonoBehaviour
     private void Awake()
     {
         player = GetComponent<Player>();
+        Debug.Log($"PlayerInputHandler creado: {gameObject.name}");
     }
 
-        public void InitializePlayer(PlayerConfiguration pc)
+    public void InitializePlayer(PlayerConfiguration pc)
     {
+        if (playerConfig != null)
+        {
+            Debug.LogWarning("Player already initialized!");
+            return;
+        }
+
         playerConfig = pc;
         playerInput = playerConfig.PInput;
 
@@ -30,12 +37,33 @@ public class PlayerInputHandler : MonoBehaviour
         playerInput.actions["Move"].canceled += Move_canceled; // Para cancelar el movimiento.
         playerInput.actions["Pause"].performed += Pause_perfomed;
     }
+    
+    
+    public void UnsuscribeController()
+    {
+        // Ver si siguen estando los problemas de doble trigger,
+        // cuando se termina la partida, y volves al world select y empieza otro.
+        // Fijarse de usarlo en casos de ir al menu principal !!
+
+        
+        // CODIGO PARA DESUSCRIBIRSE AL DESTRUIRSE UN PLAYER.
+        if (playerInput != null)
+        {
+            playerInput.actions["Interact"].performed -= Interact_performed;
+            playerInput.actions["InteractAlternative"].performed -= InteractAlternative_performed;
+            playerInput.actions["Move"].performed -= Move_performed;
+            playerInput.actions["Move"].canceled -= Move_canceled;
+            playerInput.actions["Pause"].performed -= Pause_perfomed;
+        }
+    }
+
 
     private void Pause_perfomed(CallbackContext context)
     {
         PauseMenuScriptUI pauseMenuScript = GameObject.Find("Canvas").GetComponent<PauseMenuScriptUI>();
         Debug.Log(pauseMenuScript);
-        if(pauseMenuScript != null) {
+        if (pauseMenuScript != null)
+        {
             pauseMenuScript.TogglePause();
         }
     }
