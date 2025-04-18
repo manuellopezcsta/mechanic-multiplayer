@@ -86,6 +86,7 @@ public class CurrentStationManager : MonoBehaviour
            //Agregar score total al scoremanager
             ScoreManager.Instance.AddPoints(currentCar.carScoreValue);
             currentCar.canMove = true;
+            FreeStation();
             Debug.Log("Se entrego el auto");
             OnCarDelivery?.Invoke(this, EventArgs.Empty);
         }

@@ -64,7 +64,8 @@ public class MainMenuUI : MonoBehaviour {
     void Start()
     {
        // Nos aseguramos de no mostrar la pantalla de creditos antes de hacer click en el boton
-        creditScreen.SetActive(false);   
+        creditScreen.SetActive(false);  
+        playButton.Select();
     }
 
 }

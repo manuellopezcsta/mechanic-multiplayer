@@ -9,8 +9,8 @@ public class CarController : MonoBehaviour
     const string STOP_TAG = "Stop";
     private CurrentStationManager currentStationManager;
 
-    public bool carFixed = true;
-    public bool canMove;
+    public bool carFixed = false;
+    public bool canMove = true;
     [SerializeField] private float speed = 5f;
     [SerializeField] private float targetZ = 10f;
     [SerializeField] private List<GameManager.CarTasks> carTasks;
@@ -35,7 +35,7 @@ public class CarController : MonoBehaviour
     private int completedTasksCounter = 0;
     void Update()
     {
-        if (canMove && carFixed)
+        if (canMove)
         {
             // El auto va hacia adelante.
             Vector3 currentPosition = transform.position;

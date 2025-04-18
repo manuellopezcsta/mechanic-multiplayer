@@ -144,5 +144,8 @@ public class GameManager : MonoBehaviour
         playerList.Add(player);
     }
 
+    private void OnDestroy() {
+        playerList.Clear();
+    }
 
 }

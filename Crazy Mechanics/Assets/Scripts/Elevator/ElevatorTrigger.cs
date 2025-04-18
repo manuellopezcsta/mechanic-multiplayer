@@ -15,7 +15,6 @@ public class ElevatorTrigger : MonoBehaviour
         {
             //Asegurar que el elevador este en 0 para que el auto pueda subir /no se empale.
             other.GetComponent<CarController>().canMove = false;
-            other.GetComponent<CarController>().carFixed = false;
             Vector3 globalPosition = other.transform.position;
             other.transform.SetParent(targetElevator.transform);
             other.transform.position = globalPosition;
@@ -26,17 +25,6 @@ public class ElevatorTrigger : MonoBehaviour
             currentStationManager.currentCar = other.GetComponent<CarController>();
             //ChangeValueCollider();
             //Debug.Log("Entro en el trigger");
-        }
-    }
-
-    void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag(CAR_TAG) && other.GetComponent<CarController>().carFixed)
-        {
-            currentStationManager.FreeStation();
-            other.transform.SetParent(null);
-            //Debug.Log("Salio del trigger BANANA");
-            //ChangeValueCollider();
         }
     }
 

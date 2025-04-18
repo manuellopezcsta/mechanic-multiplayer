@@ -186,8 +186,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc624c53533d2c84194bf72e0ea18dd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  carFixed: 1
-  canMove: 0
+  carFixed: 0
+  canMove: 1
   speed: 5
   targetZ: 40
   carTasks: 
@@ -198,6 +198,7 @@ MonoBehaviour:
   wheelFLPosition: {fileID: 5464244606343011733}
   wheelBRPosition: {fileID: 543017188927831629}
   wheelBLPosition: {fileID: 5083303445031588623}
+  carScoreValue: 0
 --- !u!54 &1370130643371547013
 Rigidbody:
   m_ObjectHideFlags: 0
