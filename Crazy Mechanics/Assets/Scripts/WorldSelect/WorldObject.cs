@@ -1,15 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
-
-public class WorldObject : OverworldInteractable
+public class WorldObject : MonoBehaviour, IInteractable
 {
-    [SerializeField] public string WorldToGo = "Test Demo"; //Por default se asigna "Test Demo"
-    public override void Interact(PlayerWorldSelect player)
-    {
-        SceneManager.LoadScene (WorldToGo);
+    [SerializeField] string worldToGo = "Test Demo";
+    [SerializeField] private UnityEvent _onInteract;
+    UnityEvent IInteractable.OnInteract { 
+        get => _onInteract;
+        set => _onInteract  = value;   
     }
 
+    public void Interact () => _onInteract.Invoke();
+
+    public void LoadWorld () {
+        Debug.Log("world object interaction");
+        SceneManager.LoadScene(worldToGo);
+    }
 
 }
