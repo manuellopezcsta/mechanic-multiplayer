@@ -4,6 +4,7 @@ using UnityEngine;
 using static UnityEngine.InputSystem.InputAction;
 using System;
 using UnityEngine.InputSystem;
+using Cinemachine;
 
 public class PlayerInputHandler : MonoBehaviour
 {
@@ -27,6 +28,16 @@ public class PlayerInputHandler : MonoBehaviour
         playerInput.actions["InteractAlternative"].performed += InteractAlternative_performed;
         playerInput.actions["Move"].performed += Move_performed;
         playerInput.actions["Move"].canceled += Move_canceled; // Para cancelar el movimiento.
+        playerInput.actions["Pause"].performed += Pause_perfomed;
+    }
+
+    private void Pause_perfomed(CallbackContext context)
+    {
+        PauseMenuScriptUI pauseMenuScript = GameObject.Find("Canvas").GetComponent<PauseMenuScriptUI>();
+        Debug.Log(pauseMenuScript);
+        if(pauseMenuScript != null) {
+            pauseMenuScript.TogglePause();
+        }
     }
 
     private void Move_performed(CallbackContext context)

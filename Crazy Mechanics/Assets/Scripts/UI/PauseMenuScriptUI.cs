@@ -20,6 +20,14 @@ public class PauseMenuScriptUI : MonoBehaviour
         Time.timeScale = 1f; //Ponemos el tiempo a velocidad normal nuevamente
     }
 
+    private void PauseGame()
+    {
+        pauseScreen.SetActive(true);
+        // Seteamos un boton como seleccionado para que funcione con joystick.
+        Time.timeScale = 0f;
+        resumeGameButton.Select();
+    }
+
     private void RestartLevel()
     {   // Preguntar al game manager el nombre de nivel actual y cargarlo
         // Time.timeScale = 1f;       
@@ -29,7 +37,7 @@ public class PauseMenuScriptUI : MonoBehaviour
     private void GoToMainMenu()
     {
         Time.timeScale = 1f;
-        Destroy(GameObject.Find("PlayerConfigurationManager"));
+        PlayerConfigurationManager.Instance.SelfDestruct();
         SceneManager.LoadScene("Menu");
     }
 
@@ -39,27 +47,21 @@ public class PauseMenuScriptUI : MonoBehaviour
         resumeGameButton.onClick.AddListener(ResumeGame);
         restartLevelButton.onClick.AddListener(RestartLevel);
         exitToMainMenuButton.onClick.AddListener(GoToMainMenu);
+        // Apagamos la pantalla de pausa al comienzo por las dudas
+        pauseScreen.SetActive(false);
     }
 
-
-    // Update is called once per frame
-    void Update()
+    // Funcion que se llama desde el performedAction del INPUT Manager del player para pausar cuando presionen la tecla de pausa.
+    public void TogglePause()
     {
-        // chequeamos al precionar la tecla escape si el menu esta cerrado, si es asi, lo abre, sino lo cierra
-        // pausamos el tiempo en caso de abrir el menu de pausa, en caso de cerrarlo lo reactivamos.
-        if (Input.GetKeyDown("escape"))
+        Debug.Log(pauseScreen.activeSelf);
+        if (pauseScreen.activeSelf == false)
         {
-            if (pauseScreen.activeSelf == false)
-            {
-                pauseScreen.SetActive(true);
-                Time.timeScale = 0f;
-            }
-            else
-            {
-                pauseScreen.SetActive(false);
-                Time.timeScale = 1f;
-            }
-
+            PauseGame();
+        }
+        else
+        {
+            ResumeGame();
         }
     }
 }

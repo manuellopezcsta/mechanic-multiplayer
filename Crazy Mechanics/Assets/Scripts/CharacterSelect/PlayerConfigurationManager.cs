@@ -74,6 +74,10 @@ public class PlayerConfigurationManager : MonoBehaviour
             }
         }
     }
+
+    public void SelfDestruct() {
+        Destroy(gameObject);
+    }
 }
 
 

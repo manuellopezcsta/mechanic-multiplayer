@@ -29,8 +29,6 @@ public class PlayerSetUpMenuController : MonoBehaviour
     private int currentIndex = 0; // Índice actual de la imagen
 
 
-
-
     // Seteamos el player Input para poder hacer el evento de callback de navigate.
     public void SetPlayerInput(PlayerInput pi)
     {
@@ -60,13 +58,13 @@ public class PlayerSetUpMenuController : MonoBehaviour
     private void OnDestroy()
     {
         // Asegurarse de desuscribirse del evento
-        navigateAction.performed -= OnNavigate;
+        navigateAction.started -= OnNavigate;
     }
 
 
     private void NextImage()
     {
-        Debug.Log("Se fue a la siguiente imagen");
+        //Debug.Log("Se fue a la siguiente imagen");
         currentIndex++;
         if (currentIndex >= playerDataContainers.Length)
         {

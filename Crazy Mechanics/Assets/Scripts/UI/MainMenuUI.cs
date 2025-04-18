@@ -28,18 +28,22 @@ public class MainMenuUI : MonoBehaviour {
 
     private void OpenCredits() {
         creditScreen.SetActive(true);
+        goBackCreditsButton.Select();
     }
 
     private void ExitCredits() {
         creditScreen.SetActive(false);
+        playButton.Select();
     }
 
     private void OpenOptions(){
         optionsScreen.SetActive(true);
+        goBackOptionsButton.Select();
     }
 
     private void ExitOptions(){
         optionsScreen.SetActive(false);
+        playButton.Select();
     }
 
 
