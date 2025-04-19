@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 
@@ -27,6 +28,11 @@ public class MapGenerator : MonoBehaviour
     public bool autoUpdate;
 
     public TerrainType[] regions;
+
+    void Awake()
+    {
+        GenerateMap(); //Fix to graphic bug on some machines where the map generates with wrong colors
+    }
 
     public void GenerateMap()
     {
