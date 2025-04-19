@@ -64,6 +64,7 @@ public class PlayerConfigurationManager : MonoBehaviour
         }
     }
 
+    // Si no se usa en el futuro, borrar
     public void ClearPlayersPreFab()
     {
         foreach (Transform child in transform)
@@ -77,9 +78,7 @@ public class PlayerConfigurationManager : MonoBehaviour
 
     public void SelfDestruct() {
         // CODIGO PARA DESUSCRIBIRSE AL DESTRUIRSE UN PLAYER.
-        foreach( Player player in GameManager.playerList){
-            player.gameObject.GetComponent<PlayerInputHandler>().UnsuscribeController();
-        }
+        GameManager.Instance.NukePlayerControllers();
         Destroy(gameObject);
     }
 }

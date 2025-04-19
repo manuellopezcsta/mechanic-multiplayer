@@ -61,7 +61,7 @@ public class PlayerInputHandler : MonoBehaviour
 
     private void Dash_performed(CallbackContext context)
     {
-        player.Dashing();
+        player.Dash();
     }
     private void Pause_perfomed(CallbackContext context)
     {

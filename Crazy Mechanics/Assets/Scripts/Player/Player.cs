@@ -22,6 +22,7 @@ public class Player : MonoBehaviour, ICarObjectParent
     [SerializeField] private Transform invisibleHolder;
 
     // Para tirar
+    [Header("Throw")]
     [SerializeField] float throwMagnitude;
     [SerializeField] float fowardMagnitude;
     [SerializeField] float upMagnitude;
@@ -38,20 +39,19 @@ public class Player : MonoBehaviour, ICarObjectParent
     [SerializeField] private float speed = 7f;
     private Vector3 moveDir;
 
-     //Dash
+    //Dash
     [Header("Dash")]
-    [SerializeField] private float speedDash = 10f;
-    [SerializeField] private float timeDash = 0.25f;
-    [SerializeField] private bool isDashing = false;
+    [SerializeField] private float dashSpeed = 10f;
+    [SerializeField] private float dashDuration = 0.25f;
     [SerializeField] private bool canDash = true;
-    [SerializeField] private float cooldownDash = 3f;
+    [SerializeField] private float dashCooldown = 3f;
 
 
     private void Awake()
     {
         GameManager.RegisterPlayer(this);
     }
-    
+
     private void Start()
     {
         characterController = GetComponent<CharacterController>();
@@ -113,7 +113,7 @@ public class Player : MonoBehaviour, ICarObjectParent
 
     }
 
-    
+
     public bool IsWalking()
     {
         return isWalking;
@@ -234,9 +234,19 @@ public class Player : MonoBehaviour, ICarObjectParent
     {
         return carObject != null;
     }
-        private IEnumerator PerformDash(Vector3 moveDir, float dashSpeed, float dashTime)
+
+    
+    public void Dash()
     {
-        isDashing = true;
+        if (canDash)
+        {
+            canDash = false;
+            StartCoroutine(DashCoroutine(moveDir, dashSpeed, dashDuration));
+        }
+    }
+
+    private IEnumerator DashCoroutine(Vector3 moveDir, float dashSpeed, float dashTime)
+    {
         float dashTimer = 0f;
 
         while (dashTimer < dashTime)
@@ -245,18 +255,13 @@ public class Player : MonoBehaviour, ICarObjectParent
             dashTimer += Time.deltaTime;
             yield return null;
         }
-        isDashing = false;
-        StartCoroutine(CooldownDash(cooldownDash));
+        StartCoroutine(DashCooldownCoroutine(dashCooldown));
     }
-    private IEnumerator CooldownDash(float cooldownDash){
+
+    private IEnumerator DashCooldownCoroutine(float cooldownDash)
+    {
         yield return new WaitForSeconds(cooldownDash);
         canDash = true;
-    }
-    public void Dashing(){
-        if(canDash){
-        canDash = false;
-        StartCoroutine(PerformDash(moveDir, speedDash, timeDash));
-        }
     }
 
 }
