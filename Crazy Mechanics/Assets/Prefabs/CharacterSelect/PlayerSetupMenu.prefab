@@ -141,11 +141,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5e5f25c3917fee14a8fd62aec7f99ca5, type: 2}
   - {fileID: 11400000, guid: 99a97a87fdab2e248bf5f0b5460572a8, type: 2}
   - {fileID: 11400000, guid: 573d2c2b4d0e6214fa16d579de714874, type: 2}
-  posCamera:
-  - {x: 66, y: 1.5, z: 90}
-  - {x: 70, y: 1.5, z: 90}
-  - {x: 74, y: 1.5, z: 90}
-  - {x: 78, y: 1.5, z: 90}
+  posCamera: {x: 0, y: 0, z: 0}
   camera: {fileID: 1385211545797281456}
   renderCam:
   - {fileID: 8400000, guid: 058badcfbc18fcb4da008c7998d7ecee, type: 2}
@@ -334,7 +330,7 @@ Camera:
   m_GameObject: {fileID: 2656688909698795054}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
+  m_ClearFlags: 2
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -364,7 +360,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 8
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -373,7 +369,7 @@ Camera:
   m_AllowMSAA: 1
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
+  m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
 --- !u!114 &3700911180978693633
