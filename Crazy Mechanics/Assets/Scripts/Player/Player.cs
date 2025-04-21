@@ -11,6 +11,7 @@ public class Player : MonoBehaviour, ICarObjectParent
 
     public static event EventHandler OnPickedSomething;
     public static event EventHandler OnDroppedSomething;
+    public event EventHandler OnStun;
     public class OnSelectedCounterChangedEventArgs : EventArgs
     {
         public BaseCounter selectedCounter;
@@ -45,6 +46,9 @@ public class Player : MonoBehaviour, ICarObjectParent
     [SerializeField] private float dashDuration = 0.25f;
     [SerializeField] private bool canDash = true;
     [SerializeField] private float dashCooldown = 3f;
+    // Para el stun
+    private bool stunned;
+    [SerializeField] float stunDuration = 2f;
 
 
     private void Awake()
@@ -92,6 +96,10 @@ public class Player : MonoBehaviour, ICarObjectParent
 
     private void HandleMovement()
     {
+        if(stunned) {
+            isWalking = false;
+            return;
+        }
         // Capturamos al vector desde GameImput y se lo aplicamos al char controller.
         //Vector2 inputVector = gameInput.GetMovementVectorNormalized();
         moveDir = new Vector3(inputVector.x, 0f, inputVector.y);
@@ -101,8 +109,6 @@ public class Player : MonoBehaviour, ICarObjectParent
         // Para arreglar un bug donde flota el player?
         characterController.Move(Vector3.down * Time.deltaTime * speed);
         //transform.position = new Vector3(transform.position.x, 0f, transform.position.z);
-
-
 
         // Rotamos al personaje.
         float rotateSpeed = 10f;
@@ -186,6 +192,7 @@ public class Player : MonoBehaviour, ICarObjectParent
         Rigidbody rb = hit.collider.attachedRigidbody;
         float forceMagnitude = 1f;
 
+        // Logica para empujar la pluma
         if (rb != null && hit.gameObject.name == MOTOR_TOOL_NAME)
         {
             Vector3 forceDirection = hit.gameObject.transform.position - transform.position;
@@ -193,6 +200,12 @@ public class Player : MonoBehaviour, ICarObjectParent
             forceDirection.Normalize();
 
             rb.AddForceAtPosition(forceDirection * forceMagnitude, transform.position, ForceMode.Impulse);
+            return;
+        }
+
+        //Debug.Log(rb.velocity.magnitude);
+        if(rb != null && rb.velocity.magnitude > 6.5f) {
+            StartCoroutine(GetStunned());
         }
     }
     private void SetSelectedCounter(BaseCounter selectedCounter)
@@ -262,6 +275,14 @@ public class Player : MonoBehaviour, ICarObjectParent
     {
         yield return new WaitForSeconds(cooldownDash);
         canDash = true;
+    }
+
+    private IEnumerator GetStunned()
+    {
+        OnStun?.Invoke(this, EventArgs.Empty);
+        stunned = true;
+        yield return new WaitForSeconds(stunDuration);
+        stunned = false;
     }
 
 }

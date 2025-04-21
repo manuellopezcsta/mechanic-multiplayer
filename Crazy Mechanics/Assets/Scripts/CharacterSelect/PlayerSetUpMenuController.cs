@@ -29,7 +29,7 @@ public class PlayerSetUpMenuController : MonoBehaviour
     private int currentIndex = 0; // Índice actual de la imagen
 
     [SerializeField] private Vector3 posCamera;
-    [SerializeField] private Camera camera;
+    [SerializeField] private new Camera camera;
     [SerializeField] private RenderTexture[] renderCam;
     [SerializeField] private Material[] materialCamRenderer;
     [SerializeField] private Image imageRenderer;
