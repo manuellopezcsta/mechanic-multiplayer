@@ -8,10 +8,14 @@ using UnityEngine.SceneManagement;
 public class PlayerConfigurationManager : MonoBehaviour
 {
     const string SCENE_NAME = "Test Demo";
-    private List<PlayerConfiguration> playerConfigs;
+    [SerializeField] private List<PlayerConfiguration> playerConfigs;
+    [SerializeField] private PlayerSelectContainerSO[] charactersVisuals;
+
+    [SerializeField] private float offsetVisualCharacters;
 
     public static PlayerConfigurationManager Instance { get; private set; }
 
+    
     public List<PlayerConfiguration> GetPlayerConfigs()
     {
         return playerConfigs;
@@ -30,6 +34,10 @@ public class PlayerConfigurationManager : MonoBehaviour
             // Iniciamos la lista para guardar las configs.
             playerConfigs = new List<PlayerConfiguration>();
         }
+    }
+    public void Start(){
+        RenderCharacters();
+        GameManager.playerList.Clear();
     }
 
     // Le pasamos un player, y seteamos el material de ese player.
@@ -81,6 +89,23 @@ public class PlayerConfigurationManager : MonoBehaviour
         GameManager.Instance.NukePlayerControllers();
         Destroy(gameObject);
     }
+    
+    private void RenderCharacters(){
+        Vector3 startingPosition = new Vector3(0f,0f,0f);
+        Vector3 offset = new Vector3(offsetVisualCharacters,0f,0f);
+        for (int i = 0; i < charactersVisuals.Length; i++){
+            GameObject character = Instantiate(charactersVisuals[i].playerPrefab);
+            character.transform.position = startingPosition;
+            startingPosition += offset;
+            character.GetComponent<Player>().enabled = false;
+            character.GetComponent<PlayerInputHandler>().enabled = false;
+            character.GetComponent<PlayerSound>().enabled = false;
+            character.GetComponent<CharacterController>().enabled = false;
+        }
+    }
+    public float GetCameraOffset(){
+        return offsetVisualCharacters;
+    }
 }
 
 
@@ -91,6 +116,7 @@ public class PlayerConfiguration
     public bool IsReady { get; set; }
     // Cambiarlo x modelo si esto funciona
     public Material PlayerMaterial { get; set; }
+    public GameObject playerPrefab { get; set; }
 
     // Constructor de la clase
     public PlayerConfiguration(PlayerInput pi)

@@ -5,13 +5,14 @@ using UnityEngine;
 public class LevelSpawnPlayer : MonoBehaviour
 {
     [SerializeField] private Transform[] playerSpawns;
-    [SerializeField] private GameObject playerPrefab;
+    //[SerializeField] private GameObject playerPrefab;
 
     void Awake() {
         var playerConfigs = PlayerConfigurationManager.Instance.GetPlayerConfigs().ToArray();
         for (int i=0; i < playerConfigs.Length; i++)
         {
-            var player = Instantiate(playerPrefab, playerSpawns[i].position, playerSpawns[i].rotation, gameObject.transform);
+            //Instanciamos el player con su personaje seleccionado.
+            var player = Instantiate(playerConfigs[i].playerPrefab, playerSpawns[i].position, playerSpawns[i].rotation, gameObject.transform);
             player.GetComponent<PlayerInputHandler>().InitializePlayer(playerConfigs[i]);   
         }
     }

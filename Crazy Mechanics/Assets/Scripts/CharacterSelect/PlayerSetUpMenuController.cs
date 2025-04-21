@@ -11,7 +11,7 @@ using UnityEngine.UI;
 
 public class PlayerSetUpMenuController : MonoBehaviour
 {
-    private int PlayerIndex;
+    public int PlayerIndex;
     [SerializeField] TextMeshProUGUI tittleText;
     [SerializeField] GameObject readyPanel;
     [SerializeField] GameObject menuPanel;
@@ -23,12 +23,34 @@ public class PlayerSetUpMenuController : MonoBehaviour
     private float ignoreInputTime = 1.5f;
     private bool inputEnabled;
 
-
+    [Header("Renderer Cam")]
     [SerializeField] public Image imageDisplay; // UI Image que mostrará las imágenes
     public PlayerSelectContainerSO[] playerDataContainers;   // Lista de sprites de imágenes
     private int currentIndex = 0; // Índice actual de la imagen
 
+    [SerializeField] private Vector3 posCamera;
+    [SerializeField] private Camera camera;
+    [SerializeField] private RenderTexture[] renderCam;
+    [SerializeField] private Material[] materialCamRenderer;
+    [SerializeField] private Image imageRenderer;
+ 
 
+private void Start() {
+    //Le damos el prefab indicado al Player al iniciar el character select
+    PlayerConfigurationManager.Instance.GetPlayerConfigs()[PlayerIndex].playerPrefab = playerDataContainers[currentIndex].playerPrefab;
+
+    //Se le coloca la textura a la camara segun el player actual
+    camera.targetTexture = renderCam[PlayerIndex];
+    imageRenderer.material = materialCamRenderer[PlayerIndex];
+
+    //Le sacamos el parent a la camara para trabajar con una unica vara de posiciones
+    camera.transform.SetParent(null);
+    posCamera = new Vector3(0f,1.2f,-7f);
+
+    // colocamos la posicion inicial a la camara
+    camera.transform.position = posCamera;
+    
+}
     // Seteamos el player Input para poder hacer el evento de callback de navigate.
     public void SetPlayerInput(PlayerInput pi)
     {
@@ -66,9 +88,14 @@ public class PlayerSetUpMenuController : MonoBehaviour
     {
         //Debug.Log("Se fue a la siguiente imagen");
         currentIndex++;
+        //Variamos la posicion de la camara en conveniencia
+        camera.transform.position += new Vector3(PlayerConfigurationManager.Instance.GetCameraOffset(),0f,0f);
         if (currentIndex >= playerDataContainers.Length)
         {
             currentIndex = 0;
+
+            //Colocamos la posicion de la Camara frente al primer personaje disponible
+            camera.transform.position = posCamera;
         }
         UpdateImage();
     }
@@ -76,18 +103,28 @@ public class PlayerSetUpMenuController : MonoBehaviour
     private void PreviousImage()
     {
         currentIndex--;
+        //Variamos la posicion de la camara en conveniencia
+        camera.transform.position -= new Vector3(PlayerConfigurationManager.Instance.GetCameraOffset(),0f,0f);
+
         if (currentIndex < 0)
         {
             currentIndex = playerDataContainers.Length - 1;
+
+            //Colocamos la posicion de la Camara frente al ultimo personaje disponible
+            camera.transform.position = new Vector3(PlayerConfigurationManager.Instance.GetCameraOffset() * currentIndex ,posCamera.y,posCamera.z);
         }
         UpdateImage();
     }
 
-    private void UpdateImage()
+    private void UpdateImage( )
     {
+        
         imageDisplay.sprite = playerDataContainers[currentIndex].sprite; // Actualiza la imagen mostrada
         // Updatemos los datos del player aca
         SetColor(playerDataContainers[currentIndex].material);
+        //actualizar el prefab del personaje jugable
+        PlayerConfigurationManager.Instance.GetPlayerConfigs()[PlayerIndex].playerPrefab = playerDataContainers[currentIndex].playerPrefab;
+
     }
 
     /////////////////////////

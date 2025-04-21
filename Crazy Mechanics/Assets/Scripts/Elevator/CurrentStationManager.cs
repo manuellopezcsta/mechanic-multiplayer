@@ -81,7 +81,7 @@ public class CurrentStationManager : MonoBehaviour
 
     public void TryToDeliverCar()
     {
-        if (currentCar != null && currentCar.carFixed)
+        if (currentCar != null && currentCar.carFixed && GetCurrentElevatorFloor() == 0)
         {
            //Agregar score total al scoremanager
             ScoreManager.Instance.AddPoints(currentCar.carScoreValue);

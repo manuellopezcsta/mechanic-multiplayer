@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
         BATTERY_CHARGE,
     }
 
-    public void GenerateCar(int numberOfTaks)
+    public void GenerateCar()
     {
         // Elijo un auto random de los que tengo
         int index = UnityEngine.Random.Range(0, carPrefabs.Length);
@@ -59,7 +59,8 @@ public class GameManager : MonoBehaviour
         // Le asignamos el station para bloquear spawns.
         stations[elevatorNumber].SetCarToStation(controller);
         //Generamos las tasks que queremos.
-        List<CarTasks> tasksToDo = ChooseRandomTasks(numberOfTaks);
+        int randomTask = UnityEngine.Random.Range(levelProperties.minTaskNumber, levelProperties.maxTaskNumber + 1);
+        List<CarTasks> tasksToDo = ChooseRandomTasks(randomTask);
         foreach (CarTasks task in tasksToDo)
         {
             controller.GenerateTask(task);

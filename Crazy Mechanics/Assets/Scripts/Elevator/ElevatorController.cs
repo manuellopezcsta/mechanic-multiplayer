@@ -10,11 +10,11 @@ public class ElevatorController : MonoBehaviour
     [SerializeField] private bool isMoving;
     [SerializeField] Transform elevatorArms;
 
-    public void ChangeFlorElevator()
+    public void ChangeFloorElevator()
     {
         CurrentStationManager csm = GetComponent<CurrentStationManager>();
 
-        if (!isMoving && !csm.IsElevatorLocked() && GameManager.Instance.IsPowerEnabled() && !csm.isFree())
+        if (!isMoving && !csm.IsElevatorLocked() && GameManager.Instance.IsPowerEnabled() && !csm.isFree() && !csm.currentCar.canMove)
         {
             switch (floorNumberElevator)
             {

@@ -13,7 +13,7 @@ public class ButtonStart : BaseCounter
             int randomTasks = Random.Range(1, GameManager.Instance.GetTaskCount());
             Debug.Log("Cantidad de task en auto " + randomTasks);
             //GameManager.Instance.GenerateCar(randomTasks);
-            GameManager.Instance.GenerateCar(1); // Para debugear mas facil.
+            GameManager.Instance.GenerateCar(); // Para debugear mas facil.
         }
     }
 }
