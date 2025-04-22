@@ -31,7 +31,7 @@ public class TaskMotor : BaseCounter
             if (!HasCarObject() && motorTool != null)
             {
                 // There is no obj here and the pluma has a fixedMotor.
-                if (motorTool.HasCarObject() && motorTool.GetCarObject().GetObjectSO() == fixedMotor && !player.HasCarObject())
+                if (motorTool.HasCarObject() && motorTool.GetCarObject().GetObjectSO() == fixedMotor && !player.HasCarObject() && conditionsMet)
                 {
                     //Ponemos el motor arreglado y marcamos la tarea como completa
                     motorTool.GetCarObject().SetCarObjectParent(this);

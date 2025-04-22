@@ -1989,6 +1989,7 @@ MonoBehaviour:
   canDash: 1
   dashCooldown: 3
   stunDuration: 2
+  stunTreshHold: 1
 --- !u!143 &8025474308772073122
 CharacterController:
   m_ObjectHideFlags: 0
@@ -2034,8 +2035,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 0.9585835, z: 1}
-  m_Center: {x: 0, y: 0.6047918, z: 0}
+  m_Size: {x: 1, y: 2.8478222, z: 1}
+  m_Center: {x: 0, y: 1.5494113, z: 0}
 --- !u!114 &6697645198155447147
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -9,6 +9,7 @@ public class ElevatorController : MonoBehaviour
     public int floorNumberElevator = 0;
     [SerializeField] private bool isMoving;
     [SerializeField] Transform elevatorArms;
+    [SerializeField] private int nextFloor;
 
     public void ChangeFloorElevator()
     {
@@ -16,16 +17,20 @@ public class ElevatorController : MonoBehaviour
 
         if (!isMoving && !csm.IsElevatorLocked() && GameManager.Instance.IsPowerEnabled() && !csm.isFree() && !csm.currentCar.canMove)
         {
+            Debug.Log("Piso actual" + floorNumberElevator);
             switch (floorNumberElevator)
             {
                 case 0:
-                    floorNumberElevator = 1;
+                    nextFloor = 1;
+                    Debug.Log("Piso temporal" + nextFloor);
                     break;
                 case 1:
-                    floorNumberElevator = 2;
+                    nextFloor = 2;
+                    Debug.Log("Piso temporal" + nextFloor);
                     break;
                 case 2:
-                    floorNumberElevator = 0;
+                    nextFloor = 0;
+                    Debug.Log("Piso temporal" + nextFloor);
                     break;
             }
             isMoving = true;
@@ -36,12 +41,16 @@ public class ElevatorController : MonoBehaviour
     {
         if (isMoving)
         {
-            elevatorArms.position = Vector3.MoveTowards(elevatorArms.position, floors[floorNumberElevator].position, speed * Time.deltaTime);
-            if (elevatorArms.position == floors[floorNumberElevator].position)
+            elevatorArms.position = Vector3.MoveTowards(elevatorArms.position, floors[nextFloor].position, speed * Time.deltaTime);
+            if (elevatorArms.position == floors[nextFloor].position)
             {
                 isMoving = false;
+                floorNumberElevator = nextFloor;
                 //Debug.Log("No se mueve mas");
             }
         }
+    }
+    public bool CheckIfElevatorIsMoving(){
+        return isMoving;
     }
 }

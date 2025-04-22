@@ -49,6 +49,7 @@ public class Player : MonoBehaviour, ICarObjectParent
     // Para el stun
     private bool stunned;
     [SerializeField] float stunDuration = 2f;
+    [SerializeField] private float stunTreshHold;
 
 
     private void Awake()
@@ -71,6 +72,7 @@ public class Player : MonoBehaviour, ICarObjectParent
         // Creamos un nuevo padre para el obj
         Transform holder = Instantiate(invisibleHolder);
         InvisibleHolder holderCounter = holder.GetComponent<InvisibleHolder>();
+        holderCounter.thrownBy = this;
         // Arreglamos la pos y rotacion
         holder.position = GetCarObjectFollowTransform().position;
         holder.rotation = transform.rotation;
@@ -96,7 +98,8 @@ public class Player : MonoBehaviour, ICarObjectParent
 
     private void HandleMovement()
     {
-        if(stunned) {
+        if (stunned)
+        {
             isWalking = false;
             return;
         }
@@ -192,6 +195,7 @@ public class Player : MonoBehaviour, ICarObjectParent
         Rigidbody rb = hit.collider.attachedRigidbody;
         float forceMagnitude = 1f;
 
+
         // Logica para empujar la pluma
         if (rb != null && hit.gameObject.name == MOTOR_TOOL_NAME)
         {
@@ -203,9 +207,13 @@ public class Player : MonoBehaviour, ICarObjectParent
             return;
         }
 
-        //Debug.Log(rb.velocity.magnitude);
-        if(rb != null && rb.velocity.magnitude > 6.5f) {
-            StartCoroutine(GetStunned());
+        //Debug.Log(hit.gameObject.name);
+        if (rb != null && rb.velocity.magnitude > stunTreshHold && hit.gameObject.TryGetComponent(out InvisibleHolder item))
+        {
+            if (item.thrownBy != this)
+            {
+                StartCoroutine(GetStunned());
+            }
         }
     }
     private void SetSelectedCounter(BaseCounter selectedCounter)
@@ -248,7 +256,7 @@ public class Player : MonoBehaviour, ICarObjectParent
         return carObject != null;
     }
 
-    
+
     public void Dash()
     {
         if (canDash)
@@ -279,6 +287,7 @@ public class Player : MonoBehaviour, ICarObjectParent
 
     private IEnumerator GetStunned()
     {
+        Debug.Log("Stuneo al player" + this.gameObject.name);
         OnStun?.Invoke(this, EventArgs.Empty);
         stunned = true;
         yield return new WaitForSeconds(stunDuration);

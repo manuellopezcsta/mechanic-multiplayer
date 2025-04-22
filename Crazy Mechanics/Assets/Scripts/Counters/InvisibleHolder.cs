@@ -5,6 +5,7 @@ using UnityEngine;
 public class InvisibleHolder : BaseCounter
 {
     [SerializeField] private CarObject tool;
+    public Player thrownBy;
     void Start()
     {
         if(tool != null){
