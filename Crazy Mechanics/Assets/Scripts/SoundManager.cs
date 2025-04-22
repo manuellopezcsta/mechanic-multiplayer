@@ -10,13 +10,12 @@ public class SoundManager : MonoBehaviour
     public static SoundManager Instance { get; private set; }
 
     [SerializeField] AudioSource musicSource;
-    [SerializeField] AudioSource sfxSource;
 
     private float musicVolume = 0.3f;
+    private float sfxVolume = 1f;
 
     // Para los vfx.
     [SerializeField] private AudioClipRefsSO audioClipRefsSO;
-    private float sfxVolume = 1f;
 
     private void Awake() {
         Instance = this;

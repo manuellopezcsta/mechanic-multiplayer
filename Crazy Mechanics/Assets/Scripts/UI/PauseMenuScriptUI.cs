@@ -16,17 +16,14 @@ public class PauseMenuScriptUI : MonoBehaviour
     [SerializeField] private Slider sfxSlider;
 
 
-
     private void ChangeMusicVolume(float newVolume)
     {
         SoundManager.Instance.ChangeVolume(newVolume);
-
     }
 
     private void ChangeSfxVolume(float newVolume)
     {
         SoundManager.Instance.ChangeVolumeSfx(newVolume);
-
     }
 
     private void Start()
@@ -41,8 +38,6 @@ public class PauseMenuScriptUI : MonoBehaviour
 
         musicSlider.onValueChanged.AddListener(ChangeMusicVolume);
         sfxSlider.onValueChanged.AddListener(ChangeSfxVolume);
-
-
     }
 
 
@@ -100,6 +95,4 @@ public class PauseMenuScriptUI : MonoBehaviour
             ResumeGame();
         }
     }
-
-
 }
