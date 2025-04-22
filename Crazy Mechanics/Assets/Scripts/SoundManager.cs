@@ -10,7 +10,7 @@ public class SoundManager : MonoBehaviour
     public static SoundManager Instance { get; private set; }
 
     [SerializeField] AudioSource musicSource;
-    [SerializeField] AudioSource vfxSource;
+    [SerializeField] AudioSource sfxSource;
 
     private float musicVolume = 0.3f;
 
@@ -60,23 +60,36 @@ public class SoundManager : MonoBehaviour
     }
 
     // Para algun boton
-    public void ChangeVolume() {
-        musicVolume += .1f;
-        if (musicVolume > 1f) {
-            musicVolume = 0f;
-        }
-        musicSource.volume = musicVolume;
+    public void ChangeVolume(float newVolume) {
+        // Le cambiamos el volumen al parlante
+        musicSource.volume = newVolume;
+       
+        // Guardamos el valor de volumen en la memoria
+        PlayerPrefs.SetFloat(PLAYER_PREFS_MUSIC_VOLUME, newVolume);
+        PlayerPrefs.Save();
+    }
 
-        PlayerPrefs.SetFloat(PLAYER_PREFS_MUSIC_VOLUME, musicVolume);
+    public void ChangeVolumeSfx(float newVolume)
+    {
+        // Le cambiamos el volumen al parlante
+        sfxVolume = newVolume;
+
+        // Guardamos el valor de volumen en la memoria
+        PlayerPrefs.SetFloat(PLAYER_PREFS_SOUND_EFFECTS_VOLUME, newVolume);
         PlayerPrefs.Save();
     }
 
     // Por si lo queremos mostrar en algun lado.
     public float GetMusicVolume() {
-        return musicVolume;
+        return PlayerPrefs.GetFloat(PLAYER_PREFS_MUSIC_VOLUME, 1);
     }
 
-    // Para los vfx
+    public float GetSfxVolume()
+    {
+        return PlayerPrefs.GetFloat(PLAYER_PREFS_SOUND_EFFECTS_VOLUME, 1);
+    }
+
+    // Para los sfx
     // Elige uno de los multiples sonidos disponibles y reproduce 1 con el overload.
     public void PlaySound(AudioClip[] audioClipArray, Vector3 position, float volume = 1f) {
         PlaySound(audioClipArray[Random.Range(0, audioClipArray.Length)], position, volume);

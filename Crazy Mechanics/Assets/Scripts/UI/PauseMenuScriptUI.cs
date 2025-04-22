@@ -12,6 +12,39 @@ public class PauseMenuScriptUI : MonoBehaviour
     [SerializeField] private Button restartLevelButton;
     [SerializeField] private GameObject pauseScreen;
     [SerializeField] private Button exitToMainMenuButton;
+    [SerializeField] private Slider musicSlider;
+    [SerializeField] private Slider sfxSlider;
+
+
+
+    private void ChangeMusicVolume(float newVolume)
+    {
+        SoundManager.Instance.ChangeVolume(newVolume);
+
+    }
+
+    private void ChangeSfxVolume(float newVolume)
+    {
+        SoundManager.Instance.ChangeVolumeSfx(newVolume);
+
+    }
+
+    private void Start()
+    {
+        // Tomamos el valor guardado del volumen y movemos el puntito del slider para que encaje
+
+        musicSlider.value = SoundManager.Instance.GetMusicVolume();
+        sfxSlider.value = SoundManager.Instance.GetSfxVolume();
+
+
+        // definimos lo que sucede cuando movemos el slider de musica
+
+        musicSlider.onValueChanged.AddListener(ChangeMusicVolume);
+        sfxSlider.onValueChanged.AddListener(ChangeSfxVolume);
+
+
+    }
+
 
     //creamos las funciones para los botones
     private void ResumeGame()
@@ -67,4 +100,6 @@ public class PauseMenuScriptUI : MonoBehaviour
             ResumeGame();
         }
     }
+
+
 }

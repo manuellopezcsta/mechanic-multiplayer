@@ -2301,6 +2301,8 @@ MonoBehaviour:
   restartLevelButton: {fileID: 91674401}
   pauseScreen: {fileID: 766010697}
   exitToMainMenuButton: {fileID: 163070805}
+  musicSlider: {fileID: 2036325139}
+  sfxSlider: {fileID: 1139573071}
 --- !u!1 &703552164
 GameObject:
   m_ObjectHideFlags: 0
@@ -2954,7 +2956,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicSource: {fileID: 932014138}
-  vfxSource: {fileID: 932014137}
+  sfxSource: {fileID: 0}
   audioClipRefsSO: {fileID: 11400000, guid: 16d13fe462d33bc4eb955e4e7cd5ce75, type: 2}
 --- !u!82 &932014137
 AudioSource:
@@ -10212,6 +10214,7 @@ MonoBehaviour:
   floorNumberElevator: 0
   isMoving: 0
   elevatorArms: {fileID: 768246422}
+  nextFloor: 0
 --- !u!23 &4470147348844200974
 MeshRenderer:
   m_ObjectHideFlags: 0
