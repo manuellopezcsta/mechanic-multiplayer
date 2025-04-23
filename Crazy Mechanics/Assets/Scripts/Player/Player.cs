@@ -83,7 +83,6 @@ public class Player : MonoBehaviour, ICarObjectParent
         // Arreglo su visual
         holder.GetComponentInChildren<SelectedVisualInvisible>().SetUpSelected();
         // Lo tiro
-        Debug.Log("Se Tiro");
         Vector3 forceDirection = ((transform.forward * fowardMagnitude) + Vector3.up * upMagnitude) * throwMagnitude;
         holderCounter.GetComponent<Rigidbody>().AddForce(forceDirection, ForceMode.Impulse);
         // Reproducimos el sonidito
