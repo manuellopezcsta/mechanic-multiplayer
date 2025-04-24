@@ -29,5 +29,4 @@ public class TaskIndicatorUI : MonoBehaviour
     public void SwapToMissingWheelIcon() {
         taskIcon.sprite = missingWheelSprite;
     }
-
 }
