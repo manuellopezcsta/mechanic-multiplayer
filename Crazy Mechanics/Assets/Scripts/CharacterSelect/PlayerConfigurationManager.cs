@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 
 public class PlayerConfigurationManager : MonoBehaviour
 {
-    const string SCENE_NAME = "Test Demo";
     [SerializeField] private List<PlayerConfiguration> playerConfigs;
     [SerializeField] private PlayerSelectContainerSO[] charactersVisuals;
 
@@ -54,7 +52,7 @@ public class PlayerConfigurationManager : MonoBehaviour
         if (playerConfigs.Count == playerConfigs.Count(p => p.IsReady == true))
         {
             // Cargamos la escena que corresponde
-            SceneManager.LoadScene(SCENE_NAME);
+            Loader.Load(Loader.Scene.TestDemo);
         }
     }
 

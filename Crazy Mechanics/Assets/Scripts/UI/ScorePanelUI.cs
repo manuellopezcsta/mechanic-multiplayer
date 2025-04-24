@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEditor.Search;
 using UnityEditor.SearchService;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ScorePanelUI : MonoBehaviour
@@ -15,7 +14,7 @@ public class ScorePanelUI : MonoBehaviour
     void Start() {
         Hide();
         backButton.onClick.AddListener(() => {
-            SceneManager.LoadScene(LEVEL_SELECT_SCENE);
+            Loader.Load(Loader.Scene.WorldSelect);
             Time.timeScale = 1f;
         });
     }

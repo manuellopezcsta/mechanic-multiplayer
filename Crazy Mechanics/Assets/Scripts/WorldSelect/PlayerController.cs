@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
     {
         if (input.sqrMagnitude == 0)
         {
-            Debug.Log("Input is zero, character is not gonna move.");
+            //Debug.Log("Input is zero, character is not gonna move.");
             return;
         }
 
@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
         Vector3 gravity = Vector3.down * 9.81f; // Gravity force
         Vector3 movement = direction * speed * Time.deltaTime + gravity * Time.deltaTime;
 
-        Debug.Log($"calculated movement: {movement}");
+        //Debug.Log($"calculated movement: {movement}");
 
         // Character movement
         if (playerController != null)
@@ -63,7 +63,7 @@ public class PlayerController : MonoBehaviour
     {
         input = context.ReadValue<Vector2>();
         direction = new Vector3(input.x, 0.0f, input.y);
-        Debug.Log($"Input acquired: {input}, calculated direction : {direction}");
+        //Debug.Log($"Input acquired: {input}, calculated direction : {direction}");
     }
 
     public void Interact (InputAction.CallbackContext context) {

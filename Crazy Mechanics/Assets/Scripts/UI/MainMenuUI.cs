@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MainMenuUI : MonoBehaviour {
@@ -19,7 +18,7 @@ public class MainMenuUI : MonoBehaviour {
 
     // Creamos las funciones para los botones
     private void StartGame() {
-        SceneManager.LoadScene(GAME_SCENE_NAME);
+        Loader.Load(Loader.Scene.CharacterSelect);
     }
 
     private void QuitGame() {

@@ -66,7 +66,7 @@ public class PlayerInputHandler : MonoBehaviour
     private void Pause_perfomed(CallbackContext context)
     {
         PauseMenuScriptUI pauseMenuScript = GameObject.Find("Canvas").GetComponent<PauseMenuScriptUI>();
-        Debug.Log(pauseMenuScript);
+        
         if (pauseMenuScript != null)
         {
             pauseMenuScript.TogglePause();

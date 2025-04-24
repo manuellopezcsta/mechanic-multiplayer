@@ -61,15 +61,14 @@ public class PauseMenuScriptUI : MonoBehaviour
         Time.timeScale = 1f;       
         string currentSceneName = SceneManager.GetActiveScene().name;
         GameManager.Instance.NukePlayerControllers();
-        SceneManager.LoadScene(currentSceneName);
-        
+        Loader.Load(currentSceneName);        
     }
 
     private void GoToMainMenu()
     {
         Time.timeScale = 1f;
         PlayerConfigurationManager.Instance.SelfDestruct();
-        SceneManager.LoadScene("Menu");
+        Loader.Load(Loader.Scene.Menu);
     }
 
     private void Awake()
@@ -85,7 +84,7 @@ public class PauseMenuScriptUI : MonoBehaviour
     // Funcion que se llama desde el performedAction del INPUT Manager del player para pausar cuando presionen la tecla de pausa.
     public void TogglePause()
     {
-        Debug.Log(pauseScreen.activeSelf);
+        //Debug.Log(pauseScreen.activeSelf);
         if (pauseScreen.activeSelf == false)
         {
             PauseGame();

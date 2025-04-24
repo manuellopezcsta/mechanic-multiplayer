@@ -4,7 +4,8 @@ using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 public class WorldObject : MonoBehaviour, IInteractable
 {
-    [SerializeField] string worldToGo = "Test Demo";
+    // Cambiar por un Enum de tipo Scene y usar el Loader.Load(worldTogo)
+    [SerializeField] Loader.Scene worldToGo = Loader.Scene.TestDemo;
     [SerializeField] private UnityEvent _onInteract;
     [SerializeField] Animator transitionAnimation;
     UnityEvent IInteractable.OnInteract { 
@@ -15,7 +16,7 @@ public class WorldObject : MonoBehaviour, IInteractable
     IEnumerator LoadLevel(){
         transitionAnimation.SetTrigger("End");
         yield return new WaitForSeconds(1);
-        SceneManager.LoadScene(worldToGo);
+        Loader.Load(worldToGo);
         transitionAnimation.SetTrigger("Start");
     }
     public void Interact () => _onInteract.Invoke();
