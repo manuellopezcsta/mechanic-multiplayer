@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class LevelSpawnPlayer : MonoBehaviour
 {
-    [SerializeField] private Transform[] playerSpawns;
+    private Transform[] playerSpawns;
     //[SerializeField] private GameObject playerPrefab;
 
-    void Awake() {
+    void Start() {
+        playerSpawns = GameManager.Instance.playerSpawns;
         var playerConfigs = PlayerConfigurationManager.Instance.GetPlayerConfigs().ToArray();
         for (int i=0; i < playerConfigs.Length; i++)
         {

@@ -34,6 +34,8 @@ public class GameManager : MonoBehaviour
     // Para el evento de select de los counter
     public static List<Player> playerList = new List<Player>();
 
+    public Transform[] playerSpawns;
+
 
     public enum CarTasks
     {

@@ -25,7 +25,7 @@ public class ElevatorTrigger : MonoBehaviour
             currentStationManager.currentCar = other.GetComponent<CarController>();
             //ChangeValueCollider();
             //Debug.Log("Entro en el trigger");
-        }
+        }   
     }
 
     public void ChangeValueCollider()

@@ -7,6 +7,7 @@ public class PlayerAnimator : MonoBehaviour {
 
 
     private const string IS_WALKING = "IsWalking";
+    private const string IS_DANCING = "Dancing";
     [SerializeField] private Player player;
     [SerializeField] private ParticleSystem stunnedParticles;
 
@@ -27,8 +28,20 @@ public class PlayerAnimator : MonoBehaviour {
     }
 
     private void Update() {
-        animator.SetBool(IS_WALKING, player.IsWalking());
         
+        animator.SetBool(IS_WALKING, player.IsWalking());
+        /*if (player.IsWalking())
+        {
+            animator.SetBool(IS_DANCING, false);
+        }*/
+    }
+    public void StartDance()
+    {
+        //El baile se va a realizar solo cuando el personaje este quieto
+        if (!player.IsWalking())
+        {
+            animator.SetTrigger(IS_DANCING);
+        }
     }
 
 }

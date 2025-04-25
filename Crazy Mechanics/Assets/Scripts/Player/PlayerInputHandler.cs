@@ -13,6 +13,9 @@ public class PlayerInputHandler : MonoBehaviour
     private PlayerInput playerInput;
     private Player player;
 
+    [SerializeField] PlayerAnimator playerAnimator;
+    private const string IS_DANCING = "Dancing";
+
     private void Awake()
     {
         player = GetComponent<Player>();
@@ -59,6 +62,7 @@ public class PlayerInputHandler : MonoBehaviour
         }
     }
 
+
     private void Dash_performed(CallbackContext context)
     {
         player.Dash();
@@ -98,6 +102,11 @@ public class PlayerInputHandler : MonoBehaviour
         {
             // Tiramos el objeto.
             player.HandleThrowing();
+        }
+        else
+        {
+            //Ejecutamos la funcion de baile cuando el player no tiene nada en la mano
+            playerAnimator.StartDance();
         }
     }
 

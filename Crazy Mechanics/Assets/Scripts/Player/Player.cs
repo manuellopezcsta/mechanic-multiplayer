@@ -188,7 +188,7 @@ public class Player : MonoBehaviour, ICarObjectParent
         }
     }
 
-    // Para empujar la pluma
+    // Para empujar la pluma y manejar el stun
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
         Rigidbody rb = hit.collider.attachedRigidbody;
@@ -207,7 +207,7 @@ public class Player : MonoBehaviour, ICarObjectParent
         }
 
         //Debug.Log(hit.gameObject.name);
-        if (rb != null && rb.velocity.magnitude > stunTreshHold && hit.gameObject.TryGetComponent(out InvisibleHolder item))
+        if ( rb != null && rb.velocity.magnitude > stunTreshHold && hit.gameObject.TryGetComponent(out InvisibleHolder item) )
         {
             if (item.thrownBy != this)
             {
@@ -284,7 +284,7 @@ public class Player : MonoBehaviour, ICarObjectParent
         canDash = true;
     }
 
-    private IEnumerator GetStunned()
+    public IEnumerator GetStunned()
     {
         Debug.Log("Stuneo al player" + this.gameObject.name);
         OnStun?.Invoke(this, EventArgs.Empty);
@@ -292,5 +292,9 @@ public class Player : MonoBehaviour, ICarObjectParent
         yield return new WaitForSeconds(stunDuration);
         stunned = false;
     }
-
+    public void RespawnAtRandomPos()
+    {
+        int i = UnityEngine.Random.Range(0, GameManager.Instance.playerSpawns.Length + 1 );
+        transform.position = GameManager.Instance.playerSpawns[i].position;
+    }
 }
