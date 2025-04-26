@@ -7,7 +7,13 @@ public class BalacingTool : BaseCounter, IHasProgress
 {
 
     public event EventHandler<IHasProgress.OnProgressChangedEventArgs> OnProgressChanged;
-    private enum State
+    public event EventHandler<OnStateChangedEventArgs> OnStateChanged;
+    public class OnStateChangedEventArgs : EventArgs
+    {
+        public State state;
+    }
+
+    public enum State
     {
         Idle,
         Running,
@@ -38,6 +44,11 @@ public class BalacingTool : BaseCounter, IHasProgress
                 state = State.Running;
                 balancingTimer = 0f;
 
+                OnStateChanged?.Invoke(this, new OnStateChangedEventArgs
+                {
+                    state = state
+                });
+
                 // Disparamos el evento para la visual
                 OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs
                 {
@@ -54,6 +65,11 @@ public class BalacingTool : BaseCounter, IHasProgress
             {
                 GetCarObject().SetCarObjectParent(player);
                 state = State.Idle;
+
+                OnStateChanged?.Invoke(this, new OnStateChangedEventArgs
+                {
+                    state = state
+                });
 
                 // Disparamos el evento para la visual
                 OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs
@@ -93,6 +109,10 @@ public class BalacingTool : BaseCounter, IHasProgress
                         GetCarObject().DestroySelf();
                         CarObject.SpawnKitchenObject(balancedWheel, this);
                         state = State.Done;
+                        OnStateChanged?.Invoke(this, new OnStateChangedEventArgs
+                        {
+                            state = state
+                        });
                         Debug.Log("Rueda Inflada!");
                     }
                     break;

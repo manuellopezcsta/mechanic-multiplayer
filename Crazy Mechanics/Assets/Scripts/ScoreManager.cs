@@ -20,6 +20,7 @@ public class ScoreManager : MonoBehaviour
         totalScore += ammount;
         //UpdateScoreDisplay();
     }
+    
     /* // Modo de update Rapido
     public void UpdateScoreDisplay() {
         scoreDisplay.text = "$" + totalScore.ToString();

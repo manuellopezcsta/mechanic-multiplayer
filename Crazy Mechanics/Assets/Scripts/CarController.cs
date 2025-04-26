@@ -56,17 +56,6 @@ public class CarController : MonoBehaviour
         }
     }
 
-    /*
-    private void OnTriggerExit(Collider other)
-    {
-        // Esto esta para que no choque con la pared cuando se instancia el auto, se prenden los collider de las tasks, despues.
-        if(other.CompareTag(STOP_TAG)) {   
-            //Debug.Log("Prendiendo colliders");
-            TurnOnTasksColliders();
-        }
-
-    }*/
-
     public void SetCurrentStationManager(CurrentStationManager target)
     {
         currentStationManager = target;
@@ -152,6 +141,7 @@ public class CarController : MonoBehaviour
             Debug.Log("Auto esta listo para entregar");
         }
     }
+    
     public void CompleteTask(){
     //aumenta las tareas completadas en 1, se llama cada vez que una tarea se completa, y esta vinculada al auto. 
         completedTasksCounter ++;
