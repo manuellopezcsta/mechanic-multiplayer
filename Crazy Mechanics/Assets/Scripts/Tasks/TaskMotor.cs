@@ -34,6 +34,7 @@ public class TaskMotor : BaseCounter
                 // There is no obj here and the pluma has a fixedMotor.
                 if (motorTool.HasCarObject() && motorTool.GetCarObject().GetObjectSO() == fixedMotor && !player.HasCarObject() && conditionsMet)
                 {
+                    ComboManager.Instance.UpdateCombo();
                     //Ponemos el motor arreglado y marcamos la tarea como completa
                     motorTool.GetCarObject().SetCarObjectParent(this);
                     // Hacemos sonido
@@ -54,6 +55,7 @@ public class TaskMotor : BaseCounter
                 //(stationManager.IsMotorToolDocked()).ToString());
                 if (conditionsMet && !player.HasCarObject())
                 {
+                    ComboManager.Instance.UpdateCombo();
                     motorVisual.SetActive(true);
                     // El piso es el correcto y esta la pluma dockeada.
                     // Seteo el objeto al motor tool.

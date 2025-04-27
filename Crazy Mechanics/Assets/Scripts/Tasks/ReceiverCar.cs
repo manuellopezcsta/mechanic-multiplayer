@@ -15,6 +15,7 @@ public class ReceiverCar : BaseCounter
         if (!HasCarObject() && !taskComplete) {
             // There is no obj here and check if they are the same object
             if (player.HasCarObject() && player.GetCarObject().GetObjectSO() == objectsSO) {
+                ComboManager.Instance.UpdateCombo();
                 // El player tiene algo en la mano
                 player.GetCarObject().SetCarObjectParent(this);
                 taskComplete = true;

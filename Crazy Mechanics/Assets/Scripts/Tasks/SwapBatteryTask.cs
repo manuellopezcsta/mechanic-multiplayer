@@ -29,6 +29,7 @@ public class SwapBatteryTask : BaseCounter
             // There is no obj here and check if they are the same object
             if (player.HasCarObject() && player.GetCarObject().GetObjectSO() == chagedBattery) {
                 // El player tiene algo en la mano
+                ComboManager.Instance.UpdateCombo();
                 player.GetCarObject().SetCarObjectParent(this);
                 // Lo borramos.
                 Destroy(GetCarObject().gameObject);

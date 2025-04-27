@@ -35,6 +35,7 @@ public class TaskOil : BaseCounter
                 // There is no obj here and check if they are the same object
                 if (isOnFloorOne && player.HasCarObject() && player.GetCarObject().GetObjectSO() == box && itHasDirtyOil)
                 {
+                    ComboManager.Instance.UpdateCombo();
                     // El player tiene algo en la mano
                     player.GetCarObject().SetCarObjectParent(this);
                     // Empezamos a drenar el aceite sucio
@@ -46,6 +47,7 @@ public class TaskOil : BaseCounter
                 //Verifica si el player tiene un objeto, si es un aceite y el auto no tiene aceite sucio. Si se cumple completa la tarea
                 else if (isOnGroundFloor && player.HasCarObject() && player.GetCarObject().GetObjectSO() == oil && !itHasDirtyOil)
                 {
+                    ComboManager.Instance.UpdateCombo();
                     player.GetCarObject().SetCarObjectParent(this);
                     // Hacemos sonido
                     SoundManager.Instance.PlayObjectDroppedSound(transform);
@@ -63,6 +65,7 @@ public class TaskOil : BaseCounter
             {
                 if (!player.HasCarObject() && !itHasDirtyOil)
                 {
+                    ComboManager.Instance.UpdateCombo();
                     // Player is not carrying anything. He only takes it when he finishes the task.
                     GetCarObject().SetCarObjectParent(player);
                     // Deslockeamos el elevador.
