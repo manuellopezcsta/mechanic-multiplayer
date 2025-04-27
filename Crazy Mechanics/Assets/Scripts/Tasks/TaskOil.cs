@@ -17,6 +17,9 @@ public class TaskOil : BaseCounter
     [SerializeField] TaskIndicatorUI indicatorUI;
     [SerializeField] private int score;
 
+    public static event EventHandler OnOilDraining;
+    public static event EventHandler OnAddingOil;
+
 
 
     public override void Interact(Player player)
@@ -37,6 +40,7 @@ public class TaskOil : BaseCounter
                     // Empezamos a drenar el aceite sucio
                     // Hacemos sonido
                     SoundManager.Instance.PlayObjectDroppedSound(transform);
+                    OnOilDraining?.Invoke(this, EventArgs.Empty);
                     StartCoroutine(TimeToRequest(timeRequest, stationManager));
                 }
                 //Verifica si el player tiene un objeto, si es un aceite y el auto no tiene aceite sucio. Si se cumple completa la tarea
@@ -45,7 +49,8 @@ public class TaskOil : BaseCounter
                     player.GetCarObject().SetCarObjectParent(this);
                     // Hacemos sonido
                     SoundManager.Instance.PlayObjectDroppedSound(transform);
-
+                    OnAddingOil?.Invoke(this, EventArgs.Empty);
+                    
                     taskComplete = true;
                     carController.AddScoreTask(score);
                     indicatorUI.SetAsComplete();

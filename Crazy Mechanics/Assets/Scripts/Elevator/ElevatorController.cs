@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,12 @@ public class ElevatorController : MonoBehaviour
     [SerializeField] private bool isMoving;
     [SerializeField] Transform elevatorArms;
     [SerializeField] private int nextFloor;
+
+    public event EventHandler<OnMovingChangedEventArgs> OnMovingChanged;
+    public class OnMovingChangedEventArgs : EventArgs
+    {
+        public bool isMoving;
+    }
 
     public void ChangeFloorElevator()
     {
@@ -35,6 +42,9 @@ public class ElevatorController : MonoBehaviour
             }
             isMoving = true;
             //Debug.Log("Se empieza a mover");
+            OnMovingChanged?.Invoke(this, new OnMovingChangedEventArgs {
+                isMoving = this.isMoving
+            });
         }
     }
     void Update()
@@ -45,8 +55,13 @@ public class ElevatorController : MonoBehaviour
             if (elevatorArms.position == floors[nextFloor].position)
             {
                 isMoving = false;
+                
                 floorNumberElevator = nextFloor;
                 //Debug.Log("No se mueve mas");
+
+                OnMovingChanged?.Invoke(this, new OnMovingChangedEventArgs {
+                isMoving = this.isMoving
+            });
             }
         }
     }

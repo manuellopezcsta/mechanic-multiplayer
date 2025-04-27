@@ -31,7 +31,46 @@ public class SoundManager : MonoBehaviour
         CurrentStationManager.OnCarDelivery += OnCarDelivered;
         Player.OnPickedSomething += OnPickedUpSomething; 
         Player.OnDroppedSomething += OnDroppedSomething;
-        TrashCounter.OnAnyObjectTrashed += OnAnyObjectTrashed; 
+        TrashCounter.OnAnyObjectTrashed += OnAnyObjectTrashed;
+        MotorTool.OnCricketUsed += OnCricketUsed; 
+        GameManager.Instance.OnCarSpawned += OnCarSpawned;
+        TaskOil.OnAddingOil += OnAddingOil;
+        TaskOil.OnOilDraining += OnOilDraining;
+        LightBoxController.OnFixingLightBox += OnFixingLightBox;
+    }
+
+    private void OnFixingLightBox(object sender, System.EventArgs e)
+    {
+        LightBoxController lightbox = sender as LightBoxController;
+        // CAMBIAR X SONIDOS POSTA
+        PlaySound(audioClipRefsSO.lightboxFixing, lightbox.transform.position);
+    }
+
+    private void OnOilDraining(object sender, System.EventArgs e)
+    {
+        TaskOil oilTask = sender as TaskOil;
+        // CAMBIAR X SONIDOS POSTA
+        PlaySound(audioClipRefsSO.oilDrain, oilTask.transform.position);
+    }
+
+    private void OnAddingOil(object sender, System.EventArgs e)
+    {
+        TaskOil oilTask = sender as TaskOil;
+        // CAMBIAR X SONIDOS POSTA
+        PlaySound(audioClipRefsSO.oilAdd, oilTask.transform.position);
+    }
+
+    private void OnCarSpawned(object sender, System.EventArgs e)
+    {
+        // Ruido del auto entrando al taller.
+        PlaySound(audioClipRefsSO.carEntering, transform.position);
+    }
+
+    private void OnCricketUsed(object sender, System.EventArgs e)
+    {
+        MotorTool motorTool = sender as MotorTool;
+        // CAMBIAR X SONIDOS POSTA
+        PlaySound(audioClipRefsSO.trash, motorTool.transform.position);
     }
 
     private void OnAnyObjectTrashed(object sender, System.EventArgs e)
@@ -55,7 +94,10 @@ public class SoundManager : MonoBehaviour
     private void OnCarDelivered(object sender, System.EventArgs e)
     {
         CurrentStationManager csm = sender as CurrentStationManager;
+        // Money sound
         PlaySound(audioClipRefsSO.delivery, csm.transform.position);
+        // Ruido del auto entrando al taller.
+        PlaySound(audioClipRefsSO.carExiting, transform.position);
     }
 
     // Para algun boton
@@ -90,7 +132,7 @@ public class SoundManager : MonoBehaviour
 
     // Para los sfx
     // Elige uno de los multiples sonidos disponibles y reproduce 1 con el overload.
-    public void PlaySound(AudioClip[] audioClipArray, Vector3 position, float volume = 1f) {
+    private void PlaySound(AudioClip[] audioClipArray, Vector3 position, float volume = 1f) {
         PlaySound(audioClipArray[Random.Range(0, audioClipArray.Length)], position, volume);
     }
 
@@ -102,6 +144,10 @@ public class SoundManager : MonoBehaviour
     // Para las patitas
     public void PlayFootstepsSound(Vector3 position, float volume) {
         PlaySound(audioClipRefsSO.footstep, position, volume);
+    }
+
+    public void PlayEndOfLevelSound() {
+        PlaySound(audioClipRefsSO.endOfLevel, transform.position, sfxVolume);
     }
 
     public void PlayObjectDroppedSound(Transform caster)
@@ -116,5 +162,10 @@ public class SoundManager : MonoBehaviour
         Player.OnPickedSomething -= OnPickedUpSomething; 
         Player.OnDroppedSomething -= OnDroppedSomething;
         TrashCounter.OnAnyObjectTrashed -= OnAnyObjectTrashed; 
+        MotorTool.OnCricketUsed -= OnCricketUsed; 
+        GameManager.Instance.OnCarSpawned -= OnCarSpawned;
+        TaskOil.OnAddingOil -= OnAddingOil;
+        TaskOil.OnOilDraining -= OnOilDraining;
+        LightBoxController.OnFixingLightBox -= OnFixingLightBox;
     }
 }

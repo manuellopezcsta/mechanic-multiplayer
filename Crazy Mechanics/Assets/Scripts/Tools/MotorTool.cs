@@ -16,6 +16,7 @@ public class MotorTool : BaseCounter, IHasProgress
     private int fixingProgress;
     [SerializeField] private int fixingProgressMax;
     public event EventHandler<IHasProgress.OnProgressChangedEventArgs> OnProgressChanged;
+    public static event EventHandler OnCricketUsed;
 
     void Start()
     {
@@ -68,6 +69,8 @@ public class MotorTool : BaseCounter, IHasProgress
             OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs{
             progressNormalized = (float) fixingProgress / fixingProgressMax
         });
+
+        OnCricketUsed?.Invoke(this, EventArgs.Empty);
 
         if(fixingProgress == fixingProgressMax ) {
             // Se termino el arreglo.

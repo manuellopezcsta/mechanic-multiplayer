@@ -286,7 +286,7 @@ public class Player : MonoBehaviour, ICarObjectParent
 
     public IEnumerator GetStunned()
     {
-        Debug.Log("Stuneo al player" + this.gameObject.name);
+        //Debug.Log("Stuneo al player " + this.gameObject.name);
         OnStun?.Invoke(this, EventArgs.Empty);
         stunned = true;
         yield return new WaitForSeconds(stunDuration);
@@ -294,7 +294,7 @@ public class Player : MonoBehaviour, ICarObjectParent
     }
     public void RespawnAtRandomPos()
     {
-        int i = UnityEngine.Random.Range(0, GameManager.Instance.playerSpawns.Length + 1 );
+        int i = UnityEngine.Random.Range(0, GameManager.Instance.playerSpawns.Length);
         transform.position = GameManager.Instance.playerSpawns[i].position;
     }
 }

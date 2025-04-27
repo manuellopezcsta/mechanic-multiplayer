@@ -12,6 +12,8 @@ public class LightBoxController : BaseCounter, IHasProgress
     private int fixingProgress;
     [SerializeField] private int fixingProgressMax;
 
+    public static event EventHandler OnFixingLightBox;
+
     public event EventHandler<IHasProgress.OnProgressChangedEventArgs> OnProgressChanged;
 
 

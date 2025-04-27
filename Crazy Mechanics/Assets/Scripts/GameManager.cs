@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -19,6 +20,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject wheelTaskPrefab;
     [SerializeField] GameObject batteryTaskPrefab;
     [SerializeField] LevelProperties levelProperties;
+    [SerializeField] CarListSO carListSO;
 
 
     // Lista de autos que puede spawnear
@@ -36,6 +38,8 @@ public class GameManager : MonoBehaviour
 
     public Transform[] playerSpawns;
 
+    public event EventHandler OnCarSpawned;
+
 
     public enum CarTasks
     {
@@ -46,6 +50,12 @@ public class GameManager : MonoBehaviour
         WHEEL_FIX_BR,
         WHEEL_FIX_BL,
         BATTERY_CHARGE,
+    }
+
+    void Start()
+    {
+        // Cargamos los autos para este nivel usando el la lista correspondiente y la data del nivel
+        carPrefabs = GetCarsForThisLevel();   
     }
 
     public void GenerateCar()
@@ -69,7 +79,22 @@ public class GameManager : MonoBehaviour
         }
         // Dejamos que se mueva
         controller.canMove = true;
+        // Ejecutamos el evento para el sonido
+        OnCarSpawned?.Invoke(this, EventArgs.Empty);
     }
+
+    GameObject[] GetCarsForThisLevel() {
+        GameObject[] output;
+        var correctList = carListSO.levelList.FirstOrDefault(a => a.level == Convert.ToInt32(levelProperties.levelNumber));
+        if (correctList != null) {
+            output = correctList.cars.ToArray();
+        } else {
+            output = carListSO.allTheCars.ToArray();
+        }
+        return output;
+    }
+
+
 
 
     // Retornamos los prefabs para que los tengan los car controller
