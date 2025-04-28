@@ -38,6 +38,28 @@ public class SoundManager : MonoBehaviour
         TaskOil.OnAddingOil += OnAddingOil;
         TaskOil.OnOilDraining += OnOilDraining;
         LightBoxController.OnFixingLightBox += OnFixingLightBox;
+        LightBoxController.OnLightShutdown += OnLightShutdown;
+        DisasterManager.OnSpawnedMysteryBox += OnSpawnedMysteryBox;
+        MysteryBox.OnOpenedMysteryBox += OnOpenedMysteryBox;
+    }
+
+    private void OnOpenedMysteryBox(object sender, System.EventArgs e)
+    {
+        // CAMBIAR X SONIDOS POSTA
+        PlaySound(audioClipRefsSO.mysteryBoxOpen, transform.position);
+    }
+
+    private void OnSpawnedMysteryBox(object sender, System.EventArgs e)
+    {
+        // CAMBIAR X SONIDOS POSTA
+        PlaySound(audioClipRefsSO.mysteryBoxSpawn, transform.position);
+    }
+
+    private void OnLightShutdown(object sender, System.EventArgs e)
+    {
+        LightBoxController lightbox = sender as LightBoxController;
+        // CAMBIAR X SONIDOS POSTA
+        PlaySound(audioClipRefsSO.powerShutdown, lightbox.transform.position);
     }
 
     private void OnFixingLightBox(object sender, System.EventArgs e)
@@ -168,5 +190,8 @@ public class SoundManager : MonoBehaviour
         TaskOil.OnAddingOil -= OnAddingOil;
         TaskOil.OnOilDraining -= OnOilDraining;
         LightBoxController.OnFixingLightBox -= OnFixingLightBox;
+        LightBoxController.OnLightShutdown -= OnLightShutdown;
+        DisasterManager.OnSpawnedMysteryBox -= OnSpawnedMysteryBox;
+        MysteryBox.OnOpenedMysteryBox -= OnOpenedMysteryBox;
     }
 }

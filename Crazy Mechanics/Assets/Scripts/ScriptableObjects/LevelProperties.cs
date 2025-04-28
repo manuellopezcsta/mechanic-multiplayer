@@ -4,21 +4,27 @@ using UnityEngine;
 
 [CreateAssetMenu]
 public class LevelProperties : ScriptableObject
-{
+{   
+    [Header("Number/Time")]
+    public string levelNumber;
     public int levelTime;
+    [Header("Stars")]
     public int firstStarScore;
     public int secondStarScore;
     public int thirdStarScore;
-    public string levelNumber;
-    
+    [Header("Tasks")]
     public int minTaskNumber;
     public int maxTaskNumber;
-
+    [Header("Allowed Tasks")]
+    public List<GameManager.CarTasks> listTasks = new List<GameManager.CarTasks>();
+    [Header("Spawn Limits")]
     public int maxOilObjects;
     public int maxBoxObjects;
     public int maxFuseObjects;
     public int maxSparkPlugObjects;
     public int maxWheelObjects;
-
-    public List<GameManager.CarTasks> listTasks = new List<GameManager.CarTasks>();
+    [Header("Disaster Times")]
+    public int disasterMinTimer;
+    public int disasterMaxTimer;
+    
 }

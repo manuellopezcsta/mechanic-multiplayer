@@ -6,6 +6,7 @@ using UnityEngine;
 public class Player : MonoBehaviour, ICarObjectParent
 {
     const string MOTOR_TOOL_NAME = "Pluma";
+    public static bool invertControls = false;
 
     public event EventHandler<OnSelectedCounterChangedEventArgs> OnSelectedCounterChanged;
 
@@ -37,7 +38,7 @@ public class Player : MonoBehaviour, ICarObjectParent
     // Char controller y collider para 2do metodo de movimiento.
     private CharacterController characterController;
     private Vector2 inputVector = Vector2.zero;
-    [SerializeField] private float speed = 7f;
+    public static float speed = 7f;
     private Vector3 moveDir;
 
     //Dash
@@ -105,6 +106,10 @@ public class Player : MonoBehaviour, ICarObjectParent
         // Capturamos al vector desde GameImput y se lo aplicamos al char controller.
         //Vector2 inputVector = gameInput.GetMovementVectorNormalized();
         moveDir = new Vector3(inputVector.x, 0f, inputVector.y);
+
+        if (invertControls){
+            moveDir *= -1;
+        }
 
         //SimpleMove no ignora la gravedad.
         characterController.Move(moveDir * Time.deltaTime * speed);

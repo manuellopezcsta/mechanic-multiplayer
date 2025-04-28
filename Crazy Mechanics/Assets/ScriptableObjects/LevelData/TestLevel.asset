@@ -12,16 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7c8d7f665ed5404a9656984c940105c, type: 3}
   m_Name: TestLevel
   m_EditorClassIdentifier: 
-  levelTime: 10
+  levelNumber: 0
+  levelTime: 9999
   firstStarScore: 10
   secondStarScore: 20
   thirdStarScore: 30
-  levelNumber: 0
   minTaskNumber: 1
   maxTaskNumber: 3
+  listTasks: 02000000000000000400000006000000
   maxOilObjects: 1
   maxBoxObjects: 1
   maxFuseObjects: 2
   maxSparkPlugObjects: 3
   maxWheelObjects: 2
-  listTasks: 02000000000000000400000006000000
+  disasterMinTimer: 2
+  disasterMaxTimer: 10

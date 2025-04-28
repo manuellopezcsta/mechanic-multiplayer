@@ -5368,6 +5368,7 @@ GameObject:
   - component: {fileID: 2058334195}
   - component: {fileID: 2058334196}
   - component: {fileID: 2058334197}
+  - component: {fileID: 2058334198}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -5420,7 +5421,8 @@ Transform:
   m_LocalPosition: {x: -53.637627, y: 6.3850155, z: 43.393063}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2080754377}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2058334194
@@ -5487,6 +5489,60 @@ MonoBehaviour:
   sparkPlugCounter: 0
   fuseCounter: 0
   boxCounter: 0
+--- !u!114 &2058334198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2058334191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d56e9a1b9e3ada3418ad4896ea6ccc6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disasterHappening: 0
+  lightBoxController: {fileID: 9083427327974153336}
+  mysteryBoxSpawner: {fileID: 2080754377}
+  mysteryBoxPrefab: {fileID: 734691671522025756, guid: d69d6ff09424c5c4e8a163df227eb2a1,
+    type: 3}
+  invertedControlsDuration: 10
+  speedBuffDuration: 10
+  speedBuffPower: 10
+  speedDebuffPower: 4
+  minMoney: 100
+  maxMoney: 200
+--- !u!1 &2080754376
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2080754377}
+  m_Layer: 0
+  m_Name: MysteryBox Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2080754377
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2080754376}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -11.52, y: -5.599, z: 17.16}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2058334193}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &32826925012583158
 Transform:
   m_ObjectHideFlags: 0

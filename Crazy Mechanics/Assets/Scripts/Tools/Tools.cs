@@ -28,4 +28,9 @@ public static class Tools
             Debug.LogWarning("Los tipos de Collider no son compatibles.");
         }
     }
+
+    public static int GetOneOrMinusOne() {
+        int output = Random.Range(0, 2) == 0 ? -1 : 1;
+        return output;
+    }
 }

@@ -12,12 +12,12 @@ public class SpawnLimitManager : MonoBehaviour
     const string SPARKPLUG_OBJECTSO_NAME = "SparkPlug";
     const string FUSE_OBJECTSO_NAME = "Fusible";
     
-    //Listas de los objetos generados segun el tipo
-    [SerializeField] private int oilCounter;
-    [SerializeField] private int wheelCounter;
-    [SerializeField] private int sparkPlugCounter;
-    [SerializeField] private int fuseCounter;
-    [SerializeField] private int boxCounter;
+    //Contadores de los objetos generados segun el tipo
+    private int oilCounter;
+    private int wheelCounter;
+    private int sparkPlugCounter;
+    private int fuseCounter;
+    private int boxCounter;
 
     LevelProperties levelProperties;
 

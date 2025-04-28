@@ -13,6 +13,7 @@ public class LightBoxController : BaseCounter, IHasProgress
     [SerializeField] private int fixingProgressMax;
 
     public static event EventHandler OnFixingLightBox;
+    public static event EventHandler OnLightShutdown;
 
     public event EventHandler<IHasProgress.OnProgressChangedEventArgs> OnProgressChanged;
 
@@ -25,6 +26,9 @@ public class LightBoxController : BaseCounter, IHasProgress
             progressNormalized = (float) fixingProgress / fixingProgressMax
         });
         // Alguna animacion x aca ? ..
+
+        OnLightShutdown?.Invoke(this, EventArgs.Empty);
+        Debug.Log("Se corto la luz..");
     }
 
     public bool IsPowerDown() {
@@ -46,6 +50,7 @@ public class LightBoxController : BaseCounter, IHasProgress
             if(fixingProgress >= fixingProgressMax) {
                 isPowerDown = false;
                 player.GetCarObject().DestroySelf();
+                DisasterManager.Instance.disasterHappening = false;
                 Debug.Log("Luz Arreglada");
             }
         }
