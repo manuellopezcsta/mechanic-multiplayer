@@ -42,9 +42,9 @@ public class CarObject : MonoBehaviour
 
     public void DestroySelf()
     {
-
-        clearObjectInArray();
         carObjectParent.ClearCarObject();
+        // Sacamos 1 de la lista para liberar los limites.
+        SpawnLimitManager.Instance.ModifySpawnedCounter(objectsSO.name, -1);
         Destroy(gameObject);
     }
 
@@ -60,26 +60,4 @@ public class CarObject : MonoBehaviour
         return carObject;
     }
 
-    //Con el nombre del objectSO buscamos el array correspondiente y para luego destruir sin problemas
-    public void clearObjectInArray()
-    {
-        switch (objectsSO.name)
-        {
-            case "Aceite":
-                GameManager.Instance.generatedOilObjects.Remove(this.transform);
-                break;
-            case "Caja":
-                GameManager.Instance.generatedBoxObjects.Remove(this.transform);
-                break;
-            case "Wheel":
-                GameManager.Instance.generatedWheelObjects.Remove(this.transform);
-                break;
-            case "SparkPlug":
-                GameManager.Instance.generatedSparkPlugObjects.Remove(this.transform);
-                break;
-            case "Fusible":
-                GameManager.Instance.generatedFuseObjects.Remove(this.transform);
-                break;
-        }
-    }
 }

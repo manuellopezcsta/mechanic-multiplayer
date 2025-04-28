@@ -36,6 +36,8 @@ public class LightBoxController : BaseCounter, IHasProgress
         // Si el player esta holdeando la fixing tool
         if(player.HasCarObject() && player.GetCarObject().GetObjectSO() == fixingTool && isPowerDown) {
             fixingProgress ++;
+            // Disparamos el evento de ruido
+            OnFixingLightBox?.Invoke(this, EventArgs.Empty);
 
             OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs{
             progressNormalized = (float) fixingProgress / fixingProgressMax

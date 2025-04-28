@@ -5367,6 +5367,7 @@ GameObject:
   - component: {fileID: 2058334194}
   - component: {fileID: 2058334195}
   - component: {fileID: 2058334196}
+  - component: {fileID: 2058334197}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -5469,6 +5470,23 @@ MonoBehaviour:
   maxMultiplierCounter: 5
   visualCounterCombo: {fileID: 6530593362868508470}
   visualCombo: {fileID: 2793276839280396550}
+--- !u!114 &2058334197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2058334191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f93a979ffb8e1dd48a24fab80534347c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  oilCounter: 0
+  wheelCounter: 0
+  sparkPlugCounter: 0
+  fuseCounter: 0
+  boxCounter: 0
 --- !u!4 &32826925012583158
 Transform:
   m_ObjectHideFlags: 0

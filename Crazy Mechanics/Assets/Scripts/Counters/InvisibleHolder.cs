@@ -4,30 +4,33 @@ using UnityEngine;
 
 public class InvisibleHolder : BaseCounter
 {
-    [SerializeField] private int timeToDestroy = 5;
     [SerializeField] private CarObject tool;
     public Player thrownBy;
     void Start()
     {
-        if(tool != null){
+        if (tool != null)
+        {
             CreateTool();
         }
-        StartCoroutine(timeToDestroySelf());
     }
     public override void Interact(Player player)
     {
-            // There is a car obj here already.
-            if(player.HasCarObject()) {
-                // Player is carrying something
-            } else {
-                // Player is not carrying anything.
-                GetCarObject().SetCarObjectParent(player);
-                //Borramos el objeto invisible.
-                Destroy(gameObject);
-            }
+        // There is a car obj here already.
+        if (player.HasCarObject())
+        {
+            // Player is carrying something
+        }
+        else
+        {
+            // Player is not carrying anything.
+            GetCarObject().SetCarObjectParent(player);
+            //Borramos el objeto invisible.
+            Destroy(gameObject);
+        }
     }
 
-    public void FixColliderSize() {
+    public void FixColliderSize()
+    {
         BoxCollider collider = GetComponent<BoxCollider>();
         Tools.CopyColliderValues(GetCarObject().GetComponent<BoxCollider>(), collider);
 
@@ -35,15 +38,8 @@ public class InvisibleHolder : BaseCounter
 
     }
 
-    public void CreateTool(){
-        SetCarObject(tool);
-    }
-
-    //Le damos un tiempo al objeto y despues lo destruimos
-    IEnumerator timeToDestroySelf()
+    public void CreateTool()
     {
-        yield return new WaitForSeconds(timeToDestroy);
-        GetComponentInChildren<CarObject>().clearObjectInArray();
-        Destroy(gameObject);
+        SetCarObject(tool);
     }
 }
