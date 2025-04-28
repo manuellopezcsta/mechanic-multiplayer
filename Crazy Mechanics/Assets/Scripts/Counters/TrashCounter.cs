@@ -18,7 +18,8 @@ public class TrashCounter : BaseCounter
             if (player.HasCarObject() && !tools.Contains(player.GetCarObject().GetObjectSO())) {
                 // El player tiene algo en la mano
                 player.GetCarObject().SetCarObjectParent(this);
-                Destroy(GetCarObject().gameObject);
+                //ejecutamos la funcion de destruir del objeto
+                GetCarObject().DestroySelf();
                 ClearCarObject();
                 OnAnyObjectTrashed?.Invoke(this, EventArgs.Empty);
             }

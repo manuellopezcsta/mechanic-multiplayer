@@ -8,19 +8,23 @@ public class CarObject : MonoBehaviour
 
     private ICarObjectParent carObjectParent;
 
-    public ObjectsSO GetObjectSO()  {
+    public ObjectsSO GetObjectSO()
+    {
         return objectsSO;
     }
 
-    public void SetCarObjectParent(ICarObjectParent targetParent) {
+    public void SetCarObjectParent(ICarObjectParent targetParent)
+    {
         //Debug.Log(this.carObjectParent);
-        if(this.carObjectParent != null) {
+        if (this.carObjectParent != null)
+        {
             this.carObjectParent.ClearCarObject();
         }
-        
+
         this.carObjectParent = targetParent;
 
-        if (targetParent.HasCarObject()) {
+        if (targetParent.HasCarObject())
+        {
             //Debug.LogError("TargetParent Ya tiene un objeto.");
         }
 
@@ -29,26 +33,53 @@ public class CarObject : MonoBehaviour
         transform.parent = carObjectParent.GetCarObjectFollowTransform();
         transform.localPosition = Vector3.zero;
         transform.localRotation = Quaternion.identity;
-    } 
+    }
 
-    public ICarObjectParent GetCarObjectParent() {
+    public ICarObjectParent GetCarObjectParent()
+    {
         return carObjectParent;
     }
 
-    public void DestroySelf() {
+    public void DestroySelf()
+    {
 
+        clearObjectInArray();
         carObjectParent.ClearCarObject();
         Destroy(gameObject);
     }
 
     // Nueva implementar y ver si anda
-    public static CarObject SpawnKitchenObject(ObjectsSO objectsSO, ICarObjectParent carObjectParent) {
+    public static CarObject SpawnKitchenObject(ObjectsSO objectsSO, ICarObjectParent carObjectParent)
+    {
         Transform carObjectTransform = Instantiate(objectsSO.prefab);
 
         CarObject carObject = carObjectTransform.GetComponent<CarObject>();
-        
+
         carObject.SetCarObjectParent(carObjectParent);
 
         return carObject;
+    }
+
+    //Con el nombre del objectSO buscamos el array correspondiente y para luego destruir sin problemas
+    public void clearObjectInArray()
+    {
+        switch (objectsSO.name)
+        {
+            case "Aceite":
+                GameManager.Instance.generatedOilObjects.Remove(this.transform);
+                break;
+            case "Caja":
+                GameManager.Instance.generatedBoxObjects.Remove(this.transform);
+                break;
+            case "Wheel":
+                GameManager.Instance.generatedWheelObjects.Remove(this.transform);
+                break;
+            case "SparkPlug":
+                GameManager.Instance.generatedSparkPlugObjects.Remove(this.transform);
+                break;
+            case "Fusible":
+                GameManager.Instance.generatedFuseObjects.Remove(this.transform);
+                break;
+        }
     }
 }

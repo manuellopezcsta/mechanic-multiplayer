@@ -40,7 +40,12 @@ public class GameManager : MonoBehaviour
 
     public event EventHandler OnCarSpawned;
 
-
+    //Listas de los objetos generados segun el tipo
+    public List<Transform> generatedOilObjects;
+    public List<Transform> generatedWheelObjects;
+    public List<Transform> generatedSparkPlugObjects;
+    public List<Transform> generatedFuseObjects;
+    public List<Transform> generatedBoxObjects;
     public enum CarTasks
     {
         OIL_CHANGE,

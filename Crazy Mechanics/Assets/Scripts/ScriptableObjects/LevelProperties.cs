@@ -14,5 +14,11 @@ public class LevelProperties : ScriptableObject
     public int minTaskNumber;
     public int maxTaskNumber;
 
+    public int maxOilObjects;
+    public int maxBoxObjects;
+    public int maxFuseObjects;
+    public int maxSparkPlugObjects;
+    public int maxWheelObjects;
+
     public List<GameManager.CarTasks> listTasks = new List<GameManager.CarTasks>();
 }

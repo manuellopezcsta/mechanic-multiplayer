@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class InvisibleHolder : BaseCounter
 {
+    [SerializeField] private int timeToDestroy = 5;
     [SerializeField] private CarObject tool;
     public Player thrownBy;
     void Start()
@@ -11,6 +12,7 @@ public class InvisibleHolder : BaseCounter
         if(tool != null){
             CreateTool();
         }
+        StartCoroutine(timeToDestroySelf());
     }
     public override void Interact(Player player)
     {
@@ -35,5 +37,13 @@ public class InvisibleHolder : BaseCounter
 
     public void CreateTool(){
         SetCarObject(tool);
+    }
+
+    //Le damos un tiempo al objeto y despues lo destruimos
+    IEnumerator timeToDestroySelf()
+    {
+        yield return new WaitForSeconds(timeToDestroy);
+        GetComponentInChildren<CarObject>().clearObjectInArray();
+        Destroy(gameObject);
     }
 }
