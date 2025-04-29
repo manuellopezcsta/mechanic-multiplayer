@@ -19,21 +19,10 @@ public class PlayerController : MonoBehaviour
         playerController = GetComponent<CharacterController>();
     }
 
-    private void OnEnable()
-    {
-        
-    }
-
-    private void OnDisable()
-    {
-        
-    }
-
     void Update()
     {
-        if (input.sqrMagnitude == 0)
+        if (! IsWalking()) //If i'm not walking return the update early
         {
-            //Debug.Log("Input is zero, character is not gonna move.");
             return;
         }
 
@@ -63,13 +52,12 @@ public class PlayerController : MonoBehaviour
     {
         input = context.ReadValue<Vector2>();
         direction = new Vector3(input.x, 0.0f, input.y);
-        //Debug.Log($"Input acquired: {input}, calculated direction : {direction}");
     }
 
     public void Interact (InputAction.CallbackContext context) {
         Vector3 castDirection = new Vector3(input.x, 0f, input.y);
         //Interaction capsule sizes
-        float capsuleDistance = 2f;
+        float capsuleDistance = 3f;
         float capsuleRadius = 0.5f;
         float capsuleHeight = 1.5f;
 
@@ -93,5 +81,9 @@ public class PlayerController : MonoBehaviour
                 worldObject.Interact();                
             }    
         }
+    }
+
+    public bool IsWalking(){ //Check if the character is currently moving
+        return input.sqrMagnitude !=0;
     }
 }
