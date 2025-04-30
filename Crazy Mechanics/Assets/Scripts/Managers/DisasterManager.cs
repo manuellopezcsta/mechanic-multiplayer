@@ -26,9 +26,16 @@ public class DisasterManager : MonoBehaviour
     [SerializeField] private int minMoney = 20;
     [SerializeField] private int maxMoney = 40;
 
+    // Para valores de Aceite
+    [Header("Oil Spills")]
+    [SerializeField] private List<Transform> oilSpawnPosition;
+    [SerializeField] private GameObject oilPrefab;
+
+
     // Eventos que disparan los sonidos
     public static event EventHandler OnSpawnedMysteryBox;
-    
+    public static event EventHandler OnOilSpillsSpawned;
+
 
     void Awake()
     {
@@ -38,10 +45,11 @@ public class DisasterManager : MonoBehaviour
         maxTimer = levelProperties.disasterMaxTimer;
     }
 
-    public enum DisasterType {
+    public enum DisasterType
+    {
         LightBox, // Done
         Wind,
-        OilStains,
+        OilStains, // Done
         MysteryBox, // Done
         DiscoNight
     }
@@ -53,9 +61,11 @@ public class DisasterManager : MonoBehaviour
     }
 
     // Disparador de desastres.
-    private void TriggerRandomDisaster() {
+    private void TriggerRandomDisaster()
+    {
         // Checkeamos si ya esta ocurriendo algun desastre.
-        if (!disasterHappening) {
+        if (!disasterHappening)
+        {
             // Generamos un time random, basado en el min y max del nivel
             int time = UnityEngine.Random.Range(minTimer, maxTimer);
             // Elegimos un num random de los disponibles.
@@ -65,17 +75,21 @@ public class DisasterManager : MonoBehaviour
         }
     }
 
-    IEnumerator WaitAndTriggerDisaster(int timer, DisasterType type) {
+    IEnumerator WaitAndTriggerDisaster(int timer, DisasterType type)
+    {
         Debug.Log("Iniciando Desastre: " + type + " en " + timer.ToString());
         yield return new WaitForSeconds(timer);
 
-        switch (type) {
+        switch (type)
+        {
             case DisasterType.LightBox:
                 lightBoxController.CutDownPower();
                 break;
             case DisasterType.Wind:
                 break;
             case DisasterType.OilStains:
+                TriggerOilSpillsDisaster();
+                OnOilSpillsSpawned?.Invoke(this, EventArgs.Empty);
                 break;
             case DisasterType.MysteryBox:
                 Instantiate(mysteryBoxPrefab, mysteryBoxSpawner);
@@ -91,22 +105,33 @@ public class DisasterManager : MonoBehaviour
         disasterHappening = true;
     }
 
-    public void TriggerPlayerSpeedDisaster() {
-        float normalSpeed = Player.speed;
+    public void TriggerPlayerSpeedDisaster()
+    {
+        float normalSpeed = GameManager.playerList[0].speed;
         int modifier = Tools.GetOneOrMinusOne();
         // Si sale negativo , aplicamos debufo a la velocidad.
-        if(modifier == -1)
+        if (modifier == -1)
         {
-            Player.speed = speedDebuffPower;
-        } else {
-            // Sino le damos un bufo de velocidad.
-            Player.speed = speedBuffPower;
+            foreach (Player player in GameManager.playerList)
+            {
+                player.speed = speedDebuffPower;
+            }
         }
-        Debug.Log("Se modifico la velocidad a " + Player.speed.ToString());
+        else
+        {
+            // Sino le damos un bufo de velocidad.
+            foreach (Player player in GameManager.playerList)
+            {
+                player.speed = speedBuffPower;
+            }
+
+        }
+        Debug.Log("Se modifico la velocidad a " + GameManager.playerList[0].speed.ToString());
         StartCoroutine(ReturnPlayerToNormalSpeed(normalSpeed));
     }
 
-    public void TriggerAddMoneyDisaster() {
+    public void TriggerAddMoneyDisaster()
+    {
         int money = UnityEngine.Random.Range(minMoney, maxMoney + 1);
         int modifier = Tools.GetOneOrMinusOne();
         Debug.Log("Agregando Puntos x Desastre: " + money.ToString());
@@ -114,23 +139,54 @@ public class DisasterManager : MonoBehaviour
         disasterHappening = false;
     }
 
-    public void TriggerInvertControlsDisaster() {
+    public void TriggerInvertControlsDisaster()
+    {
         Debug.Log("Invirtiendo Controles..");
         Player.invertControls = true;
         StartCoroutine(ReturnPlayerToNormalControls());
     }
 
+    public void TriggerOilSpillsDisaster() {
+        int ammount = UnityEngine.Random.Range(1, oilSpawnPosition.Count);
+        List<int> shuffledIndexes = Tools.GetShuffledIndexes(oilSpawnPosition.Count);
+
+        for(int i = 0; i < ammount; i++) {
+            int index = shuffledIndexes[i];
+
+            // Si ya existe un aceite aca, no lo spawneamos.
+            if(oilSpawnPosition[index].childCount > 0) {
+                continue;
+            }
+
+            // Spawneamos la mancha en la posicion elegida al azar de las disponibles
+            GameObject oilSpill = Instantiate(oilPrefab, oilSpawnPosition[index]);
+            oilSpill.transform.position = oilSpawnPosition[index].position;
+
+            // Le damos una rotacion random.
+            float randomYRotation = UnityEngine.Random.Range(0f, 360f); // Rotación aleatoria en Y
+            Quaternion randomRotation = Quaternion.Euler(0f, randomYRotation, 0f); //
+            oilSpill.transform.rotation = randomRotation;
+        }
+
+        disasterHappening = false;
+    }
+
 
     // En las funciones que devuelven todo a la normalidad , triggereamos disasterHappening a false cuando terminan.
-    IEnumerator ReturnPlayerToNormalControls() {
+    IEnumerator ReturnPlayerToNormalControls()
+    {
         yield return new WaitForSeconds(invertedControlsDuration);
         Player.invertControls = false;
         disasterHappening = false;
     }
 
-    IEnumerator ReturnPlayerToNormalSpeed(float newSpeed) {
+    IEnumerator ReturnPlayerToNormalSpeed(float newSpeed)
+    {
         yield return new WaitForSeconds(speedBuffDuration);
-        Player.speed = newSpeed;
+        foreach (Player player in GameManager.playerList)
+        {
+            player.speed = newSpeed;
+        }
         disasterHappening = false;
     }
 }

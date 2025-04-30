@@ -41,6 +41,21 @@ public class SoundManager : MonoBehaviour
         LightBoxController.OnLightShutdown += OnLightShutdown;
         DisasterManager.OnSpawnedMysteryBox += OnSpawnedMysteryBox;
         MysteryBox.OnOpenedMysteryBox += OnOpenedMysteryBox;
+        DisasterManager.OnOilSpillsSpawned += OnOilSPillsSpawned;
+        OilSplatter.OnOilSpillCleaning += OnOilSpillCleaning;
+    }
+
+    private void OnOilSpillCleaning(object sender, System.EventArgs e)
+    {
+        OilSplatter oilSpill = sender as OilSplatter;
+        // CAMBIAR X SONIDOS POSTA
+        PlaySound(audioClipRefsSO.cleaningOil, oilSpill.transform.position);
+    }
+
+    private void OnOilSPillsSpawned(object sender, System.EventArgs e)
+    {
+        // CAMBIAR X SONIDOS POSTA
+        PlaySound(audioClipRefsSO.spawnOilSpills, transform.position);
     }
 
     private void OnOpenedMysteryBox(object sender, System.EventArgs e)
@@ -193,5 +208,7 @@ public class SoundManager : MonoBehaviour
         LightBoxController.OnLightShutdown -= OnLightShutdown;
         DisasterManager.OnSpawnedMysteryBox -= OnSpawnedMysteryBox;
         MysteryBox.OnOpenedMysteryBox -= OnOpenedMysteryBox;
+        DisasterManager.OnOilSpillsSpawned -= OnOilSPillsSpawned;
+        OilSplatter.OnOilSpillCleaning -= OnOilSpillCleaning;
     }
 }

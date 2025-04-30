@@ -33,4 +33,32 @@ public static class Tools
         int output = Random.Range(0, 2) == 0 ? -1 : 1;
         return output;
     }
+
+    public static Vector3 GetRandomDirection()
+    {
+        // Generar un vector aleatorio en el plano XZ
+        Vector3 randomDirection = new Vector3(Random.Range(-1f, 1f), 0f, Random.Range(-1f, 1f));
+        return randomDirection.normalized; // Normalizar para que tenga magnitud 1
+    }
+
+    public static List<int> GetShuffledIndexes(int size)
+    {
+        List<int> indexes = new List<int>();
+
+        for (int i = 0; i < size; i++)
+        {
+            indexes.Add(i);
+        }
+
+        // Mezcla la lista
+        for (int i = 0; i < indexes.Count; i++)
+        {
+            int randomIndex = Random.Range(0, indexes.Count);
+            (indexes[i], indexes[randomIndex]) = (indexes[randomIndex], indexes[i]); // Intercambio de posiciones
+        }
+
+        return indexes;
+    }
+
+
 }

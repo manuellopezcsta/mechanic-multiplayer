@@ -19,4 +19,6 @@ public class AudioClipRefsSO : ScriptableObject
     public AudioClip[] powerShutdown;
     public AudioClip[] mysteryBoxSpawn;
     public AudioClip[] mysteryBoxOpen;
+    public AudioClip[] spawnOilSpills;
+    public AudioClip[] cleaningOil;
 }

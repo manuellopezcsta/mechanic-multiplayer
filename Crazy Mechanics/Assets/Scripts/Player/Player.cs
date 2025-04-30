@@ -2,12 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Player : MonoBehaviour, ICarObjectParent
 {
     const string MOTOR_TOOL_NAME = "Pluma";
     public static bool invertControls = false;
-
+    public bool isSliding;
+    public Vector3 slideDir;
     public event EventHandler<OnSelectedCounterChangedEventArgs> OnSelectedCounterChanged;
 
     public static event EventHandler OnPickedSomething;
@@ -38,7 +40,7 @@ public class Player : MonoBehaviour, ICarObjectParent
     // Char controller y collider para 2do metodo de movimiento.
     private CharacterController characterController;
     private Vector2 inputVector = Vector2.zero;
-    public static float speed = 7f;
+    public float speed = 7f;
     private Vector3 moveDir;
 
     //Dash
@@ -98,11 +100,12 @@ public class Player : MonoBehaviour, ICarObjectParent
 
     private void HandleMovement()
     {
-        if (stunned)
+        if (stunned || isSliding)
         {
             isWalking = false;
             return;
         }
+
         // Capturamos al vector desde GameImput y se lo aplicamos al char controller.
         //Vector2 inputVector = gameInput.GetMovementVectorNormalized();
         moveDir = new Vector3(inputVector.x, 0f, inputVector.y);
@@ -111,6 +114,11 @@ public class Player : MonoBehaviour, ICarObjectParent
             moveDir *= -1;
         }
 
+        // Cacheamos la direccion x si se resbala.
+        if (!isSliding)
+        {
+            slideDir = moveDir;
+        }
         //SimpleMove no ignora la gravedad.
         characterController.Move(moveDir * Time.deltaTime * speed);
         // Para arreglar un bug donde flota el player?
