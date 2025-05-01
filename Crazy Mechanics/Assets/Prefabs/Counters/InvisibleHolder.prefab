@@ -103,6 +103,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: InvisibleHolder
       objectReference: {fileID: 0}
+    - target: {fileID: 5964586418613894034, guid: e529a028bc53eeb49a4da84bec593746,
+        type: 3}
+      propertyPath: m_TagString
+      value: Wind
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6922751306212364476, guid: e529a028bc53eeb49a4da84bec593746, type: 3}
     m_RemovedGameObjects: []
@@ -146,6 +151,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   counterTopPoint: {fileID: 3262769914585668820}
+  tool: {fileID: 0}
+  thrownBy: {fileID: 0}
 --- !u!54 &7669062135849229819
 Rigidbody:
   m_ObjectHideFlags: 0

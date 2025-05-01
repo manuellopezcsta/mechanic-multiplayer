@@ -980,10 +980,45 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3204760016609308022, guid: 22712e1d200f366479f98db490129e91,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 1.2911981
+      objectReference: {fileID: 0}
+    - target: {fileID: 3204760016609308022, guid: 22712e1d200f366479f98db490129e91,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.8190409
+      objectReference: {fileID: 0}
+    - target: {fileID: 3204760016609308022, guid: 22712e1d200f366479f98db490129e91,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 1.058765
+      objectReference: {fileID: 0}
+    - target: {fileID: 3204760016609308022, guid: 22712e1d200f366479f98db490129e91,
+        type: 3}
+      propertyPath: m_Center.x
+      value: 0.012016892
+      objectReference: {fileID: 0}
+    - target: {fileID: 3204760016609308022, guid: 22712e1d200f366479f98db490129e91,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0.39781505
+      objectReference: {fileID: 0}
+    - target: {fileID: 3204760016609308022, guid: 22712e1d200f366479f98db490129e91,
+        type: 3}
+      propertyPath: m_Center.z
+      value: 0.13847029
+      objectReference: {fileID: 0}
     - target: {fileID: 5607128623989969929, guid: 22712e1d200f366479f98db490129e91,
         type: 3}
       propertyPath: m_Name
       value: DrillHolder
+      objectReference: {fileID: 0}
+    - target: {fileID: 5607128623989969929, guid: 22712e1d200f366479f98db490129e91,
+        type: 3}
+      propertyPath: m_TagString
+      value: Wind
       objectReference: {fileID: 0}
     - target: {fileID: 5746254420380756448, guid: 22712e1d200f366479f98db490129e91,
         type: 3}
@@ -2054,6 +2089,79 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1526969103}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &642396047
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 642396050}
+  - component: {fileID: 642396049}
+  - component: {fileID: 642396048}
+  m_Layer: 0
+  m_Name: WindEvent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &642396048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 642396047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3dc00cc83d45c140b5e4709511998fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activado: 0
+  windToTheRight: {x: 1, y: 0, z: 0}
+  windToTheLeft: {x: -1, y: 0, z: 0}
+  windDirection: {x: 0, y: 0, z: 0}
+  timeToChangeDirection: 3
+  windForce: 20
+  flyObjectsTag: Wind
+--- !u!65 &642396049
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 642396047}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 46.07696, y: 11.339321, z: 29.799011}
+  m_Center: {x: 1.0160656, y: 3.3630562, z: -0.1686058}
+--- !u!4 &642396050
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 642396047}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -55.201805, y: 0, z: 56.88554}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &667674757
 GameObject:
   m_ObjectHideFlags: 0
@@ -5328,9 +5436,9 @@ GameObject:
   - component: {fileID: 2022271967}
   - component: {fileID: 2022271966}
   - component: {fileID: 2022271965}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SM_wall_stc_02 (2)
-  m_TagString: Untagged
+  m_TagString: Pared
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10710,10 +10818,35 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3319790223681220588, guid: 4b0c86bdddd5813438cfbcb9ba87e366,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.6722208
+      objectReference: {fileID: 0}
+    - target: {fileID: 3319790223681220588, guid: 4b0c86bdddd5813438cfbcb9ba87e366,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 1.2200345
+      objectReference: {fileID: 0}
+    - target: {fileID: 3319790223681220588, guid: 4b0c86bdddd5813438cfbcb9ba87e366,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0.324405
+      objectReference: {fileID: 0}
+    - target: {fileID: 3319790223681220588, guid: 4b0c86bdddd5813438cfbcb9ba87e366,
+        type: 3}
+      propertyPath: m_Center.z
+      value: 0.0004091859
+      objectReference: {fileID: 0}
     - target: {fileID: 4896201822112435043, guid: 4b0c86bdddd5813438cfbcb9ba87e366,
         type: 3}
       propertyPath: m_Name
       value: CricketHolder
+      objectReference: {fileID: 0}
+    - target: {fileID: 4896201822112435043, guid: 4b0c86bdddd5813438cfbcb9ba87e366,
+        type: 3}
+      propertyPath: m_TagString
+      value: Wind
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12623,6 +12756,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pluma
+      objectReference: {fileID: 0}
+    - target: {fileID: 6630092127268968187, guid: 8cd899f00dd23ab4094f0ad2ee4c3b97,
+        type: 3}
+      propertyPath: m_TagString
+      value: Wind
       objectReference: {fileID: 0}
     - target: {fileID: 7688531741079005491, guid: 8cd899f00dd23ab4094f0ad2ee4c3b97,
         type: 3}
@@ -15309,9 +15447,9 @@ GameObject:
   - component: {fileID: 5804770617731518680}
   - component: {fileID: 1334752175625231540}
   - component: {fileID: 8916281041736234194}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SM_wall_stc_03 (2)
-  m_TagString: Untagged
+  m_TagString: Pared
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15796,9 +15934,9 @@ GameObject:
   - component: {fileID: 7530711830011084079}
   - component: {fileID: 7291107539301777622}
   - component: {fileID: 9157528271003434681}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SM_wall_stc_03 (1)
-  m_TagString: Untagged
+  m_TagString: Pared
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15928,6 +16066,7 @@ SceneRoots:
   - {fileID: 671806455}
   - {fileID: 8920062391179948818}
   - {fileID: 1243243453}
+  - {fileID: 642396050}
   - {fileID: 1127481153}
   - {fileID: 4848363363782138473}
   - {fileID: 906417642}
