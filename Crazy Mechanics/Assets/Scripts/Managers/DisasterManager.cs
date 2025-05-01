@@ -35,6 +35,9 @@ public class DisasterManager : MonoBehaviour
     // Eventos que disparan los sonidos
     public static event EventHandler OnSpawnedMysteryBox;
     public static event EventHandler OnOilSpillsSpawned;
+    public static event EventHandler OnDiscoNight;
+
+    private LightManager lightManager;
 
 
     void Awake()
@@ -43,6 +46,7 @@ public class DisasterManager : MonoBehaviour
         levelProperties = GameManager.Instance.GetLevelProperties();
         minTimer = levelProperties.disasterMinTimer;
         maxTimer = levelProperties.disasterMaxTimer;
+        lightManager = GetComponent<LightManager>();
     }
 
     public enum DisasterType
@@ -96,6 +100,8 @@ public class DisasterManager : MonoBehaviour
                 OnSpawnedMysteryBox?.Invoke(this, EventArgs.Empty);
                 break;
             case DisasterType.DiscoNight:
+                lightManager.TriggerDiscoNight();
+                OnDiscoNight?.Invoke(this, EventArgs.Empty);
                 break;
             default:
                 Debug.LogWarning("ESTE ENUM NO EXISTE!, disaster manager");
