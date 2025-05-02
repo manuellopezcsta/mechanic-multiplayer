@@ -35,6 +35,7 @@ public class PlayerAnimator : MonoBehaviour {
             animator.SetBool(IS_DANCING, false);
         }*/
     }
+    
     public void StartDance()
     {
         //El baile se va a realizar solo cuando el personaje este quieto

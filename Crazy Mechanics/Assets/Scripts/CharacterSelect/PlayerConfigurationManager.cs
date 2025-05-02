@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerConfigurationManager : MonoBehaviour
 {
@@ -60,9 +61,10 @@ public class PlayerConfigurationManager : MonoBehaviour
     public void HandlePlayerJoined(PlayerInput pi)
     {
         // Si no a;adimos ya al player
-        if (!playerConfigs.Any(p => p.PlayerIndex == pi.playerIndex))
+        //if (!playerConfigs.Any(p => p.PlayerIndex == pi.playerIndex))
+        if (!playerConfigs.Any(p => p.PlayerIndex == pi.playerIndex ) && SceneManager.GetActiveScene().name == "CharacterSelect")
         {
-            Debug.Log("Player " + pi.playerIndex + " Joined ");
+            Debug.Log("Player " + pi.playerIndex + " Joined " + SceneManager.GetActiveScene().name);
             // Guardamos el obj input en el manager, para que persista cuando cambiamos la escena.
             pi.transform.SetParent(transform);
             // Agregamos un nuevo config con el indice de este pi.
