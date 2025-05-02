@@ -14,6 +14,9 @@ public class SelectedVisualInvisible : MonoBehaviour
     {
         bool isAnyPlayerClose = false;
         // Iterar sobre todos los jugadores en la escena
+        Debug.Log(GameManager.playerList.Count);
+        Debug.Log(GameManager.inputHandlersList.Count);
+        
         foreach (Player player in GameManager.playerList)
         {
             //Debug.Log(Vector3.Distance(player.transform.position, transform.position) + " 50" + transform.parent.name);

@@ -54,6 +54,9 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        //playerList.Clear();
+        //inputHandlersList.Clear();
+
         // Cargamos los autos para este nivel usando el la lista correspondiente y la data del nivel
         carPrefabs = GetCarsForThisLevel();   
     }
@@ -169,6 +172,7 @@ public class GameManager : MonoBehaviour
 
     public static void RegisterPlayer(Player player)
     {
+        Debug.Log("Registrando Player.");
         playerList.Add(player);
         inputHandlersList.Add(player.gameObject.GetComponent<PlayerInputHandler>());
         Debug.Log(inputHandlersList[0]);

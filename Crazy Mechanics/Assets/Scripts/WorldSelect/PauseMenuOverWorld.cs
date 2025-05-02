@@ -57,6 +57,7 @@ public class PauseMenuOverWorld : MonoBehaviour
     private void GoToMainMenu()
     {
         //PlayerConfigurationManager.Instance.SelfDestruct();
+        Destroy(PlayerConfigurationManager.Instance.gameObject);
         Loader.Load(Loader.Scene.Menu);
     }
 
