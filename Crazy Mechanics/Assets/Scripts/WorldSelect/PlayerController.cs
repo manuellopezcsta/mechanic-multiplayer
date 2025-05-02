@@ -13,11 +13,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform holdPoint;
     private float currentVelocityTurn;
     [SerializeField] PauseMenuOverWorld pauseScript;
+    [SerializeField] InputActionAsset playerInputs;
 
 
     private void Awake()
     {
         playerController = GetComponent<CharacterController>();
+        //playerInputs.Enable();
     }
 
     void Update()

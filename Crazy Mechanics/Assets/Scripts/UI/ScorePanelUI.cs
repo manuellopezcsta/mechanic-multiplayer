@@ -16,7 +16,10 @@ public class ScorePanelUI : MonoBehaviour
         backButton.onClick.AddListener(() => {
             Loader.Load(Loader.Scene.WorldSelect);
             Time.timeScale = 1f;
-            //PlayerConfigurationManager.Instance.SelfDestruct();
+
+            // CODIGO ALTAMENTE INESTABLE... NO TOCAR!!!! MANU APPROVED THIS.
+            PlayerConfigurationManager.Instance.SwitchInputMethod(false);
+            GameManager.NukePlayerControllers();
         });
     }
 

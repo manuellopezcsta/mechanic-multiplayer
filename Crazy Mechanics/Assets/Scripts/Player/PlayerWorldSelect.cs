@@ -42,18 +42,10 @@ public class PlayerWorldSelect : MonoBehaviour//, ICarObjectParent
         }
     }
 
-    private void Update()
-    {
-        
-    }
-
-
 
     public bool IsWalking(){ //Returns if the player is currently walking used for animations
         return actionWalking;
     }
-
-
 
 
     private void DebugInteractionCapsule(bool active, Vector3  capsuleStart, Vector3 capsuleEnd, float interactReach, float interactRadius) {

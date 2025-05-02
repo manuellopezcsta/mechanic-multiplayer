@@ -14,8 +14,8 @@ public class SelectedVisualInvisible : MonoBehaviour
     {
         bool isAnyPlayerClose = false;
         // Iterar sobre todos los jugadores en la escena
-        Debug.Log(GameManager.playerList.Count);
-        Debug.Log(GameManager.inputHandlersList.Count);
+        //Debug.Log(GameManager.playerList.Count);
+        //Debug.Log(GameManager.inputHandlersList.Count);
         
         foreach (Player player in GameManager.playerList)
         {

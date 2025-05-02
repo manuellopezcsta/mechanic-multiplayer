@@ -107,6 +107,13 @@ public class PlayerConfigurationManager : MonoBehaviour
     public float GetCameraOffset(){
         return offsetVisualCharacters;
     }
+
+    public void SwitchInputMethod(bool turnOn) {
+        foreach(Transform child in transform){
+            //input.UnsuscribeController()
+            child.gameObject.GetComponent<PlayerInput>().enabled = turnOn;
+        }
+    }
 }
 
 

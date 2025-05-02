@@ -54,9 +54,8 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        //playerList.Clear();
-        //inputHandlersList.Clear();
-
+        // NO TOCAR!
+        PlayerConfigurationManager.Instance.SwitchInputMethod(true);
         // Cargamos los autos para este nivel usando el la lista correspondiente y la data del nivel
         carPrefabs = GetCarsForThisLevel();   
     }
@@ -175,7 +174,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("Registrando Player.");
         playerList.Add(player);
         inputHandlersList.Add(player.gameObject.GetComponent<PlayerInputHandler>());
-        Debug.Log(inputHandlersList[0]);
+        //Debug.Log(inputHandlersList[0]);
     }
 
     private void OnDestroy() {
@@ -184,9 +183,9 @@ public class GameManager : MonoBehaviour
     }
 
     public static void NukePlayerControllers(){
-        Debug.Log(playerList.Count + " player list count");
-        Debug.Log(inputHandlersList.Count + " input handlers");
-        Debug.Log(playerList[0]);
+        //Debug.Log(playerList.Count + " player list count");
+        //Debug.Log(inputHandlersList.Count + " input handlers");
+        //Debug.Log(playerList[0]);
         /*foreach(Player player in playerList) {
             player.gameObject.GetComponent<PlayerInputHandler>().UnsuscribeController();
         }*/
