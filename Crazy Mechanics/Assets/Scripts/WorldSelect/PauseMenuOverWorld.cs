@@ -43,11 +43,13 @@ public class PauseMenuOverWorld : MonoBehaviour
     private void ResumeGame()
     {
         pauseScreen.SetActive(false);
+        Time.timeScale = 1f;//Resume time
     }
 
     private void PauseGame()
     {
         pauseScreen.SetActive(true);
+        Time.timeScale = 0f;//Stop time
         // Seteamos un boton como seleccionado para que funcione con joystick.
         resumeGameButton.Select();
     }
