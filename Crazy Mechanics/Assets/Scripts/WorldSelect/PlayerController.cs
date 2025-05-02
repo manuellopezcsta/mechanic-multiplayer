@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] LayerMask levelLayerMask;
     [SerializeField] private Transform holdPoint;
     private float currentVelocityTurn;
+    [SerializeField] PauseMenuOverWorld pauseScript;
 
 
     private void Awake()
@@ -52,6 +53,11 @@ public class PlayerController : MonoBehaviour
     {
         input = context.ReadValue<Vector2>();
         direction = new Vector3(input.x, 0.0f, input.y);
+    }
+
+    public void Pause(InputAction.CallbackContext context)
+    {
+        pauseScript.TogglePause();
     }
 
     public void Interact (InputAction.CallbackContext context) {

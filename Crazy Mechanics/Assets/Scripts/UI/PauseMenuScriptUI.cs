@@ -60,7 +60,7 @@ public class PauseMenuScriptUI : MonoBehaviour
     {   // Preguntar al game manager el nombre de nivel actual y cargarlo
         Time.timeScale = 1f;       
         string currentSceneName = SceneManager.GetActiveScene().name;
-        GameManager.Instance.NukePlayerControllers();
+        GameManager.NukePlayerControllers();
         Loader.Load(currentSceneName);        
     }
 

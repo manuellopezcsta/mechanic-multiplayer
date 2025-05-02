@@ -84,7 +84,7 @@ public class PlayerConfigurationManager : MonoBehaviour
 
     public void SelfDestruct() {
         // CODIGO PARA DESUSCRIBIRSE AL DESTRUIRSE UN PLAYER.
-        GameManager.Instance.NukePlayerControllers();
+        GameManager.NukePlayerControllers();
         Destroy(gameObject);
     }
     

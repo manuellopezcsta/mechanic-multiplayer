@@ -175,7 +175,7 @@ public class GameManager : MonoBehaviour
         playerList.Clear();
     }
 
-    public void NukePlayerControllers(){
+    public static void NukePlayerControllers(){
         foreach(Player player in playerList) {
             player.gameObject.GetComponent<PlayerInputHandler>().UnsuscribeController();
         }
