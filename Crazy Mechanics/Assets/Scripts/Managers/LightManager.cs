@@ -29,20 +29,24 @@ public class LightManager : MonoBehaviour
     }*/
 
     private void ChangeEventLights()
+{
+    isActive = !isActive;
+    discoLight.SetActive(isActive);
+    defaultLight.SetActive(!isActive);
+    if (isActive)
     {
-        isActive = !isActive;
-        discoLight.SetActive(isActive);
-        defaultLight.SetActive(!isActive);
-        if (isActive)
-        {
-            TurnOnLights();
-            RenderSettings.ambientLight = Color.black;
-        }
-        else
-        {
-            RenderSettings.ambientLight = Color.white;
-        }
+        TurnOnLights();
+        RenderSettings.ambientMode = UnityEngine.Rendering.AmbientMode.Flat;
+        RenderSettings.defaultReflectionMode = UnityEngine.Rendering.DefaultReflectionMode.Custom;
+        RenderSettings.ambientLight = Color.black;
     }
+    else
+    {
+        RenderSettings.ambientMode = UnityEngine.Rendering.AmbientMode.Skybox;
+        RenderSettings.defaultReflectionMode = UnityEngine.Rendering.DefaultReflectionMode.Skybox;
+        RenderSettings.ambientLight = Color.white;
+    }
+}
 
     private void TurnOnLights()
     {
