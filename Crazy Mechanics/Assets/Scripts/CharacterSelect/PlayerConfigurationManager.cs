@@ -36,6 +36,7 @@ public class PlayerConfigurationManager : MonoBehaviour
     public void Start(){
         RenderCharacters();
         GameManager.playerList.Clear();
+        GameManager.inputHandlersList.Clear();
     }
 
     // Le pasamos un player, y seteamos el material de ese player.

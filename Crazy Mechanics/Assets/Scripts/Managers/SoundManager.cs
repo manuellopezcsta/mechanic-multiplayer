@@ -43,6 +43,13 @@ public class SoundManager : MonoBehaviour
         MysteryBox.OnOpenedMysteryBox += OnOpenedMysteryBox;
         DisasterManager.OnOilSpillsSpawned += OnOilSPillsSpawned;
         OilSplatter.OnOilSpillCleaning += OnOilSpillCleaning;
+        DisasterManager.OnDiscoNight += OnDiscoNight;
+    }
+
+    private void OnDiscoNight(object sender, System.EventArgs e)
+    {
+        // CAMBIAR X SONIDOS POSTA
+        PlaySound(audioClipRefsSO.discoNight, transform.position);
     }
 
     private void OnOilSpillCleaning(object sender, System.EventArgs e)
@@ -210,5 +217,6 @@ public class SoundManager : MonoBehaviour
         MysteryBox.OnOpenedMysteryBox -= OnOpenedMysteryBox;
         DisasterManager.OnOilSpillsSpawned -= OnOilSPillsSpawned;
         OilSplatter.OnOilSpillCleaning -= OnOilSpillCleaning;
+        DisasterManager.OnDiscoNight -= OnDiscoNight;
     }
 }

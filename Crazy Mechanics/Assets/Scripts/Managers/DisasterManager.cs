@@ -31,13 +31,15 @@ public class DisasterManager : MonoBehaviour
     [SerializeField] private List<Transform> oilSpawnPosition;
     [SerializeField] private GameObject oilPrefab;
 
+    // Para disco Night
+    [Header("Disco Night")]
+    private LightManager lightManager;
 
     // Eventos que disparan los sonidos
     public static event EventHandler OnSpawnedMysteryBox;
     public static event EventHandler OnOilSpillsSpawned;
     public static event EventHandler OnDiscoNight;
 
-    private LightManager lightManager;
 
 
     void Awake()
@@ -55,7 +57,7 @@ public class DisasterManager : MonoBehaviour
         Wind,
         OilStains, // Done
         MysteryBox, // Done
-        DiscoNight
+        DiscoNight // Done
     }
     // MysteryBox puede o invertir los controles, dar bufo de velocidad temporal, o darte dinero.
 
@@ -90,6 +92,7 @@ public class DisasterManager : MonoBehaviour
                 lightBoxController.CutDownPower();
                 break;
             case DisasterType.Wind:
+                WindManager.Instance.TriggerWindEvent();
                 break;
             case DisasterType.OilStains:
                 TriggerOilSpillsDisaster();

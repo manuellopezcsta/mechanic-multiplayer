@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour
 
     // Para el evento de select de los counter
     public static List<Player> playerList = new List<Player>();
+    public static List<PlayerInputHandler> inputHandlersList = new List<PlayerInputHandler>();
 
     public Transform[] playerSpawns;
 
@@ -169,15 +170,24 @@ public class GameManager : MonoBehaviour
     public static void RegisterPlayer(Player player)
     {
         playerList.Add(player);
+        inputHandlersList.Add(player.gameObject.GetComponent<PlayerInputHandler>());
+        Debug.Log(inputHandlersList[0]);
     }
 
     private void OnDestroy() {
         playerList.Clear();
+        inputHandlersList.Clear();
     }
 
     public static void NukePlayerControllers(){
-        foreach(Player player in playerList) {
+        Debug.Log(playerList.Count + " player list count");
+        Debug.Log(inputHandlersList.Count + " input handlers");
+        Debug.Log(playerList[0]);
+        /*foreach(Player player in playerList) {
             player.gameObject.GetComponent<PlayerInputHandler>().UnsuscribeController();
+        }*/
+        foreach(PlayerInputHandler inputHandler in inputHandlersList) {
+            inputHandler.UnsuscribeController();
         }
     }
 
