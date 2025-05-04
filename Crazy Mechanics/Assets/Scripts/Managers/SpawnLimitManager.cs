@@ -11,11 +11,13 @@ public class SpawnLimitManager : MonoBehaviour
     const string WHEEL_OBJECTSO_NAME = "Wheel";
     const string SPARKPLUG_OBJECTSO_NAME = "SparkPlug";
     const string FUSE_OBJECTSO_NAME = "Fusible";
+    const string PISTON_OBJECTSO_NAME = "Piston";
     
     //Contadores de los objetos generados segun el tipo
     private int oilCounter;
     private int wheelCounter;
     private int sparkPlugCounter;
+    private int pistonCounter;
     private int fuseCounter;
     private int boxCounter;
 
@@ -38,6 +40,8 @@ public class SpawnLimitManager : MonoBehaviour
                 return levelProperties.maxWheelObjects;
             case SPARKPLUG_OBJECTSO_NAME:
                 return levelProperties.maxSparkPlugObjects;
+            case PISTON_OBJECTSO_NAME:
+                return levelProperties.maxPistonObjects;
             case FUSE_OBJECTSO_NAME:
                 return levelProperties.maxFuseObjects;
             default:
@@ -55,6 +59,8 @@ public class SpawnLimitManager : MonoBehaviour
                 return wheelCounter;
             case SPARKPLUG_OBJECTSO_NAME:
                 return sparkPlugCounter;
+            case PISTON_OBJECTSO_NAME:
+                return pistonCounter;
             case FUSE_OBJECTSO_NAME:
                 return fuseCounter;
             default:
@@ -79,6 +85,9 @@ public class SpawnLimitManager : MonoBehaviour
                 break;
             case FUSE_OBJECTSO_NAME:
                 fuseCounter += ammount;
+                break;
+            case PISTON_OBJECTSO_NAME:
+                pistonCounter += ammount;
                 break;
             default:
                 //Debug.LogWarning("ERROR ! NO EXISTE ESE ITEM LIST!");

@@ -134,8 +134,8 @@ public class GameManager : MonoBehaviour
         }
 
         // Obtener todos los elementos del enum y convertirlos a una lista.
-        List<CarTasks> output = new List<CarTasks>((CarTasks[])Enum.GetValues(typeof(CarTasks)));
-
+        //List<CarTasks> output = new List<CarTasks>((CarTasks[])Enum.GetValues(typeof(CarTasks)));
+        List<CarTasks> output = levelProperties.listTasks;
         // Mezclar la lista.
         System.Random random = new System.Random();
         for (int i = output.Count - 1; i > 0; i--)

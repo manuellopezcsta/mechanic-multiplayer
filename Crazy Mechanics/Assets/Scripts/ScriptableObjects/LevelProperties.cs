@@ -22,6 +22,7 @@ public class LevelProperties : ScriptableObject
     public int maxBoxObjects;
     public int maxFuseObjects;
     public int maxSparkPlugObjects;
+    public int maxPistonObjects;
     public int maxWheelObjects;
     [Header("Disaster Times")]
     public int disasterMinTimer;
