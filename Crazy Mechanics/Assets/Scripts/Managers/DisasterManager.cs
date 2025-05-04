@@ -89,9 +89,11 @@ public class DisasterManager : MonoBehaviour
         switch (type)
         {
             case DisasterType.LightBox:
+                disasterHappening = true;
                 lightBoxController.CutDownPower();
                 break;
             case DisasterType.Wind:
+                disasterHappening = true;
                 WindManager.Instance.TriggerWindEvent();
                 break;
             case DisasterType.OilStains:
@@ -103,15 +105,14 @@ public class DisasterManager : MonoBehaviour
                 OnSpawnedMysteryBox?.Invoke(this, EventArgs.Empty);
                 break;
             case DisasterType.DiscoNight:
+                disasterHappening = true;
                 lightManager.TriggerDiscoNight();
                 OnDiscoNight?.Invoke(this, EventArgs.Empty);
                 break;
             default:
-                Debug.LogWarning("ESTE ENUM NO EXISTE!, disaster manager");
+                Debug.LogWarning("ESTE ENUM NO EXISTE!, Disaster Manager");
                 break;
         }
-        // Se tiene que desactivar cuando se termina un desastre, no aca.
-        disasterHappening = true;
     }
 
     public void TriggerPlayerSpeedDisaster()

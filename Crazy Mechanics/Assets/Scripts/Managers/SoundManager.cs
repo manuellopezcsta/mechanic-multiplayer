@@ -44,6 +44,14 @@ public class SoundManager : MonoBehaviour
         DisasterManager.OnOilSpillsSpawned += OnOilSPillsSpawned;
         OilSplatter.OnOilSpillCleaning += OnOilSpillCleaning;
         DisasterManager.OnDiscoNight += OnDiscoNight;
+        MotorTool.OnDrillUsed += OnDrillUsed;
+    }
+
+    private void OnDrillUsed(object sender, System.EventArgs e)
+    {
+        MotorTool motorTool = sender as MotorTool;
+        // CAMBIAR X SONIDOS POSTA
+        PlaySound(audioClipRefsSO.drill, motorTool.transform.position);
     }
 
     private void OnDiscoNight(object sender, System.EventArgs e)
@@ -218,5 +226,6 @@ public class SoundManager : MonoBehaviour
         DisasterManager.OnOilSpillsSpawned -= OnOilSPillsSpawned;
         OilSplatter.OnOilSpillCleaning -= OnOilSpillCleaning;
         DisasterManager.OnDiscoNight -= OnDiscoNight;
+        MotorTool.OnDrillUsed -= OnDrillUsed;
     }
 }

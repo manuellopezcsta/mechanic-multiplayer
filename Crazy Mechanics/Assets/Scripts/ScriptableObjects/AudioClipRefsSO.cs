@@ -22,4 +22,5 @@ public class AudioClipRefsSO : ScriptableObject
     public AudioClip[] spawnOilSpills;
     public AudioClip[] cleaningOil;
     public AudioClip[] discoNight;
+    public AudioClip[] drill;
 }

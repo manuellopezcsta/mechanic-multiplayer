@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class MotorTool : BaseCounter, IHasProgress
 {
 
-    [Header("Task type SparkPlug")]
+    [Header("SparkPlug Task Data")]
     //Task type 1
 
     [SerializeField] private Sprite iconSparkPlug;
@@ -18,7 +18,7 @@ public class MotorTool : BaseCounter, IHasProgress
 
     public static event EventHandler OnCricketUsed;
 
-    [Header("Task type Piston")]
+    [Header("Piston Task Data")]
     //Task type 2
 
     [SerializeField] private Sprite iconPiston;
@@ -27,7 +27,7 @@ public class MotorTool : BaseCounter, IHasProgress
     [SerializeField] private ObjectsSO piston;
     public static event EventHandler OnDrillUsed;
 
-    [Header("General tastes")]
+    [Header("Generated Task Values")]
 
     //Estos seran los objetos con los que trabajaremos en el codigo, los cuales se setearan en el start segun la tarea pertinente
     [SerializeField] private ObjectsSO fixingTool;
@@ -65,7 +65,8 @@ public class MotorTool : BaseCounter, IHasProgress
         {
             piece.SetActive(true);
         }
-        InsertValues();
+        // Elegimos que tarea va a contener el motor.
+        ChooseRandomTaskForMotor();
     }
 
     void HideMotor()
@@ -76,13 +77,10 @@ public class MotorTool : BaseCounter, IHasProgress
         }
     }
 
-    //Sacamos los valores traidos del carObjectMotor (dentro del motor);
-    void InsertValues(){
-        RandomTaskInMotor();
-    }
 
-    //Reseteamos los valores para volver a comenzar;
-    void ResetValues(){
+
+    //Reseteamos los valores para volver a comenzar, si se coloca otro motor;
+    void ResetTaskValues(){
         fixingTool = null;
         objectToFix = null;
     }
@@ -90,12 +88,14 @@ public class MotorTool : BaseCounter, IHasProgress
     public void FinishFixing(){
         HideMotor();
         motorFixed = false;
-        ResetValues();
+        ResetTaskValues();
     }
 
-    private void RandomTaskInMotor(){
+    private void ChooseRandomTaskForMotor(){
         //Si sale 1 se realizara la tarea del sparkplug y si da 0 la del piston
         int randomTask = UnityEngine.Random.Range(0,2);
+
+        // Seteamos los valores para el cricket o el drill.
         if(randomTask != 0){
             fixingTool = fixingToolCricket;
             objectToFix = sparkPlug;
@@ -127,7 +127,12 @@ public class MotorTool : BaseCounter, IHasProgress
             progressNormalized = (float) fixingProgress / fixingProgressMax
         });
 
-        OnCricketUsed?.Invoke(this, EventArgs.Empty);
+        // Invocamos el evento de sonido que corresponde.
+        if(fixingTool == fixingToolCricket) {
+            OnCricketUsed?.Invoke(this, EventArgs.Empty);
+        } else {
+            OnDrillUsed?.Invoke(this, EventArgs.Empty);
+        }
 
         if(fixingProgress == fixingProgressMax ) {
             // Se termino el arreglo.
