@@ -58,7 +58,7 @@ public class TaskOil : BaseCounter
                     indicatorUI.SetAsComplete();
                     carController.CompleteTask();
                     // Destruimos el obj del aceite para que no se vea.
-                    Destroy(GetCarObject().gameObject);
+                    GetCarObject().DestroySelf();
                 }
             }
             else // Logica para sacar el aceite Sucio del auto.
@@ -84,8 +84,7 @@ public class TaskOil : BaseCounter
         yield return new WaitForSeconds(timeRequest);
         itHasDirtyOil = false;
         //Limpia el carObject de la mesa y lo destruye.
-        Destroy(GetCarObject().gameObject);
-        ClearCarObject();
+        GetCarObject().DestroySelf();
         Transform boxFullPreFab = Instantiate(boxFull.prefab, GetCarObjectFollowTransform());
         boxFullPreFab.GetComponent<CarObject>().SetCarObjectParent(this);
     }

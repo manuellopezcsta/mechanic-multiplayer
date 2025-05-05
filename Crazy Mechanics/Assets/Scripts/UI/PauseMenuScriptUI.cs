@@ -10,11 +10,13 @@ public class PauseMenuScriptUI : MonoBehaviour
 
     [SerializeField] private Button resumeGameButton;
     [SerializeField] private Button restartLevelButton;
+    [SerializeField] private Button tutorialLevelButton;
     [SerializeField] private GameObject pauseScreen;
     [SerializeField] private Button exitToMainMenuButton;
     [SerializeField] private Slider musicSlider;
     [SerializeField] private Slider sfxSlider;
 
+    [SerializeField] private TutorialManager tutorialManager;
 
     private void ChangeMusicVolume(float newVolume)
     {
@@ -77,6 +79,7 @@ public class PauseMenuScriptUI : MonoBehaviour
         resumeGameButton.onClick.AddListener(ResumeGame);
         restartLevelButton.onClick.AddListener(RestartLevel);
         exitToMainMenuButton.onClick.AddListener(GoToMainMenu);
+        tutorialLevelButton.onClick.AddListener(tutorialManager.SwitchStateTutorialMenu);
         // Apagamos la pantalla de pausa al comienzo por las dudas
         pauseScreen.SetActive(false);
     }
@@ -94,4 +97,5 @@ public class PauseMenuScriptUI : MonoBehaviour
             ResumeGame();
         }
     }
+
 }
