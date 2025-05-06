@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject motorTaskPrefab;
     [SerializeField] GameObject wheelTaskPrefab;
     [SerializeField] GameObject batteryTaskPrefab;
+    [SerializeField] GameObject fixDiffTaskPrefab;
     [SerializeField] LevelProperties levelProperties;
     [SerializeField] CarListSO carListSO;
 
@@ -50,6 +51,7 @@ public class GameManager : MonoBehaviour
         WHEEL_FIX_BR,
         WHEEL_FIX_BL,
         BATTERY_CHARGE,
+        DIFF_FIX,
     }
 
     void Start()
@@ -116,9 +118,12 @@ public class GameManager : MonoBehaviour
 
     public GameObject GetWheelTaskPrefab()
     {
-        // FIX TEMPORAL
-        //return Instantiate(wheelTaskPrefab);
         return Instantiate(wheelTaskPrefab);
+    }
+
+    public GameObject GetDiffTaskPrefab()
+    {
+        return Instantiate(fixDiffTaskPrefab);
     }
 
     public int GetTaskCount()

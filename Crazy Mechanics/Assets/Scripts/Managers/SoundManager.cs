@@ -45,6 +45,7 @@ public class SoundManager : MonoBehaviour
         OilSplatter.OnOilSpillCleaning += OnOilSpillCleaning;
         DisasterManager.OnDiscoNight += OnDiscoNight;
         MotorTool.OnDrillUsed += OnDrillUsed;
+        TaskDifferential.OnFixingDiff += OnDrillUsed;
     }
 
     private void OnDrillUsed(object sender, System.EventArgs e)
@@ -227,5 +228,6 @@ public class SoundManager : MonoBehaviour
         OilSplatter.OnOilSpillCleaning -= OnOilSpillCleaning;
         DisasterManager.OnDiscoNight -= OnDiscoNight;
         MotorTool.OnDrillUsed -= OnDrillUsed;
+        TaskDifferential.OnFixingDiff -= OnDrillUsed;
     }
 }

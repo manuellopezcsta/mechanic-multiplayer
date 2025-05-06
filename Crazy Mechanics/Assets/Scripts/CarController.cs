@@ -25,6 +25,7 @@ public class CarController : MonoBehaviour
     [SerializeField] private Transform wheelFLPosition;
     [SerializeField] private Transform wheelBRPosition;
     [SerializeField] private Transform wheelBLPosition;
+    [SerializeField] private Transform diffFixPosition;
     
     // Puntaje por auto
     [SerializeField] public int carScoreValue = 0;
@@ -130,6 +131,14 @@ public class CarController : MonoBehaviour
                 generatedTask.transform.SetParent(batteryTaskPosition);
                 generatedTask.GetComponent<SwapBatteryTask>().carController = this;
                 carTasks.Add(GameManager.CarTasks.BATTERY_CHARGE);
+                createdTasksContainers.Add(generatedTask);
+                return;
+            case GameManager.CarTasks.DIFF_FIX:
+                generatedTask = GameManager.Instance.GetDiffTaskPrefab();
+                generatedTask.transform.position = diffFixPosition.position;
+                generatedTask.transform.SetParent(diffFixPosition);
+                generatedTask.GetComponent<TaskDifferential>().carController = this;
+                carTasks.Add(GameManager.CarTasks.DIFF_FIX);
                 createdTasksContainers.Add(generatedTask);
                 return;
         }
