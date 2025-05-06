@@ -15,11 +15,12 @@ public class GameManager : MonoBehaviour
     }
 
     // Tasks para los autos.
-    [SerializeField] GameObject oilTaskPrefab;
-    [SerializeField] GameObject motorTaskPrefab;
-    [SerializeField] GameObject wheelTaskPrefab;
-    [SerializeField] GameObject batteryTaskPrefab;
-    [SerializeField] GameObject fixDiffTaskPrefab;
+    [SerializeField] TaskPrefabContainerSO tasksData;
+    GameObject oilTaskPrefab;
+    GameObject motorTaskPrefab;
+    GameObject wheelTaskPrefab;
+    GameObject batteryTaskPrefab;
+    GameObject fixDiffTaskPrefab;
     [SerializeField] LevelProperties levelProperties;
     [SerializeField] CarListSO carListSO;
 
@@ -59,7 +60,17 @@ public class GameManager : MonoBehaviour
         // NO TOCAR!
         PlayerConfigurationManager.Instance.SwitchInputMethod(true);
         // Cargamos los autos para este nivel usando el la lista correspondiente y la data del nivel
-        carPrefabs = GetCarsForThisLevel();   
+        carPrefabs = GetCarsForThisLevel();
+        // Cargamos los prefabs de las tasks
+        LoadTasksData();
+    }
+
+    private void LoadTasksData() {
+        oilTaskPrefab = tasksData.oilTaskPrefab;
+        motorTaskPrefab= tasksData.motorTaskPrefab;
+        wheelTaskPrefab = tasksData.wheelTaskPrefab;
+        batteryTaskPrefab = tasksData.batteryTaskPrefab;
+        fixDiffTaskPrefab = tasksData.fixDiffTaskPrefab;
     }
 
     public void GenerateCar()

@@ -44,11 +44,18 @@ public class SoundManager : MonoBehaviour
         DisasterManager.OnOilSpillsSpawned += OnOilSPillsSpawned;
         OilSplatter.OnOilSpillCleaning += OnOilSpillCleaning;
         DisasterManager.OnDiscoNight += OnDiscoNight;
-        MotorTool.OnDrillUsed += OnDrillUsed;
-        TaskDifferential.OnFixingDiff += OnDrillUsed;
+        MotorTool.OnDrillUsed += OnDrillUsedMotorTool;
+        TaskDifferential.OnFixingDiff += OnDrillUsedCar;
     }
 
-    private void OnDrillUsed(object sender, System.EventArgs e)
+    private void OnDrillUsedCar(object sender, System.EventArgs e)
+    {
+        TaskDifferential taskDiff = sender as TaskDifferential;
+        // CAMBIAR X SONIDOS POSTA
+        PlaySound(audioClipRefsSO.drill, taskDiff.transform.position);
+    }
+
+    private void OnDrillUsedMotorTool(object sender, System.EventArgs e)
     {
         MotorTool motorTool = sender as MotorTool;
         // CAMBIAR X SONIDOS POSTA
@@ -227,7 +234,7 @@ public class SoundManager : MonoBehaviour
         DisasterManager.OnOilSpillsSpawned -= OnOilSPillsSpawned;
         OilSplatter.OnOilSpillCleaning -= OnOilSpillCleaning;
         DisasterManager.OnDiscoNight -= OnDiscoNight;
-        MotorTool.OnDrillUsed -= OnDrillUsed;
-        TaskDifferential.OnFixingDiff -= OnDrillUsed;
+        MotorTool.OnDrillUsed -= OnDrillUsedMotorTool;
+        TaskDifferential.OnFixingDiff -= OnDrillUsedCar;
     }
 }
