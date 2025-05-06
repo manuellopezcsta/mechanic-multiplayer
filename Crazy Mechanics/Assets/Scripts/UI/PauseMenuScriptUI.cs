@@ -18,14 +18,18 @@ public class PauseMenuScriptUI : MonoBehaviour
 
     [SerializeField] private TutorialManager tutorialManager;
 
+
+    // EL CALCULO DE VOLUMEN SE REALIZA USANDO UNA POTENCIA PARA QUE SUENE MEJOR EL CAMBIO AL OIDO HUMANO.
     private void ChangeMusicVolume(float newVolume)
     {
-        SoundManager.Instance.ChangeVolume(newVolume);
+        float correctVolume = Mathf.Pow(newVolume, 1.5f);
+        SoundManager.Instance.ChangeVolume(correctVolume);
     }
 
     private void ChangeSfxVolume(float newVolume)
     {
-        SoundManager.Instance.ChangeVolumeSfx(newVolume);
+        float correctVolume = Mathf.Pow(newVolume, 1.5f);
+        SoundManager.Instance.ChangeVolumeSfx(correctVolume);
     }
 
     private void Start()

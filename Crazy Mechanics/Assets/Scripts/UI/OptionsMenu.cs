@@ -8,7 +8,7 @@ public class OptionsMenu : MonoBehaviour
     [SerializeField] private Slider musicSlider;
     [SerializeField] private Slider sfxSlider;
 
-
+    // EL CALCULO DE VOLUMEN SE REALIZA USANDO UNA POTENCIA PARA QUE SUENE MEJOR EL CAMBIO AL OIDO HUMANO.
 
     void Start()
     {
@@ -27,12 +27,14 @@ public class OptionsMenu : MonoBehaviour
     private void ChangeMusicVolume(float newVolume)
     {
         //llamamos al sound manager para que efectue el cambio de volumen
-        SoundManager.Instance.ChangeVolume(newVolume);
+        float correctVolume = Mathf.Pow(newVolume, 1.5f);
+        SoundManager.Instance.ChangeVolume(correctVolume);
     }
 
     private void ChangeSfxVolume(float newVolume)
     {
         //llamamos al sound manager para que efectue el cambio de volumen
-        SoundManager.Instance.ChangeVolumeSfx(newVolume);
+        float correctVolume = Mathf.Pow(newVolume, 1.5f);
+        SoundManager.Instance.ChangeVolumeSfx(correctVolume);
     }
 }

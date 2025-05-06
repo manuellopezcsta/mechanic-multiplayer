@@ -20,6 +20,7 @@ public class SoundManager : MonoBehaviour
     private void Awake() {
         Instance = this;
 
+        // Cargamos los valores del player pref y los aplicamos
         musicVolume = PlayerPrefs.GetFloat(PLAYER_PREFS_MUSIC_VOLUME, .3f);
         musicSource.volume = musicVolume;
         sfxVolume = PlayerPrefs.GetFloat(PLAYER_PREFS_SOUND_EFFECTS_VOLUME, 1f);
