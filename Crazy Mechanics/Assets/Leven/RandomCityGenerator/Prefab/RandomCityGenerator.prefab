@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6094411601023271968
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6094411601023271970}
+  - component: {fileID: 6094411601023271971}
+  m_Layer: 0
+  m_Name: RandomCityGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6094411601023271970
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6094411601023271968}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6094411601023271971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6094411601023271968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb4122e2ce13f1545b8f95a79e7006e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CitySize: 22
+  CellSize: 9
+  Building:
+  - {fileID: 5998534570419861420, guid: 070c4494d52dff7448fbef2cbd566dec, type: 3}
+  - {fileID: 228881794849328506, guid: f9b7739db737d5d41b811e85dbe65763, type: 3}
+  - {fileID: 9097863429199409120, guid: 9bf9061da3efc6b468a09aaeca564339, type: 3}
+  - {fileID: 8907479052320818836, guid: b35e185306a299f40a391c8fe48a9fe8, type: 3}
+  - {fileID: 9135573041986428736, guid: bb7c6e0e49e40954bbc6ee16f412732d, type: 3}
+  - {fileID: 1483942116519325367, guid: ed229fa2c61257d449afecee0b17d122, type: 3}
+  - {fileID: 7587327498966289556, guid: ab4e5b16bad945540a4f6fca76af5206, type: 3}
+  - {fileID: 1131897828885510803, guid: 22ed281d6ee7add40a986df58119cdcc, type: 3}
+  Garden:
+  - {fileID: 1920446360569729730, guid: 67428d0d4a90bb240a1917302e283598, type: 3}
+  - {fileID: 8560921349527450335, guid: f683fe412f7261244a7e3b3fb2eed935, type: 3}
+  - {fileID: 6325765092442922084, guid: 011b81d02b163554082599c93c863361, type: 3}
+  Road:
+  - {fileID: 3351296000541661199, guid: e6098ca422b6454408a460e49bb20cef, type: 3}
+  - {fileID: 5179983800072094805, guid: bf6b3f884dec1664781c88988d9ebfb1, type: 3}
+  - {fileID: 9028572611900660084, guid: 41ed8d97f39605442b9b8ecb3a9a17fd, type: 3}
+  - {fileID: 3635547717931047141, guid: 7ecd7199de570144cbc6becc53205855, type: 3}
