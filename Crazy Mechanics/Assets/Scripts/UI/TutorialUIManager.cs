@@ -24,6 +24,7 @@ public class TutorialUIManager : MonoBehaviour
 
         // Nos aseguramos que el menu de tutorial este apagado
         tutorialMenu.SetActive(false);
+        tutorialsButtons[0].Select();
     }
 
     private void BackOptions()
@@ -58,7 +59,5 @@ public class TutorialUIManager : MonoBehaviour
             tutorialMenu.SetActive(true);
         }
     } 
-
-
 
 }

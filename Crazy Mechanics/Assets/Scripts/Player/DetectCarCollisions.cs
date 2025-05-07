@@ -21,5 +21,11 @@ public class DetectCarCollisions : MonoBehaviour
             player.RespawnAtRandomPos();
             StartCoroutine(player.GetStunned());
         }
+        if(other.TryGetComponent<InvisibleHolder>(out InvisibleHolder invisibleHolder)){
+            if(invisibleHolder.flying && invisibleHolder.thrownBy != player){
+                StartCoroutine(player.GetStunned());
+            }
+        }
     }
+
 }

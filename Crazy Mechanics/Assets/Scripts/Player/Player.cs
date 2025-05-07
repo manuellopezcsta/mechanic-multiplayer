@@ -76,6 +76,8 @@ public class Player : MonoBehaviour, ICarObjectParent
         Transform holder = Instantiate(invisibleHolder);
         InvisibleHolder holderCounter = holder.GetComponent<InvisibleHolder>();
         holderCounter.thrownBy = this;
+        //Activa el estado flying despues de 0.1 segundos
+        StartCoroutine(holderCounter.SkipLaunchWindow());
         // Arreglamos la pos y rotacion
         holder.position = GetCarObjectFollowTransform().position;
         holder.rotation = transform.rotation;
@@ -220,13 +222,13 @@ public class Player : MonoBehaviour, ICarObjectParent
         }
 
         //Debug.Log(hit.gameObject.name);
-        if ( rb != null && rb.velocity.magnitude > stunTreshHold && hit.gameObject.TryGetComponent(out InvisibleHolder item) )
+        /*if ( rb != null && rb.velocity.magnitude > stunTreshHold && hit.gameObject.TryGetComponent(out InvisibleHolder item) )
         {
             if (item.thrownBy != this)
             {
                 StartCoroutine(GetStunned());
             }
-        }
+        }*/
     }
     private void SetSelectedCounter(BaseCounter selectedCounter)
     {

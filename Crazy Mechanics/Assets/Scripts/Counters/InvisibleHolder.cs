@@ -6,12 +6,23 @@ public class InvisibleHolder : BaseCounter
 {
     [SerializeField] private CarObject tool;
     public Player thrownBy;
+    public bool flying;
+    
+    private Rigidbody rb;
     void Start()
     {
         if (tool != null)
         {
             CreateTool();
         }
+        rb= GetComponent<Rigidbody>();
+    }
+    void Update()
+    {
+        if(rb.velocity == Vector3.zero && flying){
+            flying = false;
+        }
+
     }
     public override void Interact(Player player)
     {
@@ -41,5 +52,11 @@ public class InvisibleHolder : BaseCounter
     public void CreateTool()
     {
         SetCarObject(tool);
+    }
+
+    public IEnumerator SkipLaunchWindow(){
+        flying = false;
+        yield return new WaitForSeconds(0.1f);
+        flying = true;
     }
 }

@@ -2040,6 +2040,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2592b78f931283d479df6b465d812066, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isSliding: 0
+  slideDir: {x: 0, y: 0, z: 0}
   countersLayerMask:
     serializedVersion: 2
     m_Bits: 64
@@ -2056,7 +2058,7 @@ MonoBehaviour:
   canDash: 1
   dashCooldown: 3
   stunDuration: 2
-  stunTreshHold: 1
+  stunTreshHold: 0.1
 --- !u!143 &8025474308772073122
 CharacterController:
   m_ObjectHideFlags: 0
