@@ -16,7 +16,7 @@ public class PauseMenuScriptUI : MonoBehaviour
     [SerializeField] private Slider musicSlider;
     [SerializeField] private Slider sfxSlider;
 
-    [SerializeField] private TutorialManager tutorialManager;
+    [SerializeField] private TutorialUIManager tutorialUIManager;
 
 
     // EL CALCULO DE VOLUMEN SE REALIZA USANDO UNA POTENCIA PARA QUE SUENE MEJOR EL CAMBIO AL OIDO HUMANO.
@@ -83,7 +83,7 @@ public class PauseMenuScriptUI : MonoBehaviour
         resumeGameButton.onClick.AddListener(ResumeGame);
         restartLevelButton.onClick.AddListener(RestartLevel);
         exitToMainMenuButton.onClick.AddListener(GoToMainMenu);
-        tutorialLevelButton.onClick.AddListener(tutorialManager.SwitchStateTutorialMenu);
+        tutorialLevelButton.onClick.AddListener(tutorialUIManager.ChangeStateTutorialMenu);
         // Apagamos la pantalla de pausa al comienzo por las dudas
         pauseScreen.SetActive(false);
     }
