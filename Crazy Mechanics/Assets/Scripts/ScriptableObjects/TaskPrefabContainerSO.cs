@@ -10,4 +10,5 @@ public class TaskPrefabContainerSO : ScriptableObject
     public GameObject wheelTaskPrefab;
     public GameObject batteryTaskPrefab;
     public GameObject fixDiffTaskPrefab;
+    public GameObject unbendTaskPrefab;
 }

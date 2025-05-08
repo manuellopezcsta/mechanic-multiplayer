@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     GameObject wheelTaskPrefab;
     GameObject batteryTaskPrefab;
     GameObject fixDiffTaskPrefab;
+    GameObject unbendTaskPrefab;
     [SerializeField] LevelProperties levelProperties;
     [SerializeField] CarListSO carListSO;
 
@@ -53,6 +54,7 @@ public class GameManager : MonoBehaviour
         WHEEL_FIX_BL,
         BATTERY_CHARGE,
         DIFF_FIX,
+        UNBEND,
     }
 
     void Start()
@@ -71,6 +73,7 @@ public class GameManager : MonoBehaviour
         wheelTaskPrefab = tasksData.wheelTaskPrefab;
         batteryTaskPrefab = tasksData.batteryTaskPrefab;
         fixDiffTaskPrefab = tasksData.fixDiffTaskPrefab;
+        unbendTaskPrefab = tasksData.unbendTaskPrefab;
     }
 
     public void GenerateCar()
@@ -135,6 +138,10 @@ public class GameManager : MonoBehaviour
     public GameObject GetDiffTaskPrefab()
     {
         return Instantiate(fixDiffTaskPrefab);
+    }
+
+    public GameObject GetUnbendTaskPrefab(){
+        return Instantiate(unbendTaskPrefab);
     }
 
     public int GetTaskCount()

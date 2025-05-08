@@ -20,7 +20,7 @@ public class TaskDifferential : BaseCounter, IHasProgress
     public void Start()
     {
         stationManager = carController.GetCurrentStationManager();
-        Debug.Log("Current StationManager: " + stationManager);
+        //Debug.Log("Current StationManager: " + stationManager);
     }
 
     public override void Interact(Player player)
