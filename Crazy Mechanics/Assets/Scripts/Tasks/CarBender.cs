@@ -10,7 +10,7 @@ public class CarBender : MonoBehaviour
     private Deformable bendableObject; // El objeto a deformar
     private GameObject deformer; // El deformador
 
-    public float deformedNoiseValue = -0.2f;
+    public float deformedNoiseValue = -0.4f;
 
     void Awake()
     {
