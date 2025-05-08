@@ -1,0 +1,90 @@
+#pragma kernel FindVertexCS
+
+RWStructuredBuffer<float3> closestPoint;
+RWStructuredBuffer<float> hitDistanceToCamera;
+
+StructuredBuffer<float3> vertexBuffer;
+StructuredBuffer<int> triangleBuffer;
+
+float4 rayOrigin;
+float4 rayDirection;
+float4x4 worldToLocalMatrix;
+float minDistance;
+
+float epsilon;
+
+[numthreads(512,2,1)]
+void FindVertexCS(uint id : SV_DispatchThreadID)
+{
+    //x = 9 million
+    const int falseValue = 9000000;
+    closestPoint[id] = float3(falseValue ,0,0);
+
+    const float3 vert0 = vertexBuffer[triangleBuffer[3 * id]];
+    const float3 vert1 = vertexBuffer[triangleBuffer[3 * id + 1]];
+    const float3 vert2 = vertexBuffer[triangleBuffer[3 * id + 2]];
+    
+
+    const float3 origin = rayOrigin.xyz;
+    const float3 direction = rayDirection.xyz;
+    
+    //Compute intersection with triangle
+    const float3 tmp1 = vert1 - vert0;
+    const float3 tmp2 = vert2 - vert0;
+    float3 tmp4 = cross(direction, tmp2);
+
+    //Check if origin can see triangue
+    const float3 check1 = origin - vert0;
+    const float3 check2 = cross(tmp1, tmp2);
+    if(dot(check1,(check2)) < 0) return;
+
+    const float det = dot(tmp1, tmp4);
+    if (det < 1.401298E-45f)
+    {
+        return;
+    }
+
+    const float3 tmp3 = origin - vert0;
+    const float u = dot(tmp3, tmp4);
+
+    if (u < 0.0f || u > det)
+    {
+        return;
+    }
+
+    tmp4 = cross(tmp3, tmp1);
+
+    const float v = dot(direction, tmp4);
+
+    if (v < 0.0f || u + v > det)return;
+
+    float distanceToPoint = dot(tmp2, tmp4) * (1.0f / det);
+    hitDistanceToCamera[id] = distanceToPoint;
+
+    float3 hitPoint = origin + direction * distanceToPoint;
+
+    //Get the closest vertex to the point
+    const float distanceToVert0 = length(vert0 - hitPoint);
+    const float distanceToVert1 = length(vert1 - hitPoint);
+    const float distanceToVert2 = length(vert2 - hitPoint);
+
+    //Check the distance is valid
+    if(distanceToVert0 > minDistance && distanceToVert1 > minDistance && distanceToVert2 > minDistance)
+    {
+        return;
+    }
+
+    if (distanceToVert0 < distanceToVert1 && distanceToVert0 < distanceToVert2)
+    {
+        closestPoint[id] = vert0;
+    }
+    else if (distanceToVert1 < distanceToVert0 && distanceToVert1 < distanceToVert2)
+    {
+        closestPoint[id] = vert1;
+    }
+    else
+    {
+        closestPoint[id] = vert2;
+    }  
+    
+}

@@ -45,7 +45,7 @@ public class TutorialUIManager : MonoBehaviour
         for(int i = 0; i < tutorialsButtons.Length; i++) {
             int buttonIndex = i;
             tutorialsButtons[i].onClick.AddListener(() => ChangeSprite(buttonIndex));
-            Debug.Log(i);
+            //Debug.Log(i);
         }
     }
 
