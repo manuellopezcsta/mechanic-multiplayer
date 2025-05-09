@@ -155,6 +155,7 @@ Transform:
   - {fileID: 3341665927891885770}
   - {fileID: 6220872030476208850}
   - {fileID: 1233068555324087909}
+  - {fileID: 3753209169935504056}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!65 &3429064914702141428
@@ -244,6 +245,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6241cf9441c75874aa3761ee43fe2916, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deformedNoiseValue: -0.25
 --- !u!1 &1939321946049931444
 GameObject:
   m_ObjectHideFlags: 0
@@ -705,6 +707,41 @@ Transform:
   - {fileID: 543017188927831629}
   m_Father: {fileID: 6223406744156738532}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5112521383445200973
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3753209169935504056}
+  m_Layer: 8
+  m_Name: TrailsExhaustFXs
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3753209169935504056
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5112521383445200973}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3491669561048119687}
+  - {fileID: 6964995090780427746}
+  - {fileID: 6447466026735381981}
+  - {fileID: 1372103794403081571}
+  m_Father: {fileID: 6598543905417282741}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6271032642163949509
 GameObject:
   m_ObjectHideFlags: 0
@@ -1163,3 +1200,299 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6598543905417282741}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1623417938569306014
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 3753209169935504056}
+    m_Modifications:
+    - target: {fileID: 2806706791721379353, guid: 6b465f5cb84935f40a2b7f0db44c0edc,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.544
+      objectReference: {fileID: 0}
+    - target: {fileID: 2806706791721379353, guid: 6b465f5cb84935f40a2b7f0db44c0edc,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.343
+      objectReference: {fileID: 0}
+    - target: {fileID: 2806706791721379353, guid: 6b465f5cb84935f40a2b7f0db44c0edc,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.125
+      objectReference: {fileID: 0}
+    - target: {fileID: 2806706791721379353, guid: 6b465f5cb84935f40a2b7f0db44c0edc,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2806706791721379353, guid: 6b465f5cb84935f40a2b7f0db44c0edc,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2806706791721379353, guid: 6b465f5cb84935f40a2b7f0db44c0edc,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2806706791721379353, guid: 6b465f5cb84935f40a2b7f0db44c0edc,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2806706791721379353, guid: 6b465f5cb84935f40a2b7f0db44c0edc,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2806706791721379353, guid: 6b465f5cb84935f40a2b7f0db44c0edc,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 2806706791721379353, guid: 6b465f5cb84935f40a2b7f0db44c0edc,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2808363906050763513, guid: 6b465f5cb84935f40a2b7f0db44c0edc,
+        type: 3}
+      propertyPath: m_Name
+      value: FX_Trail_Exhaust_01 Variant
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6b465f5cb84935f40a2b7f0db44c0edc, type: 3}
+--- !u!4 &3491669561048119687 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2806706791721379353, guid: 6b465f5cb84935f40a2b7f0db44c0edc,
+    type: 3}
+  m_PrefabInstance: {fileID: 1623417938569306014}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &3889383661206166394
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 3753209169935504056}
+    m_Modifications:
+    - target: {fileID: 2806706791721379353, guid: 6b465f5cb84935f40a2b7f0db44c0edc,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.561
+      objectReference: {fileID: 0}
+    - target: {fileID: 2806706791721379353, guid: 6b465f5cb84935f40a2b7f0db44c0edc,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.343
+      objectReference: {fileID: 0}
+    - target: {fileID: 2806706791721379353, guid: 6b465f5cb84935f40a2b7f0db44c0edc,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.125
+      objectReference: {fileID: 0}
+    - target: {fileID: 2806706791721379353, guid: 6b465f5cb84935f40a2b7f0db44c0edc,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2806706791721379353, guid: 6b465f5cb84935f40a2b7f0db44c0edc,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2806706791721379353, guid: 6b465f5cb84935f40a2b7f0db44c0edc,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2806706791721379353, guid: 6b465f5cb84935f40a2b7f0db44c0edc,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2806706791721379353, guid: 6b465f5cb84935f40a2b7f0db44c0edc,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2806706791721379353, guid: 6b465f5cb84935f40a2b7f0db44c0edc,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 2806706791721379353, guid: 6b465f5cb84935f40a2b7f0db44c0edc,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2808363906050763513, guid: 6b465f5cb84935f40a2b7f0db44c0edc,
+        type: 3}
+      propertyPath: m_Name
+      value: FX_Trail_Exhaust_01 Variant (3)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6b465f5cb84935f40a2b7f0db44c0edc, type: 3}
+--- !u!4 &1372103794403081571 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2806706791721379353, guid: 6b465f5cb84935f40a2b7f0db44c0edc,
+    type: 3}
+  m_PrefabInstance: {fileID: 3889383661206166394}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5069873227635110907
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 3753209169935504056}
+    m_Modifications:
+    - target: {fileID: 2806706791721379353, guid: 6b465f5cb84935f40a2b7f0db44c0edc,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.409
+      objectReference: {fileID: 0}
+    - target: {fileID: 2806706791721379353, guid: 6b465f5cb84935f40a2b7f0db44c0edc,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.343
+      objectReference: {fileID: 0}
+    - target: {fileID: 2806706791721379353, guid: 6b465f5cb84935f40a2b7f0db44c0edc,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.125
+      objectReference: {fileID: 0}
+    - target: {fileID: 2806706791721379353, guid: 6b465f5cb84935f40a2b7f0db44c0edc,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2806706791721379353, guid: 6b465f5cb84935f40a2b7f0db44c0edc,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2806706791721379353, guid: 6b465f5cb84935f40a2b7f0db44c0edc,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2806706791721379353, guid: 6b465f5cb84935f40a2b7f0db44c0edc,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2806706791721379353, guid: 6b465f5cb84935f40a2b7f0db44c0edc,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2806706791721379353, guid: 6b465f5cb84935f40a2b7f0db44c0edc,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 2806706791721379353, guid: 6b465f5cb84935f40a2b7f0db44c0edc,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2808363906050763513, guid: 6b465f5cb84935f40a2b7f0db44c0edc,
+        type: 3}
+      propertyPath: m_Name
+      value: FX_Trail_Exhaust_01 Variant (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6b465f5cb84935f40a2b7f0db44c0edc, type: 3}
+--- !u!4 &6964995090780427746 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2806706791721379353, guid: 6b465f5cb84935f40a2b7f0db44c0edc,
+    type: 3}
+  m_PrefabInstance: {fileID: 5069873227635110907}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &9189996104463977412
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 3753209169935504056}
+    m_Modifications:
+    - target: {fileID: 2806706791721379353, guid: 6b465f5cb84935f40a2b7f0db44c0edc,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.41600004
+      objectReference: {fileID: 0}
+    - target: {fileID: 2806706791721379353, guid: 6b465f5cb84935f40a2b7f0db44c0edc,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.343
+      objectReference: {fileID: 0}
+    - target: {fileID: 2806706791721379353, guid: 6b465f5cb84935f40a2b7f0db44c0edc,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.125
+      objectReference: {fileID: 0}
+    - target: {fileID: 2806706791721379353, guid: 6b465f5cb84935f40a2b7f0db44c0edc,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2806706791721379353, guid: 6b465f5cb84935f40a2b7f0db44c0edc,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2806706791721379353, guid: 6b465f5cb84935f40a2b7f0db44c0edc,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2806706791721379353, guid: 6b465f5cb84935f40a2b7f0db44c0edc,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2806706791721379353, guid: 6b465f5cb84935f40a2b7f0db44c0edc,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2806706791721379353, guid: 6b465f5cb84935f40a2b7f0db44c0edc,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 2806706791721379353, guid: 6b465f5cb84935f40a2b7f0db44c0edc,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2808363906050763513, guid: 6b465f5cb84935f40a2b7f0db44c0edc,
+        type: 3}
+      propertyPath: m_Name
+      value: FX_Trail_Exhaust_01 Variant (2)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6b465f5cb84935f40a2b7f0db44c0edc, type: 3}
+--- !u!4 &6447466026735381981 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2806706791721379353, guid: 6b465f5cb84935f40a2b7f0db44c0edc,
+    type: 3}
+  m_PrefabInstance: {fileID: 9189996104463977412}
+  m_PrefabAsset: {fileID: 0}

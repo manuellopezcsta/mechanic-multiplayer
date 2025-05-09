@@ -10,7 +10,7 @@ public class CarBender : MonoBehaviour
     private Deformable bendableObject; // El objeto a deformar
     private GameObject deformer; // El deformador
 
-    public float deformedNoiseValue = -0.4f;
+    public float deformedNoiseValue = -0.25f;
 
     void Awake()
     {
@@ -33,7 +33,8 @@ public class CarBender : MonoBehaviour
         //Agrego deformer basado en ruido de Perlin al objeto
         deformer = new GameObject("Deformer", typeof(PerlinNoiseDeformer)); 
         //Modifico valor de magnitud del ruido de perlin para generar efecto de abolladura
-        deformer.GetComponent<PerlinNoiseDeformer>().MagnitudeScalar = deformedNoiseValue; 
+        deformer.GetComponent<PerlinNoiseDeformer>().MagnitudeScalar = deformedNoiseValue;
+        deformer.GetComponent<PerlinNoiseDeformer>().FrequencyScalar = 1;
         bendableObject.AddDeformer(deformer.GetComponent<Deformer>());
         deformer.transform.parent = transform;
     }
