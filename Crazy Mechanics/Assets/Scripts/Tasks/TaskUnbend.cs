@@ -15,6 +15,7 @@ public class TaskUnbend : BaseCounter, IHasProgress
     [SerializeField] private int fixingProgressMax = 10;
     private CurrentStationManager stationManager;
     private CarBender carBender;
+    bool taskComplete;
 
     //public static event EventHandler OnFixingDiff;
     public event EventHandler<IHasProgress.OnProgressChangedEventArgs> OnProgressChanged;
@@ -42,12 +43,15 @@ public class TaskUnbend : BaseCounter, IHasProgress
             });
         }
         // Si se termino de arreglar.
-        if(fixingProgress == fixingProgressMax){
+        if(fixingProgress == fixingProgressMax && !taskComplete){
+            taskComplete = true;
             //Agregamos el puntaje 
             carController.AddScoreTask(score); 
             //Se setea la tarea como completada
             indicatorUI.SetAsComplete(); 
             carController.CompleteTask(); 
+            //Apagamos el collider para que no moleste para otras tasks
+            transform.GetComponent<BoxCollider>().enabled = false;
         }
     }
 

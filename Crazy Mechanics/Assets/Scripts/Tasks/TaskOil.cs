@@ -59,6 +59,8 @@ public class TaskOil : BaseCounter
                     carController.CompleteTask();
                     // Destruimos el obj del aceite para que no se vea.
                     GetCarObject().DestroySelf();
+                    //Apagamos el collider para que no moleste para otras tasks
+                    transform.GetComponent<BoxCollider>().enabled = false;
                 }
             }
             else // Logica para sacar el aceite Sucio del auto.

@@ -49,18 +49,24 @@ public class TaskWheel : BaseCounter
                 ComboManager.Instance.UpdateCombo();
                 // El player tiene algo en la mano
                 player.GetCarObject().SetCarObjectParent(this);
+                // Prendemos la visual de la rueda arreglada y destruimos el gameObject.
+                transform.parent.gameObject.GetComponent<MeshRenderer>().enabled = true;
+                GetCarObject().DestroySelf();
                 // Hacemos sonido
                 SoundManager.Instance.PlayObjectDroppedSound(transform);
                 taskComplete = true;
                 carController.AddScoreTask(score);
                 indicatorUI.SetAsComplete();
                 carController.CompleteTask();
+                //Apagamos el collider para que no moleste para otras tasks
+                transform.GetComponent<BoxCollider>().enabled = false;
             }
         } else {
             // Logica para sacar la rueda del auto.
             if(!player.HasCarObject() && !taskComplete) {
                 ComboManager.Instance.UpdateCombo();
                 GetCarObject().SetCarObjectParent(player);
+                SpawnLimitManager.Instance.ModifySpawnedCounter(wheel.GetObjectSO().name, 1);
             } 
         }
     }

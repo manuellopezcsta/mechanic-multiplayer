@@ -47,6 +47,8 @@ public class TaskMotor : BaseCounter
                     motorTool.FinishFixing();
                     // Lo borramos x las dudas 
                     Destroy(GetCarObject().gameObject);
+                    //Apagamos el collider para que no moleste para otras tasks
+                    transform.GetComponent<BoxCollider>().enabled = false;
                 }
             }
             else // Logica para sacar algo

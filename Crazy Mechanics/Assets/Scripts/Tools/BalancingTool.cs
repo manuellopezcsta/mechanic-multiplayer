@@ -25,6 +25,7 @@ public class BalacingTool : BaseCounter, IHasProgress
     [SerializeField] private ObjectsSO balancedWheel;
     [SerializeField] private bool taskComplete;
     [SerializeField] private float balancingTimerMax;
+    private int spawnLimit; // Limite de ruedas balanceadas que se pueden spawnear.
 
     private float balancingTimer;
 
@@ -61,7 +62,7 @@ public class BalacingTool : BaseCounter, IHasProgress
         else
         {
             // There is a car obj here already.
-            if (!player.HasCarObject())
+            if (!player.HasCarObject() &&  spawnLimit >= SpawnLimitManager.Instance.GetSpawnedItemsCount(balancedWheel.name))
             {
                 GetCarObject().SetCarObjectParent(player);
                 state = State.Idle;
@@ -82,6 +83,7 @@ public class BalacingTool : BaseCounter, IHasProgress
     private void Start()
     {
         state = State.Idle;
+        spawnLimit = SpawnLimitManager.Instance.GetItemSpawnLimit(balancedWheel.name);
     }
 
     private void Update()
@@ -108,6 +110,7 @@ public class BalacingTool : BaseCounter, IHasProgress
                         // Destruyo la vieja y coloco la nueva.
                         GetCarObject().DestroySelf();
                         CarObject.SpawnKitchenObject(balancedWheel, this);
+                        SpawnLimitManager.Instance.ModifySpawnedCounter(balancedWheel.name, 1);
                         state = State.Done;
                         OnStateChanged?.Invoke(this, new OnStateChangedEventArgs
                         {

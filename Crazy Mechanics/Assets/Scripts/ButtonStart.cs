@@ -10,7 +10,7 @@ public class ButtonStart : BaseCounter
         if (GameManager.Instance.CanSpawnCar())
         {
             //Random de task que tendra el auto
-            int randomTasks = Random.Range(1, GameManager.Instance.GetTaskCount());
+            //int randomTasks = Random.Range(1, GameManager.Instance.GetTaskCount());
             //Debug.Log("Cantidad de task en auto " + randomTasks);
             //GameManager.Instance.GenerateCar(randomTasks);
             GameManager.Instance.GenerateCar(); // Para debugear mas facil.

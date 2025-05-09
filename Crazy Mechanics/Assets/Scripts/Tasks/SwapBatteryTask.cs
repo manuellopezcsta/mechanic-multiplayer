@@ -40,6 +40,8 @@ public class SwapBatteryTask : BaseCounter
                 carController.AddScoreTask(score);
                 indicatorUI.SetAsComplete();
                 carController.CompleteTask();
+                //Apagamos el collider para que no moleste para otras tasks
+                transform.GetComponent<BoxCollider>().enabled = false;
             } 
         } else {
             // There is a car obj here already.
