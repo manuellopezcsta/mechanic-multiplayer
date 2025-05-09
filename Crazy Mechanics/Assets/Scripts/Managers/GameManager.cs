@@ -80,10 +80,11 @@ public class GameManager : MonoBehaviour
     {
         // Elijo un auto random de los que tengo
         int index = UnityEngine.Random.Range(0, carPrefabs.Length);
-        GameObject car = Instantiate(carPrefabs[index]);
+        // Esto se va a romper cuando haya mas de 1 elevador... Xq no checkea si esta libre solo lo spawnea en el random..
         int elevatorNumber = UnityEngine.Random.Range(0, positionInstanciateCars.Length);
+        GameObject car = Instantiate(carPrefabs[index], positionInstanciateCars[elevatorNumber].transform.position, Quaternion.Euler(0, 180, 0));
         // Le asigno la posicion de spawneo y su stationManager.
-        car.transform.position = positionInstanciateCars[elevatorNumber].transform.position;
+        //car.transform.position = positionInstanciateCars[elevatorNumber].transform.position;
         CarController controller = car.GetComponent<CarController>();
         controller.SetCurrentStationManager(stations[elevatorNumber]);
         // Le asignamos el station para bloquear spawns.
