@@ -54,7 +54,7 @@ public class PlayerConfigurationManager : MonoBehaviour
         if (playerConfigs.Count == playerConfigs.Count(p => p.IsReady == true))
         {
             // Cargamos la escena que corresponde
-            Loader.Load(Loader.Scene.TestDemo);
+            Loader.Load(Loader.Scene.TestDemo1);
         }
     }
 

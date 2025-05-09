@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
     public static List<PlayerInputHandler> inputHandlersList = new List<PlayerInputHandler>();
 
     public Transform[] playerSpawns;
-
+    [SerializeField] private Transform lostAndFound;
     public static event EventHandler OnCarSpawned;
 
     public enum CarTasks
@@ -215,6 +215,10 @@ public class GameManager : MonoBehaviour
         foreach(PlayerInputHandler inputHandler in inputHandlersList) {
             inputHandler.UnsuscribeController();
         }
+    }
+
+    public Transform GetLostAndFoundPosition(){
+        return lostAndFound;
     }
 
 }

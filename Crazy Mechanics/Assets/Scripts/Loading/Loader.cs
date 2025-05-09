@@ -13,6 +13,7 @@ public static class Loader
         Menu,
         CharacterSelect,
         TestDemo,
+        TestDemo1,
         WorldSelect,
         WorldSelectTesting,
         Loading
