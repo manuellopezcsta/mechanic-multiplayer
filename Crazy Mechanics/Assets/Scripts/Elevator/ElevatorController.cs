@@ -17,7 +17,6 @@ public class ElevatorController : MonoBehaviour
     {
         public bool isMoving;
     }
-
     public void ChangeFloorElevator()
     {
         CurrentStationManager csm = GetComponent<CurrentStationManager>();
@@ -29,14 +28,17 @@ public class ElevatorController : MonoBehaviour
             {
                 case 0:
                     nextFloor = 1;
+                    csm.currentCar.bottomCar.enabled = false;
                     Debug.Log("Piso temporal" + nextFloor);
                     break;
                 case 1:
                     nextFloor = 2;
+                    csm.currentCar.bottomCar.enabled = false;
                     Debug.Log("Piso temporal" + nextFloor);
                     break;
                 case 2:
                     nextFloor = 0;
+                    csm.currentCar.bottomCar.enabled = true;
                     Debug.Log("Piso temporal" + nextFloor);
                     break;
             }

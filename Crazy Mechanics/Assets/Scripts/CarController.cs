@@ -35,6 +35,8 @@ public class CarController : MonoBehaviour
     private List<GameObject> createdTasksContainers = new List<GameObject>();
 
     private int completedTasksCounter = 0;
+
+    [SerializeField] public BoxCollider bottomCar;
     void Update()
     {
         if (canMove)

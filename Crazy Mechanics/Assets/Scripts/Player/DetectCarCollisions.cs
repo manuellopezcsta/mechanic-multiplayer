@@ -6,6 +6,7 @@ public class DetectCarCollisions : MonoBehaviour
 {
     private Player player;
     const string CAR_TAG = "Car";
+    const string BOTTOM_CAR = "BottomCar";
 
     private void Start()
     {
@@ -25,6 +26,11 @@ public class DetectCarCollisions : MonoBehaviour
             if(invisibleHolder.flying && invisibleHolder.thrownBy != player){
                 StartCoroutine(player.GetStunned());
             }
+        }
+        if(other.CompareTag(BOTTOM_CAR)){
+            Debug.Log("Entro en trigger");
+            player.RespawnAtRandomPos();
+            StartCoroutine(player.GetStunned());
         }
     }
 
