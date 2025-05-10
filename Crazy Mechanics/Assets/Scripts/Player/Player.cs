@@ -42,7 +42,6 @@ public class Player : MonoBehaviour, ICarObjectParent
     private Vector2 inputVector = Vector2.zero;
     public float speed = 7f;
     private Vector3 moveDir;
-    private Vector3 orientationPlayer;
 
     //Dash
     [Header("Dash")]
@@ -112,7 +111,6 @@ public class Player : MonoBehaviour, ICarObjectParent
         // Capturamos al vector desde GameImput y se lo aplicamos al char controller.
         //Vector2 inputVector = gameInput.GetMovementVectorNormalized();
         moveDir = new Vector3(inputVector.x, 0f, inputVector.y);
-        orientationPlayer = moveDir;
 
         if (invertControls){
             moveDir *= -1;
