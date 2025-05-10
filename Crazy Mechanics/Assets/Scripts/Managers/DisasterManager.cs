@@ -76,8 +76,11 @@ public class DisasterManager : MonoBehaviour
             int time = UnityEngine.Random.Range(minTimer, maxTimer);
             // Elegimos un num random de los disponibles.
             DisasterType type = (DisasterType)UnityEngine.Random.Range(0, Enum.GetNames(typeof(DisasterType)).Length);
-            StartCoroutine(WaitAndTriggerDisaster(time, type));
-            disasterHappening = true;
+            if (levelProperties.disasterTypes.Contains(type))
+            {
+                StartCoroutine(WaitAndTriggerDisaster(time, type));
+                disasterHappening = true;
+            }
         }
     }
 
@@ -156,15 +159,18 @@ public class DisasterManager : MonoBehaviour
         StartCoroutine(ReturnPlayerToNormalControls());
     }
 
-    public void TriggerOilSpillsDisaster() {
+    public void TriggerOilSpillsDisaster()
+    {
         int ammount = UnityEngine.Random.Range(1, oilSpawnPosition.Count);
         List<int> shuffledIndexes = Tools.GetShuffledIndexes(oilSpawnPosition.Count);
 
-        for(int i = 0; i < ammount; i++) {
+        for (int i = 0; i < ammount; i++)
+        {
             int index = shuffledIndexes[i];
 
             // Si ya existe un aceite aca, no lo spawneamos.
-            if(oilSpawnPosition[index].childCount > 0) {
+            if (oilSpawnPosition[index].childCount > 0)
+            {
                 continue;
             }
 
