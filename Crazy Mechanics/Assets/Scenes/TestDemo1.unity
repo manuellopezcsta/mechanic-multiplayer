@@ -4151,6 +4151,7 @@ GameObject:
   - component: {fileID: 699865719}
   - component: {fileID: 699865723}
   - component: {fileID: 699865724}
+  - component: {fileID: 699865725}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -4268,13 +4269,6 @@ MonoBehaviour:
   musicSlider: {fileID: 2036325139}
   sfxSlider: {fileID: 1139573071}
   tutorialUIManager: {fileID: 699865724}
-  initialTutorial: 0
-  backTutorialButton: {fileID: 1125110328}
-  initialTutorialPanel: {fileID: 590833480}
-  uiPlayer:
-  - {fileID: 7429216446568877902}
-  - {fileID: 301519046}
-  - {fileID: 1276996059}
 --- !u!114 &699865724
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4298,6 +4292,25 @@ MonoBehaviour:
   tutorialScreen: {fileID: 467303322}
   tutorialMenu: {fileID: 778606630}
   backOptionsButton: {fileID: 1075369814}
+--- !u!114 &699865725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 699865718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4eed7f50fcc66a74994ddbeedfd6542f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hasATutorial: 0
+  backTutorialButton: {fileID: 1125110328}
+  initialTutorialPanel: {fileID: 590833480}
+  uiPlayer:
+  - {fileID: 7429216446568877902}
+  - {fileID: 301519046}
+  - {fileID: 1276996059}
 --- !u!1 &738846650
 GameObject:
   m_ObjectHideFlags: 0
@@ -6374,7 +6387,7 @@ GameObject:
   - component: {fileID: 1125110329}
   - component: {fileID: 1125110328}
   m_Layer: 5
-  m_Name: Button
+  m_Name: BackTutorialButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

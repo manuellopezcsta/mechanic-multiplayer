@@ -18,14 +18,6 @@ public class PauseMenuScriptUI : MonoBehaviour
 
     [SerializeField] private TutorialUIManager tutorialUIManager;
 
-    [Header("Settings initial tutorial")]
-    [SerializeField] private bool initialTutorial;
-    [SerializeField] private Button backTutorialButton;
-    [SerializeField] private GameObject initialTutorialPanel;
-
-    //Aca guardaremos los objetos del panel que se apagaran cuando exista un tutorial inicial y se prenderan sino
-    [SerializeField] private GameObject[] uiPlayer;
-
 
     // EL CALCULO DE VOLUMEN SE REALIZA USANDO UNA POTENCIA PARA QUE SUENE MEJOR EL CAMBIO AL OIDO HUMANO.
     private void ChangeMusicVolume(float newVolume)
@@ -42,18 +34,6 @@ public class PauseMenuScriptUI : MonoBehaviour
 
     private void Start()
     {
-
-        if(initialTutorial){
-            Time.timeScale = 0f;
-            changeObjectValue(false);
-            initialTutorialPanel.SetActive(true);
-            backTutorialButton.Select();
-
-        }else{
-            changeObjectValue(true);
-            initialTutorialPanel.SetActive(false);
-        }
-
         // Tomamos el valor guardado del volumen y movemos el puntito del slider para que encaje
 
         musicSlider.value = SoundManager.Instance.GetMusicVolume();
@@ -96,19 +76,7 @@ public class PauseMenuScriptUI : MonoBehaviour
         PlayerConfigurationManager.Instance.SelfDestruct();
         Loader.Load(Loader.Scene.Menu);
     }
-    private void backTutorialStart()
-    {
-        //Prendemos la interface, desactivamos el panel y damos comienzo al juego
-        changeObjectValue(true);
-        initialTutorialPanel.SetActive(false);
-        Time.timeScale = 1f; //Ponemos el tiempo a velocidad normal nuevamente
-    }
-    private void changeObjectValue(bool value){
-        //Prendemos o apagamos los objetos de la interface que se encuentran agregador en uiPlayer
-        foreach(GameObject ui in uiPlayer){
-            ui.SetActive(value);
-        }
-    }
+
     private void Awake()
     {
         // Creamos los eventos al momento de interactuar con los botones
@@ -116,7 +84,6 @@ public class PauseMenuScriptUI : MonoBehaviour
         restartLevelButton.onClick.AddListener(RestartLevel);
         exitToMainMenuButton.onClick.AddListener(GoToMainMenu);
         tutorialLevelButton.onClick.AddListener(tutorialUIManager.ChangeStateTutorialMenu);
-        backTutorialButton.onClick.AddListener(backTutorialStart);
         // Apagamos la pantalla de pausa al comienzo por las dudas
         pauseScreen.SetActive(false);
     }

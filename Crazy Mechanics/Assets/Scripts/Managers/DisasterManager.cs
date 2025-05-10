@@ -54,7 +54,7 @@ public class DisasterManager : MonoBehaviour
     public enum DisasterType
     {
         LightBox, // Done
-        Wind,
+        Wind, // Done
         OilStains, // Done
         MysteryBox, // Done
         DiscoNight // Done
@@ -75,12 +75,11 @@ public class DisasterManager : MonoBehaviour
             // Generamos un time random, basado en el min y max del nivel
             int time = UnityEngine.Random.Range(minTimer, maxTimer);
             // Elegimos un num random de los disponibles.
-            DisasterType type = (DisasterType)UnityEngine.Random.Range(0, Enum.GetNames(typeof(DisasterType)).Length);
-            if (levelProperties.disasterTypes.Contains(type))
-            {
-                StartCoroutine(WaitAndTriggerDisaster(time, type));
-                disasterHappening = true;
-            }
+            LevelProperties levelProperties = GameManager.Instance.GetLevelProperties();
+            DisasterType type = levelProperties.disasterTypes[UnityEngine.Random.Range(0, levelProperties.disasterTypes.Count)];
+            //DisasterType type = (DisasterType)UnityEngine.Random.Range(0, Enum.GetNames(typeof(DisasterType)).Length);
+            StartCoroutine(WaitAndTriggerDisaster(time, type));
+            disasterHappening = true;
         }
     }
 

@@ -28,5 +28,8 @@ public class LevelProperties : ScriptableObject
     public List<DisasterManager.DisasterType> disasterTypes = new List<DisasterManager.DisasterType>();
     public int disasterMinTimer;
     public int disasterMaxTimer;
+    [Header("Level Tutorial Data")]
+    public bool hasTutorial;
+    public Sprite tutorialImage;
     
 }
