@@ -9,6 +9,7 @@ public class InvisibleHolder : BaseCounter
     public bool flying;
     private Rigidbody rb;
     [SerializeField] private Vector3 spawn;
+    const string EXIT_MAP_TAG = "ExitMap";
     void Start()
     {
         if (tool != null)
@@ -62,8 +63,8 @@ public class InvisibleHolder : BaseCounter
     }
     void OnTriggerExit(Collider other)
     {
-        if(other.CompareTag("ExitMap")){
-            Debug.Log(thrownBy.GetLastInteractDir());
+        if(other.CompareTag(EXIT_MAP_TAG)){
+            //Debug.Log(thrownBy.GetLastInteractDir());
             //transform.position = thrownBy.transform.position - (thrownBy.GetLastInteractDir() * 2);
             transform.position = spawn;
             rb.velocity = Vector3.zero;

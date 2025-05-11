@@ -145,11 +145,8 @@ public class GameManager : MonoBehaviour
         return Instantiate(unbendTaskPrefab);
     }
 
-    public int GetTaskCount()
-    {
-        return Enum.GetValues(typeof(CarTasks)).Length;
-    }
-
+    // Elije una de las tareas aletorias de la lista de levelPropeties.
+    // Evita que las tareas se repitan
     public List<CarTasks> ChooseRandomTasks(int ammount)
     {
         if (ammount < 1 || ammount > Enum.GetValues(typeof(CarTasks)).Length)

@@ -52,7 +52,6 @@ public class Player : MonoBehaviour, ICarObjectParent
     // Para el stun
     private bool stunned;
     [SerializeField] float stunDuration = 2f;
-    [SerializeField] private float stunTreshHold;
 
 
     private void Awake()
@@ -203,7 +202,7 @@ public class Player : MonoBehaviour, ICarObjectParent
         }
     }
 
-    // Para empujar la pluma y manejar el stun
+    // Para empujar la pluma 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
         Rigidbody rb = hit.collider.attachedRigidbody;

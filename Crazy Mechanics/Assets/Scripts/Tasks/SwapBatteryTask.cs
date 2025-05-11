@@ -21,8 +21,6 @@ public class SwapBatteryTask : BaseCounter
     }
     public override void Interact(Player player)
     {
-        CurrentStationManager stationManager = carController.GetCurrentStationManager();
-
         //Debug.Log("Interactua con bateria");
         // Logica para dejar objetos
         if (!HasCarObject()) {

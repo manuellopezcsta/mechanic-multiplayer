@@ -12,6 +12,8 @@ public class TaskWheel : BaseCounter
     [SerializeField] TaskIndicatorUI indicatorUI;
     [SerializeField] private int score;
 
+    CurrentStationManager stationManager;
+
 
 
     private void Start() {
@@ -34,12 +36,12 @@ public class TaskWheel : BaseCounter
 
         // Apagamos el mesh de las ruedas del auto del prefab para que solo se vean las ruedas instanciadas.
         transform.parent.gameObject.GetComponent<MeshRenderer>().enabled = false;
+
+        stationManager = carController.GetCurrentStationManager();
     }
 
     public override void Interact(Player player)
-    {
-        CurrentStationManager stationManager = carController.GetCurrentStationManager();
-        
+    {   
         //Debug.Log("EntroAlInteract");
 
         // Logica para dejar objetos

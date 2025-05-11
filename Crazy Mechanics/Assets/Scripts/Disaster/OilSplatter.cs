@@ -65,6 +65,4 @@ public class OilSplatter : BaseCounter, IHasProgress
             Destroy(gameObject);
         }
     }
-
-
 }

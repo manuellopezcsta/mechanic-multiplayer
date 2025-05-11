@@ -19,12 +19,15 @@ public class TaskOil : BaseCounter
 
     public static event EventHandler OnOilDraining;
     public static event EventHandler OnAddingOil;
+    private CurrentStationManager stationManager;
 
-
+    void Start()
+    {
+        stationManager = carController.GetCurrentStationManager();   
+    }
 
     public override void Interact(Player player)
     {
-        CurrentStationManager stationManager = carController.GetCurrentStationManager();
         bool isOnFloorOne = stationManager.GetCurrentElevatorFloor() == 1;
         bool isOnGroundFloor = stationManager.GetCurrentElevatorFloor() == 0;
         if (!taskComplete)
@@ -72,7 +75,6 @@ public class TaskOil : BaseCounter
                     GetCarObject().SetCarObjectParent(player);
                     // Deslockeamos el elevador.
                     stationManager.LockAndUnlockElevator();
-
                 }
 
             }

@@ -1,9 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using Unity.VisualScripting;
-using UnityEngine.PlayerLoop;
+
 
 public class LightManager : MonoBehaviour
 {
@@ -29,24 +26,24 @@ public class LightManager : MonoBehaviour
     }*/
 
     private void ChangeEventLights()
-{
-    isActive = !isActive;
-    discoLight.SetActive(isActive);
-    defaultLight.SetActive(!isActive);
-    if (isActive)
     {
-        TurnOnLights();
-        RenderSettings.ambientMode = UnityEngine.Rendering.AmbientMode.Flat;
-        RenderSettings.defaultReflectionMode = UnityEngine.Rendering.DefaultReflectionMode.Custom;
-        RenderSettings.ambientLight = Color.black;
+        isActive = !isActive;
+        discoLight.SetActive(isActive);
+        defaultLight.SetActive(!isActive);
+        if (isActive)
+        {
+            TurnOnLights();
+            RenderSettings.ambientMode = UnityEngine.Rendering.AmbientMode.Flat;
+            RenderSettings.defaultReflectionMode = UnityEngine.Rendering.DefaultReflectionMode.Custom;
+            RenderSettings.ambientLight = Color.black;
+        }
+        else
+        {
+            RenderSettings.ambientMode = UnityEngine.Rendering.AmbientMode.Skybox;
+            RenderSettings.defaultReflectionMode = UnityEngine.Rendering.DefaultReflectionMode.Skybox;
+            RenderSettings.ambientLight = Color.white;
+        }
     }
-    else
-    {
-        RenderSettings.ambientMode = UnityEngine.Rendering.AmbientMode.Skybox;
-        RenderSettings.defaultReflectionMode = UnityEngine.Rendering.DefaultReflectionMode.Skybox;
-        RenderSettings.ambientLight = Color.white;
-    }
-}
 
     private void TurnOnLights()
     {
@@ -76,19 +73,23 @@ public class LightManager : MonoBehaviour
             DisasterManager.Instance.disasterHappening = false;
         }
     }
-    
+
     // Dispara los eventos para iniciar el disaster
-    public void TriggerDiscoNight ()
+    public void TriggerDiscoNight()
     {
         ChangeSkyBoxLighting();
         StartCoroutine(ActivateDiscoNight());
     }
 
     // Cambia la skybox para que la iluminacion sea mejor durante el evento.
-    void ChangeSkyBoxLighting() {
-        if (!isActive) {
+    void ChangeSkyBoxLighting()
+    {
+        if (!isActive)
+        {
             RenderSettings.skybox = null;
-        } else {
+        }
+        else
+        {
             RenderSettings.skybox = defaultSkybox;
         }
     }

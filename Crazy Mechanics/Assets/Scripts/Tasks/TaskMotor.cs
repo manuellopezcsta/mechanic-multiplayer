@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class TaskMotor : BaseCounter
 {
     public CarController carController;
+    CurrentStationManager stationManager;
     [SerializeField] public bool taskComplete = false;
     [SerializeField] ObjectsSO fixedMotor;
     [SerializeField] private CarObject motor;
@@ -18,10 +19,10 @@ public class TaskMotor : BaseCounter
     {
         SetCarObject(motor);
         GetCarObject().SetCarObjectParent(this);
+        stationManager = carController.GetCurrentStationManager();
     }
     public override void Interact(Player player)
     {
-        CurrentStationManager stationManager = carController.GetCurrentStationManager();
         //Debug.Log("Se interacciono con el taskMotor. " + (stationManager!= null).ToString());
         bool conditionsMet = stationManager.GetCurrentElevatorFloor() == 0 && stationManager.IsMotorToolDocked();
         MotorTool motorTool = stationManager.GetCurrentMotorTool();
@@ -68,20 +69,5 @@ public class TaskMotor : BaseCounter
                 }
             }
         }
-    }
-
-    // REVISAR ESTO y PONER EN LA RUTINA PARA QUE TARDE EN PONER Y SACAR MOTOR.
-    IEnumerator TimeToRequest(float timeRequest, CurrentStationManager csm)
-    {
-        // Lockeamos el elevador
-        csm.LockAndUnlockElevator();
-        yield return new WaitForSeconds(timeRequest);
-        //Limpia el carObject de la mesa y lo destruye.
-        Destroy(GetCarObject().gameObject);
-        ClearCarObject();
-        Transform boxFullPreFab = Instantiate(fixedMotor.prefab, GetCarObjectFollowTransform());
-        boxFullPreFab.GetComponent<CarObject>().SetCarObjectParent(this);
-        // Liberamos el elevador
-        csm.LockAndUnlockElevator();
     }
 }
