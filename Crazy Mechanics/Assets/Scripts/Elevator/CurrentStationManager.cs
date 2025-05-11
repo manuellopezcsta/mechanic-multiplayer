@@ -8,7 +8,7 @@ public class CurrentStationManager : MonoBehaviour
     public CarController currentCar; // Guarda el autoActual. LIMPIARLO AL TERMINAR para indicar que esta libre.
     [SerializeField] ElevatorController elevatorController;
     [SerializeField] MotorToolDocking docking;
-    private int elevatorNumber = 1;
+    [SerializeField] private int elevatorNumber = 1;
     private bool isElevatorLocked = false; // Si el elevador esta lockeado porque esta en uso
     [SerializeField] ButtonStart buttonStart;
 

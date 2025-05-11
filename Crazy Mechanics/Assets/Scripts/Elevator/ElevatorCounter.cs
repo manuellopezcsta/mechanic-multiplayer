@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ElevatorCounter : BaseCounter
 {
-
+    // Codigo de los botones del elevador.
     [SerializeField] ElevatorController elevatorController;
     public override void Interact(Player player)
     {

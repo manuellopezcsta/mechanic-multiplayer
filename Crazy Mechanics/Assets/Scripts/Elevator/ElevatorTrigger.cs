@@ -9,6 +9,7 @@ public class ElevatorTrigger : MonoBehaviour
     const string CAR_TAG = "Car";
     [SerializeField] private GameObject targetElevator;
     [SerializeField] private CurrentStationManager currentStationManager;
+    
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag(CAR_TAG))
@@ -18,6 +19,7 @@ public class ElevatorTrigger : MonoBehaviour
             Vector3 globalPosition = other.transform.position;
             other.transform.SetParent(targetElevator.transform);
             other.transform.position = globalPosition;
+            // Destruimos el rigidBody del auto para que funcione correctamente la fisicas del elevador.
             Destroy(other.GetComponent<Rigidbody>());
             // Prendemos los colliders de las tasks
             other.GetComponent<CarController>().TurnOnTasksColliders();
@@ -26,17 +28,5 @@ public class ElevatorTrigger : MonoBehaviour
             //ChangeValueCollider();
             //Debug.Log("Entro en el trigger");
         }   
-    }
-
-    public void ChangeValueCollider()
-    {
-        if (gameObject.GetComponent<Collider>().enabled)
-        {
-            gameObject.GetComponent<Collider>().enabled = false;
-        }
-        else
-        {
-            gameObject.GetComponent<Collider>().enabled = true;
-        }
     }
 }

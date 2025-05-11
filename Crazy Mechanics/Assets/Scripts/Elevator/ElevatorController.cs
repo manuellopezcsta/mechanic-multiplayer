@@ -12,15 +12,20 @@ public class ElevatorController : MonoBehaviour
     [SerializeField] Transform elevatorArms;
     [SerializeField] private int nextFloor;
 
+    CurrentStationManager csm;
+
     public event EventHandler<OnMovingChangedEventArgs> OnMovingChanged;
     public class OnMovingChangedEventArgs : EventArgs
     {
         public bool isMoving;
     }
+
+    void Start()
+    {
+        csm = GetComponent<CurrentStationManager>();
+    }
     public void ChangeFloorElevator()
     {
-        CurrentStationManager csm = GetComponent<CurrentStationManager>();
-
         if (!isMoving && !csm.IsElevatorLocked() && GameManager.Instance.IsPowerEnabled() && !csm.isFree() && !csm.currentCar.canMove)
         {
             Debug.Log("Piso actual" + floorNumberElevator);
@@ -49,6 +54,7 @@ public class ElevatorController : MonoBehaviour
             });
         }
     }
+    
     void Update()
     {
         if (isMoving)
