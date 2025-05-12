@@ -1580,6 +1580,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: HammerHolder
       objectReference: {fileID: 0}
+    - target: {fileID: 6245478851994734583, guid: 85123e3096b498f4d957b512a1bd87bd,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6245478851994734583, guid: 85123e3096b498f4d957b512a1bd87bd,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4379,7 +4389,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4eed7f50fcc66a74994ddbeedfd6542f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hasATutorial: 0
   backTutorialButton: {fileID: 1125110328}
   initialTutorialPanel: {fileID: 590833480}
   uiPlayer:
@@ -11425,6 +11434,7 @@ MonoBehaviour:
   - {fileID: 985827791}
   - {fileID: 71832064}
   - {fileID: 1726975409}
+  freeStationIndex: 0
   lostAndFound: {fileID: 912749337671982862}
 --- !u!4 &2058334193
 Transform:
@@ -114008,6 +114018,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671806455}
     m_Modifications:
+    - target: {fileID: 6455889876114337876, guid: 8cd899f00dd23ab4094f0ad2ee4c3b97,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6455889876114337876, guid: 8cd899f00dd23ab4094f0ad2ee4c3b97,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6630092127268968187, guid: 8cd899f00dd23ab4094f0ad2ee4c3b97,
         type: 3}
       propertyPath: m_Name
