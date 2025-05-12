@@ -14,7 +14,6 @@ public class PlayerInputHandler : MonoBehaviour
     private Player player;
 
     [SerializeField] PlayerAnimator playerAnimator;
-    private const string IS_DANCING = "Dancing";
 
     private void Awake()
     {
