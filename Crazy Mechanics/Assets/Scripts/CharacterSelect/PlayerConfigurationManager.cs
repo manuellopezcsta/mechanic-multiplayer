@@ -55,7 +55,8 @@ public class PlayerConfigurationManager : MonoBehaviour
         {
             // Cargamos la escena que corresponde
             //Loader.Load(Loader.Scene.TestDemo1);
-            Loader.Load(Loader.Scene.Level2);
+            //Loader.Load(Loader.Scene.Level2);
+            Loader.Load(Loader.Scene.WorldSelect);
         }
     }
 

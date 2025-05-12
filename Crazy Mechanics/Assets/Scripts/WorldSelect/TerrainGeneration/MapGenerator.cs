@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.Mathematics;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public class MapGenerator : MonoBehaviour
