@@ -2040,6 +2040,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2592b78f931283d479df6b465d812066, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isSliding: 0
+  slideDir: {x: 0, y: 0, z: 0}
   countersLayerMask:
     serializedVersion: 2
     m_Bits: 64
@@ -2056,7 +2058,6 @@ MonoBehaviour:
   canDash: 1
   dashCooldown: 3
   stunDuration: 2
-  stunTreshHold: 0.1
 --- !u!143 &8025474308772073122
 CharacterController:
   m_ObjectHideFlags: 0
@@ -2082,7 +2083,7 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Center: {x: 0, y: 0.88, z: 0}
 --- !u!65 &3985202170584145055
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2098,12 +2099,12 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
-  m_Size: {x: 0.6091981, y: 0.8208008, z: 0.5806236}
-  m_Center: {x: -0.04084897, y: 0.505131, z: 0.0392375}
+  m_Size: {x: 1, y: 2.8478222, z: 1}
+  m_Center: {x: 0, y: 1.5494113, z: 0}
 --- !u!114 &6697645198155447147
 MonoBehaviour:
   m_ObjectHideFlags: 0

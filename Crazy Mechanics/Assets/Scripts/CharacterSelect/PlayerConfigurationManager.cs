@@ -54,8 +54,10 @@ public class PlayerConfigurationManager : MonoBehaviour
         if (playerConfigs.Count == playerConfigs.Count(p => p.IsReady == true))
         {
             // Cargamos la escena que corresponde
-            //Loader.Load(Loader.Scene.TestDemo1);
+            //Loader.Load(Loader.Scene.TestDemo);
             //Loader.Load(Loader.Scene.Level2);
+            // Apagamos los inputs antes de ir a la siguiente escena para evitar quilombo.
+            PlayerConfigurationManager.Instance.SwitchInputMethod(false);
             Loader.Load(Loader.Scene.WorldSelect);
         }
     }
@@ -111,6 +113,7 @@ public class PlayerConfigurationManager : MonoBehaviour
     }
 
     public void SwitchInputMethod(bool turnOn) {
+        Debug.Log("Switcheando Input Method");
         foreach(Transform child in transform){
             //input.UnsuscribeController()
             child.gameObject.GetComponent<PlayerInput>().enabled = turnOn;

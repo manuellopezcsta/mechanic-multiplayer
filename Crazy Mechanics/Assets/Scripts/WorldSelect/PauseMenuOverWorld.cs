@@ -12,7 +12,7 @@ public class PauseMenuOverWorld : MonoBehaviour
     [SerializeField] private Button exitToMainMenuButton;
     [SerializeField] private Slider musicSlider;
     [SerializeField] private Slider sfxSlider;
-
+    
 
     // EL CALCULO DE VOLUMEN SE REALIZA USANDO UNA POTENCIA PARA QUE SUENE MEJOR EL CAMBIO AL OIDO HUMANO.
     private void ChangeMusicVolume(float newVolume)
@@ -39,6 +39,9 @@ public class PauseMenuOverWorld : MonoBehaviour
 
         musicSlider.onValueChanged.AddListener(ChangeMusicVolume);
         sfxSlider.onValueChanged.AddListener(ChangeSfxVolume);
+
+        // Intento x arreglar el flow cuando se va de menu a overworld y a el lv. 12/05
+        PlayerConfigurationManager.Instance.SwitchInputMethod(true);
     }
 
 
