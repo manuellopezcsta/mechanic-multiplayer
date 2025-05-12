@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class DevileryCounter : BaseCounter
 {
-    [SerializeField] private List<CurrentStationManager> listElevators = new List<CurrentStationManager>();
+    private CurrentStationManager[] listElevators;
 
+    void Start()
+    {
+        listElevators = GameManager.Instance.stations;
+    }
     public override void Interact(Player player)
     {
         foreach (var currentStation in listElevators){

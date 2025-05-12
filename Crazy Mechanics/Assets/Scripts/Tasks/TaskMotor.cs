@@ -55,7 +55,7 @@ public class TaskMotor : BaseCounter
             {
                 //Debug.Log("conditionsMet" + conditionsMet.ToString() + " " + (stationManager.GetCurrentElevatorFloor() == 0).ToString() + " " +
                 //(stationManager.IsMotorToolDocked()).ToString());
-                if (conditionsMet && !player.HasCarObject())
+                if (conditionsMet && !player.HasCarObject() && !motorTool.HasCarObject())
                 {
                     ComboManager.Instance.UpdateCombo();
                     motorVisual.SetActive(true);

@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
 
     // Posiciones donde se instancian los autos
     [SerializeField] GameObject[] positionInstanciateCars;
-    [SerializeField] CurrentStationManager[] stations;
+    public CurrentStationManager[] stations;
 
     // Para cortar la luz
     [SerializeField] LightBoxController lightBoxController;
@@ -41,6 +41,9 @@ public class GameManager : MonoBehaviour
     public static List<PlayerInputHandler> inputHandlersList = new List<PlayerInputHandler>();
 
     public Transform[] playerSpawns;
+
+    //valor retornado del canSpawnCar
+    public int freeStationIndex;
     [SerializeField] private Transform lostAndFound;
     public static event EventHandler OnCarSpawned;
 
@@ -81,14 +84,14 @@ public class GameManager : MonoBehaviour
         // Elijo un auto random de los que tengo
         int index = UnityEngine.Random.Range(0, carPrefabs.Length);
         // Esto se va a romper cuando haya mas de 1 elevador... Xq no checkea si esta libre solo lo spawnea en el random..
-        int elevatorNumber = UnityEngine.Random.Range(0, positionInstanciateCars.Length);
-        GameObject car = Instantiate(carPrefabs[index], positionInstanciateCars[elevatorNumber].transform.position, Quaternion.Euler(0, 180, 0));
+        //int elevatorNumber = UnityEngine.Random.Range(0, positionInstanciateCars.Length);
+        GameObject car = Instantiate(carPrefabs[index], positionInstanciateCars[freeStationIndex].transform.position, Quaternion.Euler(0, 180, 0));
         // Le asigno la posicion de spawneo y su stationManager.
         //car.transform.position = positionInstanciateCars[elevatorNumber].transform.position;
         CarController controller = car.GetComponent<CarController>();
-        controller.SetCurrentStationManager(stations[elevatorNumber]);
+        controller.SetCurrentStationManager(stations[freeStationIndex]);
         // Le asignamos el station para bloquear spawns.
-        stations[elevatorNumber].SetCarToStation(controller);
+        stations[freeStationIndex].SetCarToStation(controller);
         //Generamos las tasks que queremos.
         int randomTask = UnityEngine.Random.Range(levelProperties.minTaskNumber, levelProperties.maxTaskNumber + 1);
         List<CarTasks> tasksToDo = ChooseRandomTasks(randomTask);
@@ -179,9 +182,12 @@ public class GameManager : MonoBehaviour
     }
 
     public bool CanSpawnCar() {
+        freeStationIndex = -1;
         // Checkeamos todas las stations a ver si hay una libre para spawnear.
-        foreach(CurrentStationManager station in stations) {
+        for(int i = 0; i < stations.Length; i++){
+            CurrentStationManager station = stations[i];
             if(station.isFree()) {
+                freeStationIndex = i;
                 return true;
             }
         }
