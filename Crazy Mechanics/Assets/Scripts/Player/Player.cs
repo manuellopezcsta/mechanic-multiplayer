@@ -206,7 +206,7 @@ public class Player : MonoBehaviour, ICarObjectParent
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
         Rigidbody rb = hit.collider.attachedRigidbody;
-        float forceMagnitude = 1f;
+        float forceMagnitude = 500f;
 
 
         // Logica para empujar la pluma
@@ -216,7 +216,7 @@ public class Player : MonoBehaviour, ICarObjectParent
             forceDirection.y = 0;
             forceDirection.Normalize();
 
-            rb.AddForceAtPosition(forceDirection * forceMagnitude, transform.position, ForceMode.Impulse);
+            rb.AddForceAtPosition(forceDirection * forceMagnitude * Time.deltaTime, transform.position, ForceMode.Impulse);
             return;
         }
 
