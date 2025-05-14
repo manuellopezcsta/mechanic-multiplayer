@@ -89,6 +89,8 @@ public class CurrentStationManager : MonoBehaviour
             FreeStation();
             Debug.Log("Se entrego el auto");
             OnCarDelivery?.Invoke(this, EventArgs.Empty);
+            DevileryCounter.Instance?.FxMoneyActive();
+
         }
     }
     // GAME MANAGER, CREA AUIO EN UNO DE LOS elevadores.. y le asigna un manager?.
