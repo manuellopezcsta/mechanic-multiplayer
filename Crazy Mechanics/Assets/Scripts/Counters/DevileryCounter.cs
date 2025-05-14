@@ -9,7 +9,7 @@ public class DevileryCounter : BaseCounter
 {
     public static DevileryCounter Instance { get; private set; }
 
-    [SerializeField] private GameObject fxMoney;
+    [SerializeField] private GameObject moneyParticleGO;
 
     private CurrentStationManager[] listElevators;
 
@@ -30,22 +30,22 @@ public class DevileryCounter : BaseCounter
         }
     }
 
-    public void FxMoneyActive()
+    public void ShowMoneyParticles()
     {
-        fxMoney.SetActive(true);
-        StartCoroutine(ShutdownFxWhenFinalize());
+        moneyParticleGO.SetActive(true);
+        StartCoroutine(ShutdownParticlesWhenDone());
     }
 
-    public IEnumerator ShutdownFxWhenFinalize()
+    public IEnumerator ShutdownParticlesWhenDone()
     {
-        var particle = fxMoney.GetComponent<ParticleSystem>();
+        var particle = moneyParticleGO.GetComponent<ParticleSystem>();
         if (particle != null)
         {
-            // Espera a que termine la animación de partículas
+            // Espera a que termine la animaciï¿½n de partï¿½culas
             yield return new WaitWhile(() => particle.isPlaying);
         }
-        // Desactiva el objeto para que pueda volver a activarse la próxima vez
-        fxMoney.SetActive(false);
+        // Desactiva el objeto para que pueda volver a activarse la prï¿½xima vez
+        moneyParticleGO.SetActive(false);
     }
 }
 
