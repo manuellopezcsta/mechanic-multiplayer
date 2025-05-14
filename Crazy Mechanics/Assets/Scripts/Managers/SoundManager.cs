@@ -10,6 +10,7 @@ public class SoundManager : MonoBehaviour
     public static SoundManager Instance { get; private set; }
 
     [SerializeField] AudioSource musicSource;
+    [SerializeField] AudioSource discoNight;
 
     private float musicVolume = 0.3f;
     private float sfxVolume = 1f;
@@ -24,6 +25,7 @@ public class SoundManager : MonoBehaviour
         musicVolume = PlayerPrefs.GetFloat(PLAYER_PREFS_MUSIC_VOLUME, .3f);
         musicSource.volume = musicVolume;
         sfxVolume = PlayerPrefs.GetFloat(PLAYER_PREFS_SOUND_EFFECTS_VOLUME, 1f);
+        discoNight.volume = sfxVolume;
     }
 
     void Start()
@@ -47,12 +49,25 @@ public class SoundManager : MonoBehaviour
         DisasterManager.OnDiscoNight += OnDiscoNight;
         MotorTool.OnDrillUsed += OnDrillUsedMotorTool;
         TaskDifferential.OnFixingDiff += OnDrilDiferencial;
+        LightManager.OnDiscoNightFinish += OnDiscoNightFinish;
+        TaskUnbend.OnHammerUse += OnHammerUse;
+    }
+
+    private void OnHammerUse(object sender, System.EventArgs e)
+    {
+        TaskUnbend taskUnbend = sender as TaskUnbend;
+        PlaySound(audioClipRefsSO.hammer, taskUnbend.transform.position);
+    }
+
+    private void OnDiscoNightFinish(object sender, System.EventArgs e)
+    {
+        discoNight.Stop();
+        musicSource.UnPause();
     }
 
     private void OnDrilDiferencial(object sender, System.EventArgs e)
     {
         TaskDifferential taskDiff = sender as TaskDifferential;
-        // CAMBIAR X SONIDOS POSTA
         PlaySound(audioClipRefsSO.diferencial, taskDiff.transform.position);
     }
 
@@ -65,14 +80,15 @@ public class SoundManager : MonoBehaviour
 
     private void OnDiscoNight(object sender, System.EventArgs e)
     {
-        // CAMBIAR X SONIDOS POSTA
-        PlaySound(audioClipRefsSO.discoNight, transform.position);
+        discoNight.volume  = sfxVolume;
+        discoNight.clip = audioClipRefsSO.discoNight[UnityEngine.Random.Range(0, audioClipRefsSO.discoNight.Length)];
+        discoNight.Play();
+        musicSource.Pause();
     }
 
     private void OnOilSpillCleaning(object sender, System.EventArgs e)
     {
         OilSplatter oilSpill = sender as OilSplatter;
-        // CAMBIAR X SONIDOS POSTA
         PlaySound(audioClipRefsSO.cleaningOil, oilSpill.transform.position);
     }
 
@@ -84,41 +100,35 @@ public class SoundManager : MonoBehaviour
 
     private void OnOpenedMysteryBox(object sender, System.EventArgs e)
     {
-        // CAMBIAR X SONIDOS POSTA
         PlaySound(audioClipRefsSO.mysteryBoxOpen, transform.position);
     }
 
     private void OnSpawnedMysteryBox(object sender, System.EventArgs e)
     {
-        // CAMBIAR X SONIDOS POSTA
         PlaySound(audioClipRefsSO.mysteryBoxSpawn, transform.position);
     }
 
     private void OnLightShutdown(object sender, System.EventArgs e)
     {
         LightBoxController lightbox = sender as LightBoxController;
-        // CAMBIAR X SONIDOS POSTA
         PlaySound(audioClipRefsSO.powerShutdown, lightbox.transform.position);
     }
 
     private void OnFixingLightBox(object sender, System.EventArgs e)
     {
         LightBoxController lightbox = sender as LightBoxController;
-        // CAMBIAR X SONIDOS POSTA
         PlaySound(audioClipRefsSO.lightboxFixing, lightbox.transform.position);
     }
 
     private void OnOilDraining(object sender, System.EventArgs e)
     {
         TaskOil oilTask = sender as TaskOil;
-        // CAMBIAR X SONIDOS POSTA
         PlaySound(audioClipRefsSO.oilDrain, oilTask.transform.position);
     }
 
     private void OnAddingOil(object sender, System.EventArgs e)
     {
         TaskOil oilTask = sender as TaskOil;
-        // CAMBIAR X SONIDOS POSTA
         PlaySound(audioClipRefsSO.oilAdd, oilTask.transform.position);
     }
 
@@ -131,7 +141,6 @@ public class SoundManager : MonoBehaviour
     private void OnCricketUsed(object sender, System.EventArgs e)
     {
         MotorTool motorTool = sender as MotorTool;
-        // CAMBIAR X SONIDOS POSTA
         PlaySound(audioClipRefsSO.cricket, motorTool.transform.position);
     }
 
@@ -237,5 +246,7 @@ public class SoundManager : MonoBehaviour
         DisasterManager.OnDiscoNight -= OnDiscoNight;
         MotorTool.OnDrillUsed -= OnDrillUsedMotorTool;
         TaskDifferential.OnFixingDiff -= OnDrilDiferencial;
+        LightManager.OnDiscoNightFinish -= OnDiscoNightFinish;
+        TaskUnbend.OnHammerUse -= OnHammerUse;
     }
 }

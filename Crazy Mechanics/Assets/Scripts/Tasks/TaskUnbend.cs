@@ -17,7 +17,7 @@ public class TaskUnbend : BaseCounter, IHasProgress
     private CarBender carBender;
     bool taskComplete;
 
-    //public static event EventHandler OnFixingDiff;
+    public static event EventHandler OnHammerUse;
     public event EventHandler<IHasProgress.OnProgressChangedEventArgs> OnProgressChanged;
 
     void Start()
@@ -41,6 +41,9 @@ public class TaskUnbend : BaseCounter, IHasProgress
             {
                 progressNormalized = (float)fixingProgress / fixingProgressMax
             });
+            
+            // Sonido del Unbend
+            OnHammerUse?.Invoke(this, EventArgs.Empty);
         }
         // Si se termino de arreglar.
         if(fixingProgress == fixingProgressMax && !taskComplete){
