@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -15,6 +16,8 @@ public class LightManager : MonoBehaviour
     [SerializeField] private GameObject defaultLight;
     [SerializeField] private GameObject discoLight;
     [SerializeField] Material defaultSkybox;
+
+    public static event EventHandler OnDiscoNightFinish;
 
 
     /*private void Update()
@@ -57,8 +60,8 @@ public class LightManager : MonoBehaviour
     {
         while (isActive)
         {
-            yield return new WaitForSeconds(Random.Range(minTime, maxTime)); // Espera un tiempo aleatorio entre el minimo y el maximo
-            luz.color = new Color(Random.value, Random.value, Random.value); // Cambia de color a un random
+            yield return new WaitForSeconds(UnityEngine.Random.Range(minTime, maxTime)); // Espera un tiempo aleatorio entre el minimo y el maximo
+            luz.color = new Color(UnityEngine.Random.value, UnityEngine.Random.value, UnityEngine.Random.value); // Cambia de color a un random
         }
     }
 
@@ -71,6 +74,7 @@ public class LightManager : MonoBehaviour
             ChangeSkyBoxLighting();
             ChangeEventLights();
             DisasterManager.Instance.disasterHappening = false;
+            OnDiscoNightFinish?.Invoke(this, EventArgs.Empty);
         }
     }
 
