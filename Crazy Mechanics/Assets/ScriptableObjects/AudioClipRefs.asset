@@ -15,11 +15,17 @@ MonoBehaviour:
   delivery:
   - {fileID: 8300000, guid: 50205ffe58351d244bbcbd725dbfa802, type: 3}
   - {fileID: 8300000, guid: 4b22bfbdbacfa0445bc9bbfbb0141085, type: 3}
+  endOfLevel:
+  - {fileID: 8300000, guid: ed00b10666896184f902f9ebd6810f82, type: 3}
   footstep:
   - {fileID: 8300000, guid: 078e15982fce2e147bf06c8a7682f28b, type: 3}
   - {fileID: 8300000, guid: b2d2893ac04fbdb44a226f4b6ea0d271, type: 3}
   - {fileID: 8300000, guid: cc97c340134faa948bcaf20fea6429c6, type: 3}
   - {fileID: 8300000, guid: 64a04bb4fa4ed5d4eac6b0a31f91843a, type: 3}
+  carEntering:
+  - {fileID: 8300000, guid: 331b82ab2c0e2b74d805124d11372c85, type: 3}
+  carExiting:
+  - {fileID: 8300000, guid: 331b82ab2c0e2b74d805124d11372c85, type: 3}
   objectDrop:
   - {fileID: 8300000, guid: 9c88983fa5906dc41944ec5a43b6b5c7, type: 3}
   - {fileID: 8300000, guid: 331b82ab2c0e2b74d805124d11372c85, type: 3}
@@ -31,31 +37,47 @@ MonoBehaviour:
   trash:
   - {fileID: 8300000, guid: 4b70ec0f0afb9ac4ea7dfea07aca4eb4, type: 3}
   - {fileID: 8300000, guid: 6024ba1d53d005f48a96b3a9f6bacedd, type: 3}
-  carEntering:
-  - {fileID: 8300000, guid: 331b82ab2c0e2b74d805124d11372c85, type: 3}
-  carExiting:
-  - {fileID: 8300000, guid: 331b82ab2c0e2b74d805124d11372c85, type: 3}
   oilDrain:
   - {fileID: 8300000, guid: 58b555149ca5efd4f9b8502a0888d776, type: 3}
   - {fileID: 8300000, guid: 8c63f8d94b8e62c4badb65b5edd915f0, type: 3}
   - {fileID: 8300000, guid: 19e596cbca0c5584fa15497fef3093a6, type: 3}
   oilAdd:
-  - {fileID: 8300000, guid: 331b82ab2c0e2b74d805124d11372c85, type: 3}
+  - {fileID: 8300000, guid: 4dddca96a43b9e240a8ad75c28b6ec46, type: 3}
+  - {fileID: 8300000, guid: 8c0ea8122fa42134d81d150c2d22fc47, type: 3}
+  diferencial:
+  - {fileID: 8300000, guid: b11b19f2822dae64da72c91f3422804b, type: 3}
+  - {fileID: 8300000, guid: 985e06ef9e8d838488f4d885c982aa18, type: 3}
+  - {fileID: 8300000, guid: b369d2d7d606917489baf2658ed64038, type: 3}
   lightboxFixing:
-  - {fileID: 8300000, guid: 331b82ab2c0e2b74d805124d11372c85, type: 3}
-  endOfLevel:
-  - {fileID: 8300000, guid: 331b82ab2c0e2b74d805124d11372c85, type: 3}
+  - {fileID: 8300000, guid: e5a30cf5a297dfb4fb487f6703b1324f, type: 3}
+  - {fileID: 8300000, guid: dc7f5bcc5a8362c47b36667eed15b59e, type: 3}
+  - {fileID: 8300000, guid: 13f2fee032033f846841682e1d299612, type: 3}
+  - {fileID: 8300000, guid: bec2d29518adf7145a0000da9edc14a4, type: 3}
   powerShutdown:
-  - {fileID: 8300000, guid: cc97c340134faa948bcaf20fea6429c6, type: 3}
+  - {fileID: 8300000, guid: f368a6caec1adc0419109ac4df76ca9c, type: 3}
   mysteryBoxSpawn:
-  - {fileID: 8300000, guid: b59c98e0066c41f42b8100f5cb180f5b, type: 3}
+  - {fileID: 8300000, guid: f2765e298cd30b24a867f0ad41fe6de2, type: 3}
   mysteryBoxOpen:
-  - {fileID: 8300000, guid: b90d8099bdbf09a40ab1163556d5b5f4, type: 3}
+  - {fileID: 8300000, guid: 220ba63914d60d54dbf937ee40a46584, type: 3}
   spawnOilSpills:
   - {fileID: 8300000, guid: b59c98e0066c41f42b8100f5cb180f5b, type: 3}
-  cleaningOil:
-  - {fileID: 8300000, guid: b59c98e0066c41f42b8100f5cb180f5b, type: 3}
   discoNight:
-  - {fileID: 8300000, guid: b59c98e0066c41f42b8100f5cb180f5b, type: 3}
+  - {fileID: 8300000, guid: c7beac93d7bfa6a45b9d35f9b9527393, type: 3}
+  cleaningOil:
+  - {fileID: 8300000, guid: e7645583763ebcd4087683712d99b24e, type: 3}
+  - {fileID: 8300000, guid: 1c0fbf06362b9f6459b07d4aaeab2a66, type: 3}
+  - {fileID: 8300000, guid: 757c7816320cc19429e4dfd1d0270bbf, type: 3}
+  - {fileID: 8300000, guid: 102e17c4c0d7e46469c69063b9e6f20d, type: 3}
+  - {fileID: 8300000, guid: 9fede2719f4ad1d4f8c3aeac21a74b24, type: 3}
   drill:
   - {fileID: 8300000, guid: b59c98e0066c41f42b8100f5cb180f5b, type: 3}
+  hammer:
+  - {fileID: 8300000, guid: 2f5bc67ccdbe241448dfd34242127de7, type: 3}
+  - {fileID: 8300000, guid: 6cc721d4b5e531a488011cb57262e6fb, type: 3}
+  - {fileID: 8300000, guid: 5a41ea9db09f62b4ea68fbf31fb1920c, type: 3}
+  - {fileID: 8300000, guid: 016f1ac6e24b6ad488b956f9fb1bfbe6, type: 3}
+  - {fileID: 8300000, guid: caa4e5756f08dae47aad13ac9e5a3346, type: 3}
+  cricket:
+  - {fileID: 8300000, guid: 087c9e1815359834ca13dca8ccb8d4b6, type: 3}
+  - {fileID: 8300000, guid: 0205774bd67a5ca40ad81051a138444d, type: 3}
+  - {fileID: 8300000, guid: dca05a926ad5c6540afb328abfc67f1d, type: 3}

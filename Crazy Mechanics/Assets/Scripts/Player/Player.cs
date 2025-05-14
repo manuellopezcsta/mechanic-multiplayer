@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 
 public class Player : MonoBehaviour, ICarObjectParent
 {
-    const string MOTOR_TOOL_NAME = "Pluma";
+    const string MOTOR_TOOL_TAG = "MotorTool";
     public static bool invertControls = false;
     public bool isSliding;
     public Vector3 slideDir;
@@ -53,7 +53,7 @@ public class Player : MonoBehaviour, ICarObjectParent
     private bool stunned;
     [SerializeField] float stunDuration = 2f;
 
-
+    [SerializeField] float forceMagnitude = 2f;
     private void Awake()
     {
         GameManager.RegisterPlayer(this);
@@ -206,17 +206,16 @@ public class Player : MonoBehaviour, ICarObjectParent
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
         Rigidbody rb = hit.collider.attachedRigidbody;
-        float forceMagnitude = 500f;
-
+        //float forceMagnitude = 500f;
 
         // Logica para empujar la pluma
-        if (rb != null && hit.gameObject.name == MOTOR_TOOL_NAME)
+        if (rb != null && hit.gameObject.CompareTag(MOTOR_TOOL_TAG))
         {
             Vector3 forceDirection = hit.gameObject.transform.position - transform.position;
             forceDirection.y = 0;
             forceDirection.Normalize();
 
-            rb.AddForceAtPosition(forceDirection * forceMagnitude * Time.deltaTime, transform.position, ForceMode.Impulse);
+            rb.AddForceAtPosition(forceDirection * forceMagnitude, transform.position, ForceMode.Impulse);
             return;
         }
 
