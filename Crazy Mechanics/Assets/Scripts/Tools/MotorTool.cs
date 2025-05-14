@@ -39,6 +39,7 @@ public class MotorTool : BaseCounter, IHasProgress
     [SerializeField] private ObjectsSO motorFixedSO;
 
 
+
     // Cosas para la visual de cuando le pegas.
     bool needsWhacking = false;
     private int fixingProgress;

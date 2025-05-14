@@ -14,7 +14,6 @@ public class TaskMotor : BaseCounter
     [SerializeField] private GameObject motorVisual;
     [SerializeField] private TaskIndicatorUI indicatorUI;
     [SerializeField] private int score;
-
     void Start()
     {
         SetCarObject(motor);

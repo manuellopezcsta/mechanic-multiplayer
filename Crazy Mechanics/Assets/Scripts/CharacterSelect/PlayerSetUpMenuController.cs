@@ -35,6 +35,7 @@ public class PlayerSetUpMenuController : MonoBehaviour
     [SerializeField] private RenderTexture[] renderCam;
     [SerializeField] private Material[] materialCamRenderer;
     [SerializeField] private Image imageRenderer;
+    [SerializeField] private TextMeshProUGUI nameCharacter;
 
 
     private void Start()
@@ -140,6 +141,7 @@ public class PlayerSetUpMenuController : MonoBehaviour
             
         }
 
+        nameCharacter.text = playerDataContainers[currentIndex].playerPrefab.name;
 
         // Updatemos los datos del player aca
         SetColor(playerDataContainers[currentIndex].material);

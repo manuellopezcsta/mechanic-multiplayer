@@ -1,5 +1,7 @@
 using System.Collections;
 using UnityEngine;
+using System;
+using Unity.VisualScripting;
 
 public class WindManager : MonoBehaviour
 {
@@ -10,6 +12,8 @@ public class WindManager : MonoBehaviour
     private Vector3 windDirection;
     [SerializeField] int windDuration = 2;
     [SerializeField] float windForce = 18f; // Intensidad del viento
+    [SerializeField] private GameObject[] fxWind; //Orden de fxWind ( West, East, South, North)
+    private String directionName;
 
     /*
     private void Update()
@@ -60,8 +64,10 @@ public class WindManager : MonoBehaviour
             windDirection = ChooseRandomWindDirection();
             yield return new WaitForSeconds(windDuration);
             // Invertimos el viento
-            windDirection *= -1;
+            //windDirection *= -1;
+            ChangeDirectionWind();
             yield return new WaitForSeconds(windDuration);
+            TurnOffFx();
             isActive = !isActive;
             // Apagamos el Desastre.
             DisasterManager.Instance.disasterHappening = false;
@@ -69,18 +75,60 @@ public class WindManager : MonoBehaviour
     }
 
     Vector3 ChooseRandomWindDirection() {
-        int random = Random.Range(0, 4);
+        int random = UnityEngine.Random.Range(0, 4);
         switch (random) {
             case 0:
+                //West
+                fxWind[0].SetActive(true);
+                directionName = "West";
+                //Debug.Log("0");
                 return new Vector3(1, 0, 0);
             case 1:
+                //East
+                fxWind[1].SetActive(true);
+                directionName = "East";
+                //Debug.Log("1");
                 return new Vector3(-1, 0, 0);
             case 2:
-                return new Vector3(1, 0, 1);
+                //North
+                fxWind[2].SetActive(true);
+                directionName = "North";
+                //Debug.Log("2");
+                return new Vector3(0, 0, 1);
             case 3:
+                //South
+                fxWind[3].SetActive(true);
+                directionName = "South";
+                //Debug.Log("3");
                 return new Vector3(0, 0, -1);
             default:
                 return Vector3.zero;
+        }
+    }
+    private void ChangeDirectionWind(){
+        switch(directionName){
+            case "West":
+            fxWind[0].SetActive(false);
+            fxWind[1].SetActive(true);
+            break;
+            case "East":
+            fxWind[1].SetActive(false);
+            fxWind[0].SetActive(true);
+            break;
+            case "North":
+            fxWind[2].SetActive(false);
+            fxWind[3].SetActive(true);
+            break;
+            case "South":
+            fxWind[3].SetActive(false);
+            fxWind[2].SetActive(true);
+            break;
+        }
+        windDirection *= -1;
+    }
+    private void TurnOffFx(){
+        foreach(GameObject fx in fxWind){
+            fx.SetActive(false);
         }
     }
 }

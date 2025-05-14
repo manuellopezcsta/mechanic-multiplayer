@@ -11,7 +11,7 @@ public class LightBoxController : BaseCounter, IHasProgress
     // Para la barra de progreso
     private int fixingProgress;
     [SerializeField] private int fixingProgressMax;
-
+    [SerializeField] private GameObject fxElectricity;
     public static event EventHandler OnFixingLightBox;
     public static event EventHandler OnLightShutdown;
 
@@ -20,6 +20,7 @@ public class LightBoxController : BaseCounter, IHasProgress
 
     public void CutDownPower() {
         isPowerDown = true;
+        fxElectricity.SetActive(true);
         fixingProgress = 0;
 
         OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs{
@@ -49,6 +50,7 @@ public class LightBoxController : BaseCounter, IHasProgress
 
             if(fixingProgress >= fixingProgressMax) {
                 isPowerDown = false;
+                fxElectricity.SetActive(false);
                 player.GetCarObject().DestroySelf();
                 DisasterManager.Instance.disasterHappening = false;
                 Debug.Log("Luz Arreglada");

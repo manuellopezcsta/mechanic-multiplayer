@@ -10,7 +10,7 @@ public class GeneratorTool : BaseCounter, IHasProgress
     [SerializeField] private ObjectsSO chargeBattery;
     [SerializeField] private float chargeTimerMax;
     private float chargeTimer;
-
+    [SerializeField] private GameObject fxCharging;
     public event EventHandler<IHasProgress.OnProgressChangedEventArgs> OnProgressChanged;
 
     private enum State
@@ -33,6 +33,7 @@ public class GeneratorTool : BaseCounter, IHasProgress
             if (player.HasCarObject() && player.GetCarObject().GetObjectSO() == battery && GameManager.Instance.IsPowerEnabled()) {
                 // El player tiene algo en la mano
                 player.GetCarObject().SetCarObjectParent(this);
+                fxCharging.SetActive(true);
                 chargeTimer = 0f;
                 state = State.Running;
             }
@@ -75,6 +76,7 @@ public class GeneratorTool : BaseCounter, IHasProgress
                         CarObject.SpawnKitchenObject(chargeBattery, this);
                         state = State.Done;
                         Debug.Log("Bateria Cargada!");
+                        fxCharging.SetActive(false);
                     }
                     break;
                 case State.Done:

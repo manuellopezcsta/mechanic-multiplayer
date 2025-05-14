@@ -20,6 +20,7 @@ public class TaskOil : BaseCounter
     public static event EventHandler OnOilDraining;
     public static event EventHandler OnAddingOil;
     private CurrentStationManager stationManager;
+    [SerializeField] private GameObject fxOil;
 
     void Start()
     {
@@ -45,6 +46,7 @@ public class TaskOil : BaseCounter
                     // Hacemos sonido
                     SoundManager.Instance.PlayObjectDroppedSound(transform);
                     OnOilDraining?.Invoke(this, EventArgs.Empty);
+                    fxOil.SetActive(true);
                     StartCoroutine(TimeToRequest(timeRequest, stationManager));
                 }
                 //Verifica si el player tiene un objeto, si es un aceite y el auto no tiene aceite sucio. Si se cumple completa la tarea
@@ -87,6 +89,7 @@ public class TaskOil : BaseCounter
         csm.LockAndUnlockElevator();
         yield return new WaitForSeconds(timeRequest);
         itHasDirtyOil = false;
+        fxOil.SetActive(false);
         //Limpia el carObject de la mesa y lo destruye.
         GetCarObject().DestroySelf();
         Transform boxFullPreFab = Instantiate(boxFull.prefab, GetCarObjectFollowTransform());
