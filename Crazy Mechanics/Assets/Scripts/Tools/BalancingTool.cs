@@ -2,12 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class BalacingTool : BaseCounter, IHasProgress
 {
-
     public event EventHandler<IHasProgress.OnProgressChangedEventArgs> OnProgressChanged;
     public event EventHandler<OnStateChangedEventArgs> OnStateChanged;
+
     public class OnStateChangedEventArgs : EventArgs
     {
         public State state;
@@ -29,11 +30,12 @@ public class BalacingTool : BaseCounter, IHasProgress
 
     private float balancingTimer;
 
+    [SerializeField] private Animator animator;
+    private string IS_RUNNING = "Running"; // Nombre del parámetro en el Animator
 
 
     public override void Interact(Player player)
     {
-        //Debug.Log("Se entro aca");
         // Logica para dejar objetos
         if (!HasCarObject())
         {
@@ -44,6 +46,8 @@ public class BalacingTool : BaseCounter, IHasProgress
                 player.GetCarObject().SetCarObjectParent(this);
                 state = State.Running;
                 balancingTimer = 0f;
+                // Inicia la animación
+                this.AnimationRunning();
 
                 OnStateChanged?.Invoke(this, new OnStateChangedEventArgs
                 {
@@ -55,14 +59,12 @@ public class BalacingTool : BaseCounter, IHasProgress
                 {
                     progressNormalized = 0f
                 });
-
-                //StartCoroutine(TimeToRequest(timeRequest));
             }
         }
         else
         {
             // There is a car obj here already.
-            if (!player.HasCarObject() &&  spawnLimit >= SpawnLimitManager.Instance.GetSpawnedItemsCount(balancedWheel.name))
+            if (!player.HasCarObject() && spawnLimit >= SpawnLimitManager.Instance.GetSpawnedItemsCount(balancedWheel.name))
             {
                 GetCarObject().SetCarObjectParent(player);
                 state = State.Idle;
@@ -80,10 +82,24 @@ public class BalacingTool : BaseCounter, IHasProgress
             }
         }
     }
+
     private void Start()
     {
         state = State.Idle;
         spawnLimit = SpawnLimitManager.Instance.GetItemSpawnLimit(balancedWheel.name);
+
+    }
+
+    private void AnimationRunning()
+    {
+        Debug.Log("Animator es null.");
+        if (animator != null)
+        {
+            animator.SetTrigger(IS_RUNNING);
+            // Aquí puedes agregar la lógica que deseas ejecutar cuando la animación de "Running" se complete
+            // Por ejemplo, podrías cambiar el estado del objeto o realizar alguna acción adicional.
+            Debug.Log("Animación de 'Running' completada.");
+        }
     }
 
     private void Update()
@@ -95,7 +111,10 @@ public class BalacingTool : BaseCounter, IHasProgress
             {
                 case State.Idle:
                     break;
+
                 case State.Running:
+
+
                     balancingTimer += Time.deltaTime;
 
                     // Disparamos el evento para la visual
@@ -112,13 +131,16 @@ public class BalacingTool : BaseCounter, IHasProgress
                         CarObject.SpawnKitchenObject(balancedWheel, this);
                         SpawnLimitManager.Instance.ModifySpawnedCounter(balancedWheel.name, 1);
                         state = State.Done;
+
                         OnStateChanged?.Invoke(this, new OnStateChangedEventArgs
                         {
                             state = state
                         });
+
                         Debug.Log("Rueda Inflada!");
                     }
                     break;
+
                 case State.Done:
                     OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs
                     {
