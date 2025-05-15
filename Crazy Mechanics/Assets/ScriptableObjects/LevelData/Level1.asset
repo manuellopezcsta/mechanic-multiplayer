@@ -10,23 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c7c8d7f665ed5404a9656984c940105c, type: 3}
-  m_Name: TestLevel
+  m_Name: Level1
   m_EditorClassIdentifier: 
   levelNumber: 0
   levelTime: 60
   firstStarScore: 10
   secondStarScore: 20
   thirdStarScore: 30
-  minTaskNumber: 6
-  maxTaskNumber: 6
-  listTasks: 02000000030000000400000005000000
-  maxOilObjects: 1
-  maxBoxObjects: 1
-  maxFuseObjects: 2
-  maxSparkPlugObjects: 3
-  maxPistonObjects: 3
-  maxWheelObjects: 2
-  disasterTypes: 01000000
+  minTaskNumber: 1
+  maxTaskNumber: 4
+  listTasks: 04000000030000000500000002000000
+  maxOilObjects: 0
+  maxBoxObjects: 0
+  maxFuseObjects: 0
+  maxSparkPlugObjects: 0
+  maxPistonObjects: 0
+  maxWheelObjects: 4
+  disasterTypes: 
   disasterMinTimer: 2
   disasterMaxTimer: 10
   hasTutorial: 0

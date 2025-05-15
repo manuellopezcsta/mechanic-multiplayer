@@ -9,7 +9,8 @@ using UnityEngine.SceneManagement;
 // Como todo en esta clase va a ser static, hacemos a la clase tmb static, aunque no hace falta.
 public static class Loader
 {
-    public enum Scene{
+    public enum Scene
+    {
         Menu,
         CharacterSelect,
         TestDemo,
@@ -17,6 +18,7 @@ public static class Loader
         WorldSelect,
         WorldSelectTesting,
         Loading,
+        Level1,
         Level2
     }
 
