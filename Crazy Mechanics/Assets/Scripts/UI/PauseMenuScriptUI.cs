@@ -64,10 +64,10 @@ public class PauseMenuScriptUI : MonoBehaviour
 
     private void RestartLevel()
     {   // Preguntar al game manager el nombre de nivel actual y cargarlo
-        Time.timeScale = 1f;       
+        Time.timeScale = 1f;
         string currentSceneName = SceneManager.GetActiveScene().name;
         GameManager.NukePlayerControllers();
-        Loader.Load(currentSceneName);        
+        Loader.Load(currentSceneName);
     }
 
     private void GoToMainMenu()
@@ -100,6 +100,11 @@ public class PauseMenuScriptUI : MonoBehaviour
         {
             ResumeGame();
         }
+    }
+
+    public Button GetResumeButton()
+    {
+        return resumeGameButton;
     }
 
 }

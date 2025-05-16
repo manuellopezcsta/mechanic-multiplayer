@@ -53,7 +53,7 @@ public class Player : MonoBehaviour, ICarObjectParent
     private bool stunned;
     [SerializeField] float stunDuration = 2f;
 
-    [SerializeField] float forceMagnitude = 2f;
+    //[SerializeField] float forceMagnitude = 2f;
     private void Awake()
     {
         GameManager.RegisterPlayer(this);

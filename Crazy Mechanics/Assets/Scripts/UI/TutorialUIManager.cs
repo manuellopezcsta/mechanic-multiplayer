@@ -25,12 +25,14 @@ public class TutorialUIManager : MonoBehaviour
 
         // Nos aseguramos que el menu de tutorial este apagado
         tutorialMenu.SetActive(false);
-        tutorialsButtons[0].Select();
+        //tutorialsButtons[0].Select();
     }
 
     private void BackOptions()
     {
         tutorialMenu.SetActive(false);
+        // Remarcamos el boton de Resume
+        GameObject.Find("Canvas").GetComponent<PauseMenuScriptUI>().GetResumeButton().Select();
     }
 
     private void ChangeSprite(int x)
@@ -55,9 +57,11 @@ public class TutorialUIManager : MonoBehaviour
         if (tutorialMenu.activeSelf)
         {
             tutorialMenu.SetActive(false);
-        } else
+        }
+        else
         {
             tutorialMenu.SetActive(true);
+            tutorialsButtons[0].Select();
         }
     } 
 

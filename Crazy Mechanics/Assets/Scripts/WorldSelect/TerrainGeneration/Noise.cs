@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.ShaderGraph;
 using UnityEngine;
 
 public static class Noise
@@ -10,14 +6,14 @@ public static class Noise
     public static float[,] GenerateNoiseMap(int mapWidth, int mapHeight, int seed, float scale, int octaves, float persistance, float lacunarity, Vector2 offset)
     {
         //mapWidth, mapHeight: Dimensiones del mapa.
-        //seed: Semilla para generación reproducible.
-        //scale: Factor de zoom / ampliación del ruido.
-        //octaves: Número de capas de ruido a combinar.
-        //persistance: Controla la disminución de amplitud en cada octava.
+        //seed: Semilla para generaciï¿½n reproducible.
+        //scale: Factor de zoom / ampliaciï¿½n del ruido.
+        //octaves: Nï¿½mero de capas de ruido a combinar.
+        //persistance: Controla la disminuciï¿½n de amplitud en cada octava.
         //lacunarity: Controla el aumento de frecuencia en cada octava.
         //offset: Permite desplazar el mapa generado.
 
-        //generador de números aleatorios con la semilla dada.
+        //generador de nï¿½meros aleatorios con la semilla dada.
         System.Random prng = new System.Random(seed);
         Vector2[] octaveOffsets = new Vector2[octaves];
         for (int i = 0; i < octaves; i++)
@@ -33,7 +29,7 @@ public static class Noise
             scale = 0.0001f; //para evitar division por 0.
         }
         //esto se usa para definir los maximos y minimos encontrados y actualizarlos al final. Si arrancara en 0 el minimo no podria tener numeros positivos ni el maximo tener negativos.
-        float maxNoiseHeight = float.MinValue; //Variable para que el numero mas alto sea el mas pequeño que tiene unity.
+        float maxNoiseHeight = float.MinValue; //Variable para que el numero mas alto sea el mas pequeï¿½o que tiene unity.
         float minNoiseHeight = float.MaxValue; //Variable para que el numero mas bajo sea el mas grande que tiene unity.
 
         float halfWidth = mapWidth / 2f; //Calcula mitades de las dimensiones para centrar el ruido.
@@ -57,7 +53,7 @@ public static class Noise
                     amplitude *= persistance; //Actualiza amplitud para la siguiente octava
                     frequency *= lacunarity;  //Actualiza frecuencia para la siguiente octava
                 }
-                //Actualiza los valores máximos/minimos encontrados
+                //Actualiza los valores mï¿½ximos/minimos encontrados
                 if (noiseHeight > maxNoiseHeight)
                 {
                     maxNoiseHeight = noiseHeight;

@@ -1,8 +1,4 @@
 using UnityEngine;
-using System.Collections;
-using TreeEditor;
-using UnityEditor.ShaderGraph;
-using UnityEngine.UIElements;
 
 public static class MeshGenerator
 {
@@ -17,35 +13,35 @@ public static class MeshGenerator
         //Obtiene dimensiones del heightMap.
         int width = heightMap.GetLength(0);//Le pedimos el ancho o la cantidad de columnas dentro de la matriz de heightMap para recorrerla correctamente.
         int height = heightMap.GetLength(1);//Le pedimos el alto o la cantidad de filas dentro de la matriz de heightMap para recorrerla correctamente.
-        //Calcula la posición de la esquina superior izquierda para centrar el mesh.
+        //Calcula la posiciï¿½n de la esquina superior izquierda para centrar el mesh.
         float topLeftX = (width - 1) / -2f;
         float topLeftZ = (height - 1) / 2f;
 
         int meshSimplificationIncrement = (levelOfDetail == 0) ? 1 : levelOfDetail * 2; //Calculo del LOD.
-        int verticesPerLine = (width - 1) / meshSimplificationIncrement + 1; //Calcula cuántos vértices tendrá cada línea de la malla.
+        int verticesPerLine = (width - 1) / meshSimplificationIncrement + 1; //Calcula cuï¿½ntos vï¿½rtices tendrï¿½ cada lï¿½nea de la malla.
         //Crea estructura para almacenar los datos de la malla.
         MeshData meshData = new MeshData(verticesPerLine, verticesPerLine);
-        int vertexIndex = 0; //lleva la cuenta de los vértices procesados.
+        int vertexIndex = 0; //lleva la cuenta de los vï¿½rtices procesados.
 
-        //recorre el heightMap según el incremento del LOD
+        //recorre el heightMap segï¿½n el incremento del LOD
         for (int y = 0; y < height; y += meshSimplificationIncrement)
         {
             for (int x = 0; x < width; x += meshSimplificationIncrement)
             {
-                //Posición XZ basada en su ubicación en el grid
-                //Posición Y(altura) obtenida del heightMap
-                //heightCurve.Evaluate(): Ajusta la distribución de alturas
+                //Posiciï¿½n XZ basada en su ubicaciï¿½n en el grid
+                //Posiciï¿½n Y(altura) obtenida del heightMap
+                //heightCurve.Evaluate(): Ajusta la distribuciï¿½n de alturas
                 //heightMultiplier: Escala la altura
                 meshData.vertices[vertexIndex] = new Vector3(topLeftX + x, heightCurve.Evaluate(heightMap[x, y]) * heightMultiplier, topLeftZ - y);
                 meshData.uvs[vertexIndex] = new Vector2(x / (float)width, y / (float)height);//Coordenadas UV(para texturizado) normalizadas[0 - 1]
 
                 if (x < width - 1 && y < height - 1)
                 {
-                    //Crea 2 triángulos por cada cuadrado del grid:
+                    //Crea 2 triï¿½ngulos por cada cuadrado del grid:
                     meshData.AddTriangle(vertexIndex, vertexIndex + verticesPerLine + 1, vertexIndex + verticesPerLine);
                     meshData.AddTriangle(vertexIndex + verticesPerLine + 1, vertexIndex, vertexIndex + 1);
                 }
-                //Incrementa el índice del vértice procesado
+                //Incrementa el ï¿½ndice del vï¿½rtice procesado
                 vertexIndex++;
             }
         }
@@ -65,27 +61,27 @@ public class MeshData
 
     public MeshData(int meshWidth, int meshHeight)
     {
-        vertices = new Vector3[meshWidth * meshHeight]; //Posiciones 3D de los vértices
+        vertices = new Vector3[meshWidth * meshHeight]; //Posiciones 3D de los vï¿½rtices
         uvs = new Vector2[meshWidth * meshHeight]; //Coordenadas de textura
-        triangles = new int[(meshWidth - 1) * (meshHeight - 1) * 6]; //Índices que definen los triángulos
+        triangles = new int[(meshWidth - 1) * (meshHeight - 1) * 6]; //ï¿½ndices que definen los triï¿½ngulos
     }
 
     public void AddTriangle(int a, int b, int c)
     {
-        //Añade 3 vértices para formar un triángulo
+        //Aï¿½ade 3 vï¿½rtices para formar un triï¿½ngulo
         triangles[triangleIndex] = a;
         triangles[triangleIndex + 1] = b;
         triangles[triangleIndex + 2] = c;
-        triangleIndex += 3; //lleva la cuenta de la posición actual en el array
+        triangleIndex += 3; //lleva la cuenta de la posiciï¿½n actual en el array
     }
 
     public Mesh CreateMesh()
     {
         Mesh mesh = new Mesh();
-        mesh.vertices = vertices;//Asigna vértices
-        mesh.triangles = triangles;//Asigna triángulos
+        mesh.vertices = vertices;//Asigna vï¿½rtices
+        mesh.triangles = triangles;//Asigna triï¿½ngulos
         mesh.uv = uvs;//Asigna coordenadas UV
-        mesh.RecalculateNormals();//Recalcula normales(para iluminación correcta)
+        mesh.RecalculateNormals();//Recalcula normales(para iluminaciï¿½n correcta)
         return mesh;
     }
 
