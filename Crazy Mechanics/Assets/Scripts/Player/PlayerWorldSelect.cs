@@ -5,8 +5,8 @@ using UnityEngine;
 public class PlayerWorldSelect : MonoBehaviour//, ICarObjectParent
 {
     public static PlayerWorldSelect Instance { get; private set; }
-    public static event EventHandler OnPickedSomething;
-    public static event EventHandler OnDroppedSomething;
+    //public static event EventHandler OnPickedSomething;
+    //public static event EventHandler OnDroppedSomething; Sin usar por ahora
 
     //[SerializeField] private GameInput gameInput;
     [SerializeField] private Transform handPosition;
