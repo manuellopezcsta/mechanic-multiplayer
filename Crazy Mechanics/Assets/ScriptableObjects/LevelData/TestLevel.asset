@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TestLevel
   m_EditorClassIdentifier: 
   levelNumber: 0
-  levelTime: 60
+  levelTime: 150
   firstStarScore: 10
   secondStarScore: 20
   thirdStarScore: 30
@@ -26,8 +26,8 @@ MonoBehaviour:
   maxSparkPlugObjects: 3
   maxPistonObjects: 3
   maxWheelObjects: 2
-  disasterTypes: 01000000
-  disasterMinTimer: 2
-  disasterMaxTimer: 10
+  disasterTypes: 0100000003000000040000000000000002000000
+  disasterMinTimer: 40
+  disasterMaxTimer: 60
   hasTutorial: 0
   tutorialImage: {fileID: 21300000, guid: cd6f5563fad820046b083dffa0270aae, type: 3}

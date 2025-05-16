@@ -206,16 +206,18 @@ public class Player : MonoBehaviour, ICarObjectParent
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
         Rigidbody rb = hit.collider.attachedRigidbody;
-        //float forceMagnitude = 500f;
+        float forceMagnitude = 500f;
 
         // Logica para empujar la pluma
         if (rb != null && hit.gameObject.CompareTag(MOTOR_TOOL_TAG))
         {
             Vector3 forceDirection = hit.gameObject.transform.position - transform.position;
+
             forceDirection.y = 0;
             forceDirection.Normalize();
-
-            rb.AddForceAtPosition(forceDirection * forceMagnitude, transform.position, ForceMode.Impulse);
+            
+            //Debug.Log("force value  " + forceDirection * forceMagnitude * Time.deltaTime);
+            rb.AddForceAtPosition(forceDirection * forceMagnitude * Time.deltaTime , transform.position, ForceMode.Impulse);
             return;
         }
 
