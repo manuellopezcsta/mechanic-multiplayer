@@ -56,6 +56,7 @@ public class PauseMenuScriptUI : MonoBehaviour
 
     private void PauseGame()
     {
+        if (Time.timeScale == 0) { return; }
         pauseScreen.SetActive(true);
         // Seteamos un boton como seleccionado para que funcione con joystick.
         Time.timeScale = 0f;

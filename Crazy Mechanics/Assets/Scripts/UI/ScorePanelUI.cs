@@ -14,7 +14,7 @@ public class ScorePanelUI : MonoBehaviour
             Time.timeScale = 1f;
 
             // CODIGO ALTAMENTE INESTABLE... NO TOCAR!!!! MANU APPROVED THIS.
-            PlayerConfigurationManager.Instance.SwitchInputMethod(false);
+            //PlayerConfigurationManager.Instance.SwitchInputMethod(false);
             GameManager.NukePlayerControllers();
         });
     }

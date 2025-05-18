@@ -40,7 +40,7 @@ public class InitialTutorialUI : MonoBehaviour
         }
     }
 
-        private void ExitStartTutorialScreen()
+    private void ExitStartTutorialScreen()
     {
         //Prendemos la interface, desactivamos el panel y damos comienzo al juego
         SwitchUIElements(true);
@@ -48,9 +48,11 @@ public class InitialTutorialUI : MonoBehaviour
         Time.timeScale = 1f; //Ponemos el tiempo a velocidad normal nuevamente
     }
 
-    private void SwitchUIElements(bool value){
+    private void SwitchUIElements(bool value)
+    {
         //Prendemos o apagamos los objetos de la interface que se encuentran agregador en uiPlayer
-        foreach(GameObject ui in uiPlayer){
+        foreach (GameObject ui in uiPlayer)
+        {
             ui.SetActive(value);
         }
     }

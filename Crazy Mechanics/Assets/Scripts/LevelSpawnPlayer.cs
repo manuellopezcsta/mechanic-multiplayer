@@ -10,11 +10,13 @@ public class LevelSpawnPlayer : MonoBehaviour
     void Start() {
         playerSpawns = GameManager.Instance.playerSpawns;
         var playerConfigs = PlayerConfigurationManager.Instance.GetPlayerConfigs().ToArray();
-        for (int i=0; i < playerConfigs.Length; i++)
+        for (int i = 0; i < playerConfigs.Length; i++)
         {
             //Instanciamos el player con su personaje seleccionado.
             var player = Instantiate(playerConfigs[i].playerPrefab, playerSpawns[i].position, playerSpawns[i].rotation, gameObject.transform);
-            player.GetComponent<PlayerInputHandler>().InitializePlayer(playerConfigs[i]);   
+            player.GetComponent<PlayerInputHandler>().InitializePlayer(playerConfigs[i]);
+            //Debug.Log(playerConfigs.Length);
+            Debug.Log(playerConfigs[i].PlayerIndex);
         }
     }
 }

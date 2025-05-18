@@ -36,5 +36,4 @@ public class DetectCarCollisions : MonoBehaviour
             StartCoroutine(player.GetStunned());
         }
     }
-
 }

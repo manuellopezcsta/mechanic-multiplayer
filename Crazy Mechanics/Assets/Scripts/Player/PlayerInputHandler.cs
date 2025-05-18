@@ -18,7 +18,7 @@ public class PlayerInputHandler : MonoBehaviour
     private void Awake()
     {
         player = GetComponent<Player>();
-        Debug.Log($"PlayerInputHandler creado: {gameObject.name}");
+        //Debug.Log($"PlayerInputHandler creado: {gameObject.name}");
     }
 
     public void InitializePlayer(PlayerConfiguration pc)
@@ -31,6 +31,7 @@ public class PlayerInputHandler : MonoBehaviour
 
         playerConfig = pc;
         playerInput = playerConfig.PInput;
+        Debug.Log(playerInput.playerIndex);
 
         // Configurar los eventos del PlayerInput
         playerInput.actions["Interact"].performed += Interact_performed;

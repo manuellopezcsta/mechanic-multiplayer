@@ -197,7 +197,7 @@ public class GameManager : MonoBehaviour
 
     public static void RegisterPlayer(Player player)
     {
-        Debug.Log("Registrando Player.");
+        //Debug.Log("Registrando Player.");
         playerList.Add(player);
         inputHandlersList.Add(player.gameObject.GetComponent<PlayerInputHandler>());
         //Debug.Log(inputHandlersList[0]);
