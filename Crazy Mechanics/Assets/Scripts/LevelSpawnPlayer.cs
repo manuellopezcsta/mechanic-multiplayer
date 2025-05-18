@@ -15,6 +15,7 @@ public class LevelSpawnPlayer : MonoBehaviour
             //Instanciamos el player con su personaje seleccionado.
             var player = Instantiate(playerConfigs[i].playerPrefab, playerSpawns[i].position, playerSpawns[i].rotation, gameObject.transform);
             player.GetComponent<PlayerInputHandler>().InitializePlayer(playerConfigs[i]);
+            playerConfigs[i].PInput.defaultActionMap = "Player";
             //Debug.Log(playerConfigs.Length);
             Debug.Log(playerConfigs[i].PlayerIndex);
         }
