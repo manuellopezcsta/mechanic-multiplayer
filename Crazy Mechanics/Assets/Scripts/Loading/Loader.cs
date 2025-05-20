@@ -19,7 +19,8 @@ public static class Loader
         WorldSelectTesting,
         Loading,
         Level1,
-        Level2
+        Level2,
+        Level3
     }
 
     private static Scene targetScene;
