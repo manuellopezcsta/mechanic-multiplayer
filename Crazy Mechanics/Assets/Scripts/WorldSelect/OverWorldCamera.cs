@@ -2,22 +2,13 @@ using UnityEngine;
 
 public class OverWorldCamera : MonoBehaviour
 {
-    private Vector3 offset;
-    private Vector3 newPosition;
-
+    const int OFFSET_X = 2;
+    const int OFFSET_Y = -12;
+    const int OFFSET_Z = 12;
+    private Vector3 offset = new Vector3 (OFFSET_X,OFFSET_Y,OFFSET_Z);
     public  GameObject player;
-    // Start is called before the first frame update
-    void Start()
-    {
-        offset=player.transform.position - transform.position;
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        //newPosition=transform.position;
-        //newPosition.x=player.transform.position.x-offset.x;
-        //newPosition.z=player.transform.position.z-offset.z;
-        transform.position = player.transform.position - offset;
+        transform.position = player.transform.position - offset; //Cambia posicion de la camara para seguir al personaje
     }
 }
