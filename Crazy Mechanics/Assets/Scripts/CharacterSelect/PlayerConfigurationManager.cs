@@ -56,10 +56,10 @@ public class PlayerConfigurationManager : MonoBehaviour
             // Apagamos los inputs antes de ir a la siguiente escena para evitar quilombo.
             //PlayerConfigurationManager.Instance.SwitchInputMethod(false);
             // Cargamos la escena que corresponde
-            //Loader.Load(Loader.Scene.WorldSelect);
+            Loader.Load(Loader.Scene.WorldSelect);
             //Loader.Load(Loader.Scene.Level1);
             //Loader.Load(Loader.Scene.Level2);
-            Loader.Load(Loader.Scene.Level3);
+            //Loader.Load(Loader.Scene.Level3);
         }
     }
 
