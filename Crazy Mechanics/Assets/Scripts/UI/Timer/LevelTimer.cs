@@ -8,7 +8,7 @@ public class LevelTimer : MonoBehaviour
 {
     private float gamePlayingTimer;
     private bool running;
-    [SerializeField] private TextMeshProUGUI timerText;
+    [SerializeField] private TextMeshPro timerText;
     [SerializeField] private ScorePanelUI scorePanelUI;
 
 
