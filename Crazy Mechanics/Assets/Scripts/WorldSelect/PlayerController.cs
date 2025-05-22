@@ -10,9 +10,9 @@ public class PlayerController : MonoBehaviour
     private Vector3 direction;
 
     private Vector3 castDirection;
-    private int lastLevelAccessed = 0;
+    //private int lastLevelAccessed = 0;
 
-    [SerializeField] Transform[] levelSpawns;
+    //[SerializeField] Transform[] levelSpawns;
     [SerializeField] private float speed;
     [SerializeField] private float smoothTurnigTime = 0.5f;
     [SerializeField] LayerMask objectLayerMask;
@@ -31,8 +31,8 @@ public class PlayerController : MonoBehaviour
     }
     void Start()
     {
-        transform.position = levelSpawns[lastLevelAccessed].transform.position;
-        Debug.Log("position at start up" + transform.position + "level spawn: " + levelSpawns[lastLevelAccessed].transform.position + "last level: " + lastLevelAccessed);
+        //transform.position = levelSpawns[lastLevelAccessed].transform.position;
+        //Debug.Log("position at start up" + transform.position + "level spawn: " + levelSpawns[lastLevelAccessed].transform.position + "last level: " + lastLevelAccessed);
         InitializePlayer();
     }
     void Update()
