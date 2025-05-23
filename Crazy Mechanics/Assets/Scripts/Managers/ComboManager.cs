@@ -18,14 +18,14 @@ public class ComboManager : MonoBehaviour
     [SerializeField] private float maxMultiplierCounter = 5;
 
     [SerializeField] private Image visualCounterCombo;
-    [SerializeField] private TextMeshProUGUI visualCombo;
+    [SerializeField] private TextMeshPro visualCombo;
 
     private void Awake()
     {
         Instance = this;
         UpdateVisual();
     }
-    // Método que se llama en cada frame
+    // Mï¿½todo que se llama en cada frame
     void Update()
     {
         // Reducir el temporizador del combo con el tiempo
@@ -41,7 +41,7 @@ public class ComboManager : MonoBehaviour
         }
     }
 
-    // Función que se llama cuando se activa Interact
+    // Funciï¿½n que se llama cuando se activa Interact
     public void UpdateCombo()
     {
         comboCount++;
@@ -54,7 +54,7 @@ public class ComboManager : MonoBehaviour
         comboTimer = comboResetTime;
     }
 
-    // Función para reiniciar el combo
+    // Funciï¿½n para reiniciar el combo
 
     private void ResetCombo()
     {
