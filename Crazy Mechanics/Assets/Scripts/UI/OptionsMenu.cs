@@ -7,6 +7,9 @@ public class OptionsMenu : MonoBehaviour
 {
     [SerializeField] private Slider musicSlider;
     [SerializeField] private Slider sfxSlider;
+    [SerializeField] private Button deleteDataButton;
+    [SerializeField] private GameObject confirmationPanel;
+    [SerializeField] private Button confirmDeleteButton;
 
     // EL CALCULO DE VOLUMEN SE REALIZA USANDO UNA POTENCIA PARA QUE SUENE MEJOR EL CAMBIO AL OIDO HUMANO.
 
@@ -21,6 +24,9 @@ public class OptionsMenu : MonoBehaviour
 
         musicSlider.onValueChanged.AddListener(ChangeMusicVolume);
         sfxSlider.onValueChanged.AddListener(ChangeSfxVolume);
+
+        // Para el boton de borrar todo
+        deleteDataButton.onClick.AddListener(OpenDeleteDataConfirmation);
     }
 
     // creamos las funciones para cambio de volumen en sfx y musica
@@ -36,5 +42,11 @@ public class OptionsMenu : MonoBehaviour
         //llamamos al sound manager para que efectue el cambio de volumen
         float correctVolume = Mathf.Pow(newVolume, 1.5f);
         SoundManager.Instance.ChangeVolumeSfx(correctVolume);
+    }
+
+    private void OpenDeleteDataConfirmation()
+    {
+        confirmationPanel.SetActive(true);
+        confirmDeleteButton.Select();
     }
 }
