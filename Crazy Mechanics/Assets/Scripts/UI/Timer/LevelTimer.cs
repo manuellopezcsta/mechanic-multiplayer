@@ -8,7 +8,7 @@ public class LevelTimer : MonoBehaviour
 {
     private float gamePlayingTimer;
     private bool running;
-    [SerializeField] private TextMeshProUGUI timerText;
+    [SerializeField] private TextMeshPro timerText;
     [SerializeField] private ScorePanelUI scorePanelUI;
 
 
@@ -33,6 +33,7 @@ public class LevelTimer : MonoBehaviour
 
         // Updateamos la visual.
         TimeSpan UptimeSpan = TimeSpan.FromSeconds(gamePlayingTimer);//Utilizo TimeSpan para formatear el tiempo
-        timerText.text = UptimeSpan.ToString(format:@"mm\:ss\:ff");
+        timerText.text = UptimeSpan.ToString(format: @"hh\:mm\:ss");
+        //timerText.text = UptimeSpan.ToString(format:@"mm\:ss\:ff");
     }
 }

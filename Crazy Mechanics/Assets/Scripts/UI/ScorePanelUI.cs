@@ -6,10 +6,13 @@ public class ScorePanelUI : MonoBehaviour
     const string LEVEL_SELECT_SCENE = "WorldSelect";
     [SerializeField] Image stars;
     [SerializeField] Button backButton;
+    int levelScore;
 
-    void Start() {
+    void Start()
+    {
         Hide();
-        backButton.onClick.AddListener(() => {
+        backButton.onClick.AddListener(() =>
+        {
             Loader.Load(Loader.Scene.WorldSelect);
             Time.timeScale = 1f;
 
@@ -19,48 +22,77 @@ public class ScorePanelUI : MonoBehaviour
         });
     }
 
-    public void ShowStars() {
+    public void ShowStars()
+    {
         float fillAmountFor1Star = 0.35f;
         float fillAmountFor2Star = 0.68f;
 
         LevelProperties levelProperties = GameManager.Instance.GetLevelProperties();
         // Obtenemos el score del jugador y los score a vencer
-        int levelScore = ScoreManager.Instance.GetScore();
+        levelScore = ScoreManager.Instance.GetScore();
         int firstStarScore = levelProperties.firstStarScore;
         int secondStarScore = levelProperties.secondStarScore;
         int thirdStarScore = levelProperties.thirdStarScore;
 
         // Pintamos las estrellas dependiendo del score del player.
         // Y guardamos en un playerPrefs x si lo queremos usar despues en algun lado onda score a vencer etc.
-        if(levelScore >= thirdStarScore) {
+        if (levelScore >= thirdStarScore)
+        {
             stars.fillAmount = 1f;
-            SetPlayerPrefScoreForLevel(levelProperties.levelNumber, 3);
-        } else if (levelScore >= secondStarScore) {
-            stars.fillAmount = fillAmountFor2Star;
-            SetPlayerPrefScoreForLevel(levelProperties.levelNumber, 2);
-        } else if ( levelScore >= firstStarScore) {
-            stars.fillAmount = fillAmountFor1Star;
-            SetPlayerPrefScoreForLevel(levelProperties.levelNumber, 1);
-        } else {
-            stars.fillAmount = 0f;
-            SetPlayerPrefScoreForLevel(levelProperties.levelNumber, 0);
+            SetPlayerPrefStarsForLevel(levelProperties.levelNumber, 3);
         }
+        else if (levelScore >= secondStarScore)
+        {
+            stars.fillAmount = fillAmountFor2Star;
+            SetPlayerPrefStarsForLevel(levelProperties.levelNumber, 2);
+        }
+        else if (levelScore >= firstStarScore)
+        {
+            stars.fillAmount = fillAmountFor1Star;
+            SetPlayerPrefStarsForLevel(levelProperties.levelNumber, 1);
+        }
+        else
+        {
+            stars.fillAmount = 0f;
+            SetPlayerPrefStarsForLevel(levelProperties.levelNumber, 0);
+        }
+
+        // Guardamos el HighScore si corresponde.
+        SetPlayerPrefScoreForLevel(levelProperties.levelNumber);
     }
 
-    void Hide() {
+    void Hide()
+    {
         gameObject.SetActive(false);
     }
 
-    public void Show() {
+    public void Show()
+    {
         gameObject.SetActive(true);
         backButton.Select();
         Time.timeScale = 0f;
         ShowStars();
     }
 
-    private void SetPlayerPrefScoreForLevel(string levelNumber, int starsToSet){
-        if(PlayerPrefs.GetInt(levelNumber, 0) <= starsToSet) {
+    // Guarda las estrellas por nivel.
+    private void SetPlayerPrefStarsForLevel(string levelNumber, int starsToSet)
+    {
+        if (PlayerPrefs.GetInt(levelNumber, 0) <= starsToSet)
+        {
             PlayerPrefs.SetInt(levelNumber, starsToSet);
+        }
+    }
+
+    // Guarda el HighScore del Level de ser Necesario
+    private void SetPlayerPrefScoreForLevel(string levelNumber)
+    {
+        // Cargamos el maximo anterior
+        int scoreToBeat = PlayerPrefs.GetInt(levelNumber.ToString() + "Score", 0);
+
+        // Si nuestro score paso el Max lo guardamos.
+        if (levelScore > scoreToBeat)
+        {
+            PlayerPrefs.SetInt(levelNumber.ToString() + "Score", levelScore);
         }
     }
 }

@@ -11,8 +11,11 @@ public class MainMenuUI : MonoBehaviour {
     [SerializeField] private Button creditsButton;
     [SerializeField] private GameObject creditScreen;
     [SerializeField] private Button optionsButton;
+    [SerializeField] private Button controlsButton;
+    [SerializeField] private GameObject controlsScreen;
     [SerializeField] private Button goBackCreditsButton;
     [SerializeField] private Button goBackOptionsButton;
+    [SerializeField] private Button goBackControlsButton;
     [SerializeField] private GameObject optionsScreen;
     const string GAME_SCENE_NAME = "CharacterSelect";
 
@@ -44,11 +47,22 @@ public class MainMenuUI : MonoBehaviour {
         optionsScreen.SetActive(false);
         playButton.Select();
     }
+    
+    private void OpenControls(){
+        controlsScreen.SetActive(true);
+        goBackControlsButton.Select();
+    }
+
+    private void ExitControls(){
+        controlsScreen.SetActive(false);
+        playButton.Select();
+    }
 
 
-    private void Awake() {
+    private void Awake()
+    {
         //Agregamos los eventos que queremos que pasen al hacer click en el boton
-        
+
         playButton.onClick.AddListener(StartGame);
 
         quitButton.onClick.AddListener(QuitGame);
@@ -57,9 +71,13 @@ public class MainMenuUI : MonoBehaviour {
 
         optionsButton.onClick.AddListener(OpenOptions);
 
+        controlsButton.onClick.AddListener(OpenControls);
+
         goBackCreditsButton.onClick.AddListener(ExitCredits);
 
         goBackOptionsButton.onClick.AddListener(ExitOptions);
+
+        goBackControlsButton.onClick.AddListener(ExitControls);
 
         Time.timeScale = 1f;
     }

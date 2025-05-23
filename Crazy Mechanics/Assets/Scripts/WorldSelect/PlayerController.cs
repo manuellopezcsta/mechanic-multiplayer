@@ -10,6 +10,9 @@ public class PlayerController : MonoBehaviour
     private Vector3 direction;
 
     private Vector3 castDirection;
+    //private int lastLevelAccessed = 0;
+
+    //[SerializeField] Transform[] levelSpawns;
     [SerializeField] private float speed;
     [SerializeField] private float smoothTurnigTime = 0.5f;
     [SerializeField] LayerMask objectLayerMask;
@@ -25,10 +28,11 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         playerController = GetComponent<CharacterController>();
-        //playerInputs = PlayerConfigurationManager.Instance.GetPlayerConfigs().ToArray();
     }
     void Start()
     {
+        //transform.position = levelSpawns[lastLevelAccessed].transform.position;
+        //Debug.Log("position at start up" + transform.position + "level spawn: " + levelSpawns[lastLevelAccessed].transform.position + "last level: " + lastLevelAccessed);
         InitializePlayer();
     }
     void Update()
@@ -46,7 +50,7 @@ public class PlayerController : MonoBehaviour
         // Gravity applied
         Vector3 gravity = Vector3.down * 9.81f; // Gravity force
         direction = new Vector3(inputVector.x, 0f, inputVector.y);
-        Debug.Log(direction);
+        //Debug.Log(direction);
         Vector3 movement = direction * speed * Time.deltaTime + gravity * Time.deltaTime;
 
         //Debug.Log($"calculated movement: {movement}");

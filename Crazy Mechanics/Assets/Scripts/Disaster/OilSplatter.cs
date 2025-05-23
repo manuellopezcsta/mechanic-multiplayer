@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
 
@@ -17,6 +18,8 @@ public class OilSplatter : BaseCounter, IHasProgress
 
     public event EventHandler<IHasProgress.OnProgressChangedEventArgs> OnProgressChanged;
     public static event EventHandler OnOilSpillCleaning;
+
+    [SerializeField] int scoreForCleaning = 5;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -61,8 +64,11 @@ public class OilSplatter : BaseCounter, IHasProgress
         }
 
         // Si lo terminamos de limpiar.
-        if(cleaningProgress == cleaningProgressMax) {
+        if (cleaningProgress == cleaningProgressMax)
+        {
             Destroy(gameObject);
+            // Le damos unos puntitos por limpiar.
+            ScoreManager.Instance.AddPoints(scoreForCleaning);
         }
     }
 }
