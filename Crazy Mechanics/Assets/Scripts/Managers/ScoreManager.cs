@@ -6,7 +6,7 @@ using UnityEngine;
 public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager Instance { get; private set; }
-    [SerializeField] private TextMeshProUGUI scoreDisplay;
+    [SerializeField] private TextMeshPro scoreDisplay;
 
     [SerializeField] private int totalScore = 0;
     private float currentScore = 0; // Usado para animar la subida de puntaje.
@@ -46,7 +46,7 @@ public class ScoreManager : MonoBehaviour
     private void CarsDelivered()
     {
         carsDelivered++;
-        textCarsDelivered.text = ((int)carsDelivered).ToString();
+        textCarsDelivered.text = carsDelivered.ToString();
     }
 
     public int GetScore()
