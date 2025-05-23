@@ -9,7 +9,7 @@ public class WorldObject : MonoBehaviour, IInteractable
     [SerializeField] private UnityEvent _onInteract;
     [SerializeField] Animator transitionAnimation;
     [SerializeField] int levelNumber;
-    [SerializeField] private OverworldMannager owMannager;
+    //[SerializeField] private OverworldMannager owMannager;
     UnityEvent IInteractable.OnInteract { 
         get => _onInteract;
         set => _onInteract  = value;   
@@ -24,7 +24,7 @@ public class WorldObject : MonoBehaviour, IInteractable
     public void Interact () => _onInteract.Invoke();
 
     public void LoadWorld () {
-        owMannager.changeLasteLevelLoade(levelNumber);
+        OverworldMannager.Instance.ChangeLasteLevelLoaded(levelNumber);
         Debug.Log("world object interaction");
         StartCoroutine(LoadLevel());
     }

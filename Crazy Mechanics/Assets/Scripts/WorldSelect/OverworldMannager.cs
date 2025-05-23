@@ -4,27 +4,40 @@ using UnityEngine;
 
 public class OverworldMannager : MonoBehaviour
 {
-    public static OverworldMannager instance { get; private set; }
-    private int lastLevelLoaded;
+    public static OverworldMannager Instance { get; private set; }
+    private int lastLevelLoaded = 0;
     const string KEY = "LastLevelLoaded";
     [SerializeField] Transform[] levelSpawns;
     [SerializeField] Transform playerPosition;
 
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
     void Start()
     {
-        playerPosition.transform.position = levelSpawns[lastLevelLoaded].transform.position;
         if (PlayerPrefs.HasKey(KEY))//Si ya esta cargada un ultimo nivel accedido de la ultima sesión lo carga
         {
             lastLevelLoaded = PlayerPrefs.GetInt(KEY);
         }
+        playerPosition.transform.position = levelSpawns[lastLevelLoaded].transform.position;
     }
 
-    public void changeLasteLevelLoade(int level)
+    public void ChangeLasteLevelLoaded(int level)
     {
         PlayerPrefs.SetInt(KEY, level);
+        //Debug.Log("Seting last level to: " + PlayerPrefs.GetInt(KEY) + "spawn position: " + levelSpawns[lastLevelLoaded].transform);
     }
 
-    public int getLastLevelLoaded()
+    public int GetLastLevelLoaded()
     {
         return lastLevelLoaded;
     }
