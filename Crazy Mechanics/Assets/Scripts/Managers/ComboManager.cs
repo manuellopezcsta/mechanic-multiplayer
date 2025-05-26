@@ -81,6 +81,12 @@ public class ComboManager : MonoBehaviour
      
         float counterCombo = (1 / maxMultiplierCounter) * multiplierCounter;
         //Debug.Log(counterCombo);
+        // Esto esta xq no se implemento en todos los niveles lo del counter y sino tira errores de input. 
+        if (visualCounterCombo == null || visualCombo == null)
+        {
+            return;
+        }
+
         visualCounterCombo.fillAmount = counterCombo;
         visualCombo.text = multiplierCombo.ToString();
     }
