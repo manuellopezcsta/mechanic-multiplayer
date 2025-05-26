@@ -811,7 +811,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 931108235269984464, guid: 28006e230286c5747a30844d8a7dc6e9,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 28006e230286c5747a30844d8a7dc6e9, type: 3}
 --- !u!4 &112496569 stripped
 Transform:
@@ -3159,16 +3163,23 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
-    - target: {fileID: 8462861616108631057, guid: fe89eeca351982e4f9e95336afde413a,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe89eeca351982e4f9e95336afde413a, type: 3}
+--- !u!114 &664873414 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7545276089317204174, guid: fe89eeca351982e4f9e95336afde413a,
+    type: 3}
+  m_PrefabInstance: {fileID: 664873413}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 498a1ec57ede3814c83e42dabf9cbb45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &671806454
 GameObject:
   m_ObjectHideFlags: 0
@@ -4504,6 +4515,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 894601655}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &894601657 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1800117879239324416, guid: 51f3dbad9bacff341abf5a1c79b5facc,
+    type: 3}
+  m_PrefabInstance: {fileID: 894601655}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &919123385
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9639,8 +9662,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5460988310bb51a458091dbbd1eba80c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timerText: {fileID: 0}
-  scorePanelUI: {fileID: 0}
+  timerText: {fileID: 894601657}
+  scorePanelUI: {fileID: 664873414}
 --- !u!114 &2058334195
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9655,6 +9678,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreDisplay: {fileID: 0}
   totalScore: 0
+  textCarsDelivered: {fileID: 0}
 --- !u!114 &2058334196
 MonoBehaviour:
   m_ObjectHideFlags: 0

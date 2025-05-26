@@ -80,6 +80,14 @@ public class PlayerController : MonoBehaviour
         playerInputs.actions["Move"].canceled += Move_canceled;
         playerInputs.actions["Pause"].performed += Pause;
     }
+
+    public void OnDestroy()
+    {
+        playerInputs.actions["Interact"].performed -= Interact;
+        playerInputs.actions["Move"].performed -= Move_performed;
+        playerInputs.actions["Move"].canceled -= Move_canceled;
+        playerInputs.actions["Pause"].performed -= Pause;
+    }
     public void SetInputVector(Vector2 direction)
     {
         inputVector = direction;
@@ -135,7 +143,7 @@ public class PlayerController : MonoBehaviour
                 interactable.Interact();                
             }
         }*/
-        Debug.Log("where " + castDirection);
+        //Debug.Log("where " + castDirection);
         if (Physics.CapsuleCast(capsuleStart, capsuleEnd, capsuleRadius, castDirection, out RaycastHit raycastHit, capsuleDistance, levelLayerMask))
         {//Raycast hiting a level select object
             //Debug.Log("Raycast hit world" + raycastHit.transform.name);
@@ -151,7 +159,7 @@ public class PlayerController : MonoBehaviour
     {
         //Check if the character is currently moving
         //Debug.Log(inputVector.sqrMagnitude);
-        Debug.Log(inputVector);
+        //Debug.Log(inputVector);
         return inputVector != Vector2.zero;
 
     }
