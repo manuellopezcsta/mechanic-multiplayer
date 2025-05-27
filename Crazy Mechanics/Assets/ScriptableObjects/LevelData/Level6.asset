@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7c8d7f665ed5404a9656984c940105c, type: 3}
+  m_Name: Level6
+  m_EditorClassIdentifier: 
+  levelNumber: 6
+  levelTime: 210
+  firstStarScore: 60
+  secondStarScore: 100
+  thirdStarScore: 140
+  minTaskNumber: 3
+  maxTaskNumber: 6
+  listTasks: 04000000030000000500000002000000060000000100000000000000
+  maxOilObjects: 2
+  maxBoxObjects: 2
+  maxFuseObjects: 1
+  maxSparkPlugObjects: 2
+  maxPistonObjects: 2
+  maxWheelObjects: 4
+  disasterTypes: 040000000000000003000000
+  disasterMinTimer: 40
+  disasterMaxTimer: 60
+  hasTutorial: 0
+  tutorialImage: {fileID: 21300000, guid: cd6f5563fad820046b083dffa0270aae, type: 3}
