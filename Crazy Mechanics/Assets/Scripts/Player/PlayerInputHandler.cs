@@ -5,6 +5,7 @@ using static UnityEngine.InputSystem.InputAction;
 using System;
 using UnityEngine.InputSystem;
 using Cinemachine;
+using UnityEditor;
 
 public class PlayerInputHandler : MonoBehaviour
 {
@@ -112,9 +113,15 @@ public class PlayerInputHandler : MonoBehaviour
 
     private void Interact_performed(CallbackContext context)
     {
-        if (player.selectedCounter != null)
+        /*if (player.selectedCounter != null)
         {
             player.selectedCounter.Interact(player);
+        }*/
+        // Obtiene todos los objetos en rango y intenta interactuar con ellos
+        foreach (RaycastHit hit in player.GetAllObjectInRange())
+
+        {
+            hit.collider.GetComponent<BaseCounter>().Interact(player);
         }
     }
 }

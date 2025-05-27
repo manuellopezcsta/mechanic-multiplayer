@@ -4440,7 +4440,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicSource: {fileID: 932014138}
-  discoNight: {fileID: 0}
+  discoNight: {fileID: 932014137}
   audioClipRefsSO: {fileID: 11400000, guid: 16d13fe462d33bc4eb955e4e7cd5ce75, type: 2}
 --- !u!82 &932014137
 AudioSource:
@@ -9782,7 +9782,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5460988310bb51a458091dbbd1eba80c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timerText: {fileID: 862175319}
+  timerText: {fileID: 0}
   scorePanelUI: {fileID: 664873415}
 --- !u!114 &2058334195
 MonoBehaviour:
@@ -9796,9 +9796,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b46e124281b356b45a4414b8204e79c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreDisplay: {fileID: 1624263120}
+  scoreDisplay: {fileID: 0}
   totalScore: 0
-  textCarsDelivered: {fileID: 1532731657}
+  textCarsDelivered: {fileID: 0}
 --- !u!114 &2058334196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9816,8 +9816,8 @@ MonoBehaviour:
   multiplierCombo: 1
   multiplierCounter: 0
   maxMultiplierCounter: 5
-  visualCounterCombo: {fileID: 174687405}
-  visualCombo: {fileID: 174687406}
+  visualCounterCombo: {fileID: 0}
+  visualCombo: {fileID: 0}
 --- !u!114 &2058334197
 MonoBehaviour:
   m_ObjectHideFlags: 0

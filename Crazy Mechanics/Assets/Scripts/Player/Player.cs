@@ -111,7 +111,8 @@ public class Player : MonoBehaviour, ICarObjectParent
         //Vector2 inputVector = gameInput.GetMovementVectorNormalized();
         moveDir = new Vector3(inputVector.x, 0f, inputVector.y);
 
-        if (invertControls){
+        if (invertControls)
+        {
             moveDir *= -1;
         }
 
@@ -215,9 +216,9 @@ public class Player : MonoBehaviour, ICarObjectParent
 
             forceDirection.y = 0;
             forceDirection.Normalize();
-            
+
             //Debug.Log("force value  " + forceDirection * forceMagnitude * Time.deltaTime);
-            rb.AddForceAtPosition(forceDirection * forceMagnitude * Time.deltaTime , transform.position, ForceMode.Impulse);
+            rb.AddForceAtPosition(forceDirection * forceMagnitude * Time.deltaTime, transform.position, ForceMode.Impulse);
             return;
         }
 
@@ -313,7 +314,20 @@ public class Player : MonoBehaviour, ICarObjectParent
         transform.position = GameManager.Instance.playerSpawns[i].position;
     }
 
-    public Vector3 GetLastInteractDir(){
+    public Vector3 GetLastInteractDir()
+    {
         return lastInteractDir;
+    }
+    public RaycastHit[] GetAllObjectInRange()//Obtiene todos los objetos en rango de interact
+    {
+        float interactDistance = 2f;
+        float capsuleRadius = 0.5f; // Ajusta el radio seg�n sea necesario
+        float capsuleHeight = 1.5f; // Ajusta la altura seg�n sea necesario
+
+        Vector3 capsuleStart = transform.position;
+        Vector3 capsuleEnd = transform.position + Vector3.up * capsuleHeight;
+
+        return Physics.CapsuleCastAll(capsuleStart, capsuleEnd, capsuleRadius, lastInteractDir, interactDistance, countersLayerMask);
+        
     }
 }
