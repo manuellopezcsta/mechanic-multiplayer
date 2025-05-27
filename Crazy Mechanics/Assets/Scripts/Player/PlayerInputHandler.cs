@@ -1,11 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.InputSystem.InputAction;
-using System;
 using UnityEngine.InputSystem;
-using Cinemachine;
-using UnityEditor;
 
 public class PlayerInputHandler : MonoBehaviour
 {
@@ -13,12 +8,16 @@ public class PlayerInputHandler : MonoBehaviour
     private PlayerConfiguration playerConfig;
     private PlayerInput playerInput;
     private Player player;
+    private PlayerMovement playerMovement;
+    private PlayerInteract playerInteract;
 
     [SerializeField] PlayerAnimator playerAnimator;
 
     private void Awake()
     {
         player = GetComponent<Player>();
+        playerMovement = GetComponent<PlayerMovement>();
+        playerInteract = GetComponent<PlayerInteract>();
         //Debug.Log($"PlayerInputHandler creado: {gameObject.name}");
     }
 
@@ -66,7 +65,7 @@ public class PlayerInputHandler : MonoBehaviour
 
     private void Dash_performed(CallbackContext context)
     {
-        player.Dash();
+        playerMovement.Dash();
     }
     private void Pause_perfomed(CallbackContext context)
     {
@@ -82,7 +81,7 @@ public class PlayerInputHandler : MonoBehaviour
     {
         if (player != null)
         {
-            player.SetInputVector(context.ReadValue<Vector2>());
+            playerMovement.SetInputVector(context.ReadValue<Vector2>());
         }
     }
 
@@ -91,7 +90,7 @@ public class PlayerInputHandler : MonoBehaviour
         if (player != null)
         {
             // Cuando se cancela el movimiento, establecer el vector a (0, 0)
-            player.SetInputVector(Vector2.zero);
+            playerMovement.SetInputVector(Vector2.zero);
         }
     }
 
@@ -102,7 +101,7 @@ public class PlayerInputHandler : MonoBehaviour
         if (player.HasCarObject())
         {
             // Tiramos el objeto.
-            player.HandleThrowing();
+            playerInteract.HandleThrowing();
         }
         else
         {
@@ -118,7 +117,7 @@ public class PlayerInputHandler : MonoBehaviour
             player.selectedCounter.Interact(player);
         }*/
         // Obtiene todos los objetos en rango y intenta interactuar con ellos
-        foreach (RaycastHit hit in player.GetAllObjectInRange())
+        foreach (RaycastHit hit in playerInteract.GetAllObjectInRange())
 
         {
             hit.collider.GetComponent<BaseCounter>().Interact(player);

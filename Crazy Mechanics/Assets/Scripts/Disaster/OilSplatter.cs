@@ -46,7 +46,7 @@ public class OilSplatter : BaseCounter, IHasProgress
         }
 
         player.isSliding = false;
-        StartCoroutine(player.GetStunned());
+        StartCoroutine(player.GetComponent<PlayerMovement>().GetStunned());
     }
 
 

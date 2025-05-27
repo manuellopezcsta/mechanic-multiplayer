@@ -11753,6 +11753,8 @@ GameObject:
   - component: {fileID: 3985202170584145055}
   - component: {fileID: 6697645198155447147}
   - component: {fileID: 6004907242535667517}
+  - component: {fileID: -1761888256709279373}
+  - component: {fileID: -88879963268258915}
   m_Layer: 3
   m_Name: BananaMan 1
   m_TagString: Player
@@ -11794,22 +11796,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isSliding: 0
   slideDir: {x: 0, y: 0, z: 0}
-  countersLayerMask:
-    serializedVersion: 2
-    m_Bits: 64
   carObjectHoldPoint: {fileID: 4542152837608735611}
-  invisibleHolder: {fileID: 7488609594669377029, guid: b50ba5ed3ff573f41b0734fc3704f9fe,
-    type: 3}
-  throwMagnitude: 2
-  fowardMagnitude: 3
-  upMagnitude: 2
-  selectedCounter: {fileID: 0}
+  isWalking: 0
+  carObject: {fileID: 0}
   speed: 7
-  dashSpeed: 10
-  dashDuration: 0.25
-  canDash: 1
-  dashCooldown: 3
-  stunDuration: 2
+  moveDir: {x: 0, y: 0, z: 0}
+  selectedCounter: {fileID: 0}
 --- !u!143 &8025474308772073122
 CharacterController:
   m_ObjectHideFlags: 0
@@ -11882,6 +11874,43 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerAnimator: {fileID: 1810570434448086964}
+--- !u!114 &-1761888256709279373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6150809395095164412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42700ddc12d8d254e92fd42578cd5bcc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dashSpeed: 10
+  dashDuration: 0.25
+  canDash: 1
+  dashCooldown: 3
+  stunDuration: 2
+--- !u!114 &-88879963268258915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6150809395095164412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc49301e5dcc4fe4a829eb66a132349b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  countersLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  invisibleHolder: {fileID: 7488609594669377029, guid: b50ba5ed3ff573f41b0734fc3704f9fe,
+    type: 3}
+  throwMagnitude: 2
+  fowardMagnitude: 3
+  upMagnitude: 2
 --- !u!1 &6245258086136666547
 GameObject:
   m_ObjectHideFlags: 0

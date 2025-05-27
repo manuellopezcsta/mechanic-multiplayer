@@ -29,7 +29,7 @@ public class PlayerAnimator : MonoBehaviour {
 
     private void Update() {
         
-        animator.SetBool(IS_WALKING, player.IsWalking());
+        animator.SetBool(IS_WALKING, player.isWalking);
         /*if (player.IsWalking())
         {
             animator.SetBool(IS_DANCING, false);
@@ -39,7 +39,7 @@ public class PlayerAnimator : MonoBehaviour {
     public void StartDance()
     {
         //El baile se va a realizar solo cuando el personaje este quieto
-        if (!player.IsWalking() && animator != null)
+        if (!player.isWalking && animator != null)
         {
             animator.SetTrigger(IS_DANCING);
         }
