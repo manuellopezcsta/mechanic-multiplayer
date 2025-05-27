@@ -33,7 +33,7 @@ public class SoundManager : MonoBehaviour
         // Nos suscribimos a los eventos de sonindo
         CurrentStationManager.OnCarDelivery += OnCarDelivered;
         Player.OnPickedSomething += OnPickedUpSomething; 
-        Player.OnDroppedSomething += OnDroppedSomething;
+        PlayerInteract.OnDroppedSomething += OnDroppedSomething;
         TrashCounter.OnAnyObjectTrashed += OnAnyObjectTrashed;
         MotorTool.OnCricketUsed += OnCricketUsed; 
         // Error al usarlo en el menu xq gameManager no existe ahi.
@@ -152,7 +152,7 @@ public class SoundManager : MonoBehaviour
 
     private void OnDroppedSomething(object sender, System.EventArgs e)
     {
-        Player player = sender as Player;
+        PlayerInteract player = sender as PlayerInteract;
         PlaySound(audioClipRefsSO.objectDrop, player.transform.position);
     }
 
@@ -231,7 +231,7 @@ public class SoundManager : MonoBehaviour
     {
         CurrentStationManager.OnCarDelivery -= OnCarDelivered;
         Player.OnPickedSomething -= OnPickedUpSomething; 
-        Player.OnDroppedSomething -= OnDroppedSomething;
+        PlayerInteract.OnDroppedSomething -= OnDroppedSomething;
         TrashCounter.OnAnyObjectTrashed -= OnAnyObjectTrashed; 
         MotorTool.OnCricketUsed -= OnCricketUsed; 
         GameManager.OnCarSpawned -= OnCarSpawned;

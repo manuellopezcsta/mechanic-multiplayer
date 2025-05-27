@@ -47,7 +47,7 @@ public class TaskWheel : BaseCounter
         // Logica para dejar objetos
         if (!HasCarObject()) {
             // There is no obj here and check if they are the same object
-            if (player.HasCarObject() && player.GetCarObject().GetObjectSO() == balancedWheel) {
+            if (player.HasCarObject() && player.GetCarObject().GetObjectSO() == balancedWheel && stationManager.GetCurrentElevatorFloor() == 0) {
                 ComboManager.Instance.UpdateCombo();
                 // El player tiene algo en la mano
                 player.GetCarObject().SetCarObjectParent(this);
@@ -65,7 +65,7 @@ public class TaskWheel : BaseCounter
             }
         } else {
             // Logica para sacar la rueda del auto.
-            if(!player.HasCarObject() && !taskComplete) {
+            if(!player.HasCarObject() && !taskComplete && stationManager.GetCurrentElevatorFloor() == 0) {
                 ComboManager.Instance.UpdateCombo();
                 GetCarObject().SetCarObjectParent(player);
                 SpawnLimitManager.Instance.ModifySpawnedCounter(wheel.GetObjectSO().name, 1);
