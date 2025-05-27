@@ -981,6 +981,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &5705232618058862764
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9142770565339290631}
+  m_Layer: 6
+  m_Name: PositionInstanceCar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9142770565339290631
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5705232618058862764}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.99999785, z: 0, w: 0.002073407}
+  m_LocalPosition: {x: 0.6322347, y: -1.5388894, z: -17.68197}
+  m_LocalScale: {x: -0.555555, y: 0.55555564, z: 0.555555}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2070563146018403921}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6158818777059399002
 GameObject:
   m_ObjectHideFlags: 0
@@ -1529,7 +1560,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.9999979, z: 0, w: 0.002077108}
   m_LocalPosition: {x: -53.559326, y: 2.7700005, z: 55.068714}
-  m_LocalScale: {x: 1.8000019, y: 1.7999997, z: 1.8000019}
+  m_LocalScale: {x: -1.800002, y: 1.7999997, z: 1.8000019}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6190238421987983221}
@@ -1541,6 +1572,7 @@ Transform:
   - {fileID: 9104985428909795766}
   - {fileID: 3911600263422517024}
   - {fileID: 6195774583049347530}
+  - {fileID: 9142770565339290631}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -179.762, z: 0}
 --- !u!114 &7492439659215412464

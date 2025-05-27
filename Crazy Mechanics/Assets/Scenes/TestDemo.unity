@@ -4535,7 +4535,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3458283421872111863, guid: c86387169c60be64f9c8956ea5d5b9bb, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c86387169c60be64f9c8956ea5d5b9bb, type: 3}
@@ -4683,7 +4684,8 @@ PrefabInstance:
       value: BoxCounter
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 8892989985903908906, guid: 36d8e09eb8850cb40872bc7fd733b55b, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36d8e09eb8850cb40872bc7fd733b55b, type: 3}
@@ -6621,7 +6623,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5460988310bb51a458091dbbd1eba80c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timerText: {fileID: 301519049}
+  timerText: {fileID: 0}
   scorePanelUI: {fileID: 854379585}
 --- !u!114 &2058334195
 MonoBehaviour:
@@ -6635,8 +6637,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b46e124281b356b45a4414b8204e79c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreDisplay: {fileID: 1276996060}
+  scoreDisplay: {fileID: 0}
   totalScore: 0
+  textCarsDelivered: {fileID: 0}
 --- !u!114 &2058334196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6655,7 +6658,7 @@ MonoBehaviour:
   multiplierCounter: 0
   maxMultiplierCounter: 5
   visualCounterCombo: {fileID: 6530593362868508470}
-  visualCombo: {fileID: 2793276839280396550}
+  visualCombo: {fileID: 0}
 --- !u!114 &2058334197
 MonoBehaviour:
   m_ObjectHideFlags: 0
