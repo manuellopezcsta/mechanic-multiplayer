@@ -13,21 +13,21 @@ MonoBehaviour:
   m_Name: Level2
   m_EditorClassIdentifier: 
   levelNumber: 2
-  levelTime: 20
-  firstStarScore: 10
-  secondStarScore: 20
-  thirdStarScore: 30
+  levelTime: 210
+  firstStarScore: 60
+  secondStarScore: 100
+  thirdStarScore: 140
   minTaskNumber: 2
   maxTaskNumber: 4
   listTasks: 0400000003000000050000000200000006000000
   maxOilObjects: 0
   maxBoxObjects: 0
-  maxFuseObjects: 0
+  maxFuseObjects: 1
   maxSparkPlugObjects: 0
   maxPistonObjects: 0
   maxWheelObjects: 4
-  disasterTypes: 
-  disasterMinTimer: 2
-  disasterMaxTimer: 10
+  disasterTypes: 0000000001000000
+  disasterMinTimer: 40
+  disasterMaxTimer: 60
   hasTutorial: 0
   tutorialImage: {fileID: 21300000, guid: cd6f5563fad820046b083dffa0270aae, type: 3}

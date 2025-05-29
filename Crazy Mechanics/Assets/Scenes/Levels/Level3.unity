@@ -1660,37 +1660,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 270189472}
   m_Mesh: {fileID: 4300000, guid: 1231b14ac007ccd4992721dedc4f16b4, type: 3}
---- !u!1 &295114708
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 295114709}
-  m_Layer: 6
-  m_Name: PositionInstanceCar
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &295114709
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 295114708}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -55.2, y: 0, z: 86.891304}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &304994537
 GameObject:
   m_ObjectHideFlags: 0
@@ -9742,7 +9711,7 @@ MonoBehaviour:
   carListSO: {fileID: 11400000, guid: 3e52da030c1fa0348a2be4970bbf0dfc, type: 2}
   carPrefabs: []
   positionInstanciateCars:
-  - {fileID: 295114708}
+  - {fileID: 2866617980095996314}
   stations:
   - {fileID: 4429616143079583408}
   lightBoxController: {fileID: 767206488}
@@ -9782,7 +9751,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5460988310bb51a458091dbbd1eba80c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timerText: {fileID: 0}
+  timerText: {fileID: 862175319}
   scorePanelUI: {fileID: 664873415}
 --- !u!114 &2058334195
 MonoBehaviour:
@@ -9796,9 +9765,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b46e124281b356b45a4414b8204e79c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreDisplay: {fileID: 0}
+  scoreDisplay: {fileID: 1624263120}
   totalScore: 0
-  textCarsDelivered: {fileID: 0}
+  textCarsDelivered: {fileID: 1532731657}
 --- !u!114 &2058334196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9816,8 +9785,8 @@ MonoBehaviour:
   multiplierCombo: 1
   multiplierCounter: 0
   maxMultiplierCounter: 5
-  visualCounterCombo: {fileID: 0}
-  visualCombo: {fileID: 0}
+  visualCounterCombo: {fileID: 174687405}
+  visualCombo: {fileID: 174687406}
 --- !u!114 &2058334197
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29718,8 +29687,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 27.031134, y: 10.986919, z: 39.414494}
-  m_Center: {x: -0.9887515, y: 4.9934597, z: 0.004512787}
+  m_Size: {x: 20.998205, y: 10.986919, z: 39.414494}
+  m_Center: {x: 2.027755, y: 4.9934597, z: 0.0045127873}
 --- !u!1 &1317452582338429365
 GameObject:
   m_ObjectHideFlags: 0
@@ -52825,6 +52794,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc20920701e7c5648aa919e785d18ffe, type: 3}
+--- !u!1 &2866617980095996314 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5705232618058862764, guid: fc20920701e7c5648aa919e785d18ffe,
+    type: 3}
+  m_PrefabInstance: {fileID: 2866617980095996313}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2867282540832088928
 Transform:
   m_ObjectHideFlags: 0
@@ -148731,7 +148706,6 @@ SceneRoots:
   - {fileID: 8423695048005596473}
   - {fileID: 1299144560}
   - {fileID: 4879307834254575384}
-  - {fileID: 295114709}
   - {fileID: 1905629243}
   - {fileID: 1594229736}
   - {fileID: 777959669}
