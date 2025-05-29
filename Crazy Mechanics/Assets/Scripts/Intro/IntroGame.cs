@@ -9,9 +9,8 @@ public class IntroGame : MonoBehaviour
     public VideoPlayer videoPlayer;
     public float holdTime = 3f;
     private float elapsedTime = 0f;
-    private bool isHolding = false;
     private Image holdSkip;
-    private float valueHold;
+    private float valueHold; // Tiempo que lleva el boton presionado
     public InputAction holdAction; // Crear una acción de input
 
     void Start()
@@ -26,7 +25,6 @@ public class IntroGame : MonoBehaviour
     {
         if (holdAction.IsPressed()) // Detectar si el botón está presionado
         {
-            isHolding = true;
             elapsedTime += Time.deltaTime;
             valueHold = 1f - (elapsedTime / holdTime);
             holdSkip.fillAmount = valueHold;
@@ -38,7 +36,6 @@ public class IntroGame : MonoBehaviour
         }
         else
         {
-            isHolding = false;
             elapsedTime = 0f;
             holdSkip.fillAmount = 1f;
         }
