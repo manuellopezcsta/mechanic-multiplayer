@@ -21,7 +21,6 @@ public class ScoreManager : MonoBehaviour
     public void AddPoints(int ammount)
     {
         totalScore += ammount;
-        CarsDelivered();
         //UpdateScoreDisplay();
     }
     
@@ -43,7 +42,7 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
-    private void CarsDelivered()
+    public void CarsDelivered()
     {
         carsDelivered++;
         textCarsDelivered.text = carsDelivered.ToString();
