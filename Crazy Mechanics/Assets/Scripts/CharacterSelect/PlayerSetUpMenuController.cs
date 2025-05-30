@@ -16,6 +16,7 @@ public class PlayerSetUpMenuController : MonoBehaviour
 
     private PlayerInput playerInput;
     private InputAction navigateAction; // Para el navegate.
+    private InputAction interactAction; // Para el interact.
 
     private float ignoreInputTime = 1.5f;
     private bool inputEnabled;
@@ -58,8 +59,10 @@ public class PlayerSetUpMenuController : MonoBehaviour
         playerInput = pi;
         //Obtenemos la accion de navegate
         navigateAction = playerInput.actions["Navigate"];
+        interactAction = playerInput.actions["Interact"];
         // Suscribirse al evento de navegación
         navigateAction.started += OnNavigate;
+        interactAction.started += OnInteract;
     }
 
     // Maneja el input al presionar derecha e izquierda de los controller.
@@ -77,11 +80,25 @@ public class PlayerSetUpMenuController : MonoBehaviour
         }
         // SI se bugea subir a 0.3 la deadzone de Navigate
     }
+    private void OnInteract(InputAction.CallbackContext context) {
+
+        if (!inputEnabled)
+        {
+            return;
+        }
+
+        PlayerConfigurationManager.Instance.ReadyPlayer(PlayerIndex);
+        readyButton.gameObject.SetActive(false);
+        menuPanel.SetActive(false);
+        readyPanel.SetActive(true);
+        navigateAction.Disable();
+    }
 
     private void OnDestroy()
     {
         // Asegurarse de desuscribirse del evento
         navigateAction.started -= OnNavigate;
+        interactAction.started -= OnInteract;
     }
 
 
