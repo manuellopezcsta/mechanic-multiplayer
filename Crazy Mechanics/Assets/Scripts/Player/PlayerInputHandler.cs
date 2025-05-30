@@ -10,6 +10,7 @@ public class PlayerInputHandler : MonoBehaviour
     private Player player;
     private PlayerMovement playerMovement;
     private PlayerInteract playerInteract;
+    
 
     [SerializeField] PlayerAnimator playerAnimator;
 
@@ -69,7 +70,7 @@ public class PlayerInputHandler : MonoBehaviour
     }
     private void Pause_perfomed(CallbackContext context)
     {
-        PauseMenuScriptUI pauseMenuScript = GameObject.Find("Canvas").GetComponent<PauseMenuScriptUI>();
+        PauseMenuScriptUI pauseMenuScript = GameObject.FindGameObjectWithTag("MainCanvas").GetComponent<PauseMenuScriptUI>();
         
         if (pauseMenuScript != null)
         {
