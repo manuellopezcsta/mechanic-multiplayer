@@ -12,7 +12,7 @@ public class CarController : MonoBehaviour
     public bool carFixed = false;
     public bool canMove = true;
     [SerializeField] private float speed = 5f;
-    [SerializeField] private float targetZ = 10f;
+    [SerializeField] private float targetZ = 40f;
     [SerializeField] private List<GameManager.CarTasks> carTasks;
 
 
