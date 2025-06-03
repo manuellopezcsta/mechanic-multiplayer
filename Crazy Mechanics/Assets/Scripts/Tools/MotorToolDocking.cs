@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MotorToolDocking : MonoBehaviour
 {
-    const string MOTOR_TOOL_NAME = "Pluma";
+    const string MOTOR_TOOL_NAME = "MotorTool";
     [SerializeField] private Vector3 offset;
     [SerializeField] private float setSpeed;
 
@@ -15,7 +15,7 @@ public class MotorToolDocking : MonoBehaviour
 
     void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.name == MOTOR_TOOL_NAME)
+        if (other.CompareTag(MOTOR_TOOL_NAME))
         {
             motorTooldocked = true;
             Vector3 targetPos = transform.position + offset;
@@ -28,7 +28,7 @@ public class MotorToolDocking : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.name == MOTOR_TOOL_NAME)
+        if (other.CompareTag(MOTOR_TOOL_NAME))
         {
             motorTooldocked = false;
             currentMotorTool = null;

@@ -14,8 +14,10 @@ public class TaskMotor : BaseCounter
     [SerializeField] private GameObject motorVisual;
     [SerializeField] private TaskIndicatorUI indicatorUI;
     [SerializeField] private int score;
+    [SerializeField] private ParticleSystem smokeCloud;
     void Start()
     {
+        smokeCloud.Stop();
         SetCarObject(motor);
         GetCarObject().SetCarObjectParent(this);
         stationManager = carController.GetCurrentStationManager();
@@ -39,6 +41,9 @@ public class TaskMotor : BaseCounter
                     motorTool.GetCarObject().SetCarObjectParent(this);
                     // Hacemos sonido
                     SoundManager.Instance.PlayObjectDroppedSound(transform);
+                    //Le damos play al vfx
+                    smokeCloud.Play();
+
                     taskComplete = true;
                     carController.AddScoreTask(score);
                     indicatorUI.SetAsComplete();
@@ -58,6 +63,8 @@ public class TaskMotor : BaseCounter
                 if (conditionsMet && !player.HasCarObject() && !motorTool.HasCarObject())
                 {
                     ComboManager.Instance.UpdateCombo();
+                    //Prendemos el objeto para que no inicie 
+                    smokeCloud.Play();
                     motorVisual.SetActive(true);
                     // El piso es el correcto y esta la pluma dockeada.
                     // Seteo el objeto al motor tool.
