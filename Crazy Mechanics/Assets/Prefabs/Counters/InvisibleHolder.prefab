@@ -66,7 +66,7 @@ PrefabInstance:
     - target: {fileID: 3706297811514295021, guid: e529a028bc53eeb49a4da84bec593746,
         type: 3}
       propertyPath: m_Size.y
-      value: 0.58484155
+      value: 1.1674354
       objectReference: {fileID: 0}
     - target: {fileID: 3706297811514295021, guid: e529a028bc53eeb49a4da84bec593746,
         type: 3}
@@ -81,12 +81,12 @@ PrefabInstance:
     - target: {fileID: 3706297811514295021, guid: e529a028bc53eeb49a4da84bec593746,
         type: 3}
       propertyPath: m_Center.x
-      value: -0.8274593
+      value: -0.82745934
       objectReference: {fileID: 0}
     - target: {fileID: 3706297811514295021, guid: e529a028bc53eeb49a4da84bec593746,
         type: 3}
       propertyPath: m_Center.y
-      value: 0.28071538
+      value: -0.010581464
       objectReference: {fileID: 0}
     - target: {fileID: 3706297811514295021, guid: e529a028bc53eeb49a4da84bec593746,
         type: 3}
@@ -153,6 +153,8 @@ MonoBehaviour:
   counterTopPoint: {fileID: 3262769914585668820}
   tool: {fileID: 0}
   thrownBy: {fileID: 0}
+  flying: 0
+  spawn: {x: 0, y: 0, z: 0}
 --- !u!54 &7669062135849229819
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -2835,7 +2835,7 @@ PrefabInstance:
     - target: {fileID: 8462861616108631057, guid: fe89eeca351982e4f9e95336afde413a,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7259,6 +7259,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Puntaje
       objectReference: {fileID: 0}
+    - target: {fileID: 6331286334391188700, guid: 4e03a42ba9e49a54e9cc273aae84d499,
+        type: 3}
+      propertyPath: m_text
+      value: $0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9479,6 +9484,7 @@ MonoBehaviour:
   scoreDisplay: {fileID: 1624263120}
   totalScore: 0
   textCarsDelivered: {fileID: 1532731657}
+  multiplierPlayerValue: 0
 --- !u!114 &2058334196
 MonoBehaviour:
   m_ObjectHideFlags: 0
