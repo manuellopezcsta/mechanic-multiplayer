@@ -61,7 +61,8 @@ public class PlayerConfigurationManager : MonoBehaviour
             //Loader.Load(Loader.Scene.TestDemo);
             //Loader.Load(Loader.Scene.Level1);
             //Loader.Load(Loader.Scene.Level5);
-            Loader.Load(Loader.Scene.Level2);
+            //Loader.Load(Loader.Scene.Level2);
+            Loader.Load(Loader.Scene.Level0);
         }
     }
 

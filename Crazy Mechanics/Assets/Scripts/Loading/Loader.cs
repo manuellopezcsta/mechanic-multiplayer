@@ -18,6 +18,7 @@ public static class Loader
         WorldSelect,
         WorldSelectTesting,
         Loading,
+        Level0,
         Level1,
         Level2,
         Level3,
