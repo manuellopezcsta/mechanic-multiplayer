@@ -31,7 +31,7 @@ public class BalacingTool : BaseCounter, IHasProgress
     private float balancingTimer;
 
     [SerializeField] private Animator animator;
-    private string IS_RUNNING = "Running"; // Nombre del parámetro en el Animator
+    private string IS_RUNNING = "Running"; // Nombre del parï¿½metro en el Animator
 
 
     public override void Interact(Player player)
@@ -46,7 +46,7 @@ public class BalacingTool : BaseCounter, IHasProgress
                 player.GetCarObject().SetCarObjectParent(this);
                 state = State.Running;
                 balancingTimer = 0f;
-                // Inicia la animación
+                // Inicia la animaciï¿½n
                 this.AnimationRunning();
 
                 OnStateChanged?.Invoke(this, new OnStateChangedEventArgs
@@ -92,13 +92,13 @@ public class BalacingTool : BaseCounter, IHasProgress
 
     private void AnimationRunning()
     {
-        Debug.Log("Animator es null.");
+        //Debug.Log("Animator es null.");
         if (animator != null)
         {
             animator.SetTrigger(IS_RUNNING);
-            // Aquí puedes agregar la lógica que deseas ejecutar cuando la animación de "Running" se complete
-            // Por ejemplo, podrías cambiar el estado del objeto o realizar alguna acción adicional.
-            Debug.Log("Animación de 'Running' completada.");
+            // Aquï¿½ puedes agregar la lï¿½gica que deseas ejecutar cuando la animaciï¿½n de "Running" se complete
+            // Por ejemplo, podrï¿½as cambiar el estado del objeto o realizar alguna acciï¿½n adicional.
+            //Debug.Log("Animaciï¿½n de 'Running' completada.");
         }
     }
 

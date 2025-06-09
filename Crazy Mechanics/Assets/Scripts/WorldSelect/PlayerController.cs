@@ -5,10 +5,8 @@ using static UnityEngine.InputSystem.InputAction;
 
 public class PlayerController : MonoBehaviour
 {
-    private Vector2 input;
     private CharacterController playerController;
     private Vector3 direction;
-
     private Vector3 castDirection;
     //private int lastLevelAccessed = 0;
 
@@ -83,6 +81,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnDestroy()
     {
+        if (!playerInputs) return;
         playerInputs.actions["Interact"].performed -= Interact;
         playerInputs.actions["Move"].performed -= Move_performed;
         playerInputs.actions["Move"].canceled -= Move_canceled;
@@ -93,15 +92,6 @@ public class PlayerController : MonoBehaviour
         inputVector = direction;
     }
 
-    /*public void Move(InputAction.CallbackContext context)
-    {
-        input = context.ReadValue<Vector2>();
-        direction = new Vector3(input.x, 0.0f, input.y);
-        if (direction != Vector3.zero)
-        {
-            castDirection = direction; // Actualiza donde mira el jugador
-        }
-    }*/
     private void Move_performed(CallbackContext context)
     {
 
