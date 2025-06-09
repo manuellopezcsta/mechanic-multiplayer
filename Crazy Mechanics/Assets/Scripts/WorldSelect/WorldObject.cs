@@ -1,11 +1,10 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.SceneManagement;
 public class WorldObject : MonoBehaviour, IInteractable
 {
     // Cambiar por un Enum de tipo Scene y usar el Loader.Load(worldTogo)
-    [SerializeField] Loader.Scene worldToGo = Loader.Scene.TestDemo;
+    [SerializeField] Loader.Scene worldToGo = Loader.Scene.Level0;
     [SerializeField] private UnityEvent _onInteract;
     [SerializeField] Animator transitionAnimation;
     [SerializeField] int levelNumber;
@@ -24,7 +23,7 @@ public class WorldObject : MonoBehaviour, IInteractable
     public void Interact () => _onInteract.Invoke();
 
     public void LoadWorld () {
-        OverworldMannager.Instance.ChangeLasteLevelLoaded(levelNumber);
+        OverworldMannager.Instance.ChangeLastLevelLoaded(levelNumber);
         Debug.Log("world object interaction");
         StartCoroutine(LoadLevel());
     }

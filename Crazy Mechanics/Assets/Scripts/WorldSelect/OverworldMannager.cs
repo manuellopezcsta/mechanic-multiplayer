@@ -26,7 +26,7 @@ public class OverworldMannager : MonoBehaviour
         playerPosition.transform.position = levelSpawns[lastLevelLoaded].transform.position;
     }
 
-    public void ChangeLasteLevelLoaded(int level)
+    public void ChangeLastLevelLoaded(int level)
     {
         PlayerPrefs.SetInt(KEY, level);
         //Debug.Log("Seting last level to: " + PlayerPrefs.GetInt(KEY) + "spawn position: " + levelSpawns[lastLevelLoaded].transform);
