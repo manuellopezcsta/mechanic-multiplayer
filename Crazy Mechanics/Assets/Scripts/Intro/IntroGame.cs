@@ -31,7 +31,7 @@ public class IntroGame : MonoBehaviour
 
             if (elapsedTime >= holdTime)
             {
-                SceneManager.LoadScene("MenuNuevo");
+                SceneManager.LoadScene("Menu");
             }
         }
         else
@@ -43,6 +43,6 @@ public class IntroGame : MonoBehaviour
 
     void OnVideoEnd(VideoPlayer video)
     {
-        SceneManager.LoadScene("MenuNuevo");
+        SceneManager.LoadScene("Menu");
     }
 }
