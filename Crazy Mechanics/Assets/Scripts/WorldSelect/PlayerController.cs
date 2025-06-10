@@ -66,6 +66,7 @@ public class PlayerController : MonoBehaviour
 
     public void InitializePlayer()
     {
+        Debug.Log("Por alguna razon al salir desde el world select a Main Menu, El playerInput se vuelve 0, y no puede desuscribirse correctamente al destruirse.");
         var playerConfig = PlayerConfigurationManager.Instance.GetPlayerConfigs().ToArray()[0];
         playerInputs = playerConfig.PInput;
         //playerInputs.SwitchCurrentActionMap("WorldSelect");
@@ -81,6 +82,8 @@ public class PlayerController : MonoBehaviour
 
     public void OnDestroy()
     {
+        Debug.Log("Se ejecuto el OnDestroy Del PlayerController Del WorldSelect ");
+        Debug.Log(playerInputs != null);
         if (!playerInputs) return;
         playerInputs.actions["Interact"].performed -= Interact;
         playerInputs.actions["Move"].performed -= Move_performed;

@@ -65,6 +65,9 @@ public class PauseMenuOverWorld : MonoBehaviour
     private void GoToMainMenu()
     {
         //PlayerConfigurationManager.Instance.SelfDestruct();
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        Destroy(player); // Se destruye el player aqui xq sino, el Player Conf manager se destruye antes y el player pierde la referencia x lo cual no se 
+        // Desuscribe de los eventos , y esto causa que al volver a entrar al juego x alguna razon retome los eventos que no se desuscribieron y se rompa.
         Destroy(PlayerConfigurationManager.Instance.gameObject);
         Loader.Load(Loader.Scene.Menu);
     }
