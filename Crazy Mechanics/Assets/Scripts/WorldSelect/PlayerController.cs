@@ -66,7 +66,6 @@ public class PlayerController : MonoBehaviour
 
     public void InitializePlayer()
     {
-        Debug.Log("Por alguna razon al salir desde el world select a Main Menu, El playerInput se vuelve 0, y no puede desuscribirse correctamente al destruirse.");
         var playerConfig = PlayerConfigurationManager.Instance.GetPlayerConfigs().ToArray()[0];
         playerInputs = playerConfig.PInput;
         //playerInputs.SwitchCurrentActionMap("WorldSelect");
@@ -104,7 +103,6 @@ public class PlayerController : MonoBehaviour
     private void Move_canceled(InputAction.CallbackContext context)
     {
         // Evita que se ejecute si el botón aún está presionado
-
         SetInputVector(Vector2.zero);
     }
 
@@ -151,8 +149,6 @@ public class PlayerController : MonoBehaviour
     public bool IsWalking()
     {
         //Check if the character is currently moving
-        //Debug.Log(inputVector.sqrMagnitude);
-        //Debug.Log(inputVector);
         return inputVector != Vector2.zero;
 
     }

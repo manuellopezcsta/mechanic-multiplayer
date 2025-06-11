@@ -13,7 +13,7 @@ public class OptionsMenu : MonoBehaviour
     [SerializeField] private Toggle shadowsToggle;
 
     private UniversalRenderPipelineAsset urpAsset;
-    private float storedShadowDistanceWhenOn = 100f; // Valor estandar para las sombras en caso de que se activen por primera vez.
+    private float storedShadowDistanceWhenOn = 150f; // Valor estandar para las sombras en caso de que se activen por primera vez.
 
     // EL CALCULO DE VOLUMEN SE REALIZA USANDO UNA POTENCIA PARA QUE SUENE MEJOR EL CAMBIO AL OIDO HUMANO.
 
@@ -29,11 +29,14 @@ public class OptionsMenu : MonoBehaviour
         musicSlider.onValueChanged.AddListener(ChangeMusicVolume);
         sfxSlider.onValueChanged.AddListener(ChangeSfxVolume);
 
-        // Configuración de sombras para URP
+        // Para el boton de borrar todo
+        deleteDataButton.onClick.AddListener(OpenDeleteDataConfirmation);
+
+        // Configuraciï¿½n de sombras para URP
         urpAsset = GraphicsSettings.currentRenderPipeline as UniversalRenderPipelineAsset;
         if (urpAsset == null)
         {
-            Debug.LogError("No se encontró el URP Asset. El boton de sombreado será deshabilitado.");
+            Debug.LogError("No se encontro el URP Asset. El boton de sombreado sera deshabilitado.");
             if (shadowsToggle != null)
             {
                 shadowsToggle.interactable = false;
@@ -41,9 +44,9 @@ public class OptionsMenu : MonoBehaviour
         }
         else
         {
-            Debug.Log("URP Asset encontrado: " + urpAsset.name);
-            // Si las sombras están activadas al inicio (distancia > 0), guardamos esa distancia actual.
-            // Si están desactivadas al inicio (distancia == 0), storedShadowDistanceWhenOn mantiene su valor por defecto.
+            //Debug.Log("URP Asset encontrado: " + urpAsset.name);
+            // Si las sombras estan activadas al inicio (distancia > 0), guardamos esa distancia actual.
+            // Si estan desactivadas al inicio (distancia == 0), storedShadowDistanceWhenOn mantiene su valor por defecto.
             if (urpAsset.shadowDistance > 0)
             {
                 storedShadowDistanceWhenOn = urpAsset.shadowDistance;
@@ -53,22 +56,23 @@ public class OptionsMenu : MonoBehaviour
         }
 
         // Listener para el interruptor de sombras
-        if (shadowsToggle != null && urpAsset != null) // Solo agregar el listener si la configuración es válida
+        if (shadowsToggle != null && urpAsset != null) // Solo agregar el listener si la configuraciï¿½n es vï¿½lida
         {
             shadowsToggle.onValueChanged.AddListener(ToggleShadows);
+            //Debug.Log("Se agrego el listener de sombras.");
         }
     }
 
     private void ChangeMusicVolume(float newVolume)
     {
         float correctVolume = Mathf.Pow(newVolume, 1.5f);
-        if (SoundManager.Instance != null) SoundManager.Instance.ChangeVolume(correctVolume);
+        SoundManager.Instance.ChangeVolume(correctVolume);
     }
 
     private void ChangeSfxVolume(float newVolume)
     {
         float correctVolume = Mathf.Pow(newVolume, 1.5f);
-        if (SoundManager.Instance != null) SoundManager.Instance.ChangeVolumeSfx(correctVolume);
+        SoundManager.Instance.ChangeVolumeSfx(correctVolume);
     }
 
     public void ToggleShadows(bool enableShadows) // Si no esta publico no lo veo en el inspector para seleccionar
@@ -82,14 +86,14 @@ public class OptionsMenu : MonoBehaviour
         if (enableShadows)
         {
             // Al activar, restaurar la distancia guardada.
-            // Si storedShadowDistanceWhenOn es 0 (por ejemplo, si las sombras estaban desactivadas por defecto y nunca se activaron), sería bueno usar un mínimo conocido como 50.
-            // Sin embargo, la lógica actual usará el valor por defecto 50f si estaban desactivadas inicialmente
+            // Si storedShadowDistanceWhenOn es 0 (por ejemplo, si las sombras estaban desactivadas por defecto y nunca se activaron), seria bueno usar un minimo conocido como 50.
+            // Sin embargo, la logica actual usara el valor por defecto 50f si estaban desactivadas inicialmente
             urpAsset.shadowDistance = storedShadowDistanceWhenOn;
             Debug.Log("Intentando activar las sombras. Estableciendo URP shadowDistance en: " + storedShadowDistanceWhenOn);
         }
         else
         {
-            // Al desactivar, si las sombras están activadas, actualizamos storedShadowDistanceWhenOn con la distancia actual.
+            // Al desactivar, si las sombras estan activadas, actualizamos storedShadowDistanceWhenOn con la distancia actual.
             if (urpAsset.shadowDistance > 0)
             {
                 storedShadowDistanceWhenOn = urpAsset.shadowDistance;
@@ -101,7 +105,7 @@ public class OptionsMenu : MonoBehaviour
 
     private void OpenDeleteDataConfirmation()
     {
-        if (confirmationPanel != null) confirmationPanel.SetActive(true);
-        if (confirmDeleteButton != null) confirmDeleteButton.Select();
+        confirmationPanel.SetActive(true);
+        confirmDeleteButton.Select();
     }
 }
