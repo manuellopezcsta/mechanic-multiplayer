@@ -23,7 +23,8 @@ public class OverworldMannager : MonoBehaviour
         {
             lastLevelLoaded = PlayerPrefs.GetInt(KEY);
         }
-        playerPosition.transform.position = levelSpawns[lastLevelLoaded].transform.position;
+        playerPosition.transform.position = levelSpawns[lastLevelLoaded-1].transform.position;
+        
     }
 
     public void ChangeLastLevelLoaded(int level)
