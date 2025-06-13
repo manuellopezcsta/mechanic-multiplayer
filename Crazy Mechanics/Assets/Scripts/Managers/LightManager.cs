@@ -11,10 +11,10 @@ public class LightManager : MonoBehaviour
     [SerializeField] private float maxTime = 1f;  // Tiempo m�ximo para cambiar de color
 
     public bool isActive;
-    [SerializeField] private int eventTime;
+    [SerializeField] private int eventTime = 10;
 
     [SerializeField] private GameObject defaultLight;
-    [SerializeField] private GameObject discoLight;
+    [SerializeField] private GameObject discoLightParent;
     [SerializeField] Material defaultSkybox;
 
     public static event EventHandler OnDiscoNightFinish;
@@ -31,7 +31,7 @@ public class LightManager : MonoBehaviour
     private void ChangeEventLights()
     {
         isActive = !isActive;
-        discoLight.SetActive(isActive);
+        discoLightParent.SetActive(isActive);
         defaultLight.SetActive(!isActive);
         if (isActive)
         {

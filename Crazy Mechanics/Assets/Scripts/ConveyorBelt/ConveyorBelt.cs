@@ -42,7 +42,7 @@ public class ConveyorBelt : MonoBehaviour
                 GameObject counter = counterPool[i]; ;
                 if (!counter.activeInHierarchy)
                 {
-                    Debug.Log("Found a counter index" + i);
+                    //Debug.Log("Found a counter index" + i);
                     lastIndex = i+1;
                     if (lastIndex == counterPool.Count)
                     {

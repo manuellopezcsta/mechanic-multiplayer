@@ -226,6 +226,11 @@ public class SoundManager : MonoBehaviour
         PlaySound(audioClipRefsSO.objectDrop, caster.transform.position);
     }
 
+    public void PlayButtonClick()
+    {
+        discoNight.PlayOneShot(audioClipRefsSO.menuButton[0], sfxVolume);
+    }
+
     // Nos desuscribimos de los eventos al destruir el objeto para no generar problemas
     void OnDestroy()
     {

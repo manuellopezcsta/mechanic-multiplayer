@@ -19,12 +19,14 @@ public class ConfirmationPanelUI : MonoBehaviour
     // Funcion Donde nukeamos todo los save Files
     private void NukePlayerData()
     {
+        SoundManager.Instance.PlayButtonClick();
         PlayerPrefs.DeleteAll();
         ExitConfirmationPanel();
     }
 
     private void ExitConfirmationPanel()
     {
+        SoundManager.Instance.PlayButtonClick();
         gameObject.SetActive(false);
         clearDataButton.Select();
     }

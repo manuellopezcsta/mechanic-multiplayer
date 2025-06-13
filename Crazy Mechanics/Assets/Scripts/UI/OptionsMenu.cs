@@ -67,12 +67,14 @@ public class OptionsMenu : MonoBehaviour
     {
         float correctVolume = Mathf.Pow(newVolume, 1.5f);
         SoundManager.Instance.ChangeVolume(correctVolume);
+        SoundManager.Instance.PlayButtonClick();
     }
 
     private void ChangeSfxVolume(float newVolume)
     {
         float correctVolume = Mathf.Pow(newVolume, 1.5f);
         SoundManager.Instance.ChangeVolumeSfx(correctVolume);
+        SoundManager.Instance.PlayButtonClick();
     }
 
     public void ToggleShadows(bool enableShadows) // Si no esta publico no lo veo en el inspector para seleccionar
@@ -101,10 +103,13 @@ public class OptionsMenu : MonoBehaviour
             urpAsset.shadowDistance = 0f;
             Debug.Log("Intentando desactivar las sombras. URP shadowDistance establecido en 0. Distancia 'activada' recordada: " + storedShadowDistanceWhenOn);
         }
+
+        SoundManager.Instance.PlayButtonClick();
     }
 
     private void OpenDeleteDataConfirmation()
     {
+        SoundManager.Instance.PlayButtonClick();
         confirmationPanel.SetActive(true);
         confirmDeleteButton.Select();
     }

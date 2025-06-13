@@ -33,4 +33,7 @@ public class AudioClipRefsSO : ScriptableObject
     public AudioClip[] drill;
     public AudioClip[] hammer;
     public AudioClip[] cricket;
+
+    [Header("Menu")]
+    public AudioClip[] menuButton;
 }

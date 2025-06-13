@@ -18,39 +18,47 @@ public class MainMenuUI : MonoBehaviour {
 
     // Creamos las funciones para los botones
     private void StartGame() {
+        SoundManager.Instance.PlayButtonClick();
         Loader.Load(Loader.Scene.CharacterSelect);
     }
 
     private void QuitGame() {
+        SoundManager.Instance.PlayButtonClick();
         Application.Quit();
     }
 
     private void OpenCredits() {
+        SoundManager.Instance.PlayButtonClick();
         creditScreen.SetActive(true);
         goBackCreditsButton.Select();
     }
 
     private void ExitCredits() {
+        SoundManager.Instance.PlayButtonClick();
         creditScreen.SetActive(false);
         playButton.Select();
     }
 
     private void OpenOptions(){
+        SoundManager.Instance.PlayButtonClick();
         optionsScreen.SetActive(true);
         goBackOptionsButton.Select();
     }
 
     private void ExitOptions(){
+        SoundManager.Instance.PlayButtonClick();
         optionsScreen.SetActive(false);
         playButton.Select();
     }
     
     private void OpenControls(){
+        SoundManager.Instance.PlayButtonClick();
         controlsScreen.SetActive(true);
         goBackControlsButton.Select();
     }
 
     private void ExitControls(){
+        SoundManager.Instance.PlayButtonClick();
         controlsScreen.SetActive(false);
         playButton.Select();
     }
