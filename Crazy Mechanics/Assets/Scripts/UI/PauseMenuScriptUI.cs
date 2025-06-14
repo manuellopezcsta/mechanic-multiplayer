@@ -24,12 +24,14 @@ public class PauseMenuScriptUI : MonoBehaviour
     {
         float correctVolume = Mathf.Pow(newVolume, 1.5f);
         SoundManager.Instance.ChangeVolume(correctVolume);
+        SoundManager.Instance.PlayButtonClick();
     }
 
     private void ChangeSfxVolume(float newVolume)
     {
         float correctVolume = Mathf.Pow(newVolume, 1.5f);
         SoundManager.Instance.ChangeVolumeSfx(correctVolume);
+        SoundManager.Instance.PlayButtonClick();
     }
 
     private void Start()
@@ -50,6 +52,7 @@ public class PauseMenuScriptUI : MonoBehaviour
     //creamos las funciones para los botones
     private void ResumeGame()
     {
+        SoundManager.Instance.PlayButtonClick();
         pauseScreen.SetActive(false);
         Time.timeScale = 1f; //Ponemos el tiempo a velocidad normal nuevamente
     }
@@ -66,6 +69,7 @@ public class PauseMenuScriptUI : MonoBehaviour
     private void RestartLevel()
     {   // Preguntar al game manager el nombre de nivel actual y cargarlo
         Time.timeScale = 1f;
+        SoundManager.Instance.PlayButtonClick();
         string currentSceneName = SceneManager.GetActiveScene().name;
         GameManager.NukePlayerControllers();
         Loader.Load(currentSceneName);
@@ -74,9 +78,12 @@ public class PauseMenuScriptUI : MonoBehaviour
     private void GoToMainMenu()
     {
         Time.timeScale = 1f;
+        SoundManager.Instance.PlayButtonClick();
         PlayerConfigurationManager.Instance.SelfDestruct();
         Loader.Load(Loader.Scene.Menu);
     }
+
+
 
     private void Awake()
     {
@@ -92,6 +99,7 @@ public class PauseMenuScriptUI : MonoBehaviour
     // Funcion que se llama desde el performedAction del INPUT Manager del player para pausar cuando presionen la tecla de pausa.
     public void TogglePause()
     {
+        SoundManager.Instance.PlayButtonClick();
         //Debug.Log(pauseScreen.activeSelf);
         if (pauseScreen.activeSelf == false)
         {
@@ -105,6 +113,7 @@ public class PauseMenuScriptUI : MonoBehaviour
 
     public Button GetResumeButton()
     {
+        SoundManager.Instance.PlayButtonClick();
         return resumeGameButton;
     }
 
