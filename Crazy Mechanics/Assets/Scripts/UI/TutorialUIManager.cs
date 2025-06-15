@@ -54,6 +54,7 @@ public class TutorialUIManager : MonoBehaviour
 
     public void ChangeStateTutorialMenu()
     {
+        SoundManager.Instance.PlayButtonClick();
         if (tutorialMenu.activeSelf)
         {
             tutorialMenu.SetActive(false);
