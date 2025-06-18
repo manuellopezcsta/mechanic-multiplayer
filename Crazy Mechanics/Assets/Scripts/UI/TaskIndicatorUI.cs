@@ -10,13 +10,15 @@ public class TaskIndicatorUI : MonoBehaviour
     [SerializeField] private Sprite completedTaskIcon;
     [SerializeField] private Sprite missingWheelSprite;
 
-    public void SetAsComplete() {
+    public void SetAsComplete()
+    {
         // La prender o apagar la hamburguesa.
         taskIcon.sprite = completedTaskIcon;
         StartCoroutine(WaitAndHIde(3f));
     }
 
-    private void Hide() {
+    private void Hide()
+    {
         gameObject.SetActive(false);
     }
 
@@ -26,7 +28,8 @@ public class TaskIndicatorUI : MonoBehaviour
         Hide();
     }
 
-    public void SwapToMissingWheelIcon() {
+    public void SwapToMissingWheelIcon()
+    {
         taskIcon.sprite = missingWheelSprite;
     }
 }

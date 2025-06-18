@@ -44,6 +44,7 @@ public class SwapBatteryTask : BaseCounter
         } else {
             // There is a car obj here already.
             if(!player.HasCarObject() && !taskComplete) {
+                GetCarObject().gameObject.SetActive(true);
                 GetCarObject().SetCarObjectParent(player);
             } 
         }
