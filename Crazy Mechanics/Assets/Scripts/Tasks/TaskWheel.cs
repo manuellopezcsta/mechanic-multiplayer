@@ -67,6 +67,7 @@ public class TaskWheel : BaseCounter
             // Logica para sacar la rueda del auto.
             if(!player.HasCarObject() && !taskComplete && stationManager.GetCurrentElevatorFloor() == 0) {
                 ComboManager.Instance.UpdateCombo();
+                indicatorUI.SwapToMissingWheelIcon();
                 GetCarObject().SetCarObjectParent(player);
                 SpawnLimitManager.Instance.ModifySpawnedCounter(wheel.GetObjectSO().name, 1);
             } 
