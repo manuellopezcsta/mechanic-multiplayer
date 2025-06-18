@@ -19,12 +19,14 @@ public class PauseMenuOverWorld : MonoBehaviour
     {
         float correctVolume = Mathf.Pow(newVolume, 1.5f);
         SoundManager.Instance.ChangeVolume(correctVolume);
+        SoundManager.Instance.PlayButtonClick();
     }
 
     private void ChangeSfxVolume(float newVolume)
     {
         float correctVolume = Mathf.Pow(newVolume, 1.5f);
         SoundManager.Instance.ChangeVolumeSfx(correctVolume);
+        SoundManager.Instance.PlayButtonClick();
     }
 
     private void Start()
@@ -48,6 +50,7 @@ public class PauseMenuOverWorld : MonoBehaviour
     //creamos las funciones para los botones
     private void ResumeGame()
     {
+        SoundManager.Instance.PlayButtonClick();
         pauseScreen.SetActive(false);
         Time.timeScale = 1f;//Resume time
     }
@@ -64,6 +67,7 @@ public class PauseMenuOverWorld : MonoBehaviour
 
     private void GoToMainMenu()
     {
+        SoundManager.Instance.PlayButtonClick();
         //PlayerConfigurationManager.Instance.SelfDestruct();
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         Destroy(player); // Se destruye el player aqui xq sino, el Player Conf manager se destruye antes y el player pierde la referencia x lo cual no se 
@@ -84,6 +88,7 @@ public class PauseMenuOverWorld : MonoBehaviour
     // Funcion que se llama desde el performedAction del INPUT Manager del player para pausar cuando presionen la tecla de pausa.
     public void TogglePause()
     {
+        SoundManager.Instance.PlayButtonClick();
         //Debug.Log(pauseScreen.activeSelf);
         if (pauseScreen.activeSelf == false)
         {
