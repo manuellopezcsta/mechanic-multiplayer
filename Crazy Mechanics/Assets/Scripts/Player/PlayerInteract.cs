@@ -40,7 +40,7 @@ public class PlayerInteract : MonoBehaviour
 
         // If we hit something
         DebugInteractionCapsule(true, capsuleStart, capsuleEnd, interactDistance, capsuleRadius);
-
+        
         //if (Physics.Raycast(transform.position, lastInteractDir, out RaycastHit raycastHit, interactDistance, countersLayerMask))
         if (Physics.CapsuleCast(capsuleStart, capsuleEnd, capsuleRadius, lastInteractDir, out RaycastHit raycastHit, interactDistance, countersLayerMask))
         {

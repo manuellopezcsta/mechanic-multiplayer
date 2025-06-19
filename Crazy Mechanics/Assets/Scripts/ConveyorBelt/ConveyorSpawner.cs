@@ -5,6 +5,7 @@ using UnityEngine;
 public class ConveyorSpawner : MonoBehaviour
 {
     private IEnumerator spawnTimeOut;
+    [SerializeField] private ConveyorBelt conveyorBelt;
     [SerializeField] private float spawnTimer = 10f;
     public bool spawnOK = true;
 
@@ -15,7 +16,7 @@ public class ConveyorSpawner : MonoBehaviour
     private IEnumerator SpawnCounter()
     {
         yield return new WaitForSeconds(spawnTimer);
-        GameObject counter = ConveyorBelt.instance.GetCounterToSpawn();
+        GameObject counter = conveyorBelt.GetCounterToSpawn();
         if (counter != null)
         {
             counter.SetActive(true);

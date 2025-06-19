@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class ConveyorBelt : MonoBehaviour
 {
-    public static ConveyorBelt instance;
     [SerializeField] Transform goal;
     [SerializeField] Transform startPoint;
     [SerializeField] GameObject conveyorCounterPrefab;
@@ -13,13 +12,6 @@ public class ConveyorBelt : MonoBehaviour
     [SerializeField] private float speed = 5f;
     private List<GameObject> counterPool = new List<GameObject>();
     private int lastIndex = 0;
-    void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-        }
-    }
 
     void Start()
     {
