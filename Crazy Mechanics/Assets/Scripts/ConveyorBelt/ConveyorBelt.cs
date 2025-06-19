@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class ConveyorBelt : MonoBehaviour
 {
-    public static ConveyorBelt instance;
     [SerializeField] Transform goal;
     [SerializeField] Transform startPoint;
     [SerializeField] GameObject conveyorCounterPrefab;
@@ -17,10 +16,6 @@ public class ConveyorBelt : MonoBehaviour
     private int lastIndex = 0;
     void Awake()
     {
-        if (instance == null)
-        {
-            instance = this;
-        }
         itemSpawnLimit = SpawnLimitManager.Instance.GetItemSpawnLimit(objectsSO.name);
     }
 
