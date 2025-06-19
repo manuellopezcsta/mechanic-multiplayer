@@ -14,6 +14,7 @@ public class ConveyorBelt : MonoBehaviour
     [SerializeField] private ObjectsSO objectsSO;
     private List<GameObject> counterPool = new List<GameObject>();
     private int lastIndex = 0;
+    [SerializeField] private float randomBase;
     void Awake()
     {
         itemSpawnLimit = SpawnLimitManager.Instance.GetItemSpawnLimit(objectsSO.name);
@@ -47,8 +48,13 @@ public class ConveyorBelt : MonoBehaviour
                     {
                         lastIndex=0;
                     }
-                    if (!counterCC.HasCarObject() && itemSpawnLimit > SpawnLimitManager.Instance.GetSpawnedItemsCount(objectsSO.name))
+                    if (objectsSO == null)
                     {
+                        return counter;
+                    }
+                    else if (!counterCC.HasCarObject() && itemSpawnLimit > SpawnLimitManager.Instance.GetSpawnedItemsCount(objectsSO.name) && Random.Range(0f, randomBase) < 1f)
+                    {
+                        //Si el counter no tiene nada, y todavia puedo spawnear objetos en el nivel, posiblemente spawnea un item en el counter
                         Transform carObjectTransform = Instantiate(objectsSO.prefab);
                         carObjectTransform.GetComponent<CarObject>().SetCarObjectParent(counterCC);
                         SpawnLimitManager.Instance.ModifySpawnedCounter(objectsSO.name, 1);
