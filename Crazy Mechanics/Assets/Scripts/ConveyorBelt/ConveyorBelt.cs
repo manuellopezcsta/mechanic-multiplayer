@@ -11,6 +11,8 @@ public class ConveyorBelt : MonoBehaviour
     [SerializeField] GameObject conveyorCounterPrefab;
     [SerializeField] int counterQunatity;
     [SerializeField] private float speed = 5f;
+    public int itemSpawnLimit;
+    [SerializeField] private ObjectsSO objectsSO;
     private List<GameObject> counterPool = new List<GameObject>();
     private int lastIndex = 0;
     void Awake()
@@ -19,6 +21,7 @@ public class ConveyorBelt : MonoBehaviour
         {
             instance = this;
         }
+        itemSpawnLimit = SpawnLimitManager.Instance.GetItemSpawnLimit(objectsSO.name);
     }
 
     void Start()
@@ -39,7 +42,8 @@ public class ConveyorBelt : MonoBehaviour
            
         for (int i = lastIndex; counterPool.Count > i; i++)
             {
-                GameObject counter = counterPool[i]; ;
+                GameObject counter = counterPool[i];
+                ConveyorCounter counterCC = counter.GetComponent<ConveyorCounter>();
                 if (!counter.activeInHierarchy)
                 {
                     //Debug.Log("Found a counter index" + i);
@@ -47,6 +51,12 @@ public class ConveyorBelt : MonoBehaviour
                     if (lastIndex == counterPool.Count)
                     {
                         lastIndex=0;
+                    }
+                    if (!counterCC.HasCarObject() && itemSpawnLimit > SpawnLimitManager.Instance.GetSpawnedItemsCount(objectsSO.name))
+                    {
+                        Transform carObjectTransform = Instantiate(objectsSO.prefab);
+                        carObjectTransform.GetComponent<CarObject>().SetCarObjectParent(counterCC);
+                        SpawnLimitManager.Instance.ModifySpawnedCounter(objectsSO.name, 1);
                     }
                     return counter;
                 }

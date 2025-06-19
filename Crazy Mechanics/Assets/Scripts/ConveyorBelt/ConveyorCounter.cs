@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor.Rendering;
 using UnityEngine;
 
-public class ConveyorCounter : MonoBehaviour
+public class ConveyorCounter : ClearCounter
 {
     private Transform startPoint;
     private Transform destination;
