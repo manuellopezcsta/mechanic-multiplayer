@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEditor.Rendering;
 using UnityEngine;
 
@@ -10,6 +11,8 @@ public class ConveyorCounter : ClearCounter
     [SerializeField] private Transform[] destination;
     [SerializeField] private int currentDestination = 0;
     private bool destroyObject;
+    const string TOOL_TAG = "Tool";
+    const string CONVEGOR_END_NAME = "ConveyorEnd";
     void Update()
     {
          if (destination.Length == 0) return;
@@ -34,9 +37,9 @@ public class ConveyorCounter : ClearCounter
     void OnTriggerEnter(Collider other)
     {
         //Debug.Log("entered somewhere");
-        if (other.CompareTag("ConveyorEnd"))
+        if (other.CompareTag(CONVEGOR_END_NAME))
         {
-            if (HasCarObject() && destroyObject)
+            if (HasCarObject() && !GetCarObject().CompareTag(TOOL_TAG) && destroyObject)
             {
                 GetCarObject().DestroySelf();
             }

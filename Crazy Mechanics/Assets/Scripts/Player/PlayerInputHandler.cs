@@ -1,6 +1,7 @@
 using UnityEngine;
 using static UnityEngine.InputSystem.InputAction;
 using UnityEngine.InputSystem;
+using Unity.VisualScripting;
 
 public class PlayerInputHandler : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class PlayerInputHandler : MonoBehaviour
     private Player player;
     private PlayerMovement playerMovement;
     private PlayerInteract playerInteract;
-    
+
 
     [SerializeField] PlayerAnimator playerAnimator;
 
@@ -71,7 +72,7 @@ public class PlayerInputHandler : MonoBehaviour
     private void Pause_perfomed(CallbackContext context)
     {
         PauseMenuScriptUI pauseMenuScript = GameObject.FindGameObjectWithTag("MainCanvas").GetComponent<PauseMenuScriptUI>();
-        
+
         if (pauseMenuScript != null)
         {
             pauseMenuScript.TogglePause();
@@ -117,11 +118,24 @@ public class PlayerInputHandler : MonoBehaviour
         {
             player.selectedCounter.Interact(player);
         }*/
+
         // Obtiene todos los objetos en rango y intenta interactuar con ellos
-        foreach (RaycastHit hit in playerInteract.GetAllObjectInRange())
+
+        /*foreach (RaycastHit hit in playerInteract.GetAllObjectInRange())
 
         {
             hit.collider.GetComponent<BaseCounter>().Interact(player);
+        }*/
+        RaycastHit? primerHit = playerInteract.GetFirstInteractableObject();
+
+        if (primerHit.HasValue)
+        {
+            if (primerHit.Value.collider.TryGetComponent<BaseCounter>(out BaseCounter baseCounter))
+            {
+                baseCounter.Interact(player);
+            }
         }
+
+
     }
 }
