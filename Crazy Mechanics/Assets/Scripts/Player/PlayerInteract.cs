@@ -6,6 +6,7 @@ public class PlayerInteract : MonoBehaviour
     private Player player;
     private Vector3 lastInteractDir;
     const string MOTOR_TOOL_TAG = "MotorTool";
+    const string WALL_TAG = "Pared";
     [SerializeField] private LayerMask countersLayerMask;
     [SerializeField] private Transform invisibleHolder;
 
@@ -40,12 +41,16 @@ public class PlayerInteract : MonoBehaviour
 
         // If we hit something
         DebugInteractionCapsule(true, capsuleStart, capsuleEnd, interactDistance, capsuleRadius);
-        
+
         //if (Physics.Raycast(transform.position, lastInteractDir, out RaycastHit raycastHit, interactDistance, countersLayerMask))
         if (Physics.CapsuleCast(capsuleStart, capsuleEnd, capsuleRadius, lastInteractDir, out RaycastHit raycastHit, interactDistance, countersLayerMask))
         {
-            //Debug.Log(raycastHit.transform.name);
-            if (raycastHit.transform.TryGetComponent(out BaseCounter baseCounter))
+            if (raycastHit.transform.CompareTag(WALL_TAG))
+            {
+                SetSelectedCounter(null);
+            }
+
+            else if (raycastHit.transform.TryGetComponent(out BaseCounter baseCounter))
             {
                 //Debug.Log(raycastHit.transform.name);
                 // Has clear Counter
@@ -88,7 +93,7 @@ public class PlayerInteract : MonoBehaviour
         }
     }
 
-    public RaycastHit[] GetAllObjectInRange()//Obtiene todos los objetos en rango de interact
+    /*public RaycastHit[] GetAllObjectInRange()//Obtiene todos los objetos en rango de interact
     {
         float interactDistance = 2f;
         float capsuleRadius = 0.5f; // Ajusta el radio seg�n sea necesario
@@ -98,6 +103,34 @@ public class PlayerInteract : MonoBehaviour
         Vector3 capsuleEnd = transform.position + Vector3.up * capsuleHeight;
 
         return Physics.CapsuleCastAll(capsuleStart, capsuleEnd, capsuleRadius, lastInteractDir, interactDistance, countersLayerMask);
+    }*/
+    public RaycastHit? GetFirstInteractableObject()
+    {
+        float interactDistance = 2f;
+        float capsuleRadius = 0.5f;
+        float capsuleHeight = 1.5f;
+
+        Vector3 capsuleStart = transform.position;
+        Vector3 capsuleEnd = transform.position + Vector3.up * capsuleHeight;
+
+        RaycastHit[] hits = Physics.CapsuleCastAll(capsuleStart, capsuleEnd, capsuleRadius, lastInteractDir, interactDistance, countersLayerMask);
+
+        if (hits.Length == 0) return null;
+
+        // Ordenar por distancia
+        Array.Sort(hits, (a, b) => a.distance.CompareTo(b.distance));
+
+        foreach (RaycastHit hit in hits)
+        {
+            if (hit.transform.CompareTag(WALL_TAG))
+            {
+                return null;
+            }
+
+            return hit;
+        }
+
+        return null;
     }
 
     public void HandleThrowing()

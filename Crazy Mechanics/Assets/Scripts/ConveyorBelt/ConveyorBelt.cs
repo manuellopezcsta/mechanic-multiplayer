@@ -15,17 +15,14 @@ public class ConveyorBelt : MonoBehaviour
     private List<GameObject> counterPool = new List<GameObject>();
     private int lastIndex = 0;
     [SerializeField] private float randomBase;
-    void Awake()
-    {
-
-    }
+    [SerializeField] private bool canIDestroyObject;
 
     void Start()
     {
         for (int i = 0; i < counterQunatity; i++)
         {
             GameObject conveyorCounter = Instantiate(conveyorCounterPrefab, startPoint.position, Quaternion.identity);
-            conveyorCounter.GetComponent<ConveyorCounter>().setUP(startPoint, goals, speed);
+            conveyorCounter.GetComponent<ConveyorCounter>().setUP(startPoint, goals, speed, canIDestroyObject);
             counterPool.Add(conveyorCounter);
             conveyorCounter.SetActive(false);
             
@@ -39,7 +36,10 @@ public class ConveyorBelt : MonoBehaviour
         for (int i = lastIndex; counterPool.Count > i; i++)
             {
                 int value = Random.Range(0, objectsSO.Length);
-                itemSpawnLimit = SpawnLimitManager.Instance.GetItemSpawnLimit(objectsSO[value].name);
+                if (objectsSO.Length > 0)
+                {
+                    itemSpawnLimit = SpawnLimitManager.Instance.GetItemSpawnLimit(objectsSO[value].name);
+                }
                 GameObject counter = counterPool[i];
                 ConveyorCounter counterCC = counter.GetComponent<ConveyorCounter>();
                 if (!counter.activeInHierarchy)
@@ -50,7 +50,7 @@ public class ConveyorBelt : MonoBehaviour
                     {
                         lastIndex=0;
                     }
-                    if (objectsSO == null)
+                    if (objectsSO.Length == 0)
                     {
                         return counter;
                     }

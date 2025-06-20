@@ -2710,7 +2710,7 @@ PrefabInstance:
     - target: {fileID: 8462861616108631057, guid: fe89eeca351982e4f9e95336afde413a,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -50879,6 +50879,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f7f981ac25715ec42bb6a561fe53ea88, type: 2}
   - {fileID: 11400000, guid: 27b0b82a0cd169f48b6dd94df75234af, type: 2}
   randomBase: 1
+  canIDestroyObject: 1
 --- !u!114 &2783121517939175381
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50904,6 +50905,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f7f981ac25715ec42bb6a561fe53ea88, type: 2}
   - {fileID: 11400000, guid: 27b0b82a0cd169f48b6dd94df75234af, type: 2}
   randomBase: 1
+  canIDestroyObject: 1
 --- !u!1 &2783382017959971685
 GameObject:
   m_ObjectHideFlags: 0
