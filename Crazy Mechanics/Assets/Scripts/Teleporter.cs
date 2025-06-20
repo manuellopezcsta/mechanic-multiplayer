@@ -18,5 +18,12 @@ public class Teleporter : MonoBehaviour
             other.GetComponent<CharacterController>().enabled = true; //La vuelve a activar
             Debug.Log(other.transform.position);
         }
+        if (other.CompareTag("Item"))
+        {
+            //other.transform.parent = null;
+            //other.GetComponent<CharacterController>().enabled = false; // Desactiva el character controller para mover la posicion del player
+            other.transform.position = posSalida.transform.position; //Cambia la posicion del player a la del posSalida
+            //other.GetComponent<CharacterController>().enabled = true; //La vuelve a activar
+        }
     }
 }
