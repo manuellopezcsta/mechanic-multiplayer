@@ -8,7 +8,7 @@ public class SpawnPlayerSetupMenu : MonoBehaviour
 {
     public GameObject playerSetupMenuPrefab;
     public PlayerInput input;
-    const string ROOT_MENU_GAME_OBJECT_NAME = "MainLayout";
+    const string ROOT_MENU_GAME_OBJECT_NAME = "MainLayout1";
 
     void Awake()
     {
