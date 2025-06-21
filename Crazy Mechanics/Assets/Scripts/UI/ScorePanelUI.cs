@@ -1,11 +1,19 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ScorePanelUI : MonoBehaviour
 {
     const string LEVEL_SELECT_SCENE = "WorldSelect";
-    [SerializeField] Image stars;
+    [SerializeField] Image[] throphies;
     [SerializeField] Button backButton;
+
+    // Colores de los trofeos
+    [SerializeField] Color bronzeColor;
+    [SerializeField] Color silverColor;
+    [SerializeField] Color goldColor;
+
+    [SerializeField] TextMeshProUGUI scoreText;
     int levelScore;
 
     void Start()
@@ -22,11 +30,8 @@ public class ScorePanelUI : MonoBehaviour
         });
     }
 
-    public void ShowStars()
+    public void ShowThrophies()
     {
-        float fillAmountFor1Star = 0.35f;
-        float fillAmountFor2Star = 0.68f;
-
         LevelProperties levelProperties = GameManager.Instance.GetLevelProperties();
         // Obtenemos el score del jugador y los score a vencer
         levelScore = ScoreManager.Instance.GetScore();
@@ -38,22 +43,22 @@ public class ScorePanelUI : MonoBehaviour
         // Y guardamos en un playerPrefs x si lo queremos usar despues en algun lado onda score a vencer etc.
         if (levelScore >= thirdStarScore)
         {
-            stars.fillAmount = 1f;
+            SetThophiesColors(3, goldColor);
             SetPlayerPrefStarsForLevel(levelProperties.levelNumber, 3);
         }
         else if (levelScore >= secondStarScore)
         {
-            stars.fillAmount = fillAmountFor2Star;
+            SetThophiesColors(2, silverColor);
             SetPlayerPrefStarsForLevel(levelProperties.levelNumber, 2);
         }
         else if (levelScore >= firstStarScore)
         {
-            stars.fillAmount = fillAmountFor1Star;
+            SetThophiesColors(1, bronzeColor);
             SetPlayerPrefStarsForLevel(levelProperties.levelNumber, 1);
         }
         else
         {
-            stars.fillAmount = 0f;
+            SetThophiesColors(0, bronzeColor);
             SetPlayerPrefStarsForLevel(levelProperties.levelNumber, 0);
         }
 
@@ -71,7 +76,8 @@ public class ScorePanelUI : MonoBehaviour
         gameObject.SetActive(true);
         backButton.Select();
         Time.timeScale = 0f;
-        ShowStars();
+        ShowThrophies();
+        scoreText.text = levelScore.ToString();
     }
 
     // Guarda las estrellas por nivel.
@@ -93,6 +99,16 @@ public class ScorePanelUI : MonoBehaviour
         if (levelScore > scoreToBeat)
         {
             PlayerPrefs.SetInt(levelNumber.ToString() + "Score", levelScore);
+        }
+    }
+
+    private void SetThophiesColors(int quantity, Color color)
+    {
+        if(quantity == 0) { return; }
+        for (int i = 0; i < quantity; i++)
+        {
+            throphies[i].gameObject.SetActive(true);
+            throphies[i].color = color;
         }
     }
 }
