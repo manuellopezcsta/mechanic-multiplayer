@@ -22,8 +22,9 @@ public class OverworldMannager : MonoBehaviour
         if (PlayerPrefs.HasKey(KEY))//Si ya esta cargada un ultimo nivel accedido de la ultima sesión lo carga
         {
             lastLevelLoaded = PlayerPrefs.GetInt(KEY);
+            playerPosition.transform.position = levelSpawns[lastLevelLoaded-1].transform.position;
         }
-        playerPosition.transform.position = levelSpawns[lastLevelLoaded-1].transform.position;
+        
         
     }
 
