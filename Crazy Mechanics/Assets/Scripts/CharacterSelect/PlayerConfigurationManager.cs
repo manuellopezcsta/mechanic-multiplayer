@@ -58,7 +58,7 @@ public class PlayerConfigurationManager : MonoBehaviour
             //PlayerConfigurationManager.Instance.SwitchInputMethod(false);
             // Cargamos la escena que corresponde
             Loader.Load(Loader.Scene.WorldSelect);
-            //Loader.Load(Loader.Scene.Level10);
+            //Loader.Load(Loader.Scene.Level0);
             //Loader.Load(Loader.Scene.Level1);
             //Loader.Load(Loader.Scene.Level5);
             //Loader.Load(Loader.Scene.Level2);
