@@ -12,14 +12,12 @@ public class LevelInfoDisplay : MonoBehaviour
     void Awake()
     {   
         
-        //scoreField = GetComponent<TextMeshProUGUI>();
-        scoreField.text = "before if";
         if(PlayerPrefs.HasKey(levelNumber)){
-            score = PlayerPrefs.GetInt(levelNumber);
-            scoreField.text = levelNumber.ToString();
+            score = PlayerPrefs.GetInt(levelNumber + "Score");
+            scoreField.text = score.ToString();
         }
         else{
-            scoreField.text = "didn't enter IF";
+            scoreField.text = "INCOMPLETE";
         }
     }
 }
