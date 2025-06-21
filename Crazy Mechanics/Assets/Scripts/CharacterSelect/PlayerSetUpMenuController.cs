@@ -34,6 +34,7 @@ public class PlayerSetUpMenuController : MonoBehaviour
     [SerializeField] private Material[] materialCamRenderer;
     [SerializeField] private Image imageRenderer;
     [SerializeField] private TextMeshProUGUI nameCharacter;
+    [SerializeField] private float[] offsets;
 
 
     private void Start()
@@ -44,10 +45,10 @@ public class PlayerSetUpMenuController : MonoBehaviour
         //Se le coloca la textura a la camara segun el player actual
         camera.targetTexture = renderCam[PlayerIndex];
         imageRenderer.material = materialCamRenderer[PlayerIndex];
-
+        imageRenderer.GetComponent<RectTransform>().anchoredPosition += new Vector2(offsets[PlayerIndex],0f);
         //Le sacamos el parent a la camara para trabajar con una unica vara de posiciones
         camera.transform.SetParent(null);
-        posCamera = new Vector3(0f, 1.2f, -7f);
+        posCamera = new Vector3(0f, 4.2f, -5.94f);
 
         // colocamos la posicion inicial a la camara
         camera.transform.position = posCamera;
