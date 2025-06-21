@@ -2,6 +2,9 @@ using UnityEngine;
 using static UnityEngine.InputSystem.InputAction;
 using UnityEngine.InputSystem;
 using Unity.VisualScripting;
+using System.Transactions;
+using System.Collections.Generic;
+using System.Linq;
 
 public class PlayerInputHandler : MonoBehaviour
 {
@@ -11,6 +14,7 @@ public class PlayerInputHandler : MonoBehaviour
     private Player player;
     private PlayerMovement playerMovement;
     private PlayerInteract playerInteract;
+    const string WALL_TAG = "Pared";
 
 
     [SerializeField] PlayerAnimator playerAnimator;
@@ -120,22 +124,29 @@ public class PlayerInputHandler : MonoBehaviour
         }*/
 
         // Obtiene todos los objetos en rango y intenta interactuar con ellos
-
-        /*foreach (RaycastHit hit in playerInteract.GetAllObjectInRange())
-
+        List<RaycastHit> hits = new List<RaycastHit>();
+        foreach (RaycastHit hit in playerInteract.GetAllObjectInRange())
         {
-            hit.collider.GetComponent<BaseCounter>().Interact(player);
-        }*/
-        RaycastHit? primerHit = playerInteract.GetFirstInteractableObject();
+            hits.Add(hit);
 
-        if (primerHit.HasValue)
-        {
-            if (primerHit.Value.collider.TryGetComponent<BaseCounter>(out BaseCounter baseCounter))
-            {
-                baseCounter.Interact(player);
-            }
         }
-
+        hits = hits.OrderBy(hit => hit.distance).ToList();
+        if (hits.Count == 0)
+        {
+            return;
+        }
+        else if (hits[0].collider.gameObject.CompareTag(WALL_TAG))
+        {
+            return;
+        }
+        foreach (RaycastHit hit in hits)
+        {
+            if (hit.collider.gameObject.CompareTag(WALL_TAG))
+            {
+                continue;
+            }
+            hit.collider.GetComponent<BaseCounter>().Interact(player);
+        }
 
     }
 }
