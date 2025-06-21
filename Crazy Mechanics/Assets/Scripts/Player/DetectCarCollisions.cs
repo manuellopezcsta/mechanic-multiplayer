@@ -22,7 +22,7 @@ public class DetectCarCollisions : MonoBehaviour
         // Stun por auto chocando
         if (other.CompareTag(CAR_TAG) && other.GetComponentInParent<CarController>().canMove) {
             //Debug.Log("Colisiono con el auto");
-            playerMovement.RespawnAtRandomPos();
+            playerMovement.RespawnAtPos();
             StartCoroutine(playerMovement.GetStunned());
         }
         // Stun por objeto arrojado
@@ -34,7 +34,7 @@ public class DetectCarCollisions : MonoBehaviour
         // Stun x estar abajo del auto
         if(other.CompareTag(BOTTOM_CAR)){
             Debug.Log("Entro en trigger");
-            playerMovement.RespawnAtRandomPos();
+            playerMovement.RespawnAtPos();
             StartCoroutine(playerMovement.GetStunned());
         }
     }

@@ -105,9 +105,15 @@ public class PlayerMovement : MonoBehaviour
         stunned = false;
     }
 
-    public void RespawnAtRandomPos()
+    public void RespawnAtPos()
     {
-        int i = UnityEngine.Random.Range(0, GameManager.Instance.playerSpawns.Length);
-        transform.position = GameManager.Instance.playerSpawns[i].position;
+        for(int i = 0; i< GameManager.playerList.Count; i++) {
+            if (GameManager.playerList[i] == player)
+            {
+                transform.position = GameManager.Instance.playerSpawns[i].position;
+                break;
+            }
+        }
+        
     }
 }
