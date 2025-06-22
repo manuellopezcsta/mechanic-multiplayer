@@ -13,6 +13,9 @@ public class GeneratorTool : BaseCounter, IHasProgress
     [SerializeField] private GameObject fxCharging;
     public event EventHandler<IHasProgress.OnProgressChangedEventArgs> OnProgressChanged;
 
+    [SerializeField] private Material[] switchMaterial; //0= On, 1= Off
+    [SerializeField] private MeshRenderer panelLighting;
+
     private enum State
     {
         Idle,
@@ -21,37 +24,43 @@ public class GeneratorTool : BaseCounter, IHasProgress
     }
 
     private State state;
-    
+
 
     public override void Interact(Player player)
     {
 
         // Logica para dejar objetos
-        if (!HasCarObject()) {
+        if (!HasCarObject())
+        {
             // There is no obj here and check if they are the same object
             // SI lo pones y justo se corta la luz carga igual..
-            if (player.HasCarObject() && player.GetCarObject().GetObjectSO() == battery && GameManager.Instance.IsPowerEnabled()) {
+            if (player.HasCarObject() && player.GetCarObject().GetObjectSO() == battery && GameManager.Instance.IsPowerEnabled())
+            {
                 // El player tiene algo en la mano
                 player.GetCarObject().SetCarObjectParent(this);
                 fxCharging.SetActive(true);
                 chargeTimer = 0f;
                 state = State.Running;
             }
-        } else {
+        }
+        else
+        {
             // There is a car obj here already.
-            if(!player.HasCarObject()) {
+            if (!player.HasCarObject())
+            {
                 GetCarObject().SetCarObjectParent(player);
                 chargeTimer = 0f;
                 state = State.Idle;
                 OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs
-                    {
-                        progressNormalized = 0f
-                    });
-            } 
+                {
+                    progressNormalized = 0f
+                });
+            }
         }
     }
 
-    private void Update() {
+    private void Update()
+    {
         // Logica del Timer para cambiar de rueda
         if (HasCarObject())
         {
@@ -86,6 +95,18 @@ public class GeneratorTool : BaseCounter, IHasProgress
                     });
                     break;
             }
+        }
+        ChangeMaterialPanelLighting();
+    }
+        private void ChangeMaterialPanelLighting()
+    {
+        if (GameManager.Instance.IsPowerEnabled())
+        {
+            panelLighting.material = switchMaterial[0];
+        }
+        else
+        {
+            panelLighting.material = switchMaterial[1];
         }
     }
 }
