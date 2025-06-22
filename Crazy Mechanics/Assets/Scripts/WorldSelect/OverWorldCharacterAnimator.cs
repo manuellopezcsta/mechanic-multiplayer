@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class OverWorldCharacterAnimator : MonoBehaviour
 {   
-    [SerializeField] private PlayerController player;
+    [SerializeField] private OWPlayerPresenter player;
     private const string IS_WALKING = "IsWalking";
 
     private Animator animator;

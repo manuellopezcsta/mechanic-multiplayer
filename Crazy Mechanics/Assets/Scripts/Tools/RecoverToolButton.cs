@@ -7,12 +7,13 @@ public class RecoverToolButton : BaseCounter
     // Hacemos que herede de base Counter para utilizar el interact.
     [SerializeField] CarObject[] targetTool; // Marcamos la tool x ej el taladro.
     [SerializeField] GameObject[] toolSpawner;
-    [SerializeField] SpriteRenderer spriteOS;
+    [SerializeField] SpriteRenderer spriteSO;
 
     void Start()
     {
-        spriteOS.sprite = targetTool[0].GetObjectSO().sprite;
+        spriteSO.sprite = targetTool[0].GetObjectSO().sprite;
     }
+
     public override void Interact(Player player)
     {
         ResetPositionTools();
