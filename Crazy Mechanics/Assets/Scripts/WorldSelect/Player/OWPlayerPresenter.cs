@@ -16,6 +16,7 @@ public class OWPlayerPresenter : MonoBehaviour
     [SerializeField] private LayerMask levelLayerMask;
     public Action OnPause { get;  set; }
     public Action<Quaternion> OnMovingRotate { get;  set; }
+    public Action<bool> MoveAnimation { get; set; }
 
     void Awake()
     {
@@ -74,7 +75,7 @@ public class OWPlayerPresenter : MonoBehaviour
     private void Move_performed(InputAction.CallbackContext context)
     {
 
-
+        MoveAnimation?.Invoke(true);
         SetInputVector(context.ReadValue<Vector2>());
         castDirection = playerModel.CalculateMove(inputVector); //Make facing and interaction direction the same
         
@@ -82,6 +83,7 @@ public class OWPlayerPresenter : MonoBehaviour
 
     private void Move_canceled(InputAction.CallbackContext context)
     {
+        MoveAnimation?.Invoke(false);
         // Evita que se ejecute si el botón aún está presionado
         SetInputVector(Vector2.zero);
     }
