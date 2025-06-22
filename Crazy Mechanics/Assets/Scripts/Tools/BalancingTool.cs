@@ -33,6 +33,10 @@ public class BalacingTool : BaseCounter, IHasProgress
     [SerializeField] private Animator animator;
     private string IS_RUNNING = "Running"; // Nombre del par�metro en el Animator
 
+    [SerializeField] private Material[] switchMaterial; //0= On, 1= Off
+    [SerializeField] private MeshRenderer panelLighting;
+
+
 
     public override void Interact(Player player)
     {
@@ -148,6 +152,19 @@ public class BalacingTool : BaseCounter, IHasProgress
                     });
                     break;
             }
+        }
+        ChangeMaterialPanelLighting();
+    }
+
+    private void ChangeMaterialPanelLighting()
+    {
+        if (GameManager.Instance.IsPowerEnabled())
+        {
+            panelLighting.material = switchMaterial[0];
+        }
+        else
+        {
+            panelLighting.material = switchMaterial[1];
         }
     }
 }

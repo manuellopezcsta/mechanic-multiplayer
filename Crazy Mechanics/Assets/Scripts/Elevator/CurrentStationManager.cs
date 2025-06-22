@@ -15,12 +15,17 @@ public class CurrentStationManager : MonoBehaviour
 
     public static event EventHandler OnCarDelivery;
 
+    [SerializeField] private Material[] switchMaterial; //0= On, 1= Off
+    [SerializeField] private MeshRenderer[] panelLighting;
 
-    public bool IsElevatorLocked() {
+
+    public bool IsElevatorLocked()
+    {
         return isElevatorLocked;
     }
 
-    public void LockAndUnlockElevator() {
+    public void LockAndUnlockElevator()
+    {
         isElevatorLocked = !isElevatorLocked;
     }
 
@@ -66,7 +71,7 @@ public class CurrentStationManager : MonoBehaviour
 
     public bool isFree()
     {
-        return currentCar == null  && elevatorController.floorNumberElevator == 0;
+        return currentCar == null && elevatorController.floorNumberElevator == 0;
     }
 
     public void FreeStation()
@@ -75,7 +80,8 @@ public class CurrentStationManager : MonoBehaviour
         //Debug.Log("Se libera la estacion");
     }
 
-    public void SetCarToStation(CarController car) {
+    public void SetCarToStation(CarController car)
+    {
         currentCar = car;
     }
 
@@ -84,7 +90,7 @@ public class CurrentStationManager : MonoBehaviour
     {
         if (currentCar != null && currentCar.carFixed && GetCurrentElevatorFloor() == 0 && !elevatorController.CheckIfElevatorIsMoving())
         {
-           //Agregar score total al scoremanager
+            //Agregar score total al scoremanager
             ScoreManager.Instance.AddPoints(currentCar.carScoreValue);
             ScoreManager.Instance.CarsDelivered();
             currentCar.canMove = true;
@@ -96,4 +102,26 @@ public class CurrentStationManager : MonoBehaviour
         }
     }
     // GAME MANAGER, CREA AUIO EN UNO DE LOS elevadores.. y le asigna un manager?.
+
+    private void ChangeMaterialPanelLighting()
+    {
+        if (GameManager.Instance.IsPowerEnabled())
+        {
+            foreach (MeshRenderer panel in panelLighting)
+            {
+                panel.material = switchMaterial[0];
+            }
+        }
+        else
+        {
+             foreach (MeshRenderer panel in panelLighting)
+            {
+                panel.material = switchMaterial[1];
+            }
+        }
+    }
+    void Update()
+    {
+        ChangeMaterialPanelLighting();
+    }
 }
