@@ -37,7 +37,6 @@ public class BalacingTool : BaseCounter, IHasProgress
     [SerializeField] private MeshRenderer panelLighting;
 
 
-
     public override void Interact(Player player)
     {
         // Logica para dejar objetos
@@ -92,6 +91,14 @@ public class BalacingTool : BaseCounter, IHasProgress
         state = State.Idle;
         spawnLimit = SpawnLimitManager.Instance.GetItemSpawnLimit(balancedWheel.name);
 
+        LightBoxController.OnLightTurnOn += TurnOnLightMaterial;
+        LightBoxController.OnLightShutdown += TurnOffLightMaterial;
+
+    }
+    void OnDisable()
+    {
+        LightBoxController.OnLightTurnOn -= TurnOnLightMaterial;
+        LightBoxController.OnLightShutdown -= TurnOffLightMaterial;
     }
 
     private void AnimationRunning()
@@ -153,18 +160,14 @@ public class BalacingTool : BaseCounter, IHasProgress
                     break;
             }
         }
-        ChangeMaterialPanelLighting();
     }
 
-    private void ChangeMaterialPanelLighting()
+    private void TurnOffLightMaterial(object sender, EventArgs e)
     {
-        if (GameManager.Instance.IsPowerEnabled())
-        {
-            panelLighting.material = switchMaterial[0];
-        }
-        else
-        {
             panelLighting.material = switchMaterial[1];
-        }
+    }
+    private void TurnOnLightMaterial(object sender, EventArgs e)
+    {
+            panelLighting.material = switchMaterial[0];
     }
 }

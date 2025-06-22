@@ -19,6 +19,19 @@ public class CurrentStationManager : MonoBehaviour
     [SerializeField] private MeshRenderer[] panelLighting;
 
 
+    void Start()
+    {
+
+        LightBoxController.OnLightTurnOn += TurnOnLightMaterial;
+        LightBoxController.OnLightShutdown += TurnOffLightMaterial;
+
+    }
+    void OnDisable()
+    {
+        LightBoxController.OnLightTurnOn -= TurnOnLightMaterial;
+        LightBoxController.OnLightShutdown -= TurnOffLightMaterial;
+    }
+
     public bool IsElevatorLocked()
     {
         return isElevatorLocked;
@@ -103,25 +116,20 @@ public class CurrentStationManager : MonoBehaviour
     }
     // GAME MANAGER, CREA AUIO EN UNO DE LOS elevadores.. y le asigna un manager?.
 
-    private void ChangeMaterialPanelLighting()
+
+    private void TurnOffLightMaterial(object sender, EventArgs e)
     {
-        if (GameManager.Instance.IsPowerEnabled())
+        foreach (MeshRenderer panel in panelLighting)
         {
-            foreach (MeshRenderer panel in panelLighting)
-            {
-                panel.material = switchMaterial[0];
-            }
-        }
-        else
-        {
-             foreach (MeshRenderer panel in panelLighting)
-            {
-                panel.material = switchMaterial[1];
-            }
+            panel.material = switchMaterial[1];
         }
     }
-    void Update()
+    private void TurnOnLightMaterial(object sender, EventArgs e)
     {
-        ChangeMaterialPanelLighting();
+        foreach (MeshRenderer panel in panelLighting)
+        {
+            panel.material = switchMaterial[0];
+        }
     }
+
 }

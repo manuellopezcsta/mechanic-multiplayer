@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Security;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
@@ -12,10 +13,14 @@ public class DisasterManager : MonoBehaviour
     int minTimer;
     int maxTimer;
     public bool disasterHappening;
-
     [SerializeField] private LightBoxController lightBoxController;
+    [Header("Mystery Box Settings")]
     [SerializeField] private Transform mysteryBoxSpawner;
+    [SerializeField] private SpriteRenderer mysteryBoxEfect;
+    [SerializeField] private Sprite[] spriteEfectsMysteryBox;
+    //Debuff velocidad, buff velocidad, buff puntaje, debuff puntaje, invertir controles
     [SerializeField] private GameObject mysteryBoxPrefab;
+    [SerializeField] private float timeToTurnOffEffect;
 
     // Valores de bufos
     [Header("Buff values")]
@@ -128,6 +133,8 @@ public class DisasterManager : MonoBehaviour
             {
                 player.speed = speedDebuffPower;
             }
+            mysteryBoxEfect.sprite = spriteEfectsMysteryBox[0];
+            StartCoroutine(TimeToShutdownEfect());
         }
         else
         {
@@ -136,7 +143,8 @@ public class DisasterManager : MonoBehaviour
             {
                 player.speed = speedBuffPower;
             }
-
+            mysteryBoxEfect.sprite = spriteEfectsMysteryBox[1];
+            StartCoroutine(TimeToShutdownEfect());
         }
         Debug.Log("Se modifico la velocidad a " + GameManager.playerList[0].speed.ToString());
         StartCoroutine(ReturnPlayerToNormalSpeed(normalSpeed));
@@ -148,6 +156,17 @@ public class DisasterManager : MonoBehaviour
         int modifier = Tools.GetOneOrMinusOne();
         Debug.Log("Agregando Puntos x Desastre: " + money.ToString());
         ScoreManager.Instance.AddPoints(money * modifier);
+        if (modifier > 0)
+        {
+            mysteryBoxEfect.sprite = spriteEfectsMysteryBox[2];
+        }
+        else
+        {
+            mysteryBoxEfect.sprite = spriteEfectsMysteryBox[3];
+        }
+        //ScoreManager.Instance.UpdateScoreDisplay();
+
+        StartCoroutine(TimeToShutdownEfect());
         disasterHappening = false;
     }
 
@@ -155,6 +174,8 @@ public class DisasterManager : MonoBehaviour
     {
         Debug.Log("Invirtiendo Controles..");
         Player.invertControls = true;
+        mysteryBoxEfect.sprite = spriteEfectsMysteryBox[4];
+        StartCoroutine(TimeToShutdownEfect());
         StartCoroutine(ReturnPlayerToNormalControls());
     }
 
@@ -203,5 +224,12 @@ public class DisasterManager : MonoBehaviour
             player.speed = newSpeed;
         }
         disasterHappening = false;
+    }
+
+    IEnumerator TimeToShutdownEfect()
+    {
+        mysteryBoxEfect.enabled = true;
+        yield return new WaitForSeconds(timeToTurnOffEffect);
+        mysteryBoxEfect.enabled = false;
     }
 }

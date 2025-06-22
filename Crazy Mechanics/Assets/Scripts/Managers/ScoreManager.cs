@@ -27,13 +27,12 @@ public class ScoreManager : MonoBehaviour
     public void AddPoints(int ammount)
     {
         totalScore += ammount * multiplierPlayerValue;
-        //UpdateScoreDisplay();
     }
 
-    /* // Modo de update Rapido
+    // Modo de update Rapido
     public void UpdateScoreDisplay() {
         scoreDisplay.text = "$" + totalScore.ToString();
-    }*/
+    }
 
     // Modo de updatear el score mas bonito visualmente..
     private void Update()
@@ -46,7 +45,16 @@ public class ScoreManager : MonoBehaviour
                 currentScore = totalScore;
             }
             scoreDisplay.text = "$" + ((int)currentScore).ToString();
+        }else if (totalScore < currentScore)
+        {
+            currentScore -= scoreIncreaseRate;
+            if (totalScore > currentScore)
+            {
+                currentScore = totalScore;
+            }
+            scoreDisplay.text = "$" + ((int)currentScore).ToString();
         }
+        
     }
 
     public void CarsDelivered()

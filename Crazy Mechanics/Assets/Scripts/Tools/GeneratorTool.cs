@@ -25,6 +25,16 @@ public class GeneratorTool : BaseCounter, IHasProgress
 
     private State state;
 
+    void Start()
+    {
+        LightBoxController.OnLightTurnOn += TurnOnLightMaterial;
+        LightBoxController.OnLightShutdown += TurnOffLightMaterial;
+    }
+    void OnDisable()
+    {
+        LightBoxController.OnLightTurnOn -= TurnOnLightMaterial;
+        LightBoxController.OnLightShutdown -= TurnOffLightMaterial;
+    }
 
     public override void Interact(Player player)
     {
@@ -96,17 +106,13 @@ public class GeneratorTool : BaseCounter, IHasProgress
                     break;
             }
         }
-        ChangeMaterialPanelLighting();
     }
-        private void ChangeMaterialPanelLighting()
+    private void TurnOffLightMaterial(object sender, EventArgs e)
     {
-        if (GameManager.Instance.IsPowerEnabled())
-        {
-            panelLighting.material = switchMaterial[0];
-        }
-        else
-        {
-            panelLighting.material = switchMaterial[1];
-        }
+        panelLighting.material = switchMaterial[1];
+    }
+    private void TurnOnLightMaterial(object sender, EventArgs e)
+    {
+        panelLighting.material = switchMaterial[0];
     }
 }

@@ -14,6 +14,7 @@ public class LightBoxController : BaseCounter, IHasProgress
     [SerializeField] private GameObject fxElectricity;
     public static event EventHandler OnFixingLightBox;
     public static event EventHandler OnLightShutdown;
+    public static event EventHandler OnLightTurnOn;
 
     public event EventHandler<IHasProgress.OnProgressChangedEventArgs> OnProgressChanged;
 
@@ -50,6 +51,7 @@ public class LightBoxController : BaseCounter, IHasProgress
 
             if(fixingProgress >= fixingProgressMax) {
                 isPowerDown = false;
+                OnLightTurnOn?.Invoke(this, EventArgs.Empty);
                 fxElectricity.SetActive(false);
                 player.GetCarObject().DestroySelf();
                 DisasterManager.Instance.disasterHappening = false;
