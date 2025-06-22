@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,36 +8,83 @@ using UnityEngine.UI;
 public class InitialTutorialUI : MonoBehaviour
 {
     [Header("Settings Initial tutorial")]
-    [SerializeField] private Button backTutorialButton;
     [SerializeField] private GameObject initialTutorialPanel;
 
     //Aca guardaremos los objetos del panel que se apagaran cuando exista un tutorial inicial y se prenderan sino
     [SerializeField] private GameObject[] uiPlayer;
+    private int currentScreenTutorialNumber;
+    private LevelProperties levelProperties;
+    [SerializeField] private Button[] buttons; //0 = Previous, 1 = Next;
+    [SerializeField] private TextMeshProUGUI buttonNext;
 
     void Awake()
     {
-        backTutorialButton.onClick.AddListener(ExitStartTutorialScreen);
+        buttons[0].onClick.AddListener(PreviousTutorialScreen);
+        buttons[0].gameObject.SetActive(false);
+        buttons[1].onClick.AddListener(NextTutorialScreen);
+
     }
 
     void Start()
     {
-        LevelProperties levelProperties = GameManager.Instance.GetLevelProperties();
         // Checkeamos para ver si hay un tutorial al comienzo del nivel
+        levelProperties = GameManager.Instance.GetLevelProperties();
         if (levelProperties.hasTutorial)
         {
             Time.timeScale = 0f;
             // Seteamos la imagen
-            initialTutorialPanel.GetComponent<Image>().sprite = levelProperties.tutorialImage;
+            initialTutorialPanel.GetComponent<Image>().sprite = levelProperties.tutorialImage[0];
+            currentScreenTutorialNumber = 0;
             // Apagamos los elementos de la UI
             SwitchUIElements(false);
             // Mostramos
             initialTutorialPanel.SetActive(true);
-            backTutorialButton.Select();
+            buttons[1].Select();
         }
         else
         {
             SwitchUIElements(true);
             initialTutorialPanel.SetActive(false);
+        }
+    }
+
+    private void PreviousTutorialScreen()
+    {
+        if (currentScreenTutorialNumber == 0)
+        {
+            return;
+        }
+        else
+        {
+            buttonNext.text = "NEXT";
+            currentScreenTutorialNumber -= 1;
+            initialTutorialPanel.GetComponent<Image>().sprite = levelProperties.tutorialImage[currentScreenTutorialNumber];
+            if (currentScreenTutorialNumber == 0)
+            {
+                buttons[0].gameObject.SetActive(false);
+                buttons[1].Select();
+            }
+        }
+
+    }
+    private void NextTutorialScreen()
+    {
+        if (currentScreenTutorialNumber == levelProperties.tutorialImage.Length - 2)
+        {
+            buttonNext.text = "EXIT";
+            currentScreenTutorialNumber += 1;
+            initialTutorialPanel.GetComponent<Image>().sprite = levelProperties.tutorialImage[currentScreenTutorialNumber];
+            buttons[0].gameObject.SetActive(true);
+        }
+        else if (currentScreenTutorialNumber == levelProperties.tutorialImage.Length - 1)
+        {
+            ExitStartTutorialScreen();
+        }
+        else
+        {
+            currentScreenTutorialNumber += 1;
+            initialTutorialPanel.GetComponent<Image>().sprite = levelProperties.tutorialImage[currentScreenTutorialNumber];
+            buttons[0].gameObject.SetActive(true);
         }
     }
 
