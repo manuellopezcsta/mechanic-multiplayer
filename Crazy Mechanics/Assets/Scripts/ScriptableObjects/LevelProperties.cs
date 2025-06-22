@@ -30,6 +30,6 @@ public class LevelProperties : ScriptableObject
     public int disasterMaxTimer;
     [Header("Level Tutorial Data")]
     public bool hasTutorial;
-    public Sprite tutorialImage;
+    public Sprite[] tutorialImage;
     
 }
