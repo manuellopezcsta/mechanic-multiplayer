@@ -1,16 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting.FullSerializer;
+
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Video;
+
 
 public class TutorialUIManager : MonoBehaviour
+
 {
     [SerializeField] private Button[] tutorialsButtons;
-    [SerializeField] private Sprite[] tutorialSprites;
     [SerializeField] private GameObject tutorialScreen;
     [SerializeField] private GameObject tutorialMenu;
-    private Image display;
+    [SerializeField] private TextMeshProUGUI tutorialVideoName;
+    private VideoPlayer display;
     [SerializeField] private Button backOptionsButton;
 
 
@@ -19,12 +21,13 @@ public class TutorialUIManager : MonoBehaviour
     void Start()
     {
         //referenciamos el componente imagen del objeto tutorialScreen
-        display = tutorialScreen.GetComponent<Image>();
-        SetUpTutorialsButtons();
+        display = tutorialScreen.GetComponent<VideoPlayer>();
+        //SetUpTutorialsButtons();
         backOptionsButton.onClick.AddListener(BackOptions);
 
         // Nos aseguramos que el menu de tutorial este apagado
         tutorialMenu.SetActive(false);
+        tutorialsButtons[0].Select();
         //tutorialsButtons[0].Select();
     }
 
@@ -35,22 +38,25 @@ public class TutorialUIManager : MonoBehaviour
         GameObject.Find("Canvas").GetComponent<PauseMenuScriptUI>().GetResumeButton().Select();
     }
 
-    private void ChangeSprite(int x)
+    public void ChangeVideo(VideoClip video, string videoName)
     {
         //creamos la funcion para cambiar los sprites
-        display.sprite = tutorialSprites[x];
+        display.Stop();
+        display.clip = video;
+        display.Play();
+        tutorialVideoName.text = videoName;
     }
 
-    private void SetUpTutorialsButtons()
+    /*private void SetUpTutorialsButtons()
     {
         //Buscamos el valor en la lista de botones y lo replicamos en la lista de sprites
         //para que cambie segun cual de los botones estamos utilizando
         for(int i = 0; i < tutorialsButtons.Length; i++) {
             int buttonIndex = i;
-            tutorialsButtons[i].onClick.AddListener(() => ChangeSprite(buttonIndex));
+            //tutorialsButtons[i].onClick.AddListener(() => ChangeVideo());
             //Debug.Log(i);
         }
-    }
+    }*/
 
     public void ChangeStateTutorialMenu()
     {
@@ -64,6 +70,6 @@ public class TutorialUIManager : MonoBehaviour
             tutorialMenu.SetActive(true);
             tutorialsButtons[0].Select();
         }
-    } 
+    }
 
 }

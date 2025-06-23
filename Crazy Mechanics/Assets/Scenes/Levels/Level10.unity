@@ -2600,6 +2600,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2898355403182095825, guid: 8e118b7dbf9a5bc498e460dcacfb46d9,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.116
+      objectReference: {fileID: 0}
+    - target: {fileID: 2898355403182095825, guid: 8e118b7dbf9a5bc498e460dcacfb46d9,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.396
+      objectReference: {fileID: 0}
+    - target: {fileID: 2898355403182095825, guid: 8e118b7dbf9a5bc498e460dcacfb46d9,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.29
+      objectReference: {fileID: 0}
     - target: {fileID: 5049427641175184632, guid: 8e118b7dbf9a5bc498e460dcacfb46d9,
         type: 3}
       propertyPath: toolSpawner.Array.size
@@ -2630,6 +2645,41 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -3
       objectReference: {fileID: 0}
+    - target: {fileID: 5920546014108152276, guid: 8e118b7dbf9a5bc498e460dcacfb46d9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5960580225902468847, guid: 8e118b7dbf9a5bc498e460dcacfb46d9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6122793325005228194, guid: 8e118b7dbf9a5bc498e460dcacfb46d9,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.56
+      objectReference: {fileID: 0}
+    - target: {fileID: 6122793325005228194, guid: 8e118b7dbf9a5bc498e460dcacfb46d9,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -5.09
+      objectReference: {fileID: 0}
+    - target: {fileID: 6288912982125819689, guid: 8e118b7dbf9a5bc498e460dcacfb46d9,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.08000198
+      objectReference: {fileID: 0}
+    - target: {fileID: 6288912982125819689, guid: 8e118b7dbf9a5bc498e460dcacfb46d9,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.78400004
+      objectReference: {fileID: 0}
+    - target: {fileID: 6288912982125819689, guid: 8e118b7dbf9a5bc498e460dcacfb46d9,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.0399914
+      objectReference: {fileID: 0}
     - target: {fileID: 6700423888254585161, guid: 8e118b7dbf9a5bc498e460dcacfb46d9,
         type: 3}
       propertyPath: m_Name
@@ -2644,6 +2694,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: -2.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8618803008456584598, guid: 8e118b7dbf9a5bc498e460dcacfb46d9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8791126416109432060, guid: 8e118b7dbf9a5bc498e460dcacfb46d9,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.08000198
+      objectReference: {fileID: 0}
+    - target: {fileID: 8791126416109432060, guid: 8e118b7dbf9a5bc498e460dcacfb46d9,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.79499996
+      objectReference: {fileID: 0}
+    - target: {fileID: 8791126416109432060, guid: 8e118b7dbf9a5bc498e460dcacfb46d9,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.5799915
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10119,8 +10189,11 @@ MonoBehaviour:
   disasterHappening: 0
   lightBoxController: {fileID: 767206488}
   mysteryBoxSpawner: {fileID: 2080754377}
+  mysteryBoxEfect: {fileID: 0}
+  spriteEfectsMysteryBox: []
   mysteryBoxPrefab: {fileID: 734691671522025756, guid: d69d6ff09424c5c4e8a163df227eb2a1,
     type: 3}
+  timeToTurnOffEffect: 0
   invertedControlsDuration: 10
   speedBuffDuration: 10
   speedBuffPower: 10
