@@ -39,7 +39,7 @@ public class InitialTutorialUI : MonoBehaviour
             SwitchUIElements(false);
             // Mostramos
             initialTutorialPanel.SetActive(true);
-            buttons[1].Select();
+            StartCoroutine(SelectButtonNextFrame());
         }
         else
         {
@@ -47,6 +47,13 @@ public class InitialTutorialUI : MonoBehaviour
             initialTutorialPanel.SetActive(false);
         }
     }
+
+    private IEnumerator SelectButtonNextFrame()
+    {
+        yield return null; // Waits for the end of the current frame
+        buttons[1].Select();
+    }
+
 
     private void PreviousTutorialScreen()
     {

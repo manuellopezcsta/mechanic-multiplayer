@@ -17,7 +17,7 @@ public class DisasterManager : MonoBehaviour
     [Header("Mystery Box Settings")]
     [SerializeField] private Transform mysteryBoxSpawner;
     [SerializeField] private SpriteRenderer mysteryBoxEfect;
-    [SerializeField] private Sprite[] spriteEfectsMysteryBox;
+    [SerializeField] private MysteryBoxIconsSO mysteryBoxIconSO;
     //Debuff velocidad, buff velocidad, buff puntaje, debuff puntaje, invertir controles
     [SerializeField] private GameObject mysteryBoxPrefab;
     private float timeToTurnOffEffect = 1.5f;
@@ -133,7 +133,7 @@ public class DisasterManager : MonoBehaviour
             {
                 player.speed = speedDebuffPower;
             }
-            mysteryBoxEfect.sprite = spriteEfectsMysteryBox[0];
+            mysteryBoxEfect.sprite = mysteryBoxIconSO.mysteryBoxSprites[0];
             StartCoroutine(TimeToShutdownEfect());
         }
         else
@@ -143,7 +143,7 @@ public class DisasterManager : MonoBehaviour
             {
                 player.speed = speedBuffPower;
             }
-            mysteryBoxEfect.sprite = spriteEfectsMysteryBox[1];
+            mysteryBoxEfect.sprite = mysteryBoxIconSO.mysteryBoxSprites[1];
             StartCoroutine(TimeToShutdownEfect());
         }
         Debug.Log("Se modifico la velocidad a " + GameManager.playerList[0].speed.ToString());
@@ -158,11 +158,11 @@ public class DisasterManager : MonoBehaviour
         ScoreManager.Instance.AddPoints(money * modifier);
         if (modifier > 0)
         {
-            mysteryBoxEfect.sprite = spriteEfectsMysteryBox[2];
+            mysteryBoxEfect.sprite = mysteryBoxIconSO.mysteryBoxSprites[2];
         }
         else
         {
-            mysteryBoxEfect.sprite = spriteEfectsMysteryBox[3];
+            mysteryBoxEfect.sprite = mysteryBoxIconSO.mysteryBoxSprites[3];
         }
         //ScoreManager.Instance.UpdateScoreDisplay();
 
@@ -174,7 +174,7 @@ public class DisasterManager : MonoBehaviour
     {
         Debug.Log("Invirtiendo Controles..");
         Player.invertControls = true;
-        mysteryBoxEfect.sprite = spriteEfectsMysteryBox[4];
+        mysteryBoxEfect.sprite = mysteryBoxIconSO.mysteryBoxSprites[4];
         StartCoroutine(TimeToShutdownEfect());
         StartCoroutine(ReturnPlayerToNormalControls());
     }
