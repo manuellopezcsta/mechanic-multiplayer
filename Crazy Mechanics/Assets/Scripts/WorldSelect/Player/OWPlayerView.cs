@@ -6,6 +6,8 @@ public class OWPlayerView : MonoBehaviour
 {
     private OWPlayerPresenter playerPresenter;
     [SerializeField] PauseMenuOverWorld pauseMenuScript;
+    [SerializeField] private Animator animator;
+    private const string IS_WALKING = "IsWalking";
 
     void Awake()
     {
@@ -18,6 +20,17 @@ public class OWPlayerView : MonoBehaviour
         {
             playerPresenter.OnPause += HandlePause;
             playerPresenter.OnMovingRotate += HandleRotation;
+            playerPresenter.MoveAnimation += HandleMove;
+        }
+    }
+
+    void OnDisable()
+    {
+        if (playerPresenter != null)
+        {
+            playerPresenter.OnPause -= HandlePause;
+            playerPresenter.OnMovingRotate -= HandleRotation;
+            playerPresenter.MoveAnimation += HandleMove;
         }
     }
 
@@ -29,5 +42,10 @@ public class OWPlayerView : MonoBehaviour
     private void HandleRotation(Quaternion quaternion)
     {
         transform.rotation = quaternion;
+    }
+
+    private void HandleMove(bool isMoving)
+    {
+        animator.SetBool(IS_WALKING, isMoving);
     }
 }

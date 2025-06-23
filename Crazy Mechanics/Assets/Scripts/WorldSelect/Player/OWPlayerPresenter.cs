@@ -14,8 +14,9 @@ public class OWPlayerPresenter : MonoBehaviour
     private Vector2 inputVector;
     private Vector3 castDirection;
     [SerializeField] private LayerMask levelLayerMask;
-    public Action OnPause { get;  set; }
-    public Action<Quaternion> OnMovingRotate { get;  set; }
+    public Action OnPause { get; set; }
+    public Action<Quaternion> OnMovingRotate { get; set; }
+    public Action<bool> MoveAnimation { get; set; }
 
     void Awake()
     {
@@ -47,8 +48,8 @@ public class OWPlayerPresenter : MonoBehaviour
     {
         //Interaction capsule sizes
         float capsuleDistance = 6f;
-        float capsuleRadius = 0.5f;
-        float capsuleHeight = 1.5f;
+        float capsuleRadius = 1.5f;
+        float capsuleHeight = 3f;
 
         Vector3 capsuleStart = transform.position;
         Vector3 capsuleEnd = transform.position + Vector3.up * capsuleHeight;
@@ -74,14 +75,15 @@ public class OWPlayerPresenter : MonoBehaviour
     private void Move_performed(InputAction.CallbackContext context)
     {
 
-
+        MoveAnimation?.Invoke(true);
         SetInputVector(context.ReadValue<Vector2>());
         castDirection = playerModel.CalculateMove(inputVector); //Make facing and interaction direction the same
-        
+
     }
 
     private void Move_canceled(InputAction.CallbackContext context)
     {
+        MoveAnimation?.Invoke(false);
         // Evita que se ejecute si el botón aún está presionado
         SetInputVector(Vector2.zero);
     }
