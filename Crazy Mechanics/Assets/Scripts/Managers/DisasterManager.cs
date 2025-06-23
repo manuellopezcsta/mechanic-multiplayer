@@ -20,7 +20,7 @@ public class DisasterManager : MonoBehaviour
     [SerializeField] private Sprite[] spriteEfectsMysteryBox;
     //Debuff velocidad, buff velocidad, buff puntaje, debuff puntaje, invertir controles
     [SerializeField] private GameObject mysteryBoxPrefab;
-    [SerializeField] private float timeToTurnOffEffect;
+    private float timeToTurnOffEffect = 1.5f;
 
     // Valores de bufos
     [Header("Buff values")]

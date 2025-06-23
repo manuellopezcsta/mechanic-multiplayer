@@ -80,7 +80,7 @@ public class SoundManager : MonoBehaviour
 
     private void OnDiscoNight(object sender, System.EventArgs e)
     {
-        discoNight.volume  = sfxVolume;
+        discoNight.volume  = musicVolume;
         discoNight.clip = audioClipRefsSO.discoNight[UnityEngine.Random.Range(0, audioClipRefsSO.discoNight.Length)];
         discoNight.Play();
         musicSource.Pause();

@@ -1658,7 +1658,7 @@ PrefabInstance:
     - target: {fileID: 186905130273653233, guid: 37616dcfc61ee414a9735823ab81e5a6,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 60.58
+      value: 55.4
       objectReference: {fileID: 0}
     - target: {fileID: 186905130273653233, guid: 37616dcfc61ee414a9735823ab81e5a6,
         type: 3}
@@ -7993,6 +7993,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a8bac29f2d154d4478966cce7ad89d74, type: 3}
+--- !u!1 &1892013056 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5875246940274036176, guid: a8bac29f2d154d4478966cce7ad89d74,
+    type: 3}
+  m_PrefabInstance: {fileID: 1892013055}
+  m_PrefabAsset: {fileID: 0}
 --- !u!108 &1892013057 stripped
 Light:
   m_CorrespondingSourceObject: {fileID: 5445883216333393783, guid: a8bac29f2d154d4478966cce7ad89d74,
@@ -8967,10 +8973,14 @@ MonoBehaviour:
   lightBoxController: {fileID: 767206488}
   mysteryBoxSpawner: {fileID: 2080754377}
   mysteryBoxEfect: {fileID: 0}
-  spriteEfectsMysteryBox: []
+  spriteEfectsMysteryBox:
+  - {fileID: -1937469829, guid: c8c62b38ae4f38c4492e129179163aef, type: 3}
+  - {fileID: -536078551, guid: c8c62b38ae4f38c4492e129179163aef, type: 3}
+  - {fileID: 1623963181, guid: c8c62b38ae4f38c4492e129179163aef, type: 3}
+  - {fileID: -1360542408, guid: c8c62b38ae4f38c4492e129179163aef, type: 3}
+  - {fileID: 1382072924, guid: c8c62b38ae4f38c4492e129179163aef, type: 3}
   mysteryBoxPrefab: {fileID: 734691671522025756, guid: d69d6ff09424c5c4e8a163df227eb2a1,
     type: 3}
-  timeToTurnOffEffect: 0
   invertedControlsDuration: 10
   speedBuffDuration: 10
   speedBuffPower: 10
@@ -9005,9 +9015,8 @@ MonoBehaviour:
   minTime: 0.2
   maxTime: 1
   isActive: 0
-  eventTime: 0
   defaultLight: {fileID: 410087039}
-  discoLightParent: {fileID: 0}
+  discoLightParent: {fileID: 1892013056}
   defaultSkybox: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!1 &2068982331
 GameObject:

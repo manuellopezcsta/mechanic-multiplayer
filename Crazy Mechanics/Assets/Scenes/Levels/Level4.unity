@@ -10991,7 +10991,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2080754377}
+  - {fileID: 2069900016}
   - {fileID: 529143624}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11070,12 +11070,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   disasterHappening: 0
   lightBoxController: {fileID: 1170979477}
-  mysteryBoxSpawner: {fileID: 2080754377}
-  mysteryBoxEfect: {fileID: 0}
-  spriteEfectsMysteryBox: []
+  mysteryBoxSpawner: {fileID: 2069900016}
+  mysteryBoxEfect: {fileID: 2069900015}
+  spriteEfectsMysteryBox:
+  - {fileID: -1937469829, guid: c8c62b38ae4f38c4492e129179163aef, type: 3}
+  - {fileID: -536078551, guid: c8c62b38ae4f38c4492e129179163aef, type: 3}
+  - {fileID: 1623963181, guid: c8c62b38ae4f38c4492e129179163aef, type: 3}
+  - {fileID: -1360542408, guid: c8c62b38ae4f38c4492e129179163aef, type: 3}
+  - {fileID: 1382072924, guid: c8c62b38ae4f38c4492e129179163aef, type: 3}
   mysteryBoxPrefab: {fileID: 734691671522025756, guid: d69d6ff09424c5c4e8a163df227eb2a1,
     type: 3}
-  timeToTurnOffEffect: 0
   invertedControlsDuration: 10
   speedBuffDuration: 10
   speedBuffPower: 10
@@ -11220,6 +11224,86 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2068982331}
   m_Mesh: {fileID: 4300000, guid: 72e65272e9752d842a914dd27fd86306, type: 3}
+--- !u!1001 &2069900014
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2058334193}
+    m_Modifications:
+    - target: {fileID: 5018101787153706630, guid: 3416682849afdf64d9665e36bdbb73b1,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -64.54
+      objectReference: {fileID: 0}
+    - target: {fileID: 5018101787153706630, guid: 3416682849afdf64d9665e36bdbb73b1,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.37
+      objectReference: {fileID: 0}
+    - target: {fileID: 5018101787153706630, guid: 3416682849afdf64d9665e36bdbb73b1,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 65.004
+      objectReference: {fileID: 0}
+    - target: {fileID: 5018101787153706630, guid: 3416682849afdf64d9665e36bdbb73b1,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5018101787153706630, guid: 3416682849afdf64d9665e36bdbb73b1,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5018101787153706630, guid: 3416682849afdf64d9665e36bdbb73b1,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5018101787153706630, guid: 3416682849afdf64d9665e36bdbb73b1,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5018101787153706630, guid: 3416682849afdf64d9665e36bdbb73b1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5018101787153706630, guid: 3416682849afdf64d9665e36bdbb73b1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5018101787153706630, guid: 3416682849afdf64d9665e36bdbb73b1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6858079967037338127, guid: 3416682849afdf64d9665e36bdbb73b1,
+        type: 3}
+      propertyPath: m_Name
+      value: MysteryBox Spawner
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3416682849afdf64d9665e36bdbb73b1, type: 3}
+--- !u!212 &2069900015 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 117082599887662571, guid: 3416682849afdf64d9665e36bdbb73b1,
+    type: 3}
+  m_PrefabInstance: {fileID: 2069900014}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2069900016 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5018101787153706630, guid: 3416682849afdf64d9665e36bdbb73b1,
+    type: 3}
+  m_PrefabInstance: {fileID: 2069900014}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2075649773
 GameObject:
   m_ObjectHideFlags: 0
@@ -11250,37 +11334,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 529143624}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2080754376
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2080754377}
-  m_Layer: 0
-  m_Name: MysteryBox Spawner
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2080754377
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2080754376}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -66.77, y: 0.37, z: 63.22}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2058334193}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2106089610
 PrefabInstance:
@@ -150790,6 +150843,7 @@ Transform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 2058334193}
   - {fileID: 664873413}
   - {fileID: 1624263119}
   - {fileID: 88213330}
@@ -150818,7 +150872,6 @@ SceneRoots:
   - {fileID: 277067684}
   - {fileID: 410087041}
   - {fileID: 1243243453}
-  - {fileID: 2058334193}
   - {fileID: 1299144560}
   - {fileID: 258452614128688080}
   - {fileID: 671806455}

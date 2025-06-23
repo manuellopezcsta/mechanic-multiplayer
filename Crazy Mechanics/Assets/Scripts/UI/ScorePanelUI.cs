@@ -34,7 +34,7 @@ public class ScorePanelUI : MonoBehaviour
     {
         LevelProperties levelProperties = GameManager.Instance.GetLevelProperties();
         // Obtenemos el score del jugador y los score a vencer
-        levelScore = ScoreManager.Instance.GetScore();
+        levelScore = (int)ScoreManager.Instance.GetScore();
         int firstStarScore = levelProperties.firstStarScore;
         int secondStarScore = levelProperties.secondStarScore;
         int thirdStarScore = levelProperties.thirdStarScore;

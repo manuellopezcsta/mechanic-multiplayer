@@ -11,7 +11,7 @@ public class LightManager : MonoBehaviour
     [SerializeField] private float maxTime = 1f;  // Tiempo m�ximo para cambiar de color
 
     public bool isActive;
-    [SerializeField] private int eventTime = 10;
+    private int eventTime = 10;
 
     [SerializeField] private GameObject defaultLight;
     [SerializeField] private GameObject discoLightParent;
