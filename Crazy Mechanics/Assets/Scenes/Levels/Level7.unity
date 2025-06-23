@@ -9155,8 +9155,11 @@ MonoBehaviour:
   disasterHappening: 0
   lightBoxController: {fileID: 767206488}
   mysteryBoxSpawner: {fileID: 2080754377}
+  mysteryBoxEfect: {fileID: 0}
+  spriteEfectsMysteryBox: []
   mysteryBoxPrefab: {fileID: 734691671522025756, guid: d69d6ff09424c5c4e8a163df227eb2a1,
     type: 3}
+  timeToTurnOffEffect: 0
   invertedControlsDuration: 10
   speedBuffDuration: 10
   speedBuffPower: 10
@@ -83925,10 +83928,20 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1695473619455800315, guid: e8c6b90fb19e93c4e8d1a79d5e606d7c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2184094428361729381, guid: e8c6b90fb19e93c4e8d1a79d5e606d7c,
         type: 3}
       propertyPath: m_Name
       value: BotonRecoverDrill
+      objectReference: {fileID: 0}
+    - target: {fileID: 4784597567341514501, guid: e8c6b90fb19e93c4e8d1a79d5e606d7c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5208135886489269794, guid: e8c6b90fb19e93c4e8d1a79d5e606d7c,
         type: 3}
@@ -83978,6 +83991,11 @@ PrefabInstance:
     - target: {fileID: 5208135886489269794, guid: e8c6b90fb19e93c4e8d1a79d5e606d7c,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7823060732799789976, guid: e8c6b90fb19e93c4e8d1a79d5e606d7c,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -115325,6 +115343,16 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -2.91
       objectReference: {fileID: 0}
+    - target: {fileID: 3544398896503491299, guid: 244d8179cb35545469be0ec50fef5783,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5293838759661949948, guid: 244d8179cb35545469be0ec50fef5783,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5614128595052649349, guid: 244d8179cb35545469be0ec50fef5783,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -115344,6 +115372,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: -3.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7069327048337194285, guid: 244d8179cb35545469be0ec50fef5783,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7149144602898985816, guid: 244d8179cb35545469be0ec50fef5783,
         type: 3}
