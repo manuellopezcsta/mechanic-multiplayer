@@ -7206,12 +7206,12 @@ PrefabInstance:
     - target: {fileID: 4926127939711829254, guid: de9d77e9d9f2a2448bcb674129ef4686,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4926127939711829254, guid: de9d77e9d9f2a2448bcb674129ef4686,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10.9
+      value: -10.852
       objectReference: {fileID: 0}
     - target: {fileID: 4926127939711829254, guid: de9d77e9d9f2a2448bcb674129ef4686,
         type: 3}
@@ -11071,8 +11071,11 @@ MonoBehaviour:
   disasterHappening: 0
   lightBoxController: {fileID: 1170979477}
   mysteryBoxSpawner: {fileID: 2080754377}
+  mysteryBoxEfect: {fileID: 0}
+  spriteEfectsMysteryBox: []
   mysteryBoxPrefab: {fileID: 734691671522025756, guid: d69d6ff09424c5c4e8a163df227eb2a1,
     type: 3}
+  timeToTurnOffEffect: 0
   invertedControlsDuration: 10
   speedBuffDuration: 10
   speedBuffPower: 10
