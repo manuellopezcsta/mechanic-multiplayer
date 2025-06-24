@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
@@ -70,7 +71,7 @@ public class OWPlayerPresenter : MonoBehaviour
     }
     public void SetInputVector(Vector2 direction)
     {
-        inputVector = direction;
+        inputVector = direction.normalized;
     }
     private void Move_performed(InputAction.CallbackContext context)
     {
