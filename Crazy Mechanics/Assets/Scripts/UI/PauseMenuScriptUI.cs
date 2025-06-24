@@ -83,7 +83,10 @@ public class PauseMenuScriptUI : MonoBehaviour
         Loader.Load(Loader.Scene.Menu);
     }
 
-
+    public bool CanExitPause()
+    {
+        return !tutorialUIManager.isMenuActive();
+    }
 
     private void Awake()
     {
