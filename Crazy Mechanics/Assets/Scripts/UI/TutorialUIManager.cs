@@ -72,4 +72,10 @@ public class TutorialUIManager : MonoBehaviour
         }
     }
 
+    public bool isMenuActive()
+    {
+        //Debug.Log(tutorialMenu.activeInHierarchy + " ACTIVE IN HERIARCHY DEL TUTORIAL UI MANAGER");
+        return tutorialMenu.activeInHierarchy;
+    }
+
 }
