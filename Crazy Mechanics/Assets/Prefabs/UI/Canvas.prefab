@@ -262,7 +262,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -476, y: -150}
+  m_AnchoredPosition: {x: -450, y: -150}
   m_SizeDelta: {x: 617.9216, y: 1013.9834}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &6168270521835182885
@@ -2040,10 +2040,10 @@ RectTransform:
   - {fileID: 865593799588072495}
   m_Father: {fileID: 4785665470777150636}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 350, y: -650}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2040115047509633120
 CanvasRenderer:
@@ -2139,7 +2139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca187b887dee2b94a801035c23adfc59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  videoName: Conveyor belt
+  videoName: A conveyor belt, use it wisely
   video: {fileID: 32900000, guid: 257c3ea59e65d7b4f9528871727c5f04, type: 3}
   videoUI: {fileID: 7335568612011477582}
 --- !u!1 &2082033969530043888
@@ -2327,10 +2327,10 @@ RectTransform:
   - {fileID: 6685344648967695656}
   m_Father: {fileID: 4785665470777150636}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 50, y: -200}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7738609419309422547
 CanvasRenderer:
@@ -2426,7 +2426,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca187b887dee2b94a801035c23adfc59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  videoName: Power outage
+  videoName: Power outage - Get some new fuse
   video: {fileID: 32900000, guid: 0172d74685cb8dc45b3d6c0230807d90, type: 3}
   videoUI: {fileID: 7335568612011477582}
 --- !u!1 &2517659815174787392
@@ -2463,7 +2463,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 419, y: -350}
+  m_AnchoredPosition: {x: 422, y: -302}
   m_SizeDelta: {x: 791.2088, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8572851999879754295
@@ -2504,8 +2504,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4289111718
+  m_fontColor: {r: 0.6509804, g: 0.6509804, b: 0.6509804, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2522,15 +2522,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 60
-  m_fontSizeBase: 60
+  m_fontSize: 38
+  m_fontSizeBase: 38
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -2558,7 +2558,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 92.96692, y: 0, z: 89.64661, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -2599,10 +2599,10 @@ RectTransform:
   - {fileID: 1601145431727958643}
   m_Father: {fileID: 4785665470777150636}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 350, y: -350}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &893427024422296207
 CanvasRenderer:
@@ -2738,7 +2738,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 775, y: -987}
+  m_AnchoredPosition: {x: 802, y: -1000}
   m_SizeDelta: {x: 214.6694, y: 76.4552}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &659375333152622802
@@ -2879,10 +2879,10 @@ RectTransform:
   - {fileID: 7340670425744525780}
   m_Father: {fileID: 4785665470777150636}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 500, y: -200}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1531194479290050381
 CanvasRenderer:
@@ -3016,10 +3016,10 @@ RectTransform:
   - {fileID: 6602988380602648242}
   m_Father: {fileID: 4785665470777150636}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 200, y: -350}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7688407736075189857
 CanvasRenderer:
@@ -3115,7 +3115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca187b887dee2b94a801035c23adfc59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  videoName: Piston Task
+  videoName: Place a new piston in the engine
   video: {fileID: 32900000, guid: 3c6f035594849f94f835cfe3368246c5, type: 3}
   videoUI: {fileID: 7335568612011477582}
 --- !u!1 &3049602294320643094
@@ -3623,10 +3623,10 @@ RectTransform:
   - {fileID: 1886297919352587179}
   m_Father: {fileID: 4785665470777150636}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 50, y: -50}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4533862614694628873
 CanvasRenderer:
@@ -3722,7 +3722,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca187b887dee2b94a801035c23adfc59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  videoName: Call a car to start
+  videoName: Let's get this started, call a car
   video: {fileID: 32900000, guid: 6ae41e91a82ace4469bbf837232c3c53, type: 3}
   videoUI: {fileID: 7335568612011477582}
 --- !u!1 &3621554769803380748
@@ -3760,10 +3760,10 @@ RectTransform:
   - {fileID: 6903110800470033773}
   m_Father: {fileID: 4785665470777150636}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 200, y: -650}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7530165376665051255
 CanvasRenderer:
@@ -3859,7 +3859,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca187b887dee2b94a801035c23adfc59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  videoName: Differential task
+  videoName: That differential needs fixing
   video: {fileID: 32900000, guid: 499bbe921bc70d94ea76d32c2c64fca7, type: 3}
   videoUI: {fileID: 7335568612011477582}
 --- !u!1 &3706754167959249599
@@ -4555,10 +4555,10 @@ RectTransform:
   - {fileID: 4444713076842230595}
   m_Father: {fileID: 4785665470777150636}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 50, y: -350}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8301080649713425490
 CanvasRenderer:
@@ -4654,7 +4654,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca187b887dee2b94a801035c23adfc59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  videoName: Spark Plug Task
+  videoName: Place a new spark plug in the engine
   video: {fileID: 32900000, guid: 87c2cc4f8e82ec4449b0392487a0311e, type: 3}
   videoUI: {fileID: 7335568612011477582}
 --- !u!1 &4172495092446882811
@@ -4977,10 +4977,10 @@ RectTransform:
   - {fileID: 2796508628626667075}
   m_Father: {fileID: 4785665470777150636}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 500, y: -500}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9157416937076199021
 CanvasRenderer:
@@ -5076,7 +5076,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca187b887dee2b94a801035c23adfc59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  videoName: 'Teleporter portal '
+  videoName: Go through the portal and see where it takes you
   video: {fileID: 32900000, guid: 5b9d05499a0a94241ab9b090a269f98c, type: 3}
   videoUI: {fileID: 7335568612011477582}
 --- !u!1 &4418113771999753164
@@ -5107,14 +5107,14 @@ RectTransform:
   m_GameObject: {fileID: 4418113771999753164}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.7391635, y: 0.7391635, z: 0.7391635}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8333380187366976211}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -551, y: -443}
+  m_AnchoredPosition: {x: -538, y: -487}
   m_SizeDelta: {x: 800, y: 800}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2220622666085690505
@@ -5223,10 +5223,10 @@ RectTransform:
   - {fileID: 438221742035208543}
   m_Father: {fileID: 4785665470777150636}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 500, y: -350}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3402067128408194962
 CanvasRenderer:
@@ -5832,10 +5832,10 @@ RectTransform:
   - {fileID: 4766604555375741862}
   m_Father: {fileID: 4785665470777150636}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 350, y: -500}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2334380537010331265
 CanvasRenderer:
@@ -5931,7 +5931,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca187b887dee2b94a801035c23adfc59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  videoName: Oil Stain Disaster
+  videoName: Clean up oil stains or you might slip
   video: {fileID: 32900000, guid: 428814b4b234044429cc85d9e43e2a7f, type: 3}
   videoUI: {fileID: 7335568612011477582}
 --- !u!1 &5326063895104126859
@@ -5969,10 +5969,10 @@ RectTransform:
   - {fileID: 770235335527286505}
   m_Father: {fileID: 4785665470777150636}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 350, y: -200}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5613906145094892916
 CanvasRenderer:
@@ -6068,7 +6068,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca187b887dee2b94a801035c23adfc59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  videoName: Wind disaster
+  videoName: Go through the windstorm
   video: {fileID: 32900000, guid: d7b7682c76cbda64a9edbb18259f03c4, type: 3}
   videoUI: {fileID: 7335568612011477582}
 --- !u!1 &5577333511209762497
@@ -6181,10 +6181,10 @@ RectTransform:
   - {fileID: 5598995674368913570}
   m_Father: {fileID: 4785665470777150636}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 200, y: -500}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1439549643811171983
 CanvasRenderer:
@@ -6280,7 +6280,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca187b887dee2b94a801035c23adfc59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  videoName: Change oil task
+  videoName: Let's change this dirty oil
   video: {fileID: 32900000, guid: 07de8a213294c7c4191e3d86ed95c4c9, type: 3}
   videoUI: {fileID: 7335568612011477582}
 --- !u!1 &5736361661550848386
@@ -6318,10 +6318,10 @@ RectTransform:
   - {fileID: 5949288381755441946}
   m_Father: {fileID: 4785665470777150636}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 200, y: -200}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5320859520343451979
 CanvasRenderer:
@@ -6417,7 +6417,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca187b887dee2b94a801035c23adfc59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  videoName: Dead battery task
+  videoName: Batery is dead, let's charge it
   video: {fileID: 32900000, guid: 03a919069ce01a843af49aaf0130cf78, type: 3}
   videoUI: {fileID: 7335568612011477582}
 --- !u!1 &5754568344676683577
@@ -6455,10 +6455,10 @@ RectTransform:
   - {fileID: 2028177006413504362}
   m_Father: {fileID: 4785665470777150636}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 350, y: -50}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9048734910972250233
 CanvasRenderer:
@@ -6554,7 +6554,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca187b887dee2b94a801035c23adfc59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  videoName: Missing wheel
+  videoName: Missing wheel? Look for a new one
   video: {fileID: 32900000, guid: 66f854c5f53569643b5f802eecbd6745, type: 3}
   videoUI: {fileID: 7335568612011477582}
 --- !u!1 &6100347675544919625
@@ -6908,10 +6908,10 @@ RectTransform:
   - {fileID: 5645948530501407730}
   m_Father: {fileID: 4785665470777150636}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 200, y: -50}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6320061775751621895
 CanvasRenderer:
@@ -7007,7 +7007,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca187b887dee2b94a801035c23adfc59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  videoName: Recycling results in extra money
+  videoName: Recycling allways results in extra money
   video: {fileID: 32900000, guid: 22d53de1161f8094c838771c83fa9b12, type: 3}
   videoUI: {fileID: 7335568612011477582}
 --- !u!1 &6300617194476436848
@@ -7045,10 +7045,10 @@ RectTransform:
   - {fileID: 868577386363968903}
   m_Father: {fileID: 4785665470777150636}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 500, y: -50}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7226116529961706678
 CanvasRenderer:
@@ -7144,7 +7144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca187b887dee2b94a801035c23adfc59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  videoName: Unbalanced wheel
+  videoName: Fix that unbalanced wheel
   video: {fileID: 32900000, guid: eed261a55c3507b459f19d66abe97b99, type: 3}
   videoUI: {fileID: 7335568612011477582}
 --- !u!1 &6409191558510576527
@@ -7737,10 +7737,10 @@ RectTransform:
   - {fileID: 640939765525139622}
   m_Father: {fileID: 4785665470777150636}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 50, y: -500}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7005738320394342824
 CanvasRenderer:
@@ -7836,7 +7836,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca187b887dee2b94a801035c23adfc59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  videoName: Elevator
+  videoName: Use the elevator for certain repairs
   video: {fileID: 32900000, guid: e457b17e526aab244baab724c57ebdd9, type: 3}
   videoUI: {fileID: 7335568612011477582}
 --- !u!1 &7038691557301594268
@@ -7874,10 +7874,10 @@ RectTransform:
   - {fileID: 6326772271462100270}
   m_Father: {fileID: 4785665470777150636}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 50, y: -650}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4497277450533474586
 CanvasRenderer:
@@ -7973,7 +7973,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca187b887dee2b94a801035c23adfc59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  videoName: Dented car task
+  videoName: Let's undent that car
   video: {fileID: 32900000, guid: 66299c2bb79baf545b23725e12f9aee1, type: 3}
   videoUI: {fileID: 7335568612011477582}
 --- !u!1 &7089478086345982532
@@ -8445,7 +8445,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8333380187366976211
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8458,6 +8458,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 4572933466663889876}
   - {fileID: 4785665470777150636}
   - {fileID: 4322017588498312750}
   - {fileID: 180213665065526114}
@@ -8648,6 +8649,81 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 1d2ef494c12c0a940a74764eec98763e, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!1 &8192742024560841653
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4572933466663889876}
+  - component: {fileID: 1122778231085371942}
+  - component: {fileID: 3751278081008601940}
+  m_Layer: 5
+  m_Name: Marco
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &4572933466663889876
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8192742024560841653}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 10.589783, y: 10.589783, z: 10.589783}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8333380187366976211}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 445, y: -4}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &1122778231085371942
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8192742024560841653}
+  m_CullTransparentMesh: 1
+--- !u!114 &3751278081008601940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8192742024560841653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: a2b65d32d1a4fc3469e581cea7d9b3c3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -9369,7 +9445,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5035155, g: 0.5098868, b: 0.6886792, a: 0.92156863}
+  m_Color: {r: 0.5035155, g: 0.5098868, b: 0.6886792, a: 0.78431374}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
