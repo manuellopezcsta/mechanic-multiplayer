@@ -12,7 +12,6 @@ public class TaskIndicatorUI : MonoBehaviour
 
     public void SetAsComplete()
     {
-        // La prender o apagar la hamburguesa.
         taskIcon.sprite = completedTaskIcon;
         StartCoroutine(WaitAndHIde(3f));
     }
