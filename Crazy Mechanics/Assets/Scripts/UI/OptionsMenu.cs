@@ -63,17 +63,17 @@ public class OptionsMenu : MonoBehaviour
         }
     }
 
-    private void ChangeMusicVolume(float newVolume)
+    private void ChangeMusicVolume(float newBarValue)
     {
-        float correctVolume = Mathf.Pow(newVolume, 1.5f);
-        SoundManager.Instance.ChangeVolume(correctVolume);
+        float correctVolume = Mathf.Pow(newBarValue, 1.5f);
+        SoundManager.Instance.ChangeVolume(correctVolume, newBarValue);
         SoundManager.Instance.PlayButtonClick();
     }
 
-    private void ChangeSfxVolume(float newVolume)
+    private void ChangeSfxVolume(float newBarValue)
     {
-        float correctVolume = Mathf.Pow(newVolume, 1.5f);
-        SoundManager.Instance.ChangeVolumeSfx(correctVolume);
+        float correctVolume = Mathf.Pow(newBarValue, 1.5f);
+        SoundManager.Instance.ChangeVolumeSfx(correctVolume, newBarValue);
         SoundManager.Instance.PlayButtonClick();
     }
 

@@ -23,8 +23,10 @@ public class SoundManager : MonoBehaviour
 
         // Cargamos los valores del player pref y los aplicamos
         musicVolume = PlayerPrefs.GetFloat(PLAYER_PREFS_MUSIC_VOLUME, .3f);
+        musicVolume = Mathf.Pow(musicVolume, 1.5f);
         musicSource.volume = musicVolume;
         sfxVolume = PlayerPrefs.GetFloat(PLAYER_PREFS_SOUND_EFFECTS_VOLUME, 1f);
+        sfxVolume = Mathf.Pow(sfxVolume, 1.5f);
         discoNight.volume = sfxVolume;
     }
 
@@ -172,22 +174,22 @@ public class SoundManager : MonoBehaviour
     }
 
     // Para algun boton
-    public void ChangeVolume(float newVolume) {
+    public void ChangeVolume(float newVolume, float newBarValue) {
         // Le cambiamos el volumen al parlante
         musicSource.volume = newVolume;
        
         // Guardamos el valor de volumen en la memoria
-        PlayerPrefs.SetFloat(PLAYER_PREFS_MUSIC_VOLUME, newVolume);
+        PlayerPrefs.SetFloat(PLAYER_PREFS_MUSIC_VOLUME, newBarValue);
         PlayerPrefs.Save();
     }
 
-    public void ChangeVolumeSfx(float newVolume)
+    public void ChangeVolumeSfx(float newVolume, float newBarValue)
     {
         // Le cambiamos el volumen al parlante
         sfxVolume = newVolume;
 
         // Guardamos el valor de volumen en la memoria
-        PlayerPrefs.SetFloat(PLAYER_PREFS_SOUND_EFFECTS_VOLUME, newVolume);
+        PlayerPrefs.SetFloat(PLAYER_PREFS_SOUND_EFFECTS_VOLUME, newBarValue);
         PlayerPrefs.Save();
     }
 

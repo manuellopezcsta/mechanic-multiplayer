@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenuOverWorld : MonoBehaviour
 {
-
     [SerializeField] private Button resumeGameButton;
     [SerializeField] private GameObject pauseScreen;
     [SerializeField] private Button exitToMainMenuButton;
@@ -15,17 +14,17 @@ public class PauseMenuOverWorld : MonoBehaviour
     
 
     // EL CALCULO DE VOLUMEN SE REALIZA USANDO UNA POTENCIA PARA QUE SUENE MEJOR EL CAMBIO AL OIDO HUMANO.
-    private void ChangeMusicVolume(float newVolume)
+    private void ChangeMusicVolume(float newBarValue)
     {
-        float correctVolume = Mathf.Pow(newVolume, 1.5f);
-        SoundManager.Instance.ChangeVolume(correctVolume);
+        float correctVolume = Mathf.Pow(newBarValue, 1.5f);
+        SoundManager.Instance.ChangeVolume(correctVolume, newBarValue);
         SoundManager.Instance.PlayButtonClick();
     }
 
-    private void ChangeSfxVolume(float newVolume)
+    private void ChangeSfxVolume(float newBarValue)
     {
-        float correctVolume = Mathf.Pow(newVolume, 1.5f);
-        SoundManager.Instance.ChangeVolumeSfx(correctVolume);
+        float correctVolume = Mathf.Pow(newBarValue, 1.5f);
+        SoundManager.Instance.ChangeVolumeSfx(correctVolume, newBarValue);
         SoundManager.Instance.PlayButtonClick();
     }
 
