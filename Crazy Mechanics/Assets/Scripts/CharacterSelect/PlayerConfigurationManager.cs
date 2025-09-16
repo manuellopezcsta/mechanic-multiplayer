@@ -69,7 +69,7 @@ public class PlayerConfigurationManager : MonoBehaviour
     {
         // Si no a;adimos ya al player
         //if (!playerConfigs.Any(p => p.PlayerIndex == pi.playerIndex))
-        if (!playerConfigs.Any(p => p.PlayerIndex == pi.playerIndex ) && SceneManager.GetActiveScene().name == "CharacterSelect")
+        if (!playerConfigs.Any(p => p.PlayerIndex == pi.playerIndex) && SceneManager.GetActiveScene().name == "CharacterSelect")
         {
             Debug.Log("Player " + pi.playerIndex + " Joined " + SceneManager.GetActiveScene().name);
             // Guardamos el obj input en el manager, para que persista cuando cambiamos la escena.
@@ -77,6 +77,28 @@ public class PlayerConfigurationManager : MonoBehaviour
             // Agregamos un nuevo config con el indice de este pi.
             playerConfigs.Add(new PlayerConfiguration(pi));
             //Debug.Log(playerConfigs.Count);
+        }
+        // Caso de Join desde la partida.         // NEW CODEE //
+        if (!playerConfigs.Any(p => p.PlayerIndex == pi.playerIndex) && SceneManager.GetActiveScene().name.Contains("Level"))
+        {
+            Debug.Log("Intentando hacer join desde level.");
+            Debug.Log("Player " + pi.playerIndex + " Joined during " + SceneManager.GetActiveScene().name);
+            // Guardamos el obj input en el manager, para que persista cuando cambiamos la escena.
+            pi.transform.SetParent(transform);
+            // Agregamos un nuevo config con el indice de este pi.
+            PlayerConfiguration newPlayerConfig = new PlayerConfiguration(pi);
+            // LE DOY EL MISMO MODELO QUE EL PLAYER 1 POR AHORA PARA EVITAR QUILOMBO.
+            newPlayerConfig.playerPrefab = playerConfigs[0].playerPrefab;
+            playerConfigs.Add(newPlayerConfig);
+            //------------------------------Spawn del pj en escena ----------------------------------//
+            Transform newPlayerSpawnPosition = GameManager.Instance.playerSpawns[playerConfigs.Count() - 1];
+            //Instanciamos el player con su personaje seleccionado.
+            GameObject spawner = GameObject.Find("Player Spawner");
+            var player = Instantiate(newPlayerConfig.playerPrefab, newPlayerSpawnPosition.position, newPlayerSpawnPosition.rotation, spawner.transform);
+            player.GetComponent<PlayerInputHandler>().InitializePlayer(newPlayerConfig);
+            newPlayerConfig.PInput.defaultActionMap = "Player";
+            //Debug.Log(playerConfigs.Length);
+            Debug.Log(newPlayerConfig.PlayerIndex);
         }
     }
 
