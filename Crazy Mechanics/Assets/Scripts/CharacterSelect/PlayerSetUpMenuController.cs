@@ -87,7 +87,7 @@ public class PlayerSetUpMenuController : MonoBehaviour
         {
             return;
         }
-
+        PlayerConfigurationManager.Instance.playerVisualSprites.Add(currentChar.sprite);
         PlayerConfigurationManager.Instance.ReadyPlayer(PlayerIndex);
         readyButton.gameObject.SetActive(false);
         menuPanel.SetActive(false);
@@ -196,13 +196,13 @@ public class PlayerSetUpMenuController : MonoBehaviour
 
     }
 
-    public void ReadyPlayer()
+    public void ReadyPlayer() //esta Funcion hace lo mismo que esta en el interact, esta al pedo
     {
         if (!inputEnabled)
         {
             return;
         }
-
+        
         PlayerConfigurationManager.Instance.ReadyPlayer(PlayerIndex);
         readyButton.gameObject.SetActive(false);
         menuPanel.SetActive(false);

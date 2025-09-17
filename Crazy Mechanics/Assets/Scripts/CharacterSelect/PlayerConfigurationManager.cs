@@ -5,17 +5,18 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerConfigurationManager : MonoBehaviour
 {
     [SerializeField] private List<PlayerConfiguration> playerConfigs;
     [SerializeField] private PlayerSelectContainerSO[] charactersVisuals;
-
     [SerializeField] private float offsetVisualCharacters;
+    public List<Sprite> playerVisualSprites = new List<Sprite>();
 
     public static PlayerConfigurationManager Instance { get; private set; }
 
-    
+
     public List<PlayerConfiguration> GetPlayerConfigs()
     {
         return playerConfigs;
@@ -35,7 +36,8 @@ public class PlayerConfigurationManager : MonoBehaviour
             playerConfigs = new List<PlayerConfiguration>();
         }
     }
-    public void Start(){
+    public void Start()
+    {
         RenderCharacters();
         GameManager.playerList.Clear();
         GameManager.inputHandlersList.Clear();
@@ -50,20 +52,46 @@ public class PlayerConfigurationManager : MonoBehaviour
     // Setea el player para arrancar la partida.
     public void ReadyPlayer(int index)
     {
-        playerConfigs[index].IsReady = true;
-        // Chekeo si los players estan ready.
-        if (playerConfigs.Count == playerConfigs.Count(p => p.IsReady == true))
+        if (!SceneManager.GetActiveScene().name.Contains("Level")) //ready en el characterSelect
         {
-            // Apagamos los inputs antes de ir a la siguiente escena para evitar quilombo.
-            //PlayerConfigurationManager.Instance.SwitchInputMethod(false);
-            // Cargamos la escena que corresponde
-            Loader.Load(Loader.Scene.WorldSelect);
-            //Loader.Load(Loader.Scene.Level1);
-            //Loader.Load(Loader.Scene.Level5);
-            //Loader.Load(Loader.Scene.Level2);
-            //Loader.Load(Loader.Scene.Level0);
+            playerConfigs[index].IsReady = true;
+            // Chekeo si los players estan ready.
+            if (playerConfigs.Count == playerConfigs.Count(p => p.IsReady == true))
+            {
+                // Apagamos los inputs antes de ir a la siguiente escena para evitar quilombo.
+                //PlayerConfigurationManager.Instance.SwitchInputMethod(false);
+                // Cargamos la escena que corresponde
+                Loader.Load(Loader.Scene.WorldSelect);
+                //Loader.Load(Loader.Scene.Level1);
+                //Loader.Load(Loader.Scene.Level5);
+                //Loader.Load(Loader.Scene.Level2);
+                //Loader.Load(Loader.Scene.Level0);
+            }
+        }
+        else //ready en el nivel
+        {
+            var playerConfigs = GetPlayerConfigs().ToArray();
+            int i = index;
+            if (!playerConfigs[i].IsReady)
+            {
+                Transform[] playerSpawns = GameManager.Instance.playerSpawns;
+                //Instanciamos el player con su personaje seleccionado.
+                playerConfigs[i].IsReady = true;
+                GameObject spawner = GameObject.Find("Player Spawner");
+                var player = Instantiate(playerConfigs[i].playerPrefab, playerSpawns[i].position, playerSpawns[i].rotation, spawner.transform);
+                player.GetComponent<PlayerInputHandler>().InitializePlayer(playerConfigs[i]);
+                playerConfigs[i].PInput.defaultActionMap = "Player";
+                //Debug.Log(playerConfigs.Length);
+                Debug.Log(playerConfigs[i].PlayerIndex);
+                FramePlayerVisual.Instance.SetUpVisualPlayer(); //Con esta funcion ponemos la foto en el cuadro del taller.
+                foreach (Transform child in GameObject.Find("MainLayout1").transform)
+                {
+                    child.gameObject.SetActive(false);
+                }
+            }
         }
     }
+
 
     public void HandlePlayerJoined(PlayerInput pi)
     {
@@ -79,7 +107,18 @@ public class PlayerConfigurationManager : MonoBehaviour
             //Debug.Log(playerConfigs.Count);
         }
         // Caso de Join desde la partida.         // NEW CODEE //
-        if (!playerConfigs.Any(p => p.PlayerIndex == pi.playerIndex) && SceneManager.GetActiveScene().name.Contains("Level"))
+        else if (!playerConfigs.Any(p => p.PlayerIndex == pi.playerIndex) && SceneManager.GetActiveScene().name.Contains("Level"))
+        {
+
+            Debug.Log("Player " + pi.playerIndex + " Joined " + SceneManager.GetActiveScene().name);
+            // Guardamos el obj input en el manager, para que persista cuando cambiamos la escena.
+            pi.transform.SetParent(transform);
+            // Agregamos un nuevo config con el indice de este pi.
+            playerConfigs.Add(new PlayerConfiguration(pi));
+            //Debug.Log(playerConfigs.Count);
+
+        }
+        /*if (!playerConfigs.Any(p => p.PlayerIndex == pi.playerIndex) && SceneManager.GetActiveScene().name.Contains("Level")) //Cambiar los niveles a que contengan las palabra Level o cambiar la sentencia
         {
             Debug.Log("Intentando hacer join desde level.");
             Debug.Log("Player " + pi.playerIndex + " Joined during " + SceneManager.GetActiveScene().name);
@@ -99,7 +138,7 @@ public class PlayerConfigurationManager : MonoBehaviour
             newPlayerConfig.PInput.defaultActionMap = "Player";
             //Debug.Log(playerConfigs.Length);
             Debug.Log(newPlayerConfig.PlayerIndex);
-        }
+        }*/
     }
 
     // Si no se usa en el futuro, borrar
@@ -114,16 +153,19 @@ public class PlayerConfigurationManager : MonoBehaviour
         }
     }
 
-    public void SelfDestruct() {
+    public void SelfDestruct()
+    {
         // CODIGO PARA DESUSCRIBIRSE AL DESTRUIRSE UN PLAYER.
         GameManager.NukePlayerControllers();
         Destroy(gameObject);
     }
-    
-    private void RenderCharacters(){
-        Vector3 startingPosition = new Vector3(0f,0f,0f);
-        Vector3 offset = new Vector3(offsetVisualCharacters,0f,0f);
-        for (int i = 0; i < charactersVisuals.Length; i++){
+
+    private void RenderCharacters()
+    {
+        Vector3 startingPosition = new Vector3(0f, 0f, 0f);
+        Vector3 offset = new Vector3(offsetVisualCharacters, 0f, 0f);
+        for (int i = 0; i < charactersVisuals.Length; i++)
+        {
             GameObject character = Instantiate(charactersVisuals[i].playerPrefab);
             character.transform.position = startingPosition;
             startingPosition += offset;
@@ -133,13 +175,16 @@ public class PlayerConfigurationManager : MonoBehaviour
             character.GetComponent<CharacterController>().enabled = false;
         }
     }
-    public float GetCameraOffset(){
+    public float GetCameraOffset()
+    {
         return offsetVisualCharacters;
     }
 
-    public void SwitchInputMethod(bool turnOn) {
+    public void SwitchInputMethod(bool turnOn)
+    {
         Debug.Log("Switcheando Input Method");
-        foreach(Transform child in transform){
+        foreach (Transform child in transform)
+        {
             //input.UnsuscribeController()
             child.gameObject.GetComponent<PlayerInput>().enabled = turnOn;
         }
