@@ -4,7 +4,7 @@ using UnityEngine;
 
 [CreateAssetMenu]
 public class LevelProperties : ScriptableObject
-{   
+{
     [Header("Number/Time")]
     public string levelNumber;
     public int levelTime;
@@ -31,5 +31,6 @@ public class LevelProperties : ScriptableObject
     [Header("Level Tutorial Data")]
     public bool hasTutorial;
     public Sprite[] tutorialImage;
+    public BaseCounter tutorialTask;
     
 }
