@@ -35,7 +35,7 @@ public class BalacingTool : BaseCounter, IHasProgress
 
     [SerializeField] private Material[] switchMaterial; //0= On, 1= Off
     [SerializeField] private MeshRenderer panelLighting;
-
+    private bool inTutorial;
 
     public override void Interact(Player player)
     {
@@ -82,12 +82,17 @@ public class BalacingTool : BaseCounter, IHasProgress
                 {
                     progressNormalized = 0
                 });
+                if (inTutorial)
+                {
+                    TutorialManagerWheel.Instance.StateChange(TutorialManagerWheel.StateTutorial.FlechaBalanceo, TutorialManagerWheel.StateTutorial.FlechaAuto);
+                }
             }
         }
     }
 
     private void Start()
     {
+        inTutorial = TutorialManagerWheel.Instance.tutorialEnabled;
         state = State.Idle;
         spawnLimit = SpawnLimitManager.Instance.GetItemSpawnLimit(balancedWheel.name);
 
