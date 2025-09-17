@@ -2682,92 +2682,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1001 &767206486
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 777959669}
-    m_Modifications:
-    - target: {fileID: 3628132049570649264, guid: a6f1da42ab881ca4fad2527a3c5fe191,
-        type: 3}
-      propertyPath: m_Name
-      value: Termicas
-      objectReference: {fileID: 0}
-    - target: {fileID: 6075409523258688540, guid: a6f1da42ab881ca4fad2527a3c5fe191,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -46.26
-      objectReference: {fileID: 0}
-    - target: {fileID: 6075409523258688540, guid: a6f1da42ab881ca4fad2527a3c5fe191,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.029335976
-      objectReference: {fileID: 0}
-    - target: {fileID: 6075409523258688540, guid: a6f1da42ab881ca4fad2527a3c5fe191,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 68.72
-      objectReference: {fileID: 0}
-    - target: {fileID: 6075409523258688540, guid: a6f1da42ab881ca4fad2527a3c5fe191,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 6075409523258688540, guid: a6f1da42ab881ca4fad2527a3c5fe191,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6075409523258688540, guid: a6f1da42ab881ca4fad2527a3c5fe191,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 6075409523258688540, guid: a6f1da42ab881ca4fad2527a3c5fe191,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6075409523258688540, guid: a6f1da42ab881ca4fad2527a3c5fe191,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6075409523258688540, guid: a6f1da42ab881ca4fad2527a3c5fe191,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -90
-      objectReference: {fileID: 0}
-    - target: {fileID: 6075409523258688540, guid: a6f1da42ab881ca4fad2527a3c5fe191,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: a6f1da42ab881ca4fad2527a3c5fe191, type: 3}
---- !u!4 &767206487 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6075409523258688540, guid: a6f1da42ab881ca4fad2527a3c5fe191,
-    type: 3}
-  m_PrefabInstance: {fileID: 767206486}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &767206488 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8670077492932406560, guid: a6f1da42ab881ca4fad2527a3c5fe191,
-    type: 3}
-  m_PrefabInstance: {fileID: 767206486}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d027b1d921262945bd414ff6f0f013f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &777959668
 GameObject:
   m_ObjectHideFlags: 0
@@ -2798,7 +2712,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3444054497088262958}
-  - {fileID: 767206487}
   - {fileID: 1081900874}
   - {fileID: 919123386}
   m_Father: {fileID: 0}
@@ -9520,7 +9433,7 @@ MonoBehaviour:
   - {fileID: 2866617980095996314}
   stations:
   - {fileID: 4429616143079583408}
-  lightBoxController: {fileID: 767206488}
+  lightBoxController: {fileID: 0}
   playerSpawns:
   - {fileID: 1733006053}
   - {fileID: 985827791}
@@ -9619,7 +9532,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disasterHappening: 0
-  lightBoxController: {fileID: 767206488}
+  lightBoxController: {fileID: 0}
   mysteryBoxSpawner: {fileID: 1250609654}
   mysteryBoxEfect: {fileID: 1250609655}
   mysteryBoxIconSO: {fileID: 11400000, guid: 5b0f60d0045e43f4b8f62d0fdb4693de, type: 2}

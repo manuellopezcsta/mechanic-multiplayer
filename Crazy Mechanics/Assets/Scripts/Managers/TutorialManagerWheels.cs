@@ -9,27 +9,23 @@ public class TutorialManagerWheel : MonoBehaviour
     public enum StateTutorial
     {
         Idle,
-        FlechaRueda,
+        FlechaPilaRueda,
         FlechaBalanceo,
         FlechaAuto,
     }
     public StateTutorial currentState;
-    [SerializeField] GameObject flechaRueda;
+    [SerializeField] GameObject flechaPilaRueda;
     [SerializeField] GameObject flechaBalanceo;
     [SerializeField] GameObject flechaAuto;
     [SerializeField] BaseCounter targetTask;
-    private bool tutorialEnabled = false;
+    public bool tutorialEnabled = false;
 
 
     void Awake()
     {
         Instance = this;
-        //flechaBalanceo=GameObject.Find("Task/Balancin/Arrow");
     }
-    void FixedUpdate()
-    {
-        findWheelTaskArrow();
-    }
+    
     void Start()
     {
         BaseCounter tutorialTask = GameManager.Instance.GetLevelProperties().tutorialTask;
@@ -45,29 +41,32 @@ public class TutorialManagerWheel : MonoBehaviour
         {
             if (isWheelMissing)
             {
-                currentState = StateTutorial.FlechaRueda;
+                currentState = StateTutorial.FlechaPilaRueda;
             }
             else
             {
                 currentState = StateTutorial.FlechaAuto;
             }
 
-            SwtichState();
+            SwitchState();
         }
     }
-    private void SwtichState()
+    private void SwitchState()
     {
         TurnOffArrows();
         switch (currentState)
         {
-            case StateTutorial.FlechaRueda:
-                flechaRueda.SetActive(true);
+            case StateTutorial.FlechaPilaRueda:
+                //flechaPilaRueda.SetActive(true);
+                flechaPilaRueda.GetComponent<MeshRenderer>().enabled = true;
                 break;
             case StateTutorial.FlechaBalanceo:
-                flechaBalanceo.SetActive(true);
+                //flechaBalanceo.SetActive(true);
+                flechaBalanceo.GetComponent<MeshRenderer>().enabled = true;
                 break;
             case StateTutorial.FlechaAuto:
-                flechaAuto.SetActive(true);
+                //flechaAuto.SetActive(true);
+                flechaAuto.GetComponent<MeshRenderer>().enabled = true;
                 break;
             default:
                 break;
@@ -76,17 +75,20 @@ public class TutorialManagerWheel : MonoBehaviour
 
     private void TurnOffArrows()
     {
-        flechaAuto.SetActive(false);
+        /*flechaAuto.SetActive(false);
         flechaBalanceo.SetActive(false);
-        flechaRueda.SetActive(false);
+        flechaPilaRueda.SetActive(false);*/
+        flechaPilaRueda.GetComponent<MeshRenderer>().enabled = false;
+        flechaBalanceo.GetComponent<MeshRenderer>().enabled = false;
+        flechaAuto.GetComponent<MeshRenderer>().enabled = false;
 
     }
     public void BalancedTutorial()
     {
-        if (currentState == StateTutorial.FlechaRueda || currentState == StateTutorial.FlechaAuto)
+        if (currentState == StateTutorial.FlechaPilaRueda || currentState == StateTutorial.FlechaAuto)
         {
             currentState = StateTutorial.FlechaBalanceo;
-            SwtichState();
+            SwitchState();
         }
     }
     public void ReturnWheelTutorial()
@@ -94,7 +96,7 @@ public class TutorialManagerWheel : MonoBehaviour
         if (currentState == StateTutorial.FlechaBalanceo)
         {
             currentState = StateTutorial.FlechaAuto;
-            SwtichState();
+            SwitchState();
         }
     }
 
@@ -103,12 +105,18 @@ public class TutorialManagerWheel : MonoBehaviour
         if (currentState == StateTutorial.FlechaAuto)
         {
             currentState = StateTutorial.Idle;
-            SwtichState();
+            SwitchState();
         }
 
     }
-    public void findWheelTaskArrow()
+    public void FindWheelTaskArrow()
     {
         flechaAuto = GameObject.Find("WheelTask(Clone)/Arrow");
+    }
+    public void StateChange(StateTutorial inState, StateTutorial outState){
+        if (currentState == inState) {
+            currentState = outState;
+            SwitchState();
+        }
     }
 }
