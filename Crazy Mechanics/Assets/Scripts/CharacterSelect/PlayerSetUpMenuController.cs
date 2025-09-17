@@ -87,7 +87,7 @@ public class PlayerSetUpMenuController : MonoBehaviour
         {
             return;
         }
-        PlayerConfigurationManager.Instance.playerVisualSprites.Add(currentChar.sprite);
+        PlayerConfigurationManager.Instance.playerVisualSprites.Add(playerDataContainers[currentIndex].spritePicturePlayer);
         PlayerConfigurationManager.Instance.ReadyPlayer(PlayerIndex);
         readyButton.gameObject.SetActive(false);
         menuPanel.SetActive(false);

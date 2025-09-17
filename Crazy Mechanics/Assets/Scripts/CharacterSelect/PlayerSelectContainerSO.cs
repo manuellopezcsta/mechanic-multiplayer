@@ -8,4 +8,5 @@ public class PlayerSelectContainerSO : ScriptableObject
     public GameObject playerPrefab;
     public Sprite sprite;
     public Material material;
+    public Sprite spritePicturePlayer;
 }
