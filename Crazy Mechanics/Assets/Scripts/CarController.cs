@@ -43,8 +43,10 @@ public class CarController : MonoBehaviour
         {
             // El auto va hacia adelante.
             Vector3 currentPosition = transform.position;
-            float newZ = Mathf.MoveTowards(currentPosition.z, targetZ, speed * Time.deltaTime);
-            transform.position = new Vector3(currentPosition.x, currentPosition.y, newZ);
+            //float newZ = Mathf.MoveTowards(currentPosition.z, targetZ, speed * Time.deltaTime);
+            //transform.position = new Vector3(currentPosition.x, currentPosition.y, newZ);
+            float newX = Mathf.MoveTowards(currentPosition.x, targetZ, speed * Time.deltaTime);
+            transform.position = new Vector3(newX, currentPosition.y, currentPosition.z);
         }
         if (transform.position.z <= targetZ)
         {
