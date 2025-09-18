@@ -764,6 +764,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a429475334e1f142aa1d2f52dd04388, type: 3}
+--- !u!1 &93494601 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3238915016097605079, guid: 8a429475334e1f142aa1d2f52dd04388,
+    type: 3}
+  m_PrefabInstance: {fileID: 93494600}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &122233065
 GameObject:
   m_ObjectHideFlags: 0
@@ -3715,9 +3721,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: 0
-  flechaPilaRueda: {fileID: 549996244}
-  flechaBalanceo: {fileID: 1081900875}
-  flechaAuto: {fileID: 0}
+  WheelPileArrow: {fileID: 549996244}
+  BalanceToolArrow: {fileID: 549996244}
+  TaskArrow: {fileID: 0}
   targetTask: {fileID: 3193453806308637465, guid: 6b244b762547fb7449a17f4de7caa4ad,
     type: 3}
   tutorialEnabled: 1
@@ -5629,12 +5635,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1081900873}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1081900875 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1306321542373527494, guid: b0e558a41599c29439fee3bb4c39235d,
-    type: 3}
-  m_PrefabInstance: {fileID: 1081900873}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1121934530
 GameObject:
   m_ObjectHideFlags: 0
@@ -7185,6 +7185,54 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1318439677}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1343014502
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1343014504}
+  - component: {fileID: 1343014503}
+  m_Layer: 0
+  m_Name: TutorilBatery
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1343014503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1343014502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48219f951ac8f0c46818232b9d55d34a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentState: 0
+  TaskArrows: {fileID: 0}
+  ChargerArrow: {fileID: 93494601}
+  tutorialEnabled: 0
+--- !u!4 &1343014504
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1343014502}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -55.201805, y: 0, z: 56.88554}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1395299195
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -44034,6 +44082,7 @@ MeshFilter:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1343014504}
   - {fileID: 888958722}
   - {fileID: 1785547869803191317}
   - {fileID: 410087041}

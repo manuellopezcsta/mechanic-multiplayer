@@ -12,7 +12,7 @@ public class TaskWheel : BaseCounter
     [SerializeField] public bool taskComplete;
     [SerializeField] TaskIndicatorUI indicatorUI;
     [SerializeField] private int score;
-    private bool inTutorial;
+    private bool inTutorial = false;
 
     CurrentStationManager stationManager;
 
@@ -36,7 +36,7 @@ public class TaskWheel : BaseCounter
             wheel.transform.position = transform.parent.gameObject.transform.position;
             if (inTutorial)
             {
-                TutorialManagerWheel.Instance.StateChange(TutorialManagerWheel.StateTutorial.Idle, TutorialManagerWheel.StateTutorial.FlechaAuto);
+                TutorialManagerWheel.Instance.StateChange(TutorialManagerWheel.StateTutorial.Idle, TutorialManagerWheel.StateTutorial.TaskArrow);
             }
             // Si le falta la rueda.
         }
@@ -48,7 +48,7 @@ public class TaskWheel : BaseCounter
             indicatorUI.SwapToMissingWheelIcon();
             if (inTutorial)
             {
-                TutorialManagerWheel.Instance.StateChange(TutorialManagerWheel.StateTutorial.Idle, TutorialManagerWheel.StateTutorial.FlechaPilaRueda);
+                TutorialManagerWheel.Instance.StateChange(TutorialManagerWheel.StateTutorial.Idle, TutorialManagerWheel.StateTutorial.WheelPileArrow);
             }
         }
 
@@ -81,7 +81,10 @@ public class TaskWheel : BaseCounter
                 carController.CompleteTask();
                 //Apagamos el collider para que no moleste para otras tasks
                 transform.GetComponent<BoxCollider>().enabled = false;
-                TutorialManagerWheel.Instance.StateChange(TutorialManagerWheel.StateTutorial.FlechaAuto, TutorialManagerWheel.StateTutorial.Idle);
+                if (inTutorial)
+                {
+                    TutorialManagerWheel.Instance.StateChange(TutorialManagerWheel.StateTutorial.TaskArrow, TutorialManagerWheel.StateTutorial.Idle);
+                }
             }
         } else {
             // Logica para sacar la rueda del auto.
@@ -91,7 +94,10 @@ public class TaskWheel : BaseCounter
                 indicatorUI.SwapToMissingWheelIcon();
                 GetCarObject().SetCarObjectParent(player);
                 SpawnLimitManager.Instance.ModifySpawnedCounter(wheel.GetObjectSO().name, 1);
-                TutorialManagerWheel.Instance.StateChange(TutorialManagerWheel.StateTutorial.FlechaAuto, TutorialManagerWheel.StateTutorial.FlechaBalanceo);
+                if (inTutorial)
+                {
+                    TutorialManagerWheel.Instance.StateChange(TutorialManagerWheel.StateTutorial.TaskArrow, TutorialManagerWheel.StateTutorial.BalanceToolArrow);
+                }
             } 
         }
     }

@@ -13,11 +13,18 @@ public class SwapBatteryTask : BaseCounter
 
     [SerializeField] private TaskIndicatorUI indicatorUI;
     [SerializeField] private int score;
+    private bool inTutorial=false;
 
-
-    private void Start() {
+    private void Start()
+    {
         SetCarObject(battery);
         GetCarObject().SetCarObjectParent(this);
+        //Si existe el tutorial manager
+        if (TutorialManagerBattery.Instance != null)
+        {
+            inTutorial = true;
+            TutorialManagerBattery.Instance.FindBatteryTaskArrow();
+        }
     }
     public override void Interact(Player player)
     {
@@ -25,7 +32,8 @@ public class SwapBatteryTask : BaseCounter
         // Logica para dejar objetos
         if (!HasCarObject()) {
             // There is no obj here and check if they are the same object
-            if (player.HasCarObject() && player.GetCarObject().GetObjectSO() == chagedBattery) {
+            if (player.HasCarObject() && player.GetCarObject().GetObjectSO() == chagedBattery)
+            {
                 // El player tiene algo en la mano
                 ComboManager.Instance.UpdateCombo();
                 player.GetCarObject().SetCarObjectParent(this);
@@ -40,12 +48,15 @@ public class SwapBatteryTask : BaseCounter
                 carController.CompleteTask();
                 //Apagamos el collider para que no moleste para otras tasks
                 transform.GetComponent<BoxCollider>().enabled = false;
+                TutorialManagerBattery.Instance.StateChange(TutorialManagerBattery.StateTutorial.Task, TutorialManagerBattery.StateTutorial.Idle);
             } 
         } else {
             // There is a car obj here already.
-            if(!player.HasCarObject() && !taskComplete) {
+            if (!player.HasCarObject() && !taskComplete)
+            {
                 GetCarObject().gameObject.SetActive(true);
                 GetCarObject().SetCarObjectParent(player);
+                TutorialManagerBattery.Instance.StateChange(TutorialManagerBattery.StateTutorial.Idle, TutorialManagerBattery.StateTutorial.Charger);
             } 
         }
     }

@@ -84,7 +84,7 @@ public class BalacingTool : BaseCounter, IHasProgress
                 });
                 if (inTutorial)
                 {
-                    TutorialManagerWheel.Instance.StateChange(TutorialManagerWheel.StateTutorial.FlechaBalanceo, TutorialManagerWheel.StateTutorial.FlechaAuto);
+                    TutorialManagerWheel.Instance.StateChange(TutorialManagerWheel.StateTutorial.BalanceToolArrow, TutorialManagerWheel.StateTutorial.TaskArrow);
                 }
             }
         }

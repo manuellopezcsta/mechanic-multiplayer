@@ -15,8 +15,8 @@ public class TutorialManagerBattery : MonoBehaviour
     }
 
     public StateTutorial currentState;
-    [SerializeField] GameObject FlechaTask;
-    [SerializeField] GameObject FlechaCharger;
+    [SerializeField] GameObject TaskArrows;
+    [SerializeField] GameObject ChargerArrow;
     public bool tutorialEnabled = false;
 
     void Awake()
@@ -38,10 +38,10 @@ public class TutorialManagerBattery : MonoBehaviour
         switch (currentState)
         {
             case StateTutorial.Charger:
-                FlechaCharger.GetComponent<MeshRenderer>().enabled = true;
+                ChargerArrow.GetComponent<MeshRenderer>().enabled = true;
                 break;
             case StateTutorial.Task:
-                FlechaCharger.GetComponent<MeshRenderer>().enabled = true;
+                ChargerArrow.GetComponent<MeshRenderer>().enabled = true;
                 break;
             default:
                 break;
@@ -50,8 +50,8 @@ public class TutorialManagerBattery : MonoBehaviour
 
     public void TurnOffArrows()
     {
-        FlechaCharger.GetComponent<MeshRenderer>().enabled = false;
-        FlechaTask.GetComponent<MeshRenderer>().enabled = false;
+        ChargerArrow.GetComponent<MeshRenderer>().enabled = false;
+        TaskArrows.GetComponent<MeshRenderer>().enabled = false;
     }
 
     public void StateChange(StateTutorial inState, StateTutorial outState)
@@ -64,7 +64,7 @@ public class TutorialManagerBattery : MonoBehaviour
     }
     public void FindBatteryTaskArrow()
     {
-        FlechaTask = GameObject.Find("SwapBatteryTask(Clone)/Arrow");
+        TaskArrows = GameObject.Find("SwapBatteryTask(Clone)/Arrow");
         
     }
 
