@@ -22,10 +22,10 @@ public class TaskWheel : BaseCounter
         // Seteamos la rueda dentro del auto
         SetCarObject(wheel);
         GetCarObject().SetCarObjectParent(this);
-        inTutorial = TutorialManagerWheel.Instance.tutorialEnabled;
-        if (inTutorial)
+        if (TutorialManagerWheel.Instance != null)
         {
-         TutorialManagerWheel.Instance.FindWheelTaskArrow();
+            inTutorial = TutorialManagerWheel.Instance.tutorialEnabled;    
+            TutorialManagerWheel.Instance.FindWheelTaskArrow();
         }
 
         // Decidimos con un random si va a tener rueda o si necesita una nueva.

@@ -92,7 +92,11 @@ public class BalacingTool : BaseCounter, IHasProgress
 
     private void Start()
     {
-        inTutorial = TutorialManagerWheel.Instance.tutorialEnabled;
+        if (TutorialManagerWheel.Instance != null)
+        {
+            inTutorial = TutorialManagerWheel.Instance.tutorialEnabled;    
+        }
+        
         state = State.Idle;
         spawnLimit = SpawnLimitManager.Instance.GetItemSpawnLimit(balancedWheel.name);
 
