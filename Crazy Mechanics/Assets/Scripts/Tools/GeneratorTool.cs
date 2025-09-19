@@ -15,6 +15,7 @@ public class GeneratorTool : BaseCounter, IHasProgress
 
     [SerializeField] private Material[] switchMaterial; //0= On, 1= Off
     [SerializeField] private MeshRenderer panelLighting;
+    private bool inTutorial;
 
     private enum State
     {
@@ -29,6 +30,7 @@ public class GeneratorTool : BaseCounter, IHasProgress
     {
         LightBoxController.OnLightTurnOn += TurnOnLightMaterial;
         LightBoxController.OnLightShutdown += TurnOffLightMaterial;
+        inTutorial = TutorialManagerBattery.Instance != null;
     }
     void OnDisable()
     {
@@ -96,6 +98,10 @@ public class GeneratorTool : BaseCounter, IHasProgress
                         state = State.Done;
                         Debug.Log("Bateria Cargada!");
                         fxCharging.SetActive(false);
+                        if (inTutorial)
+                        {
+                            TutorialManagerBattery.Instance.StateChange(TutorialManagerBattery.StateTutorial.Charger, TutorialManagerBattery.StateTutorial.Task);
+                        }
                     }
                     break;
                 case State.Done:

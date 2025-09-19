@@ -15,7 +15,7 @@ public class TutorialManagerBattery : MonoBehaviour
     }
 
     public StateTutorial currentState;
-    [SerializeField] GameObject TaskArrows;
+    [SerializeField] GameObject TaskArrow;
     [SerializeField] GameObject ChargerArrow;
     public bool tutorialEnabled = false;
 
@@ -41,7 +41,7 @@ public class TutorialManagerBattery : MonoBehaviour
                 ChargerArrow.GetComponent<MeshRenderer>().enabled = true;
                 break;
             case StateTutorial.Task:
-                ChargerArrow.GetComponent<MeshRenderer>().enabled = true;
+                TaskArrow.GetComponent<MeshRenderer>().enabled = true;
                 break;
             default:
                 break;
@@ -51,7 +51,7 @@ public class TutorialManagerBattery : MonoBehaviour
     public void TurnOffArrows()
     {
         ChargerArrow.GetComponent<MeshRenderer>().enabled = false;
-        TaskArrows.GetComponent<MeshRenderer>().enabled = false;
+        TaskArrow.GetComponent<MeshRenderer>().enabled = false;
     }
 
     public void StateChange(StateTutorial inState, StateTutorial outState)
@@ -64,7 +64,7 @@ public class TutorialManagerBattery : MonoBehaviour
     }
     public void FindBatteryTaskArrow()
     {
-        TaskArrows = GameObject.Find("SwapBatteryTask(Clone)/Arrow");
+        TaskArrow = GameObject.Find("SwapBatteryTask(Clone)/Arrow");
         
     }
 

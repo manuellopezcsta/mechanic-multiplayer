@@ -24,6 +24,7 @@ public class SwapBatteryTask : BaseCounter
         {
             inTutorial = true;
             TutorialManagerBattery.Instance.FindBatteryTaskArrow();
+            TutorialManagerBattery.Instance.StateChange(TutorialManagerBattery.StateTutorial.Idle, TutorialManagerBattery.StateTutorial.Task);
         }
     }
     public override void Interact(Player player)
@@ -56,7 +57,8 @@ public class SwapBatteryTask : BaseCounter
             {
                 GetCarObject().gameObject.SetActive(true);
                 GetCarObject().SetCarObjectParent(player);
-                TutorialManagerBattery.Instance.StateChange(TutorialManagerBattery.StateTutorial.Idle, TutorialManagerBattery.StateTutorial.Charger);
+                TutorialManagerBattery.Instance.StateChange(TutorialManagerBattery.StateTutorial.Task, TutorialManagerBattery.StateTutorial.Charger);
+
             } 
         }
     }
