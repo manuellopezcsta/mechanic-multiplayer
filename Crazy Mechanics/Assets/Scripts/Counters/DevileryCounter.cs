@@ -10,6 +10,7 @@ public class DevileryCounter : BaseCounter
     public static DevileryCounter Instance { get; private set; }
 
     [SerializeField] private GameObject moneyParticleGO;
+    [SerializeField] private GameObject carReadyToDelivery;
 
     private CurrentStationManager[] listElevators;
 
@@ -34,6 +35,11 @@ public class DevileryCounter : BaseCounter
     {
         moneyParticleGO.SetActive(true);
         StartCoroutine(ShutdownParticlesWhenDone());
+    }
+
+    public void ShowReadyToDeliver(bool value)
+    {
+        carReadyToDelivery.SetActive(value);
     }
 
     public IEnumerator ShutdownParticlesWhenDone()

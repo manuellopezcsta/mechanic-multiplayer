@@ -105,13 +105,14 @@ public class CurrentStationManager : MonoBehaviour
         {
             //Agregar score total al scoremanager
             ScoreManager.Instance.AddPoints(currentCar.carScoreValue);
-            ScoreManager.Instance.CarsDelivered();
             currentCar.canMove = true;
             FreeStation();
             Debug.Log("Se entrego el auto");
+
             OnCarDelivery?.Invoke(this, EventArgs.Empty);
             // Prendemos las particulas de entrega
             DevileryCounter.Instance?.ShowMoneyParticles();
+            DevileryCounter.Instance.ShowReadyToDeliver(false);
         }
     }
     // GAME MANAGER, CREA AUIO EN UNO DE LOS elevadores.. y le asigna un manager?.

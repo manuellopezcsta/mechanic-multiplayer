@@ -13,8 +13,6 @@ public class ScoreManager : MonoBehaviour
     private float currentScore = 0; // Usado para animar la subida de puntaje.
     private float scoreIncreaseRate = 0.05f;
 
-    private int carsDelivered = 0;
-    [SerializeField] private TextMeshPro textCarsDelivered;
     [SerializeField] private float multiplierPlayerValue = 0; //Multiplicador por cantidad de players existentes, Default : 0 
     private float[] valuesMulplier = {2f,1.5f,1f,0.5f};
     private void Awake()
@@ -58,11 +56,6 @@ public class ScoreManager : MonoBehaviour
         
     }
 
-    public void CarsDelivered()
-    {
-        carsDelivered++;
-        textCarsDelivered.text = carsDelivered.ToString();
-    }
 
     public float GetScore()
     {

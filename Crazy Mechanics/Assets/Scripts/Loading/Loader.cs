@@ -28,6 +28,7 @@ public static class Loader
         Level10,
         Beta11,
         Beta11PruebaMap,
+        Beta12
     }
 
     private static Scene targetScene;
