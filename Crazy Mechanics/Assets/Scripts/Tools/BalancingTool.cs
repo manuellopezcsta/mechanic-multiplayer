@@ -84,7 +84,7 @@ public class BalacingTool : BaseCounter, IHasProgress
                 });
                 if (inTutorial)
                 {
-                    TutorialManagerWheel.Instance.StateChange(TutorialManagerWheel.StateTutorial.FlechaBalanceo, TutorialManagerWheel.StateTutorial.FlechaAuto);
+                    TutorialManagerWheel.Instance.StateChange(TutorialManagerWheel.StateTutorial.BalanceToolArrow, TutorialManagerWheel.StateTutorial.TaskArrow);
                 }
             }
         }
@@ -92,7 +92,11 @@ public class BalacingTool : BaseCounter, IHasProgress
 
     private void Start()
     {
-        inTutorial = TutorialManagerWheel.Instance.tutorialEnabled;
+        if (TutorialManagerWheel.Instance != null)
+        {
+            inTutorial = TutorialManagerWheel.Instance.tutorialEnabled;    
+        }
+        
         state = State.Idle;
         spawnLimit = SpawnLimitManager.Instance.GetItemSpawnLimit(balancedWheel.name);
 

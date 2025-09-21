@@ -9,14 +9,14 @@ public class TutorialManagerWheel : MonoBehaviour
     public enum StateTutorial
     {
         Idle,
-        FlechaPilaRueda,
-        FlechaBalanceo,
-        FlechaAuto,
+        WheelPileArrow,
+        BalanceToolArrow,
+        TaskArrow,
     }
     public StateTutorial currentState;
-    [SerializeField] GameObject flechaPilaRueda;
-    [SerializeField] GameObject flechaBalanceo;
-    [SerializeField] GameObject flechaAuto;
+    [SerializeField] GameObject WheelPileArrow;
+    [SerializeField] GameObject BalanceToolArrow;
+    [SerializeField] GameObject TaskArrow;
     [SerializeField] BaseCounter targetTask;
     public bool tutorialEnabled = false;
 
@@ -41,11 +41,11 @@ public class TutorialManagerWheel : MonoBehaviour
         {
             if (isWheelMissing)
             {
-                currentState = StateTutorial.FlechaPilaRueda;
+                currentState = StateTutorial.WheelPileArrow;
             }
             else
             {
-                currentState = StateTutorial.FlechaAuto;
+                currentState = StateTutorial.TaskArrow;
             }
 
             SwitchState();
@@ -56,17 +56,17 @@ public class TutorialManagerWheel : MonoBehaviour
         TurnOffArrows();
         switch (currentState)
         {
-            case StateTutorial.FlechaPilaRueda:
-                //flechaPilaRueda.SetActive(true);
-                flechaPilaRueda.GetComponent<MeshRenderer>().enabled = true;
+            case StateTutorial.WheelPileArrow:
+                //WheelPileArrow.SetActive(true);
+                WheelPileArrow.GetComponent<MeshRenderer>().enabled = true;
                 break;
-            case StateTutorial.FlechaBalanceo:
-                //flechaBalanceo.SetActive(true);
-                flechaBalanceo.GetComponent<MeshRenderer>().enabled = true;
+            case StateTutorial.BalanceToolArrow:
+                //BalanceToolArrow.SetActive(true);
+                BalanceToolArrow.GetComponent<MeshRenderer>().enabled = true;
                 break;
-            case StateTutorial.FlechaAuto:
-                //flechaAuto.SetActive(true);
-                flechaAuto.GetComponent<MeshRenderer>().enabled = true;
+            case StateTutorial.TaskArrow:
+                //TaskArrow.SetActive(true);
+                TaskArrow.GetComponent<MeshRenderer>().enabled = true;
                 break;
             default:
                 break;
@@ -75,34 +75,34 @@ public class TutorialManagerWheel : MonoBehaviour
 
     private void TurnOffArrows()
     {
-        /*flechaAuto.SetActive(false);
-        flechaBalanceo.SetActive(false);
-        flechaPilaRueda.SetActive(false);*/
-        flechaPilaRueda.GetComponent<MeshRenderer>().enabled = false;
-        flechaBalanceo.GetComponent<MeshRenderer>().enabled = false;
-        flechaAuto.GetComponent<MeshRenderer>().enabled = false;
+        /*TaskArrow.SetActive(false);
+        BalanceToolArrow.SetActive(false);
+        WheelPileArrow.SetActive(false);*/
+        WheelPileArrow.GetComponent<MeshRenderer>().enabled = false;
+        BalanceToolArrow.GetComponent<MeshRenderer>().enabled = false;
+        TaskArrow.GetComponent<MeshRenderer>().enabled = false;
 
     }
     public void BalancedTutorial()
     {
-        if (currentState == StateTutorial.FlechaPilaRueda || currentState == StateTutorial.FlechaAuto)
+        if (currentState == StateTutorial.WheelPileArrow || currentState == StateTutorial.TaskArrow)
         {
-            currentState = StateTutorial.FlechaBalanceo;
+            currentState = StateTutorial.BalanceToolArrow;
             SwitchState();
         }
     }
     public void ReturnWheelTutorial()
     {
-        if (currentState == StateTutorial.FlechaBalanceo)
+        if (currentState == StateTutorial.BalanceToolArrow)
         {
-            currentState = StateTutorial.FlechaAuto;
+            currentState = StateTutorial.TaskArrow;
             SwitchState();
         }
     }
 
     public void CompleteTutorial()
     {
-        if (currentState == StateTutorial.FlechaAuto)
+        if (currentState == StateTutorial.TaskArrow)
         {
             currentState = StateTutorial.Idle;
             SwitchState();
@@ -111,7 +111,7 @@ public class TutorialManagerWheel : MonoBehaviour
     }
     public void FindWheelTaskArrow()
     {
-        flechaAuto = GameObject.Find("WheelTask(Clone)/Arrow");
+        TaskArrow = GameObject.Find("WheelTask(Clone)/Arrow");
     }
     public void StateChange(StateTutorial inState, StateTutorial outState){
         if (currentState == inState) {

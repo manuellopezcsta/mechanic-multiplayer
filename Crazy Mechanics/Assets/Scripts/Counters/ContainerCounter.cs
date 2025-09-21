@@ -9,12 +9,14 @@ public class ContainerCounter : BaseCounter
 
     [SerializeField] private ObjectsSO objectsSO;
     private int itemSpawnLimit;
+    private bool inTutorial=false;
 
     private void Start()
     {
         itemSpawnLimit = SpawnLimitManager.Instance.GetItemSpawnLimit(objectsSO.name);
+        TutorialCheck();
     }
-    
+
     public override void Interact(Player player)
     {
         //ademas de preguntar si el player no tiene un objeto verificamos que los objetos generados sean menores que el maximo permitido
@@ -25,6 +27,35 @@ public class ContainerCounter : BaseCounter
             carObjectTransform.GetComponent<CarObject>().SetCarObjectParent(player);
             OnPlayerGrabbedObject?.Invoke(this, EventArgs.Empty);
             SpawnLimitManager.Instance.ModifySpawnedCounter(objectsSO.name, 1);
+            if (inTutorial) {
+                TutorialStateChange();
+            }
+        }
+    }
+    //Chequea si se esta en esta involucrado en el tutorial del nivel
+    public void TutorialCheck()
+    {
+        switch (objectsSO.name)
+        {
+            case "Wheel":
+                inTutorial = TutorialManagerWheel.Instance != null;
+                break;
+            //Completar los demas casos
+            default:
+                break;
+        }
+    }
+    //realiza el cambio de estado correspondiente
+    public void TutorialStateChange()
+    {
+        switch (objectsSO.name)
+        {
+            case "Wheel":
+                TutorialManagerWheel.Instance.StateChange(TutorialManagerWheel.StateTutorial.WheelPileArrow, TutorialManagerWheel.StateTutorial.BalanceToolArrow);
+                break;
+            //Completar demas casos
+            default:
+                break;
         }
     }
 }
