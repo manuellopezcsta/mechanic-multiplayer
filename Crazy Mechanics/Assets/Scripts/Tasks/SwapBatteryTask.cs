@@ -13,7 +13,7 @@ public class SwapBatteryTask : BaseCounter
 
     [SerializeField] private TaskIndicatorUI indicatorUI;
     [SerializeField] private int score;
-    private bool inTutorial=false;
+    private bool inTutorial = false;
 
     private void Start()
     {
@@ -31,7 +31,8 @@ public class SwapBatteryTask : BaseCounter
     {
         //Debug.Log("Interactua con bateria");
         // Logica para dejar objetos
-        if (!HasCarObject()) {
+        if (!HasCarObject())
+        {
             // There is no obj here and check if they are the same object
             if (player.HasCarObject() && player.GetCarObject().GetObjectSO() == chagedBattery)
             {
@@ -49,17 +50,24 @@ public class SwapBatteryTask : BaseCounter
                 carController.CompleteTask();
                 //Apagamos el collider para que no moleste para otras tasks
                 transform.GetComponent<BoxCollider>().enabled = false;
-                TutorialManagerBattery.Instance.StateChange(TutorialManagerBattery.StateTutorial.Task, TutorialManagerBattery.StateTutorial.Idle);
-            } 
-        } else {
+                if (inTutorial)
+                {
+                    TutorialManagerBattery.Instance.StateChange(TutorialManagerBattery.StateTutorial.Task, TutorialManagerBattery.StateTutorial.Idle);
+                }
+            }
+        }
+        else
+        {
             // There is a car obj here already.
             if (!player.HasCarObject() && !taskComplete)
             {
                 GetCarObject().gameObject.SetActive(true);
                 GetCarObject().SetCarObjectParent(player);
-                TutorialManagerBattery.Instance.StateChange(TutorialManagerBattery.StateTutorial.Task, TutorialManagerBattery.StateTutorial.Charger);
-
-            } 
+                if (inTutorial)
+                {
+                    TutorialManagerBattery.Instance.StateChange(TutorialManagerBattery.StateTutorial.Task, TutorialManagerBattery.StateTutorial.Charger);
+                }
+            }
         }
     }
 }

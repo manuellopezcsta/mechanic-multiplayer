@@ -32,5 +32,6 @@ public class LevelProperties : ScriptableObject
     public bool hasTutorial;
     public Sprite[] tutorialImage;
     public BaseCounter tutorialTask;
+    public bool interactiveTutorial;
     
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -25,9 +26,14 @@ public class DevileryCounter : BaseCounter
     }
     public override void Interact(Player player)
     {
-        foreach (var currentStation in listElevators){
+        foreach (var currentStation in listElevators)
+        {
             currentStation.TryToDeliverCar();
             //Debug.Log("Se entrego algo");
+        }
+        if (GameManager.Instance.inTutorial && GameManager.Instance.tutorialTaskIndex >= GameManager.Instance.GetLevelProperties().listTasks.Count)
+        {
+            LevelTimer.Instance.ExitLevel();
         }
     }
 
@@ -55,4 +61,4 @@ public class DevileryCounter : BaseCounter
     }
 }
 
-    // Por ahi con el alternateInteract, podemos elegir cual queremos entregar ?
+// Por ahi con el alternateInteract, podemos elegir cual queremos entregar ?

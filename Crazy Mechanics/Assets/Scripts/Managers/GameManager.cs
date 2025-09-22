@@ -6,14 +6,27 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+
+
+    
     public static GameManager Instance { get; private set; }
+
     private void Awake()
     {
         Instance = this;
         LevelTimer levelTimer = GetComponent<LevelTimer>();
         levelTimer.StartTimer(levelProperties.levelTime);
+        if (levelProperties.interactiveTutorial)
+        {
+            inTutorial = true;
+        }
     }
 
+    [Header("TutorialConfiguration")]
+    public int tutorialTaskIndex = 0;
+    public bool inTutorial = false;
+
+    [Header("GameConfiguration")]
     // Tasks para los autos.
     [SerializeField] TaskPrefabContainerSO tasksData;
     GameObject oilTaskPrefab;
@@ -72,7 +85,7 @@ public class GameManager : MonoBehaviour
 
     private void LoadTasksData() {
         oilTaskPrefab = tasksData.oilTaskPrefab;
-        motorTaskPrefab= tasksData.motorTaskPrefab;
+        motorTaskPrefab = tasksData.motorTaskPrefab;
         wheelTaskPrefab = tasksData.wheelTaskPrefab;
         batteryTaskPrefab = tasksData.batteryTaskPrefab;
         fixDiffTaskPrefab = tasksData.fixDiffTaskPrefab;
@@ -93,16 +106,28 @@ public class GameManager : MonoBehaviour
         // Le asignamos el station para bloquear spawns.
         stations[freeStationIndex].SetCarToStation(controller);
         //Generamos las tasks que queremos.
-        int randomTask = UnityEngine.Random.Range(levelProperties.minTaskNumber, levelProperties.maxTaskNumber + 1);
-        List<CarTasks> tasksToDo = ChooseRandomTasks(randomTask);
-        foreach (CarTasks task in tasksToDo)
+        if (inTutorial)
         {
-            controller.GenerateTask(task);
+            controller.GenerateTask(TutorialTask());
+            tutorialTaskIndex++;
+        }
+        else
+        {
+            int randomTask = UnityEngine.Random.Range(levelProperties.minTaskNumber, levelProperties.maxTaskNumber + 1);
+            List<CarTasks> tasksToDo = ChooseRandomTasks(randomTask);
+            foreach (CarTasks task in tasksToDo)
+            {
+                controller.GenerateTask(task);
+            }
         }
         // Dejamos que se mueva
-        controller.canMove = true;
+            controller.canMove = true;
         // Ejecutamos el evento para el sonido
         OnCarSpawned?.Invoke(this, EventArgs.Empty);
+    }
+    public GameManager.CarTasks TutorialTask()
+    {
+        return levelProperties.listTasks[tutorialTaskIndex];
     }
 
     GameObject[] GetCarsForThisLevel() {
