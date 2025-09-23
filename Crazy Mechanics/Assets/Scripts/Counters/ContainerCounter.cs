@@ -40,6 +40,12 @@ public class ContainerCounter : BaseCounter
             case "Wheel":
                 inTutorial = TutorialManagerWheel.Instance != null;
                 break;
+            case "Caja":
+                inTutorial = TutorialManagerOilChange.Instance != null;
+                break;
+            case "Aceite":
+                inTutorial = TutorialManagerOilChange.Instance != null;
+                break;
             //Completar los demas casos
             default:
                 break;
@@ -52,6 +58,12 @@ public class ContainerCounter : BaseCounter
         {
             case "Wheel":
                 TutorialManagerWheel.Instance.StateChange(TutorialManagerWheel.StateTutorial.WheelPileArrow, TutorialManagerWheel.StateTutorial.BalanceToolArrow);
+                break;
+            case "Caja":
+                TutorialManagerOilChange.Instance.StateChange(TutorialManagerOilChange.StateTutorial.Boxes, TutorialManagerOilChange.StateTutorial.Task);
+                break;
+            case "Aceite":
+                TutorialManagerOilChange.Instance.StateChange(TutorialManagerOilChange.StateTutorial.OilSpawner, TutorialManagerOilChange.StateTutorial.Task);
                 break;
             //Completar demas casos
             default:

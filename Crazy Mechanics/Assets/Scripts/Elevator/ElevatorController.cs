@@ -11,7 +11,7 @@ public class ElevatorController : MonoBehaviour
     [SerializeField] private bool isMoving;
     [SerializeField] Transform elevatorArms;
     [SerializeField] private int nextFloor;
-
+    private bool inTutorial = false;
     CurrentStationManager csm;
 
     public event EventHandler<OnMovingChangedEventArgs> OnMovingChanged;
@@ -23,6 +23,7 @@ public class ElevatorController : MonoBehaviour
     void Start()
     {
         csm = GetComponent<CurrentStationManager>();
+        inTutorial = TutorialManagerOilChange.Instance != null;
     }
     public void ChangeFloorElevator()
     {
@@ -47,14 +48,16 @@ public class ElevatorController : MonoBehaviour
                     Debug.Log("Piso temporal" + nextFloor);
                     break;
             }
+            TutorialUpdate();
             isMoving = true;
             //Debug.Log("Se empieza a mover");
-            OnMovingChanged?.Invoke(this, new OnMovingChangedEventArgs {
+            OnMovingChanged?.Invoke(this, new OnMovingChangedEventArgs
+            {
                 isMoving = this.isMoving
             });
         }
     }
-    
+
     void Update()
     {
         if (isMoving)
@@ -63,17 +66,53 @@ public class ElevatorController : MonoBehaviour
             if (elevatorArms.position == floors[nextFloor].position)
             {
                 isMoving = false;
-                
+
                 floorNumberElevator = nextFloor;
                 //Debug.Log("No se mueve mas");
 
-                OnMovingChanged?.Invoke(this, new OnMovingChangedEventArgs {
-                isMoving = this.isMoving
-            });
+                OnMovingChanged?.Invoke(this, new OnMovingChangedEventArgs
+                {
+                    isMoving = this.isMoving
+                });
             }
         }
     }
-    public bool CheckIfElevatorIsMoving(){
+    public bool CheckIfElevatorIsMoving()
+    {
         return isMoving;
+    }
+    //Maneja los cmabios de las flechas de tutorial dependiendo del estado
+    private void TutorialUpdate()
+    {
+        //si no esta en tutorial sale inmediatamente
+        if (!inTutorial)
+        {
+            return;
+        }
+        switch (TutorialManagerOilChange.Instance.currentState)
+        {
+            case TutorialManagerOilChange.StateTutorial.ElevatorFirstFloor:
+                if (floorNumberElevator == 1)
+                {
+                    TutorialManagerOilChange.Instance.StateChange(TutorialManagerOilChange.StateTutorial.ElevatorFirstFloor, TutorialManagerOilChange.StateTutorial.Boxes);
+                }
+                else
+                {
+                    TutorialManagerOilChange.Instance.StateChange(TutorialManagerOilChange.StateTutorial.Boxes, TutorialManagerOilChange.StateTutorial.ElevatorFirstFloor);
+                }
+                break;
+            case TutorialManagerOilChange.StateTutorial.ElevatorBottom:
+                if (floorNumberElevator == 0)
+                {
+                    TutorialManagerOilChange.Instance.StateChange(TutorialManagerOilChange.StateTutorial.ElevatorBottom, TutorialManagerOilChange.StateTutorial.OilSpawner);
+                }
+                else
+                {
+                    TutorialManagerOilChange.Instance.StateChange(TutorialManagerOilChange.StateTutorial.OilSpawner, TutorialManagerOilChange.StateTutorial.ElevatorBottom);
+                }
+                break;
+            default:
+                break;
+        }
     }
 }

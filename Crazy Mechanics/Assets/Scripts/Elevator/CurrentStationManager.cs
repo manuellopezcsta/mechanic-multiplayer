@@ -17,6 +17,7 @@ public class CurrentStationManager : MonoBehaviour
 
     [SerializeField] private Material[] switchMaterial; //0= On, 1= Off
     [SerializeField] private MeshRenderer[] panelLighting;
+    private bool inTutorial = false;
 
 
     void Start()
@@ -24,6 +25,8 @@ public class CurrentStationManager : MonoBehaviour
 
         LightBoxController.OnLightTurnOn += TurnOnLightMaterial;
         LightBoxController.OnLightShutdown += TurnOffLightMaterial;
+        inTutorial = TutorialManagerOilChange.Instance != null;
+
 
     }
     void OnDisable()
@@ -96,6 +99,10 @@ public class CurrentStationManager : MonoBehaviour
     public void SetCarToStation(CarController car)
     {
         currentCar = car;
+        if (inTutorial && currentCar.HasCarTask(GameManager.CarTasks.OIL_CHANGE))
+        {
+            TutorialManagerOilChange.Instance.SwitchState();
+        }
     }
 
 

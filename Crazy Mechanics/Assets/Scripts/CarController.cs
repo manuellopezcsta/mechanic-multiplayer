@@ -27,7 +27,7 @@ public class CarController : MonoBehaviour
     [SerializeField] private Transform wheelBLPosition;
     [SerializeField] private Transform diffFixPosition;
     [SerializeField] private Transform unbendTaskPosition;
-    
+
     // Puntaje por auto
     [SerializeField] public int carScoreValue = 0;
 
@@ -155,26 +155,35 @@ public class CarController : MonoBehaviour
                 createdTasksContainers.Add(generatedTask);
                 return;
         }
-       
+
     }
-    private void CheckIfFinishedFixing(){
-        if(createdTasksContainers.Count == completedTasksCounter){
+    private void CheckIfFinishedFixing()
+    {
+        if (createdTasksContainers.Count == completedTasksCounter)
+        {
             carFixed = true;
             DevileryCounter.Instance.ShowReadyToDeliver(true);
             Debug.Log("Auto esta listo para entregar");
         }
     }
-    
-    public void CompleteTask(){
-    //aumenta las tareas completadas en 1, se llama cada vez que una tarea se completa, y esta vinculada al auto. 
-        completedTasksCounter ++;
-        Debug.Log("Se aumento las tareas completadas " + completedTasksCounter  );
+
+    public void CompleteTask()
+    {
+        //aumenta las tareas completadas en 1, se llama cada vez que una tarea se completa, y esta vinculada al auto. 
+        completedTasksCounter++;
+        Debug.Log("Se aumento las tareas completadas " + completedTasksCounter);
         // Nos fijamos si el auto esta listo.
         CheckIfFinishedFixing();
     }
 
-    public void AddScoreTask(int score){
+    public void AddScoreTask(int score)
+    {
         carScoreValue += score;
+    }
+
+    public bool HasCarTask(GameManager.CarTasks task)
+    {
+        return carTasks.Contains(task);
     }
 
 }

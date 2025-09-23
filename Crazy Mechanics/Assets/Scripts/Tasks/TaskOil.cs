@@ -21,10 +21,18 @@ public class TaskOil : BaseCounter
     public static event EventHandler OnAddingOil;
     private CurrentStationManager stationManager;
     [SerializeField] private GameObject fxOil;
+    private bool inTutorial = false;
 
     void Start()
     {
         stationManager = carController.GetCurrentStationManager();   
+        if (TutorialManagerOilChange.Instance != null)
+        {
+            inTutorial = true;
+            Debug.Log("Findng task arrow OIL");
+            TutorialManagerOilChange.Instance.FindOilChangeTaskArrow();
+            TutorialManagerOilChange.Instance.StateChange(TutorialManagerOilChange.StateTutorial.Idle, TutorialManagerOilChange.StateTutorial.ElevatorFirstFloor);
+        }
     }
 
     public override void Interact(Player player)
@@ -47,7 +55,13 @@ public class TaskOil : BaseCounter
                     SoundManager.Instance.PlayObjectDroppedSound(transform);
                     OnOilDraining?.Invoke(this, EventArgs.Empty);
                     fxOil.SetActive(true);
+                    //Si estoy en tutorial cambia a estado idle cundo pongo la caja a sacar aceite
+                    if (inTutorial)
+                    {
+                        TutorialManagerOilChange.Instance.StateChange(TutorialManagerOilChange.StateTutorial.Task, TutorialManagerOilChange.StateTutorial.Idle);
+                    }
                     StartCoroutine(TimeToRequest(timeRequest, stationManager));
+                    
                 }
                 //Verifica si el player tiene un objeto, si es un aceite y el auto no tiene aceite sucio. Si se cumple completa la tarea
                 else if (isOnGroundFloor && player.HasCarObject() && player.GetCarObject().GetObjectSO() == oil && !itHasDirtyOil)
@@ -57,7 +71,7 @@ public class TaskOil : BaseCounter
                     // Hacemos sonido
                     SoundManager.Instance.PlayObjectDroppedSound(transform);
                     OnAddingOil?.Invoke(this, EventArgs.Empty);
-                    
+
                     taskComplete = true;
                     carController.AddScoreTask(score);
                     indicatorUI.SetAsComplete();
@@ -90,6 +104,10 @@ public class TaskOil : BaseCounter
         yield return new WaitForSeconds(timeRequest);
         itHasDirtyOil = false;
         fxOil.SetActive(false);
+        if (inTutorial)
+        {
+            TutorialManagerOilChange.Instance.StateChange(TutorialManagerOilChange.StateTutorial.Idle, TutorialManagerOilChange.StateTutorial.Task);
+        }
         //Limpia el carObject de la mesa y lo destruye.
         GetCarObject().DestroySelf();
         Transform boxFullPreFab = Instantiate(boxFull.prefab, GetCarObjectFollowTransform());

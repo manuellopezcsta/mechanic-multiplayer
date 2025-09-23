@@ -24,14 +24,14 @@ public class TutorialManagerBattery : MonoBehaviour
         Instance = this;
     }
 
-    public void StartTutorial(bool isWheelMissing)
+    /*public void StartTutorial(bool isWheelMissing)
     {
         if (currentState == StateTutorial.Idle && tutorialEnabled)
         {
             currentState = StateTutorial.Task;
             SwitchState();
         }
-    }
+    }*/
     public void SwitchState()
     {
         TurnOffArrows();
