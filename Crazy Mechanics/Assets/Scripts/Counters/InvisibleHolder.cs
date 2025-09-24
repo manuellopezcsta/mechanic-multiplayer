@@ -9,15 +9,21 @@ public class InvisibleHolder : BaseCounter
     public bool flying;
     private Rigidbody rb;
     [SerializeField] private Vector3 spawn;
-    private bool inTutorial = false;
+    private bool inTutorialOil = false;
+    private bool inTutorialBox = false;
     const string EXIT_MAP_TAG = "ExitMap";
     void Start()
     {
         if (tool != null)
         {
             CreateTool();
-            //inTutorial es true cuando esta activado el script de tutorial y el objeto es Aceite
-            inTutorial = TutorialManagerOilChange.Instance != null && tool.GetObjectSO().name == "Aceite";
+            //inTutorialOil es true cuando esta activado el script de tutorial y el objeto es Aceite, similar para inTutorialBox
+            if (TutorialManagerOilChange.Instance != null)
+            {
+                inTutorialOil = tool.GetObjectSO().name == "Aceite";
+                inTutorialBox = tool.GetObjectSO().name == "CajaFull";
+            }
+            
         }
         rb = GetComponent<Rigidbody>();
         spawn = GameManager.Instance.GetLostAndFoundPosition().position;
@@ -41,12 +47,16 @@ public class InvisibleHolder : BaseCounter
         {
             // Player is not carrying anything.
             GetCarObject().SetCarObjectParent(player);
-            if (inTutorial)
+            if (inTutorialOil)
             {
                 TutorialManagerOilChange.Instance.StateChange(TutorialManagerOilChange.StateTutorial.OilSpawner, TutorialManagerOilChange.StateTutorial.Task);
             }
+            if (inTutorialBox)
+            {
+                TutorialManagerOilChange.Instance.StateChange(TutorialManagerOilChange.StateTutorial.Task, TutorialManagerOilChange.StateTutorial.Trash);
+            }
             //Borramos el objeto invisible.
-                Destroy(gameObject);
+            Destroy(gameObject);
         }
     }
 

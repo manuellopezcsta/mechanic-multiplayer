@@ -99,10 +99,6 @@ public class CurrentStationManager : MonoBehaviour
     public void SetCarToStation(CarController car)
     {
         currentCar = car;
-        if (inTutorial && currentCar.HasCarTask(GameManager.CarTasks.OIL_CHANGE))
-        {
-            TutorialManagerOilChange.Instance.SwitchState();
-        }
     }
 
 

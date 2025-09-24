@@ -29,28 +29,24 @@ public class ElevatorController : MonoBehaviour
     {
         if (!isMoving && !csm.IsElevatorLocked() && GameManager.Instance.IsPowerEnabled() && !csm.isFree() && !csm.currentCar.canMove)
         {
-            Debug.Log("Piso actual" + floorNumberElevator);
             switch (floorNumberElevator)
             {
                 case 0:
                     nextFloor = 1;
                     csm.currentCar.bottomCar.enabled = false;
-                    Debug.Log("Piso temporal" + nextFloor);
                     break;
                 case 1:
                     nextFloor = 2;
                     csm.currentCar.bottomCar.enabled = false;
-                    Debug.Log("Piso temporal" + nextFloor);
                     break;
                 case 2:
                     nextFloor = 0;
                     csm.currentCar.bottomCar.enabled = true;
-                    Debug.Log("Piso temporal" + nextFloor);
                     break;
             }
             TutorialUpdate();
             isMoving = true;
-            //Debug.Log("Se empieza a mover");
+            Debug.Log("update tutorial");
             OnMovingChanged?.Invoke(this, new OnMovingChangedEventArgs
             {
                 isMoving = this.isMoving
@@ -89,24 +85,30 @@ public class ElevatorController : MonoBehaviour
         {
             return;
         }
+        
+        Debug.Log("Tutorial elevator state "+ TutorialManagerOilChange.Instance.currentState.ToString());
         switch (TutorialManagerOilChange.Instance.currentState)
         {
             case TutorialManagerOilChange.StateTutorial.ElevatorFirstFloor:
-                if (floorNumberElevator == 1)
+                if (nextFloor == 1)
                 {
                     TutorialManagerOilChange.Instance.StateChange(TutorialManagerOilChange.StateTutorial.ElevatorFirstFloor, TutorialManagerOilChange.StateTutorial.Boxes);
                 }
-                else
+                break;
+            case TutorialManagerOilChange.StateTutorial.ElevatorBottom:
+                if (nextFloor == 0)
+                {
+                    TutorialManagerOilChange.Instance.StateChange(TutorialManagerOilChange.StateTutorial.ElevatorBottom, TutorialManagerOilChange.StateTutorial.OilSpawner);
+                }
+                break;
+            case TutorialManagerOilChange.StateTutorial.Boxes:
+                if (nextFloor != 1)
                 {
                     TutorialManagerOilChange.Instance.StateChange(TutorialManagerOilChange.StateTutorial.Boxes, TutorialManagerOilChange.StateTutorial.ElevatorFirstFloor);
                 }
                 break;
-            case TutorialManagerOilChange.StateTutorial.ElevatorBottom:
-                if (floorNumberElevator == 0)
-                {
-                    TutorialManagerOilChange.Instance.StateChange(TutorialManagerOilChange.StateTutorial.ElevatorBottom, TutorialManagerOilChange.StateTutorial.OilSpawner);
-                }
-                else
+            case TutorialManagerOilChange.StateTutorial.OilSpawner:
+                if (nextFloor != 0)
                 {
                     TutorialManagerOilChange.Instance.StateChange(TutorialManagerOilChange.StateTutorial.OilSpawner, TutorialManagerOilChange.StateTutorial.ElevatorBottom);
                 }

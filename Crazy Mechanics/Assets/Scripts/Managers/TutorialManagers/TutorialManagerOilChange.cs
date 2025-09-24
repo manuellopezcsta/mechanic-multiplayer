@@ -36,16 +36,10 @@ public class TutorialManagerOilChange : MonoBehaviour
         switch (currentState)
         {
             case StateTutorial.ElevatorBottom:
-                foreach (var obj in ElevatorArrows)
-                {
-                    obj.GetComponent<MeshRenderer>().enabled = true;
-                }
+                elevatorArrowsToggle(true);
                 break;
             case StateTutorial.ElevatorFirstFloor:
-                foreach (var obj in ElevatorArrows)
-                {
-                    obj.GetComponent<MeshRenderer>().enabled = true;
-                }
+                elevatorArrowsToggle(true);
                 break;
             case StateTutorial.Boxes:
                 BoxPileArrow.GetComponent<MeshRenderer>().enabled = true;
@@ -66,10 +60,7 @@ public class TutorialManagerOilChange : MonoBehaviour
 
     public void TurnOffArrows()
     {
-        foreach (var obj in ElevatorArrows)
-        {
-            obj.GetComponent<MeshRenderer>().enabled = false;
-        }
+        elevatorArrowsToggle(false);
         BoxPileArrow.GetComponent<MeshRenderer>().enabled = false;
         Task.GetComponent<MeshRenderer>().enabled = false;
         Trash.GetComponent<MeshRenderer>().enabled = false;
@@ -88,11 +79,16 @@ public class TutorialManagerOilChange : MonoBehaviour
         if (currentState == inState)
         {
             currentState = outState;
-            //Caso especial del elevador que va a esperar que llegue el auto
-            if (currentState != StateTutorial.ElevatorBottom && currentState != StateTutorial.ElevatorFirstFloor)
-            {
-                SwitchState();
-            }
+            SwitchState();
+            
+        }
+    }
+    private void elevatorArrowsToggle(bool toggle)
+    {
+        foreach (var obj in ElevatorArrows)
+        {
+            Debug.Log("changing elevator arrows to " + toggle.ToString());
+            obj.GetComponent<MeshRenderer>().enabled = toggle;
         }
     }
 }

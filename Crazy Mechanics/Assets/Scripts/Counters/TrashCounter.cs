@@ -10,6 +10,11 @@ public class TrashCounter : BaseCounter
 
     public static event EventHandler OnAnyObjectTrashed;
     [SerializeField] private int scoreTrash;
+    private bool inTutorial = false;
+    void Start()
+    {
+        inTutorial = TutorialManagerOilChange.Instance != null;
+    }
     public override void Interact(Player player)
     {
 
@@ -20,7 +25,12 @@ public class TrashCounter : BaseCounter
             if (player.HasCarObject() && !tools.Contains(player.GetCarObject().GetObjectSO()))
             {
                 ScoreManager.Instance.AddPoints(scoreTrash);
+                
                 // El player tiene algo en la mano
+                if (player.GetCarObject().GetObjectSO().name == "CajaFull" && inTutorial)
+                {
+                    TutorialManagerOilChange.Instance.StateChange(TutorialManagerOilChange.StateTutorial.Trash, TutorialManagerOilChange.StateTutorial.ElevatorBottom);
+                }
                 player.GetCarObject().SetCarObjectParent(this);
                 //ejecutamos la funcion de destruir del objeto
                 GetCarObject().DestroySelf();

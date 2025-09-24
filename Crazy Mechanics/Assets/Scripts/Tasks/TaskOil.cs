@@ -29,7 +29,6 @@ public class TaskOil : BaseCounter
         if (TutorialManagerOilChange.Instance != null)
         {
             inTutorial = true;
-            Debug.Log("Findng task arrow OIL");
             TutorialManagerOilChange.Instance.FindOilChangeTaskArrow();
             TutorialManagerOilChange.Instance.StateChange(TutorialManagerOilChange.StateTutorial.Idle, TutorialManagerOilChange.StateTutorial.ElevatorFirstFloor);
         }
@@ -71,7 +70,11 @@ public class TaskOil : BaseCounter
                     // Hacemos sonido
                     SoundManager.Instance.PlayObjectDroppedSound(transform);
                     OnAddingOil?.Invoke(this, EventArgs.Empty);
-
+                    //Si estoy en tutorial cambia a estado idle cundo completo la tarea
+                    if (inTutorial)
+                    {
+                        TutorialManagerOilChange.Instance.StateChange(TutorialManagerOilChange.StateTutorial.Task, TutorialManagerOilChange.StateTutorial.Idle);
+                    }
                     taskComplete = true;
                     carController.AddScoreTask(score);
                     indicatorUI.SetAsComplete();
@@ -89,6 +92,7 @@ public class TaskOil : BaseCounter
                     ComboManager.Instance.UpdateCombo();
                     // Player is not carrying anything. He only takes it when he finishes the task.
                     GetCarObject().SetCarObjectParent(player);
+                    TutorialManagerOilChange.Instance.StateChange(TutorialManagerOilChange.StateTutorial.Task, TutorialManagerOilChange.StateTutorial.Trash);
                     // Deslockeamos el elevador.
                     stationManager.LockAndUnlockElevator();
                 }
