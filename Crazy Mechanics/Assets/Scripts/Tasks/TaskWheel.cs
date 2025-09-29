@@ -12,6 +12,7 @@ public class TaskWheel : BaseCounter
     [SerializeField] public bool taskComplete;
     [SerializeField] TaskIndicatorUI indicatorUI;
     [SerializeField] private int score;
+    [SerializeField] private GameObject arrow;
     private bool inTutorial = false;
 
     CurrentStationManager stationManager;
@@ -24,8 +25,9 @@ public class TaskWheel : BaseCounter
         GetCarObject().SetCarObjectParent(this);
         if (TutorialManagerWheel.Instance != null)
         {
-            inTutorial = TutorialManagerWheel.Instance.tutorialEnabled;    
-            TutorialManagerWheel.Instance.FindWheelTaskArrow();
+            inTutorial = TutorialManagerWheel.Instance.tutorialEnabled;
+            //TutorialManagerWheel.Instance.FindWheelTaskArrow();
+            TutorialManagerWheel.Instance.SetTaskArrow(arrow);
         }
 
         // Decidimos con un random si va a tener rueda o si necesita una nueva.
@@ -67,6 +69,10 @@ public class TaskWheel : BaseCounter
             // There is no obj here and check if they are the same object
             if (player.HasCarObject() && player.GetCarObject().GetObjectSO() == balancedWheel && stationManager.GetCurrentElevatorFloor() == 0)
             {
+                if (inTutorial)
+                {
+                    TutorialManagerWheel.Instance.StateChange(TutorialManagerWheel.StateTutorial.TaskArrow, TutorialManagerWheel.StateTutorial.Idle);
+                }
                 ComboManager.Instance.UpdateCombo();
                 // El player tiene algo en la mano
                 player.GetCarObject().SetCarObjectParent(this);
@@ -81,10 +87,7 @@ public class TaskWheel : BaseCounter
                 carController.CompleteTask();
                 //Apagamos el collider para que no moleste para otras tasks
                 transform.GetComponent<BoxCollider>().enabled = false;
-                if (inTutorial)
-                {
-                    TutorialManagerWheel.Instance.StateChange(TutorialManagerWheel.StateTutorial.TaskArrow, TutorialManagerWheel.StateTutorial.Idle);
-                }
+                
             }
         } else {
             // Logica para sacar la rueda del auto.

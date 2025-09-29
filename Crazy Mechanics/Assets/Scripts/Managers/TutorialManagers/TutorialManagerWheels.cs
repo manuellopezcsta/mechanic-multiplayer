@@ -25,7 +25,7 @@ public class TutorialManagerWheel : MonoBehaviour
     {
         Instance = this;
     }
-    
+
     void Start()
     {
         BaseCounter tutorialTask = GameManager.Instance.GetLevelProperties().tutorialTask;
@@ -113,10 +113,16 @@ public class TutorialManagerWheel : MonoBehaviour
     {
         TaskArrow = GameObject.Find("WheelTask(Clone)/Arrow");
     }
-    public void StateChange(StateTutorial inState, StateTutorial outState){
-        if (currentState == inState) {
+    public void StateChange(StateTutorial inState, StateTutorial outState)
+    {
+        if (currentState == inState)
+        {
             currentState = outState;
             SwitchState();
         }
+    }
+    public void SetTaskArrow(GameObject arrow)
+    {
+        TaskArrow = arrow;
     }
 }
